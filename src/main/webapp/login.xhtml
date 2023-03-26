@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>SIGENU-EaD : Autenticaci&oacute;n</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/img/favicon.png"/>
+
+
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="font-awesome.min.css"/>
+    <h:outputStylesheet library="css" value="main.css" name="main.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="notika-custom-icon.css"/>
+
+
+    <style type="text/css">
+        .nk-int-st:not([class*=has-]):after {
+            background: #0088cc;
+        }
+
+        .nk-block:not(.lc-block-alt) .btn-login {
+            margin-top: 0px;
+        }
+    </style>
+
+</h:head>
+<h:body>
+    <div class="login-content">
+        <div class="nk-block toggled" id="l-login">
+            <img src="#{request.contextPath}/resources/img/logo.png" alt=""/>
+            <form id="loginForm" method="post" action="#{request.contextPath}/login">
+                <div class="nk-form">
+                    <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                        <div class="alert-danger">
+                            <strong>Atenci&oacute;n!</strong> #{templateBean.translateMessage(SPRING_SECURITY_LAST_EXCEPTION.message)}
+
+                        </div>
+                    </c:if>
+                    <div class="input-group">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
+                        <div class="nk-int-st">
+                            <!--                                <h:inputText id="username" a:required="true" a:placeholder="Usuario" a:autofocus="true" class="form-control"/>-->
+                            <input type="text" class="form-control" placeholder="Usuario" id="username" name="username"
+                                   required="true"/>
+                        </div>
+                    </div>
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
+                        <div class="nk-int-st">
+                            <!--                                <h:inputSecret id="password" a:required="true" a:placeholder="Contrase&ntilde;a" class="form-control" />-->
+                            <input type="password" class="form-control" placeholder="Contrase&ntilde;a" id="password"
+                                   name="password" required="true"/>
+                        </div>
+                    </div>
+
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}"/>
+                    <br/>
+
+                    <button type="submit" class="btn btn-login btn-success btn-float"><i
+                            class="notika-icon notika-right-arrow"></i></button>
+                </div>
+
+                <div class="nk-navigation nk-lg-ic">
+                    <a style="cursor: pointer" onclick="PF('about').show()"><i>?</i> <span>Acerca de...</span></a>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <p:dialog header="SIGENU - Educaci&oacute;n a Distancia" widgetVar="about" minHeight="40" width="768" showEffect="fade">
+        <div class="nk-int-st">
+            <p align="justify">
+                <strong>SIGENU-EaD</strong> es un prototipo funcional de módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana, que brinda las funcionalidades necesarias para la gestión de los procesos de la secretaría docente en la Educaci&oacute;n a Distancia (EaD). Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios (asignaturas matriculadas, notas, procesos de baja, etc) por parte de las secretarías docentes.
+            </p>
+            <strong>Desarrollado por:</strong>
+            <ul>
+                <li><a href="mailto:claudiaar@unah.edu.cu">Claudia Aguilar Rajme</a></li>
+                <li><a href="mailto:gabrielpg@unah.edu.cu">Gabriel Alberto P&eacute;rez Guerra</a></li>
+            </ul>
+        </div>
+        <f:facet name="footer">
+            <p:commandButton type="button" value="Cerrar" onclick="PF('about').hide()" />
+        </f:facet>
+    </p:dialog>
+</h:body>
+</html>
+
