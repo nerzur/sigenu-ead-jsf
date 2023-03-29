@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<body>
+
+<ui:composition template="./Template.xhtml">
+
+    <ui:define name="title">
+        Perfil
+    </ui:define>
+
+    <ui:define name="title_content">
+        Datos de Perfil
+    </ui:define>
+
+    <ui:define name="content">
+
+        <style type="text/css">
+            body {
+                /*background : url('http://www.nandangonline.web.id/img/nandang/nandang.png')  no-repeat center center fixed;
+
+
+                                        -webkit-background-size: 100% 100%;
+                        -moz-background-size: 100% 100%;
+                        -o-background-size: 100% 100%;
+                        background-size: 100% 100%;*/
+                /*background-image: url('http://www.nandangonline.web.id/img/nandang/pt.gif');*/
+                background-color: #eaeaea;
+
+            }
+
+            div.kontn {
+                text-align: center;
+                border-right: 1px dashed #fff;
+                border-left: 1px dashed #fff;
+                padding-bottom: 5px;
+
+                -webkit-transition: 0.2s;
+                -moz-transition: 0.2s;
+                -o-transition: 0.2s;
+                transition: 0.2s;
+                height: 60px;
+            }
+
+            div.kontn a {
+
+                text-decoration: none;
+            }
+
+            div.kontn-net:hover {
+                border-bottom: 5px solid #DC3434;
+                cursor: pointer;
+            }
+
+            div.kontn-web:hover {
+                border-bottom: 5px solid yellow;
+                cursor: pointer;
+            }
+
+            div.kontn-mul:hover {
+                border-bottom: 5px solid green;
+                cursor: pointer;
+            }
+        </style>
+
+        <div class="row">
+            <div class="col col-sm-7" style="margin-left: 4%">
+                <div class="row" style="color:#fff;background-color:#08c; padding: 15px">
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-3" style="text-align:center;">
+                                <h3 style="margin-top:5px;margin-bottom:15px;">&emsp;</h3>
+                                <img src="#{request.contextPath}/resources/img/user.png" class="img-circle"
+                                     style="border:3px solid #2C99C2;" width="100px" height="100px"
+                                     alt="Imagen de Perfil"/>
+                                <p>#{templateBean.username}</p>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col col-sm-3">
+                                        <h:outputLabel value="Nombre:"/>
+                                    </div>
+                                    <div class="col col-sm-9">
+                                        <h:outputText
+                                                value="#{templateBean.user.nombre} #{templateBean.user.apellido1} #{templateBean.user.apellido2}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-3">
+                                        <h:outputLabel value="CI: "/>
+                                    </div>
+                                    <div class="col col-sm-9">
+                                        <h:outputText value="#{templateBean.user.identificacion}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-3">
+                                        <h:outputLabel value="Correo: "/>
+                                    </div>
+                                    <div class="col col-sm-9">
+                                        <h:outputLink value="mailto:#{templateBean.user.email}"> <h:outputText
+                                                value="#{templateBean.user.email}"/></h:outputLink>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-3">
+                                        <h:outputLabel value="Descripci&oacute;n: "/>
+                                    </div>
+                                    <div class="col col-sm-9">
+                                        <p align="justify">#{templateBean.user.descripcion}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-3">
+                                        <h:outputLabel value="Estado: "/>
+                                    </div>
+                                    <div class="col col-sm-9">
+                                        <p:outputLabel
+                                                value="#{templateBean.translateEstado(templateBean.user.enabled)}"
+                                                styleClass="#{templateBean.translateBooleanToSeveriy(templateBean.user.enabled)}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-3">
+                                        <h:outputLabel value="Roles: "/>
+                                    </div>
+                                    <div class="col col-sm-9">
+                                        <p:dataList style="background: red" value="#{templateBean.roles}" var="rol">
+                                            <p:outputLabel value="#{rol}" styleClass="ui-button-warning"/>
+                                            <!--                                 <p:outputLabel value="#{adminUsers_Bean.translateRole(rol)}"/>-->
+                                        </p:dataList>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col col-sm-4">
+                <p:card>
+                    <f:facet name="title">
+                        Cambiar contrase&ntilde;a
+                    </f:facet>
+                    <f:facet name="subtitle">
+                        <div class="alert alert-warning">
+                            <p>Para cambiar la contrase&ntilde;a del usuario actual es necesario introducir la contrase&ntilde;a antigua y repetir la nueva dos veces.</p>
+                        </div>
+                    </f:facet>
+                    <f:facet name="footer">
+                        <p:commandButton id="btnChange" styleClass="ui-button-success"
+                                         icon="pi pi-save"
+                                         action="#{templateBean.passwordRenew()}" update="passw_renew"
+                                         value="Cambiar"/>
+                    </f:facet>
+                    <h:form id="passw_renew">
+                        <p:growl allow-dismiss="true"/>
+                        <div class="form-group">
+                            <div class="nk-int-st">
+                                <p:inputText type="password" value="#{templateBean.password}" required="true"
+                                             placeholder="Contrase&ntilde;a antigua" label="Contrase&ntilde;a antigua"/>
+                            </div>
+                            <div class="nk-int-st">
+                                <p:inputText type="password" value="#{templateBean.password1}" required="true"
+                                             placeholder="Contrase&ntilde;a nueva" label="Contrase&ntilde;a nueva"/>
+                            </div>
+                            <div class="nk-int-st">
+                                <p:inputText type="password" value="#{templateBean.password2}" required="true"
+                                             placeholder="Contrase&ntilde;a nueva" label="Repetir Contrase&ntilde;a"/>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <p:blockUI block="body" trigger="btnChange">
+                            <div class="sk-cube-grid">
+                                <div class="sk-cube sk-cube1"></div>
+                                <div class="sk-cube sk-cube2"></div>
+                                <div class="sk-cube sk-cube3"></div>
+                                <div class="sk-cube sk-cube4"></div>
+                                <div class="sk-cube sk-cube5"></div>
+                                <div class="sk-cube sk-cube6"></div>
+                                <div class="sk-cube sk-cube7"></div>
+                                <div class="sk-cube sk-cube8"></div>
+                                <div class="sk-cube sk-cube9"></div>
+                            </div>
+                        </p:blockUI>
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                    </h:form>
+                </p:card>
+            </div>
+        </div>
+        <br/>
+        <br/>
+    </ui:define>
+
+</ui:composition>
+
+</body>
+</html>

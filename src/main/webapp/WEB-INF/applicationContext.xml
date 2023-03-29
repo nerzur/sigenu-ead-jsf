@@ -5,13 +5,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <security:http auto-config="true">
-        <security:intercept-url pattern="/index.xhtml" access="hasAnyRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/pages/index.xhtml" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/pages/Perfil.xhtml" access="isAuthenticated()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
+        <security:intercept-url pattern="/fonts/**" access="permitAll()"/>
         <security:intercept-url pattern="/jakarta.faces.resource/**" access="permitAll()"/>
         <security:intercept-url pattern="/login.xhtml" access="isAnonymous()"/>
 
         <!--Configuration of login and logout pages-->
-        <security:form-login login-page='/login.xhtml' default-target-url='/index.xhtml'
+        <security:form-login login-page='/login.xhtml' default-target-url='/pages/index.xhtml'
                              always-use-default-target='true'/>
         <security:logout logout-success-url="/login.xhtml" delete-cookies="JSESSIONID"/>
 
@@ -38,7 +40,7 @@
     <!--Configuration of DB source to login-->
     <bean id="securityDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5434/jakarta"/>
+        <property name="url" value="jdbc:postgresql://localhost:5434/SIGENU_EaD"/>
         <property name="username" value="postgres"/>
         <property name="password" value="postgres"/>
     </bean>

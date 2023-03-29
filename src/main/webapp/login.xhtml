@@ -41,7 +41,7 @@
                 <div class="nk-form">
                     <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                         <div class="alert-danger">
-                            <strong>Atenci&oacute;n!</strong> #{templateBean.translateMessage(SPRING_SECURITY_LAST_EXCEPTION.message)}
+                            <strong>Atenci&oacute;n!</strong> <h:outputText value="#{templateBean.translateMessage(SPRING_SECURITY_LAST_EXCEPTION.message)}"/>
 
                         </div>
                     </c:if>

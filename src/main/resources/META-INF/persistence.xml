@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="dist_educ_finalPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+<!--                <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+<!--        <non-jta-data-source>java:comp/env/jdbc/ead</non-jta-data-source>-->
+        <class>cu.edu.unah.sigenuead.entity.Asignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.Asignatura_Nota</class>
+        <class>cu.edu.unah.sigenuead.entity.AsignaturaAsignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.Authorities</class>
+        <class>cu.edu.unah.sigenuead.entity.Baja</class>
+        <class>cu.edu.unah.sigenuead.entity.Carrera</class>
+        <class>cu.edu.unah.sigenuead.entity.CarreraCurso</class>
+        <class>cu.edu.unah.sigenuead.entity.Carreranacional</class>
+        <class>cu.edu.unah.sigenuead.entity.ColorPiel</class>
+        <class>cu.edu.unah.sigenuead.entity.Cum</class>
+        <class>cu.edu.unah.sigenuead.entity.Curso</class>
+        <class>cu.edu.unah.sigenuead.entity.Disciplina</class>
+        <class>cu.edu.unah.sigenuead.entity.DisciplinaPlanestudio</class>
+        <class>cu.edu.unah.sigenuead.entity.Especialidad</class>
+        <class>cu.edu.unah.sigenuead.entity.EspecialidadMilitar</class>
+        <class>cu.edu.unah.sigenuead.entity.EstadoCivil</class>
+        <class>cu.edu.unah.sigenuead.entity.EstadoEstudiante</class>
+        <class>cu.edu.unah.sigenuead.entity.Estudiante</class>
+        <class>cu.edu.unah.sigenuead.entity.Estudiante_Nota</class>
+        <class>cu.edu.unah.sigenuead.entity.Estudiante_promover</class>
+        <class>cu.edu.unah.sigenuead.entity.Examen</class>
+        <class>cu.edu.unah.sigenuead.entity.ExamenMatriculaFacultadCumCarreraEstudianteAsignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.Facultad</class>
+        <class>cu.edu.unah.sigenuead.entity.FacultadCum</class>
+        <class>cu.edu.unah.sigenuead.entity.FacultadCumCarrera</class>
+        <class>cu.edu.unah.sigenuead.entity.FacultadCumCarreraEstudiante</class>
+        <class>cu.edu.unah.sigenuead.entity.FacultadCumCarreraEstudianteAsignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.FuenteIngreso</class>
+        <class>cu.edu.unah.sigenuead.entity.GradoMilitar</class>
+        <class>cu.edu.unah.sigenuead.entity.Huerfano</class>
+        <class>cu.edu.unah.sigenuead.entity.Matricula</class>
+        <class>cu.edu.unah.sigenuead.entity.MatriculaFacultadCumCarreraEstudianteAsignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.Minusvalia</class>
+        <class>cu.edu.unah.sigenuead.entity.MotivoBaja</class>
+        <class>cu.edu.unah.sigenuead.entity.Municipio</class>
+        <class>cu.edu.unah.sigenuead.entity.NivelEscolar</class>
+        <class>cu.edu.unah.sigenuead.entity.Ocupacion</class>
+        <class>cu.edu.unah.sigenuead.entity.Ong</class>
+        <class>cu.edu.unah.sigenuead.entity.Organismo</class>
+        <class>cu.edu.unah.sigenuead.entity.OrganizacionPolitica</class>
+        <class>cu.edu.unah.sigenuead.entity.OrganizacionPopular</class>
+        <class>cu.edu.unah.sigenuead.entity.Pais</class>
+        <class>cu.edu.unah.sigenuead.entity.Planestudio</class>
+        <class>cu.edu.unah.sigenuead.entity.PlanEstudio_Disciplina</class>
+        <class>cu.edu.unah.sigenuead.entity.PlanEstudio_Disciplina_Asignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.ProcedenciaEscolar</class>
+        <class>cu.edu.unah.sigenuead.entity.Provincia</class>
+        <class>cu.edu.unah.sigenuead.entity.Sexo</class>
+        <class>cu.edu.unah.sigenuead.entity.Sindicato</class>
+        <class>cu.edu.unah.sigenuead.entity.TipoAsignatura</class>
+        <class>cu.edu.unah.sigenuead.entity.TipoBaja</class>
+        <class>cu.edu.unah.sigenuead.entity.TipoEvaluacion</class>
+        <class>cu.edu.unah.sigenuead.entity.TipoMilitar</class>
+        <class>cu.edu.unah.sigenuead.entity.Tipoplanestudio</class>
+        <class>cu.edu.unah.sigenuead.entity.Tutor</class>
+        <class>cu.edu.unah.sigenuead.entity.Universidad</class>
+        <class>cu.edu.unah.sigenuead.entity.Users</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+                <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5434/SIGENU_EaD"/>
+                <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+                <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+                <property name="jakarta.persistence.jdbc.password" value="postgres"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
