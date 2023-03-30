@@ -105,9 +105,9 @@ public class TemplateBean implements Serializable {
 
     public String translateBooleanToSeveriy(boolean element) {
         if (element) {
-            return "ui-button-success";
+            return "badge badge-success";
         }
-        return "ui-button-danger";
+        return "badge badge-danger";
     }
 
     public void passwordRenew() {
@@ -126,5 +126,15 @@ public class TemplateBean implements Serializable {
         password = "";
         password1 = "";
         password2 = "";
+    }
+
+    public String translateRole(String role) {
+        return switch (role) {
+            case "ROLE_ADMIN" -> "Administrador";
+            case "ROLE_SECRETARIA" -> "Secretaria";
+            case "ROLE_SECRETARIO_GENERAL" -> "Secretario General";
+            case "ROLE_CONTROLADOR" -> "Controlador de Plan de Estudio";
+            default -> "Matriculador";
+        };
     }
 }

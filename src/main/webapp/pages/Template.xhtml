@@ -1,681 +1,542 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 30/03/2023
+  Time: 10:13AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui"
+>
+
 <h:head>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>SIGENU-EaD : <ui:insert name="title"> Inicio </ui:insert></title>
-    <meta name="description" content="Módulo de Sigenu Educación a Distancia"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/img/favicon.png"/>
-
-    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-    <h:outputStylesheet library="css" name="font-awesome.min.css"/>
-
-
-    <h:outputStylesheet library="css" name="owl.carousel.css"/>
-    <h:outputStylesheet library="css" name="owl.theme.css"/>
-    <h:outputStylesheet library="css" name="owl.transitions.css"/>
-    <h:outputStylesheet library="css" name="meanmenu.min.css"/>
-    <h:outputStylesheet library="css" name="animate.css"/>
-    <h:outputStylesheet library="css" name="normalize.css"/>
-    <h:outputStylesheet library="css" name="waves.min.css"/>
-    <h:outputStylesheet library="css" name="button.css"/>
-    <h:outputStylesheet library="css" name="jquery.mCustomScrollbar.min.css"/>
-
-    <h:outputStylesheet library="css" name="notika-custom-icon.css"/>
-    <h:outputStylesheet library="css" name="main.css"/>
-    <h:outputStylesheet library="css" name="style.css"/>
-
-    <h:outputStylesheet library="css" name="responsive.css"/>
-    <h:outputScript library="js" name="modernizr-2.8.3.min.js"/>
-
-    <h:outputStylesheet library="css" name="template.css"/>
-    <h:outputStylesheet library="primefaces-saga" name="theme.css"/>
-
-
-    <style type="text/css">
-        .custom-scrolltop.ui-scrolltop {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 4px;
-            outline: 0 none;
-            background-color: var(--primary-color);
-        }
-
-        .custom-scrolltop.ui-scrolltop:hover {
-            background-color: var(--primary-color);
-        }
-
-        .custom-scrolltop.ui-scrolltop .ui-scrolltop-icon {
-            font-size: 1rem;
-            color: var(--primary-color-text);
-        }
-    </style>
-
-
-    <style>
-        #mssg i {
-            width: 100%;
-        }
-    </style>
-
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/feather.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/themify-icons.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/typicons.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/simple-line-icons.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/vendor.bundle.base.css"/>
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
+    <!-- endinject -->
+    <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
 </h:head>
+
 <h:body id="body">
     #{templateBean.init()}
-    <p:scrollTop/>
-    <div class="header-top-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="logo-area">
-                        <a href="#{request.contextPath}/pages/index.xhtml"><img
-                                src="#{request.contextPath}/resources/img/logo.png" style="max-width: 150px"
-                                alt="logo"/>
-                        </a>
 
-                    </div>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div class="me-3">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                            data-bs-toggle="minimize">
+                        <span class="icon-menu"></span>
+                    </button>
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="header-top-menu">
-                        <ul class="nav navbar-nav notika-top-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                                   class="nav-link dropdown-toggle"><span><i
-                                        class="pi pi-search"></i></span></a>
-                                <div role="menu" style="width: auto; left: -300px" class="dropdown-menu search-dd animated slideInDown">
-                                    <div class="search-input" style="margin: 15px">
-                                        <h:form id="search_global">
-                                            <p:growl id="search_global_growl" allowDismiss="true"/>
-                                            <div class="col">
-                                                <div class="ui-inputgroup">
-                                                    <p:inputMask required="true" style="margin-top: 5px"
-                                                                 requiredMessage="ERROR: Debe introducir un CI v&aacute;lido"
-                                                                 mask="99999999999"
-                                                                 placeholder="Buscar estudiante por CI...."
-                                                    />
-                                                    <p:commandButton id="btnSearch_global" update="search_global"
-                                                                     icon="pi pi-search"
-                                                                     class="btn btn-info notika-btn-info"/>
-                                                </div>
-                                            </div>
-
-                                            <p:blockUI block="body" trigger="btnSearch_global">
-                                                <div class="sk-cube-grid">
-                                                    <div class="sk-cube sk-cube1"></div>
-                                                    <div class="sk-cube sk-cube2"></div>
-                                                    <div class="sk-cube sk-cube3"></div>
-                                                    <div class="sk-cube sk-cube4"></div>
-                                                    <div class="sk-cube sk-cube5"></div>
-                                                    <div class="sk-cube sk-cube6"></div>
-                                                    <div class="sk-cube sk-cube7"></div>
-                                                    <div class="sk-cube sk-cube8"></div>
-                                                    <div class="sk-cube sk-cube9"></div>
-                                                </div>
-                                            </p:blockUI>
-                                            <input type="hidden"
-                                                   name="${_csrf.parameterName}"
-                                                   value="${_csrf.token}"/>
-                                        </h:form>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="nav-item nc-al"><a href="#" data-toggle="dropdown" role="button"
-                                                          aria-expanded="false"
-                                                          class="nav-link dropdown-toggle"><span><i
-                                    class="pi pi-user"></i></span>
-                            </a>
-                                <div role="menu" style="width: auto"
-                                     class="dropdown-menu message-dd notification-dd animated slideInDown">
-                                    <div class="hd-mg-tt">
-                                        <h2><strong>#{templateBean.username} <span
-                                                style="color: #4CAF50">•</span></strong></h2>
-                                    </div>
-                                    <hr/>
-                                    <center>
-                                        <p:link value="Perfil" styleClass="btn btn-link" style="font-size: 15px"
-                                                href="#{request.contextPath}/pages/Perfil.xhtml"/>
-                                    </center>
-                                    <form action="/logout" method="post">
-                                        <center>
-                                            <input type="submit"
-                                                   class="btn btn-danger"
-                                                   value="Cerrar Sesión"/>
-                                        </center>
-                                        <input type="hidden"
-                                               name="${_csrf.parameterName}"
-                                               value="${_csrf.token}"/>
-                                    </form>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
+                <div>
+                    <a class="navbar-brand brand-logo" href="#{request.contextPath}/pages/index.xhtml">
+                        <img src="#{request.contextPath}/resources/img/logo.png" alt="logo"/>
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="#{request.contextPath}/pages/index.xhtml">
+                        <img src="#{request.contextPath}/resources/img/logo.png" alt="logo"/>
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- End Header Top Area -->
-    <!-- Mobile Menu start -->
-    <div class="mobile-menu-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="mobile-menu">
-                        <nav id="dropdown">
-                            <ul class="mobile-menu-nav">
-                                <!--                                <li style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general)}">-->
-                                <li>
-                                    <a data-toggle="collapse" data-target="#matricula" href="#">Matr&iacute;cula</a>
-                                    <!--                                    <b:listLinks id="matricula" class="collapse dropdown-header-top">-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_matriculador, templateBean.role_secretaria)}"-->
-                                    <!--                                                value="Matricular"-->
-                                    <!--                                                href="#{request.contextPath}/pages/matricula/NuevaMatricula.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_matriculador, templateBean.role_secretaria)}"-->
-                                    <!--                                                value="Actualizar datos de Estudiante"-->
-                                    <!--                                                href="#{request.contextPath}/pages/matricula/NuevaMatricula.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="Cerrar Matr&iacute;cula"-->
-                                    <!--                                                href="#{request.contextPath}/pages/matricula/CierreMatricula.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria)}"-->
-                                    <!--                                                value="Realizar Matr&iacute;cula Responsable"-->
-                                    <!--                                                href="#{request.contextPath}/pages/matricula/MatriculaResponsable.faces"/>-->
-                                    <!--                                    </b:listLinks>-->
-                                </li>
-                                <li>
-                                    <!--                                <li style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general, templateBean.role_controlador)}">-->
-                                    <a data-toggle="collapse" data-target="#centro" href="#">Centro</a>
-                                    <!--                                    <b:listLinks id="centro" class="collapse dropdown-header-top">-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="Universidad"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminUniversidad.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="Facultad"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminFacultad.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="CUM" href="#{request.contextPath}/pages/admin/AdminCum.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="Carrera"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminCarrera.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador)}"-->
-                                    <!--                                                value="Ubicar Carreras en CUM"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminCarreraCUM.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="Abrir Matr&iacute;cula Responsable"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminMatricula.faces"/>-->
-                                    <!--                                    </b:listLinks>-->
-                                </li>
-                                <li>
-                                    <!--                                <li style="#{templateBean.translateRole_visible(templateBean.role_secretaria)}">-->
-                                    <!--                                        data-toggle="collapse" data-target="#estudiante" href="#">Estudiante</a>-->
-                                    <!--                                    <b:listLinks id="estudiante" class="collapse dropdown-header-top">-->
-                                    <!--                                        &lt;!&ndash;<b:navLink value="Evaluar Estudiante por Asignaturas" href="#{request.contextPath}/pages/notas/EvaluarEstudianteAsignaturas.faces"/>&ndash;&gt;-->
-                                    <!--                                        <b:navLink value="Buscar Estudiantes"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/BuscarEstudiantes.faces"/>-->
-                                    <!--                                        <b:navLink value="Evaluar Asignaturas por Estudiante"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/notas/EvaluarAsignaturaEstudiantes.faces"/>-->
-                                    <!--                                        <b:navLink value="Dar Baja a Estudiante"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/BajaEstudiante.faces"/>-->
-                                    <!--                                        <b:navLink value="Promover Estudiantes"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/PromoverEstudiantes.faces"/>-->
-                                    <!--                                        <b:navLink value="Revocar Baja"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/RevocarBaja.faces"/>-->
-                                    <!--                                        <b:navLink value="Revocar Promoci&oacute;n"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/RevocarPromocion.faces"/>-->
-                                    <!--                                    </b:listLinks>-->
-                                </li>
-                                <li>
-                                    <!--                                <li style="#{templateBean.translateRole_visible(templateBean.role_controlador)}"><a-->
-                                    <!--                                        data-toggle="collapse" data-target="#planestudio" href="#">Plan de Estudio</a>-->
-                                    <!--                                    <b:listLinks id="planestudio" class="collapse dropdown-header-top">-->
-                                    <!--                                        <b:navLink value="Gestionar Plan"-->
-                                    <!--                                                   href="#{request.contextPath}/pages/admin/AdminPlanEstudio.faces"/>-->
-                                    <!--                                    </b:listLinks>-->
-                                </li>
-                                <li>
-                                    <!--                                <li style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">-->
-                                    <a data-toggle="collapse" data-target="#admin" href="#">Administraci&oacute;n</a>
-                                    <!--                                    <b:listLinks id="admin" class="collapse dropdown-header-top">-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Carrera Nacional"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminCarreraNacional.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Color de Piel"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminColorPiel.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                                    <!--                                                value="Curso"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminCurso.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Disciplina"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminDisciplina.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Especialidad"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminEspecialidad.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Especialidad Militar"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminEspecialidadMilitar.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Estado Civil"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminEstadoCivil.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Estado de Estudiante"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminEstadoEstudiante.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Fuente de Ingreso"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminFuenteIngreso.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Grado Militar"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminGradoMilitar.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Orfandad"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminHuerfano.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Minusval&iacute;a"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminMinusvalia.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Municipio"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminMunicipio.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Nivel Escolar"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminNivelEscolar.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Ocupaci&oacute;n"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminOcupacion.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="ONG" href="#{request.contextPath}/pages/admin/AdminOng.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Organismo"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminOrganismo.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Organizaci&oacute;n Pol&iacute;tica"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminOrganizacionPolitica.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Organizaci&oacute;n Popular"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminOrganizacionPopular.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Pa&iacute;s"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminPais.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Procedencia Escolar"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminProcedenciaEscolar.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Provincia"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminProvincia.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Sexo"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminSexo.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Sindicato"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminSindicato.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Tipo de Asignatura"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminTipoAsignatura.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Tipo de Evaluaci&oacute;n"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminTipoEvaluacion.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Tipo de Militar"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminTipoMilitar.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Tipo de Plan de Estudio"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminTipoPlanEstudio.faces"/>-->
-                                    <!--                                        <b:navLink-->
-                                    <!--                                                rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                                    <!--                                                value="Usuarios"-->
-                                    <!--                                                href="#{request.contextPath}/pages/admin/AdminUsers.faces"/>-->
-                                    <!--                                    </b:listLinks>-->
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Mobile Menu end -->
-    <!-- Main Menu area start-->
-    <div class="main-menu-area mg-tb-40">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li>
-                            <!--                        <li style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general)}">-->
-                            <a data-toggle="tab" href="#Matricula"><i class="notika-icon notika-form"></i> Matr&iacute;cula</a>
-                        </li>
-                        <li>
-                            <!--                        <li style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general, templateBean.role_controlador)}">-->
-                            <a data-toggle="tab" href="#Centro"><i class="notika-icon notika-house"></i> Centro</a>
-                        </li>
-                        <li>
-                            <!--                        <li style="#{templateBean.translateRole_visible(templateBean.role_secretaria)}">-->
-                            <a
-                                    data-toggle="tab" href="#Estudiante"><i
-                                    class="notika-icon notika-support"></i> Estudiante</a>
-                        </li>
-                        <li>
-                            <!--                        <li style="#{templateBean.translateRole_visible(templateBean.role_controlador)}">-->
-                            <a
-                                    data-toggle="tab" href="#PlanEstudio"><i
-                                    class="notika-icon notika-bar-chart"></i> Plan de Estudio</a>
-                        </li>
-                        <li>
-                            <!--                        <li style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">-->
-                            <a data-toggle="tab" href="#Admin"><i class="notika-icon notika-settings"></i> Administraci&oacute;n</a>
-                        </li>
-                        <li>
-                            <!--                        <li style="#{templateBean.translateRole_visible(templateBean.role_secretaria, templateBean.role_secretario_general)}">-->
-                            <a data-toggle="tab" href="#Reportes"><i class="notika-icon notika-print"></i> Reportes</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content custom-menu-content">
-                        <div id="Matricula" class="tab-pane in notika-tab-menu-bg animated flipInX">
-                            <!--                            <b:listLinks class="notika-main-menu-dropdown">-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_matriculador, templateBean.role_secretaria)}"-->
-                            <!--                                        value="Matricular"-->
-                            <!--                                        href="#{request.contextPath}/pages/matricula/NuevaMatricula.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_matriculador, templateBean.role_secretaria)}"-->
-                            <!--                                        value="Actualizar datos de Estudiante"-->
-                            <!--                                        href="#{request.contextPath}/pages/matricula/NuevaMatricula.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Cerrar Matr&iacute;cula"-->
-                            <!--                                        href="#{request.contextPath}/pages/matricula/CierreMatricula.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria)}"-->
-                            <!--                                        value="Realizar Matr&iacute;cula Responsable"-->
-                            <!--                                        href="#{request.contextPath}/pages/matricula/MatriculaResponsable.faces"/>-->
-                            <!--                            </b:listLinks>-->
-                        </div>
-                        <div id="Centro" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <!--                            <b:listLinks class="notika-main-menu-dropdown">-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Universidad"-->
-                            <!--                                        href="#{request.contextPath}/pages/admin/AdminUniversidad.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Facultad"-->
-                            <!--                                        href="#{request.contextPath}/pages/admin/AdminFacultad.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="CUM" href="#{request.contextPath}/pages/admin/AdminCum.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Carrera" href="#{request.contextPath}/pages/admin/AdminCarrera.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador)}"-->
-                            <!--                                        value="Ubicar Carreras en CUM"-->
-                            <!--                                        href="#{request.contextPath}/pages/admin/AdminCarreraCUM.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Abrir Matr&iacute;cula Responsable"-->
-                            <!--                                        href="#{request.contextPath}/pages/admin/AdminMatricula.faces"/>-->
-                            <!--                            </b:listLinks>-->
-                        </div>
-                        <div id="Estudiante" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <!--                            <b:listLinks class="notika-main-menu-dropdown"-->
-                            <!--                                         rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria)}">-->
-                            <!--                                &lt;!&ndash;<b:navLink value="Evaluar Estudiante por Asignaturas" href="#{request.contextPath}/pages/notas/EvaluarEstudianteAsignaturas.faces"/>&ndash;&gt;-->
-                            <!--                                <b:navLink value="Buscar Estudiantes"-->
-                            <!--                                           href="#{request.contextPath}/pages/BuscarEstudiantes.faces"/>-->
-                            <!--                                <b:navLink value="Evaluar Asignaturas por Estudiante"-->
-                            <!--                                           href="#{request.contextPath}/pages/notas/EvaluarAsignaturaEstudiantes.faces"/>-->
-                            <!--                                <b:navLink value="Dar Baja a Estudiante"-->
-                            <!--                                           href="#{request.contextPath}/pages/BajaEstudiante.faces"/>-->
-                            <!--                                <b:navLink value="Promover Estudiantes"-->
-                            <!--                                           href="#{request.contextPath}/pages/PromoverEstudiantes.faces"/>-->
-                            <!--                                <b:navLink value="Revocar Baja" href="#{request.contextPath}/pages/RevocarBaja.faces"/>-->
-                            <!--                                <b:navLink value="Revocar Promoci&oacute;n"-->
-                            <!--                                           href="#{request.contextPath}/pages/RevocarPromocion.faces"/>-->
-                            <!--                            </b:listLinks>-->
-                        </div>
-                        <div id="PlanEstudio" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <!--                            <b:listLinks rendered="#{templateBean.translateRole_Boolean(templateBean.role_controlador)}"-->
-                            <!--                                         class="notika-main-menu-dropdown">-->
-                            <!--                                <b:navLink value="Gestionar Plan"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminPlanEstudio.faces"/>-->
-                            <!--                            </b:listLinks>-->
-                        </div>
-                        <div id="Admin" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <!--                            <b:listLinks class="notika-main-menu-dropdown">-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Carrera Nacional"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminCarreraNacional.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Color de Piel"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminColorPiel.faces"/>-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Curso" href="#{request.contextPath}/pages/admin/AdminCurso.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Disciplina"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminDisciplina.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Especialidad"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminEspecialidad.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Especialidad Militar"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminEspecialidadMilitar.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Estado Civil"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminEstadoCivil.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Fuente de Ingreso"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminFuenteIngreso.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Grado Militar"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminGradoMilitar.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Orfandad"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminHuerfano.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Minusval&iacute;a"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminMinusvalia.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Municipio"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminMunicipio.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Nivel Escolar"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminNivelEscolar.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Ocupaci&oacute;n"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminOcupacion.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="ONG" href="#{request.contextPath}/pages/admin/AdminOng.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Organismo"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminOrganismo.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Organizaci&oacute;n Pol&iacute;tica"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminOrganizacionPolitica.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Organizaci&oacute;n Popular"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminOrganizacionPopular.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Pa&iacute;s"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminPais.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Procedencia Escolar"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminProcedenciaEscolar.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Provincia"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminProvincia.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Sexo" href="#{request.contextPath}/pages/admin/AdminSexo.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Sindicato"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminSindicato.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Tipo de Asignatura"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminTipoAsignatura.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Tipo de Evaluaci&oacute;n"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminTipoEvaluacion.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Tipo de Militar"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminTipoMilitar.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Tipo de Plan de Estudio"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminTipoPlanEstudio.faces"/>-->
-                            <!--                                <b:navLink rendered="#{templateBean.translateRole_Boolean(templateBean.role_admin)}"-->
-                            <!--                                           value="Usuarios"-->
-                            <!--                                           href="#{request.contextPath}/pages/admin/AdminUsers.faces"/>-->
-                            <!--                            </b:listLinks>-->
-                        </div>
-                        <div id="Reportes" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <!--                            <b:listLinks-->
-                            <!--                                    rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria, templateBean.role_secretario_general)}"-->
-                            <!--                                    class="notika-main-menu-dropdown">-->
-                            <!--                                <b:navLink-->
-                            <!--                                        rendered="#{templateBean.translateRole_Boolean(templateBean.role_secretaria, templateBean.role_secretario_general)}"-->
-                            <!--                                        value="Registro de Calificaciones por Asignatura"-->
-                            <!--                                        href="#{request.contextPath}/pages/report/RegistroCalificacionesAsig.faces"/>-->
-                            <!--                                <b:navLink value="Registro de Calificaciones por Estudiantes"-->
-                            <!--                                           href="#{request.contextPath}/pages/report/RegistroCalificacionesEstudiante.faces"/>-->
-                            <!--                                <b:navLink value="Acta de Examen Final"-->
-                            <!--                                           href="#{request.contextPath}/pages/report/ActaExamenFinal.faces"/>-->
-                            <!--                                <b:navLink value="Certificación de calificaciones del curso académico"-->
-                            <!--                                           href="#{request.contextPath}/pages/report/Certificacion.faces"/>-->
-                            <!--                                <b:navLink value="Modelo Matrícula Responsable "-->
-                            <!--                                           href="#{request.contextPath}/pages/report/MatriculaResponsable.faces"/>-->
-                            <!--                                <b:navLink value="Certificación de Examen Premio"-->
-                            <!--                                           href="#{request.contextPath}/pages/report/ExamenPremio.faces"/>-->
-                            <!--                            </b:listLinks>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Main Menu area End-->
-    <!-- Breadcomb area Start-->
+            <div class="navbar-menu-wrapper d-flex align-items-top">
+                <ul class="navbar-nav ms-auto">
 
-    <!-- Breadcomb area End-->
-    <!-- Data Table area Start-->
-    <div class="data-table-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="data-table-list">
-                        <div class="breadcomb-wp">
+                <li class="nav-item">
 
-                            <div class="breadcomb-ctn">
-                                <h2><ui:insert name="title_content">INDEX</ui:insert></h2>
-                                <br/>
+                    <h:form id="search_global">
+                        <p:growl id="search_global_growl" allowDismiss="true"/>
+                        <div class="ui-inputgroup">
+                            <p:inputMask styleClass="form-control" style="margin-right: 5px; margin-top: 2px"
+                                         mask="99999999999"
+                                         placeholder="Buscar estudiante por CI...."
+                            />
+                            <p:commandButton id="btnSearch_global" update="search_global"
+                                             icon="pi pi-search"
+                                             styleClass="rounded-button ui-button-secondary"/>
+                        </div>
+
+                        <p:blockUI block="body" trigger="btnSearch_global">
+                            <div class="sk-cube-grid">
+                                <div class="sk-cube sk-cube1"></div>
+                                <div class="sk-cube sk-cube2"></div>
+                                <div class="sk-cube sk-cube3"></div>
+                                <div class="sk-cube sk-cube4"></div>
+                                <div class="sk-cube sk-cube5"></div>
+                                <div class="sk-cube sk-cube6"></div>
+                                <div class="sk-cube sk-cube7"></div>
+                                <div class="sk-cube sk-cube8"></div>
+                                <div class="sk-cube sk-cube9"></div>
                             </div>
+                        </p:blockUI>
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                    </h:form>
+                </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <i class="icon-bell"></i>
+                        <span class="count"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                         aria-labelledby="countDropdown">
+                        <a class="dropdown-item py-3">
+                            <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                            <span class="badge badge-pill badge-primary float-right">View all</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <img src="../../images/faces/face10.jpg" alt="image" class="img-sm profile-pic"/>
+                            </div>
+                            <div class="preview-item-content flex-grow py-2">
+                                <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                                <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <img src="../../images/faces/face12.jpg" alt="image" class="img-sm profile-pic"/>
+                            </div>
+                            <div class="preview-item-content flex-grow py-2">
+                                <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                                <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <img src="../../images/faces/face1.jpg" alt="image" class="img-sm profile-pic"/>
+                            </div>
+                            <div class="preview-item-content flex-grow py-2">
+                                <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                                <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="img-xs rounded-circle" src="#{request.contextPath}/resources/img/user.png"
+                         alt="Profile image"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                    <div class="dropdown-header text-center">
+                        <img class="img-xs rounded-circle" src="#{request.contextPath}/resources/img/user.png"
+                             alt="Profile image"/>
+                        <p class="mb-1 mt-3 font-weight-semibold">#{templateBean.user.nombre} #{templateBean.user.apellido1} #{templateBean.user.apellido2}</p>
+                        <p class="fw-light text-muted mb-0">#{templateBean.user.email}</p>
+                    </div>
+                    <a href="#{request.contextPath}/pages/Perfil.xhtml" class="dropdown-item"><i
+                            class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Perfil
+                        <!--                                <span class="badge badge-pill badge-danger">1</span>--></a>
+                    <!--                            <a class="dropdown-item"><i-->
+                    <!--                                    class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>-->
+                    <!--                            <a class="dropdown-item"><i-->
+                    <!--                                    class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>-->
+                    <!--                            <a class="dropdown-item"><i-->
+                    <!--                                    class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>-->
+                    <form action="#{request.contextPath}/logout" method="post">
+                        <center>
+                            <input style="margin-top: 10px" type="submit"
+                                   class="btn btn-outline-danger"
+                                   value="Cerrar Sesion"
+                            />
+                        </center>
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}"/>
+                </form>
+                <!--                            <a class="dropdown-item"><i-->
+                <!--                                    class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>-->
+            </div>
+        </li>
+    </ul>
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+            data-bs-toggle="offcanvas">
+        <span class="mdi mdi-menu"></span>
+    </button>
+</div>
+</nav>
+        <!-- partial -->
+<div class="container-fluid page-body-wrapper">
+<!-- partial:../../partials/_settings-panel.html -->
+<div class="theme-setting-wrapper">
+    <div id="settings-trigger"><i class="ti-settings"></i></div>
+    <div id="theme-settings" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <p class="settings-heading">SIDEBAR SKINS</p>
+        <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+            <div class="img-ss rounded-circle bg-light border me-3"></div>
+            Light
+        </div>
+        <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border me-3"></div>
+            Dark
+        </div>
+        <p class="settings-heading mt-2">HEADER SKINS</p>
+        <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+        </div>
+    </div>
+</div>
+<div id="right-sidebar" class="settings-panel">
+    <i class="settings-close ti-close"></i>
+    <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+               aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+               aria-controls="chats-section">CHATS</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="setting-content">
+        <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+             aria-labelledby="todo-section">
+            <div class="add-items d-flex px-3 mb-0">
+                <form class="form w-100">
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control todo-list-input" placeholder="Add To-do"/>
+                        <button type="submit" class="add btn btn-primary todo-list-add-btn"
+                                id="add-task">Add
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="list-wrapper px-3">
+                <ul class="d-flex flex-column-reverse todo-list">
+                    <li>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="checkbox" type="checkbox"/>
+                                Team review meeting at 3.00 PM
+                            </label>
                         </div>
-
-                        <ui:insert name="content">INDEX BODY</ui:insert>
-
+                        <i class="remove ti-close"></i>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="checkbox" type="checkbox"/>
+                                Prepare for presentation
+                            </label>
+                        </div>
+                        <i class="remove ti-close"></i>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="checkbox" type="checkbox"/>
+                                Resolve all the low priority tickets due today
+                            </label>
+                        </div>
+                        <i class="remove ti-close"></i>
+                    </li>
+                    <li class="completed">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="checkbox" type="checkbox"/>
+                                Schedule meeting for next week
+                            </label>
+                        </div>
+                        <i class="remove ti-close"></i>
+                    </li>
+                    <li class="completed">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="checkbox" type="checkbox"/>
+                                Project review
+                            </label>
+                        </div>
+                        <i class="remove ti-close"></i>
+                    </li>
+                </ul>
+            </div>
+            <h4 class="px-3 text-muted mt-5 fw-light mb-0">Events</h4>
+            <div class="events pt-4 px-3">
+                <div class="wrapper d-flex mb-2">
+                    <i class="ti-control-record text-primary me-2"></i>
+                    <span>Feb 11 2018</span>
+                </div>
+                <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+                <p class="text-gray mb-0">The total number of sessions</p>
+            </div>
+            <div class="events pt-4 px-3">
+                <div class="wrapper d-flex mb-2">
+                    <i class="ti-control-record text-primary me-2"></i>
+                    <span>Feb 7 2018</span>
+                </div>
+                <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+                <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+        </div>
+        <!-- To do section tab ends -->
+        <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+                <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+                <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 fw-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+                <li class="list active">
+                    <div class="profile"><img src="../../images/faces/face1.jpg" alt="image"/><span
+                            class="online"></span></div>
+                    <div class="info">
+                        <p>Thomas Douglas</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">19 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="../../images/faces/face2.jpg" alt="image"/><span
+                            class="offline"></span></div>
+                    <div class="info">
+                        <div class="wrapper d-flex">
+                            <p>Catherine</p>
+                        </div>
+                        <p>Away</p>
+                    </div>
+                    <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                    <small class="text-muted my-auto">23 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="../../images/faces/face3.jpg" alt="image"/><span
+                            class="online"></span></div>
+                    <div class="info">
+                        <p>Daniel Russell</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">14 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="../../images/faces/face4.jpg" alt="image"/><span
+                            class="offline"></span></div>
+                    <div class="info">
+                        <p>James Richardson</p>
+                        <p>Away</p>
+                    </div>
+                    <small class="text-muted my-auto">2 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="../../images/faces/face5.jpg" alt="image"/><span
+                            class="online"></span></div>
+                    <div class="info">
+                        <p>Madeline Kennedy</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">5 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="../../images/faces/face6.jpg" alt="image"/><span
+                            class="online"></span></div>
+                    <div class="info">
+                        <p>Sarah Graves</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">47 min</small>
+                </li>
+            </ul>
+        </div>
+        <!-- chat tab ends -->
+    </div>
+</div>
+<!-- partial -->
+<!-- partial:../../partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="../../index.html">
+                <i class="mdi mdi-grid-large menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item nav-category">UI Elements</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+               aria-controls="ui-basic">
+                <i class="menu-icon mdi mdi-floor-plan"></i>
+                <span class="menu-title">UI Elements</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/ui-features/typography.html">Typography</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item nav-category">Forms and Datas</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+               aria-controls="form-elements">
+                <i class="menu-icon mdi mdi-card-text-outline"></i>
+                <span class="menu-title">Form elements</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/forms/basic_elements.html">Basic Elements</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
+               aria-controls="charts">
+                <i class="menu-icon mdi mdi-chart-line"></i>
+                <span class="menu-title">Charts</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/charts/chartjs.html">ChartJs</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
+               aria-controls="tables">
+                <i class="menu-icon mdi mdi-table"></i>
+                <span class="menu-title">Tables</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/tables/basic-table.html">Basic table</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
+               aria-controls="icons">
+                <i class="menu-icon mdi mdi-layers-outline"></i>
+                <span class="menu-title">Icons</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="../../pages/icons/mdi.html">Mdi icons</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item nav-category">pages</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
+               aria-controls="auth">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">User Pages</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link"
+                                            href="../../pages/samples/login.html"> Login </a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item nav-category">help</li>
+        <li class="nav-item">
+            <a class="nav-link"
+               href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
+                <i class="menu-icon mdi mdi-file-document"></i>
+                <span class="menu-title">Documentation</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <ui:insert name="profile-data"> </ui:insert>
+            <div id="content-data" class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><ui:insert name="title"> </ui:insert></h4>
+                        <p class="card-description">
+                            <ui:insert name="description"> </ui:insert>
+                        </p>
+                        <div class="table-responsive">
+                            <ui:insert name="content"> </ui:insert>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Data Table area End-->
-    <!-- Start Footer area-->
-    <div class="footer-copyright-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="footer-copy-right"
-                         style="text-align: center; padding: 10px 15px;font-size: 14px;line-height: 20px; color: white">
-                        &copy;
-                        <script type="javascript">
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">SIGENU - Eduaci&oacute;n a Distancia <a
+                                href="https://www.unah.edu.cu/" target="_blank">Universidad Agraria de La Habana "Fructuoso Rodr&iacute;guez P&eacute;rez"</a></span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright ©
+                <script type="javascript">
                             document.write(new Date().getFullYear());
-                        </script>
-                        , SIGENU -
-                        <a href="http://sigenu.unah.edu.cu"
-                           target="_blank">Educaci&oacute;n a Distancia</a>. Desarrollado por
-                        <a href="https://www.unah.edu.cu"
-                           target="_blank">Universidad Agraria de La Habana "Fructuoso Rodr&iacute;guez P&eacute;rez"</a>.
-
-                    </div>
-                </div>
-            </div>
+                        </script>. Todos los Derechos Reservados.</span>
         </div>
-    </div>
+    </footer>
+    <!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+        <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+<h:outputScript library="js" name="vendor.bundle.base.js"/>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+<h:outputScript library="js" name="bootstrap-datepicker.min.js"/>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+<h:outputScript library="js" name="off-canvas.js"/>
+<h:outputScript library="js" name="hoverable-collapse.js"/>
+<h:outputScript library="js" name="template.js"/>
+<h:outputScript library="js" name="settings.js"/>
+<h:outputScript library="js" name="todolist.js"/>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <!-- End custom js for this page-->
 
+        </h:body>
 
-    <!-- End Footer area-->
-    <h:outputScript library="js" name="jquery-2.2.4.js"/>
-
-
-    <h:outputScript library="js" name="bootstrap.min.js"/>
-    <h:outputScript library="js" name="wow.min.js"/>
-    <h:outputScript library="js" name="jquery-price-slider.js"/>
-
-    <!--    <h:outputScript library="js" name="owl.carousel.min.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.scrollUp.min.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.meanmenu.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.counterup.min.js"/>-->
-    <!--    <h:outputScript library="js" name="waypoints.min.js"/>-->
-    <!--    <h:outputScript library="js" name="counterup-active.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.mCustomScrollbar.concat.min.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.sparkline.min.js"/>-->
-    <!--    <h:outputScript library="js" name="sparkline-active.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.flot.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.flot.resize.js"/>-->
-    <!--    <h:outputScript library="js" name="flot-active.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.knob.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.appear.js"/>-->
-    <!--    <h:outputScript library="js" name="knob-active.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.chat.js"/>-->
-    <!--    <h:outputScript library="js" name="jquery.todo.js"/>-->
-    <!--    <h:outputScript library="js" name="waves.min.js"/>-->
-    <!--    <h:outputScript library="js" name="wave-active.js"/>-->
-    <!--    <h:outputScript library="js" name="plugins.js"/>-->
-
-    <h:outputScript library="js" name="main.js"/>
-</h:body>
-</html>
-
+        </html>
