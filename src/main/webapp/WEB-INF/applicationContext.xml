@@ -11,6 +11,7 @@
         <security:intercept-url pattern="/fonts/**" access="permitAll()"/>
         <security:intercept-url pattern="/jakarta.faces.resource/**" access="permitAll()"/>
         <security:intercept-url pattern="/login.xhtml" access="isAnonymous()"/>
+        <security:intercept-url pattern="/pages/adminPages/**" access="hasRole('ROLE_ADMIN')"/>
 
         <!--Configuration of login and logout pages-->
         <security:form-login login-page='/login.xhtml' default-target-url='/pages/index.xhtml'

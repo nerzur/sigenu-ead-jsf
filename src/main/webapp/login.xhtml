@@ -17,8 +17,8 @@
 <h:head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="#{request.contextPath}/resources/img/favicon.png"/>
+    <link rel="icon" type="image/png" href="#{request.contextPath}/resources/img/favicon.png"/>
     <title>
         SIGENU-EaD :: Autenticaci&oacute;n
     </title>
@@ -43,17 +43,16 @@
                         <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
                             <div class="card card-plain">
                                 <div class="card-header pb-0 text-start">
-                                    <h4 class="font-weight-bolder">SIGENU M&oacute;dulo de Educaci&oacute;n a Distancia</h4>
+                                    <h4 class="font-weight-bolder">SIGENU-EaD</h4>
                                     <p class="mb-0">Introduzca su usuario y contras&ntilde;a para acceder al sistema</p>
                                 </div>
                                 <div class="card-body">
                                     <form id="loginForm" method="post" action="#{request.contextPath}/login"
                                           role="form">
                                         <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-                                            <div class="alert-danger">
-                                                <strong>Atenci&oacute;n!</strong> <h:outputText
+                                            <div class="alert alert-danger alert-dismissible fade show" style="color:white" role="alert">
+                                                <strong>Atenci&oacute;n! </strong> <h:outputText
                                                     value="#{templateBean.translateMessage(SPRING_SECURITY_LAST_EXCEPTION.message)}"/>
-
                                             </div>
                                         </c:if>
                                         <div class="mb-3">
@@ -97,7 +96,8 @@
           background-size: cover;">
                             <span class="mask bg-gradient-primary opacity-6"></span>
                             <h4 class="mt-5 text-white font-weight-bolder position-relative">Acerca de</h4>
-                            <p class="text-white position-relative"> <strong>SIGENU-EaD</strong> es un prototipo funcional de módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana, que brinda las funcionalidades necesarias para la gestión de los procesos de la secretaría docente en la Educaci&oacute;n a Distancia (EaD). Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios (asignaturas matriculadas, notas, procesos de baja, etc) por parte de las secretarías docentes.
+                            <p class="text-white position-relative">
+                                <strong>SIGENU-EaD (Módulo de Educaci&oacute;n a Distancia)</strong> es un prototipo funcional de módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana, que brinda las funcionalidades necesarias para la gestión de los procesos de la secretaría docente en la Educaci&oacute;n a Distancia (EaD). Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios (asignaturas matriculadas, notas, procesos de baja, etc) por parte de las secretarías docentes.
                             </p>
                         </div>
                     </div>

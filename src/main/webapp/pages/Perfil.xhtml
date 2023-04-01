@@ -13,7 +13,7 @@
         Perfil
     </ui:define>
 
-    <ui:define name="title_content">
+    <ui:define name="description">
         Datos de Perfil
     </ui:define>
 
@@ -109,6 +109,7 @@
                         <div class="form-group">
                             <p:outputLabel for="lastestp" value="Contrase&ntilde;a antigua"/>
                             <p:password value="#{templateBean.password}" required="true" id="lastestp"
+                                        feedback="true"
                                         promptLabel="Contrase&ntilde;a antigua" weakLabel="Débil"
                                         placeholder="Contrase&ntilde;a antigua"
                                         goodLabel="Buena" strongLabel="Fuerte"
@@ -117,6 +118,7 @@
                         <div class="form-group">
                             <p:outputLabel for="nastestp" value="Contrase&ntilde;a nueva"/>
                             <p:password value="#{templateBean.password1}" required="true" id="nastestp"
+                                        feedback="true"
                                         promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
                                         placeholder="Contrase&ntilde;a nueva"
                                         goodLabel="Buena" strongLabel="Fuerte"
@@ -125,6 +127,7 @@
                         <div class="form-group">
                             <p:outputLabel for="n1astestp" value="Contrase&ntilde;a nueva"/>
                             <p:password value="#{templateBean.password2}" required="true" id="n1astestp"
+                                        feedback="true"
                                         promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
                                         placeholder="Contrase&ntilde;a nueva"
                                         goodLabel="Buena" strongLabel="Fuerte"
