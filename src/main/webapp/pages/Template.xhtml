@@ -46,7 +46,8 @@
 
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
-        <nav style="z-index: 100;" class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+        <nav style="z-index: 100;"
+             class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
                 <div class="me-3">
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
@@ -77,7 +78,7 @@
                                 />
                                 <p:commandButton id="btnSearch_global" update="search_global"
                                                  icon="pi pi-search"
-                                                 styleClass="rounded-button ui-button-secondary"/>
+                                                 styleClass="ui-button rounded-button ui-button-secondary"/>
                             </div>
 
                             <p:blockUI block="body" trigger="btnSearch_global">
@@ -99,48 +100,6 @@
                         </h:form>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="icon-bell"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
-                             aria-labelledby="countDropdown">
-                            <a class="dropdown-item py-3">
-                                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                                <span class="badge badge-pill badge-primary float-right">View all</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="../../images/faces/face10.jpg" alt="image" class="img-sm profile-pic"/>
-                                </div>
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="../../images/faces/face12.jpg" alt="image" class="img-sm profile-pic"/>
-                                </div>
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="../../images/faces/face1.jpg" alt="image" class="img-sm profile-pic"/>
-                                </div>
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-toggle="dropdown" data-bs-toggle="dropdown"
                            aria-expanded="false">
@@ -389,29 +348,177 @@
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/adminPages/AdminUsers.xhtml">Usuario</a>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Carrera Nacional</a>
                                 </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="../../pages/ui-features/dropdowns.html">Color de Piel</a>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Color Piel</a>
                                 </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="../../pages/ui-features/typography.html">Militar</a>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Curso</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Disciplina</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Especialidad</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Especialidad Militar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Estado Civil</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Estado Estudiante</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Fuente de Ingreso</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Grado Militar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Orfandad</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Minusval&iacute;a</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Municipio</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Nivel Escolar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Ocupación</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">ONG</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Organismo</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Organismo</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Organizaci&oacute;n Pol&iacute;tica</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Organizaci&oacute;n Popular</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Pa&iacute;</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Procedencia Escolar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Provincia</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Sexo</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Sindicato</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Tipo de Asignatura</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Tipo de Evaluaci&oacute;n</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Tipo de Militar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Tipo de Plan de Estudio</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminUsers.xhtml">Usuarios</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">Forms and Datas</li>
+                    <li class="nav-item nav-category">Herramientas</li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
                            aria-controls="form-elements">
                             <i class="menu-icon mdi mdi-card-text-outline"></i>
-                            <span class="menu-title">Form elements</span>
+                            <span class="menu-title">Matr&iacute;cula</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="form-elements">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="../../pages/forms/basic_elements.html">Basic Elements</a>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Matr&iacute;cula</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Actualizar datos de Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Cerrar Matr&iacute;cula</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Realizar Matr&iacute;cula Responsable</a>
                                 </li>
                             </ul>
                         </div>
@@ -419,67 +526,108 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
                            aria-controls="charts">
-                            <i class="menu-icon mdi mdi-chart-line"></i>
-                            <span class="menu-title">Charts</span>
+                            <i class="menu-icon pi pi-building"></i>
+                            <span class="menu-title">Centro</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="charts">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="../../pages/charts/chartjs.html">ChartJs</a></li>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Universidad</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Facultad</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">CUM</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Carrera</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Ubicar Carreras en CUM</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Abrir Matr&iacute;cula Responsable</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
                            aria-controls="tables">
-                            <i class="menu-icon mdi mdi-table"></i>
-                            <span class="menu-title">Tables</span>
+                            <i class="menu-icon pi pi-users"></i>
+                            <span class="menu-title">Estudiante</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="tables">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="../../pages/tables/basic-table.html">Basic table</a></li>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Buscar Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Evaluar Asignaturas por Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Dar Baja a Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Promover Estudiantes</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Revocar Baja</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Revocar Promoción</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
                            aria-controls="icons">
-                            <i class="menu-icon mdi mdi-layers-outline"></i>
-                            <span class="menu-title">Icons</span>
+                            <i class="menu-icon pi pi-book"></i>
+                            <span class="menu-title">Plan de Estudio</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="icons">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link" href="../../pages/icons/mdi.html">Mdi icons</a>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Gestionar Plan de Estudio</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">pages</li>
+                    <li class="nav-item nav-category">Reportes</li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
                            aria-controls="auth">
-                            <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">User Pages</span>
+                            <i class="menu-icon pi pi-chart-bar"></i>
+                            <span class="menu-title">Reportes</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="../../pages/samples/login.html"> Login </a></li>
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Registro de Calificaciones por Asignatura</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Registro de Calificaciones por Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Acta de Examen Final</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Certificación de Calificaciones del curso Acad&eacute;mico</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Modelo Matr&iacute;cula Responsable</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Certificaci&oacute; de Examen de Premio</a>
+                                </li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="nav-item nav-category">help</li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
-                            <i class="menu-icon mdi mdi-file-document"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
                     </li>
                 </ul>
             </nav>
@@ -492,9 +640,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title"><ui:insert name="title"> </ui:insert></h4>
-                                    <p class="card-description">
-                                        <ui:insert name="description"> </ui:insert>
-                                    </p>
+                                    <!--                                    <p class="card-description">-->
+                                    <!--                                        <ui:insert name="description"> </ui:insert>-->
+                                    <!--                                    </p>-->
                                     <div class="table-responsive">
                                         <ui:insert name="content"> </ui:insert>
                                     </div>
@@ -511,7 +659,7 @@
                                 href="https://www.unah.edu.cu/"
                                 target="_blank">Universidad Agraria de La Habana "Fructuoso Rodr&iacute;guez P&eacute;rez"</a></span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright ©
-                <script type="javascript">
+                         <script>
                             document.write(new Date().getFullYear());
                         </script>. Todos los Derechos Reservados.</span>
                     </div>

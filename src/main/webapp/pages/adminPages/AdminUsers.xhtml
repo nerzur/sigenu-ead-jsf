@@ -20,9 +20,9 @@
         Administrar Usuarios
     </ui:define>
 
-    <ui:define name="description">
-        Administrar Usuarios
-    </ui:define>
+<!--    <ui:define name="description">-->
+<!--        Administrar Usuarios-->
+<!--    </ui:define>-->
 
     <ui:define name="content">
         <style type="text/css">
@@ -50,9 +50,12 @@
                     <!--                    </p:commandButton>-->
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                    <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download"/>
-                    <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-users" fileName="users"/>
+<!--                    <p:fileUpload mode="simple" skinSimple="true" label="Importar" chooseIcon="pi pi-download"/>-->
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf" styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-users" fileName="Usuarios" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel" styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-users" fileName="Usiarios" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
@@ -77,19 +80,19 @@
 
                 <!--                <p:column selectionMode="multiple" exportable="false"></p:column>-->
 
-                <p:column headerText="ID">
+                <p:column exportHeaderValue="ID" headerText="ID">
                     <h:outputText value="#{user.identificacion}"/>
                 </p:column>
-                <p:column headerText="Usuario">
+                <p:column exportHeaderValue="Usuario" headerText="Usuario">
                     <h:outputText value="#{user.username}"/>
                 </p:column>
-                <p:column headerText="Nombre">
+                <p:column exportHeaderValue="Nombre" headerText="Nombre">
                     <h:outputText value="#{user.nombre} #{user.apellido1} #{user.apellido2}"/>
                 </p:column>
-                <p:column headerText="E-Mail">
+                <p:column exportHeaderValue="E-mail" headerText="E-Mail">
                     <h:outputLink value="mailto:#{user.email}"><h:outputText value="#{user.email}"/></h:outputLink>
                 </p:column>
-                <p:column headerText="Estado">
+                <p:column exportHeaderValue="Estado" headerText="Estado">
                     <h:outputText styleClass="#{adminUserBean.translateBooleanToSeverity(user.enabled)}"
                                   value="#{adminUserBean.translateEstado(user.enabled)}"/>
                 </p:column>
@@ -434,7 +437,8 @@
                                 <h:outputLabel for="edit-input_password" value="Contrase&ntilde;a *"/><br/>
                                 <p:password label="Contrase&ntilde;a" id="edit-input_password" name="inputsecret1"
                                             feedback="true"
-                                            autocomplete="false" class="form-control"
+                                            autocomplete="false"
+                                            class="form-control"
                                             promptLabel="Contrase&ntilde;a" weakLabel="Débil"
                                             goodLabel="Buena" strongLabel="Fuerte"
                                             placeholder="Contrase&ntilde;a" value="#{adminUserBean.password}">
