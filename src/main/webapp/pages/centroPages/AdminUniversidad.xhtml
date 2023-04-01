@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  universidad: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar universidad
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar universidad-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminUniversidadBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     actionListener="#{adminUniversidadBean.updateProvincias()}"
+                                     update=":dialogs:add-universidad-content"
+                                     oncomplete="PF('addUniversidadDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-universidad-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-universidad" fileName="Universidad"
+                                        exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-universidad" fileName="Universidad"
+                                        exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-universidad" widgetVar="dt-universidad"
+                         var="universidad"
+                         value="#{adminUniversidadBean.lista_universidades}" size="small"
+                         reflow="true" styleClass="universidad-table"
+                         rowKey="#{universidad.codigouniversidad}" paginator="true" rows="10"
+                         paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="universidad-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-universidad').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" sortOrder="asc">
+                    <h:outputText value="#{universidad.codigouniversidad}"/>
+                </p:column>
+                <p:column exportHeaderValue="Iniciales" headerText="Iniciales">
+                    <h:outputText
+                            value="#{universidad.inicialesuniversidad}"/>
+                </p:column>
+                <p:column exportHeaderValue="Tel&eacute;fono" headerText="Tel&eacute;fono">
+                    <h:outputText
+                            value="#{universidad.telefonouniversidad}"/>
+                </p:column>
+                <p:column exportHeaderValue="Nombre del Rector" headerText="Nombre del Rector">
+                    <h:outputText
+                            value="#{universidad.nombrerectoruniversidad}"/>
+                </p:column>
+                <p:column exportHeaderValue="Nombre del Secretario General" headerText="Nombre del Secretario General">
+                    <h:outputText
+                            value="#{universidad.nombresecgraluniversidad}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText
+                            styleClass="#{adminUniversidadBean.translateBooleanToSeverity(universidad.canceladouniversidad)}"
+                            value="#{adminUniversidadBean.translateEstado(universidad.canceladouniversidad)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoUniversidadDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminUniversidadBean.updateSelected_Universidad(universidad)}"
+                                     update=":dialogs:info-universidad-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-universidad-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-universidad-content"
+                                     style="margin-left: 10px"
+                                     oncomplete="PF('editUniversidadDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminUniversidadBean.updateSelected_Universidad_toEdit(universidad)}">
+                        <p:resetInput target=":dialogs:edit-universidad-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoUniversidadDialog"
+                      responsive="true">
+                <p:outputPanel id="info-universidad-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="C&oacute;digo: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.codigouniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Iniciales: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.inicialesuniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.nombreuniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Fax: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.faxuniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Tel&eacute;fono: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.telefonouniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Rector: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminUniversidadBean.universidadSelected.nombrerectoruniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Sec. General: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminUniversidadBean.universidadSelected.nombresecgraluniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Direcci&oacute;n: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.direccionuniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Provincia: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminUniversidadBean.universidadSelected.municipioidmunicipio.provinciaidprovincia.nombreprovincia}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Municipio: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminUniversidadBean.universidadSelected.municipioidmunicipio.nombremunicipio}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Reglamento: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminUniversidadBean.universidadSelected.reglamentouniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Actividad: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminUniversidadBean.universidadSelected.actividaduniversidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{templateBean.translateEstado(adminUniversidadBean.universidadSelected.canceladouniversidad)}"
+                                        styleClass="#{templateBean.translateBooleanToSeveriy(adminUniversidadBean.universidadSelected.canceladouniversidad)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoUniversidadDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir universidad" showEffect="fade" modal="true"
+                      widgetVar="addUniversidadDialog"
+                      responsive="true">
+                <p:outputPanel id="add-universidad-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-5">
+                                <h:outputLabel for="input_nombre" value="Nombre *"/><br/>
+                                <p:inputText id="input_nombre"
+                                             validatorMessage="Universidad: Nombre no v&aacute;lido"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Nombre de la Universidad"
+                                             value="#{adminUniversidadBean.nombre}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern='[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ""-]+$'/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-5">
+                                <h:outputLabel for="input_direccion" value="Direcci&oacute;n *"/><br/>
+                                <p:inputText id="input_direccion"
+                                             validatorMessage="ERROR: Direcci&oacute;n no v&aacute;lida"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Direcci&oacute;n"
+                                             value="#{adminUniversidadBean.direccion}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ/#%,]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminUniversidadBean.cancelado}"
+                                                onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="input_codigo" value="C&oacute;digo *"/><br/>
+                                <p:inputText id="input_codigo"
+                                             validatorMessage="ERROR: C&oacute;digo no v&aacute;lido"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="C&oacute;digo" value="#{adminUniversidadBean.codigo}">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="input_iniciales" value="Iniciales *"/><br/>
+                                <p:inputText label="Iniciales" id="input_iniciales"
+                                             validatorMessage="ERROR: Iniciales no v&aacute;lidas"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Iniciales" value="#{adminUniversidadBean.iniciales}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[A-Za-záéíóúüñÁÉÍÓÚÜÑ_ -]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="phone" value="Tel&eacute;fono"/><br/>
+                                <p:inputMask label="Tel&eacute;fono" id="phone"
+                                             value="#{adminUniversidadBean.telefono}" placeholder="Tel&eacute;fono"
+                                             mask="99-99-99-99"/>
+                            </div>
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="fax" value="Fax"/><br/>
+                                <p:inputMask style="padding: 8px; width: 100%;" label="Fax" id="fax"
+                                             value="#{adminUniversidadBean.fax}" placeholder="Fax"
+                                             mask="99-99-99-99"/>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="input_nombre_rector" value="Nombre del rector *"/><br/>
+                                <p:inputText label="Nombre del rector" id="input_nombre_rector"
+                                             validatorMessage="Rector: Nombre no v&aacute;lido" autocomplete="false"
+                                             required="true" class="form-control" placeholder="Nombre del rector"
+                                             value="#{adminUniversidadBean.nombreRector}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. |Ing. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="input_nombre_secretariogeneral"
+                                               value="Nombre del secretario general *"/><br/>
+                                <p:inputText label="Nombre del secretario general"
+                                             id="input_nombre_secretariogeneral"
+                                             validatorMessage="Sec. General: Nombre no v&aacute;lido"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Nombre del secretario general"
+                                             value="#{adminUniversidadBean.nombreSecGen}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. |Ing. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="input_provincia" value="Provincia *"/><br/>
+                                <p:selectOneMenu value="#{adminUniversidadBean.provincia}"
+                                                 id="input_provincia"
+                                                 requiredMessage="Provincia: Es necesario seleccionar una Provincia"
+                                                 required="true" label="Provincia">
+                                    <f:selectItem itemLabel="(Seleccione una Provincia)" itemValue=""/>
+                                    <f:selectItems value="#{adminUniversidadBean.provincias}" var="p"
+                                                   itemValue="#{p}" itemLabel="#{p}"/>
+                                    <p:ajax update="municipio"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="input_municipio" value="Municipio *"/><br/>
+                                <p:outputPanel id="municipio">
+                                    #{adminUniversidadBean.updateMunicipios()}
+                                    <p:selectOneMenu value="#{adminUniversidadBean.municipio}" id="input_municipio"
+                                                     requiredMessage="Municipio: Es necesario seleccionar un Municipio"
+                                                     required="true" label="Municipio">
+                                        <f:selectItem itemLabel="(Seleccione un Municipio)" itemValue=""/>
+                                        <f:selectItems value="#{adminUniversidadBean.municipios}" var="m"
+                                                       itemValue="#{m}" itemLabel="#{m}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="input_reglamento" value="Reglamento *"/><br/>
+                                <p:inputTextarea style="height: 70px;" value="#{adminUniversidadBean.reglamento}"
+                                                 placeholder="Reglamento" label="Reglamento" required="true"
+                                                 id="input_reglamento">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputTextarea>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="input_actividad" value="Actividad"/><br/>
+                                <p:inputTextarea style="height: 70px;" value="#{adminUniversidadBean.actividad}"
+                                                 placeholder="Actividad" label="Actividad"
+                                                 id="input_actividad">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputTextarea>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminUniversidadBean.addUniversidad()}"
+                                     update="add-universidad-content form:messages"
+                                     process="add-universidad-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addUniversidadDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar universidad" showEffect="fade" modal="true"
+                      widgetVar="editUniversidadDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-universidad-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-5">
+                                <h:outputLabel for="edit_input_nombre" value="Nombre *"/><br/>
+                                <p:inputText id="edit_input_nombre"
+                                             validatorMessage="Universidad: Nombre no v&aacute;lido"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Nombre de la Universidad"
+                                             value="#{adminUniversidadBean.nombre}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern='[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ""-]+$'/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-5">
+                                <h:outputLabel for="edit_input_direccion" value="Direcci&oacute;n *"/><br/>
+                                <p:inputText id="edit_input_direccion"
+                                             validatorMessage="ERROR: Direcci&oacute;n no v&aacute;lida"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Direcci&oacute;n"
+                                             value="#{adminUniversidadBean.direccion}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ/#%,]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="edit_estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="edit_estado" value="#{adminUniversidadBean.cancelado}"
+                                                onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="edit_input_codigo" value="C&oacute;digo *"/><br/>
+                                <p:inputText id="edit_input_codigo"
+                                             validatorMessage="ERROR: C&oacute;digo no v&aacute;lido"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="C&oacute;digo" value="#{adminUniversidadBean.codigo}">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="edit_input_iniciales" value="Iniciales *"/><br/>
+                                <p:inputText label="Iniciales" id="edit_input_iniciales"
+                                             validatorMessage="ERROR: Iniciales no v&aacute;lidas"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Iniciales" value="#{adminUniversidadBean.iniciales}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[A-Za-záéíóúüñÁÉÍÓÚÜÑ_ -]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="edit_phone" value="Tel&eacute;fono"/><br/>
+                                <p:inputMask label="Tel&eacute;fono" id="edit_phone"
+                                             value="#{adminUniversidadBean.telefono}" placeholder="Tel&eacute;fono"
+                                             mask="99-99-99-99"/>
+                            </div>
+                            <div class="col col-sm-3">
+                                <h:outputLabel for="edit_fax" value="Fax"/><br/>
+                                <p:inputMask style="padding: 8px; width: 100%;" label="Fax" id="edit_fax"
+                                             value="#{adminUniversidadBean.fax}" placeholder="Fax"
+                                             mask="99-99-99-99"/>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="edit_input_nombre_rector" value="Nombre del rector *"/><br/>
+                                <p:inputText label="Nombre del rector" id="edit_input_nombre_rector"
+                                             validatorMessage="Rector: Nombre no v&aacute;lido" autocomplete="false"
+                                             required="true" class="form-control" placeholder="Nombre del rector"
+                                             value="#{adminUniversidadBean.nombreRector}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. |Ing. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="edit_input_nombre_secretariogeneral"
+                                               value="Nombre del secretario general *"/><br/>
+                                <p:inputText label="Nombre del secretario general"
+                                             id="edit_input_nombre_secretariogeneral"
+                                             validatorMessage="Sec. General: Nombre no v&aacute;lido"
+                                             autocomplete="false" required="true" class="form-control"
+                                             placeholder="Nombre del secretario general"
+                                             value="#{adminUniversidadBean.nombreSecGen}">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. |Ing. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="edit_input_provincia" value="Provincia *"/><br/>
+                                <p:selectOneMenu value="#{adminUniversidadBean.provincia}"
+                                                 id="edit_input_provincia"
+                                                 requiredMessage="Provincia: Es necesario seleccionar una Provincia"
+                                                 required="true" label="Provincia">
+                                    <f:selectItem itemLabel="(Seleccione una Provincia)" itemValue=""/>
+                                    <f:selectItems value="#{adminUniversidadBean.provincias}" var="p"
+                                                   itemValue="#{p}" itemLabel="#{p}"/>
+                                    <p:ajax update="edit_municipio"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="edit_input_municipio" value="Municipio *"/><br/>
+                                <p:outputPanel id="edit_municipio">
+                                    #{adminUniversidadBean.updateMunicipios()}
+                                    <p:selectOneMenu value="#{adminUniversidadBean.municipio}" id="edit_input_municipio"
+                                                     requiredMessage="Municipio: Es necesario seleccionar un Municipio"
+                                                     required="true" label="Municipio">
+                                        <f:selectItem itemLabel="(Seleccione un Municipio)" itemValue=""/>
+                                        <f:selectItems value="#{adminUniversidadBean.municipios}" var="m"
+                                                       itemValue="#{m}" itemLabel="#{m}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="edit_input_reglamento" value="Reglamento"/><br/>
+                                <p:inputTextarea style="height: 70px;" value="#{adminUniversidadBean.reglamento}"
+                                                 placeholder="Reglamento" label="Reglamento" required="true"
+                                                 id="edit_input_reglamento">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputTextarea>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="edit_input_actividad" value="Actividad"/><br/>
+                                <p:inputTextarea style="height: 70px;" value="#{adminUniversidadBean.actividad}"
+                                                 placeholder="Actividad" label="Actividad"
+                                                 id="edit_input_actividad">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputTextarea>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminUniversidadBean.editUniversidad()}"
+                                     update="edit-universidad-content form:messages"
+                                     process="edit-universidad-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editUniversidadDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>

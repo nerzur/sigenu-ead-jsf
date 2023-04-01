@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  curso: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Cursos
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar Cursos-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminCursoBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-curso-content" oncomplete="PF('addCursoDialog').show()"
+                                     actionListener="#{adminCursoBean.generateId()}"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-curso-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-cursos" fileName="Cursos" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-cursos" fileName="Usiarios" exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-cursos" widgetVar="dtcursos" var="curso"
+                         value="#{adminCursoBean.lista_curso}" size="small"
+                         reflow="true" styleClass="cursos-table"
+                         rowKey="#{curso.id_curso}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="cursos-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-cursos').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="Curso" headerText="Curso" sortOrder="asc">
+                    <h:outputText value="#{curso.idcurso}"/>
+                </p:column>
+                <p:column exportHeaderValue="Inicio de matr&iacute;cula" headerText="Inicio de matr&iacute;cula">
+                    <h:outputText value="#{adminCursoBean.translateDate(curso.fechainiciomatriculacurso)}"/>
+                </p:column>
+                <p:column exportHeaderValue="Fin de matr&iacute;cula" headerText="Fin de matr&iacute;cula">
+                    <h:outputText value="#{adminCursoBean.translateDate(curso.fechafinmatricula)}"/>
+                </p:column>
+                <p:column exportHeaderValue="Inicio de rematr&iacute;cula" headerText="Inicio de rematr&iacute;cula">
+                    <h:outputText value="#{adminCursoBean.translateDate(curso.fechainiciorematricula)}"/>
+                </p:column>
+                <p:column exportHeaderValue="Fin de rematr&iacute;cula" headerText="Fin de rematr&iacute;cula">
+                    <h:outputText value="#{adminCursoBean.translateDate(curso.fechafinrematricula)}"/>
+                </p:column>
+                <p:column exportHeaderValue="Graduaci&oacute;n" headerText="Graduaci&oacute;n">
+                    <h:outputText value="#{adminCursoBean.translateDate(curso.fechagraduacion)}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminCursoBean.translateBooleanToSeverity(curso.cursoactual)}"
+                                  value="#{adminCursoBean.translateEstado(curso.cursoactual)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoCursoDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminCursoBean.updateSelected_Curso(curso)}"
+                                     update=":dialogs:info-curso-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-curso-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-curso-content" style="margin-left: 10px"
+                                     oncomplete="PF('editCursoDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminCursoBean.updateSelected_Curso_toEdit(curso)}">
+                        <p:resetInput target=":dialogs:edit-curso-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoCursoDialog"
+                      responsive="true">
+                <p:outputPanel id="info-curso-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Curso: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminCursoBean.selectedCurso.idcurso}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Inicio de matr&iacute;cula: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <p:outputLabel
+                                        value="#{adminCursoBean.translateDate(adminCursoBean.selectedCurso.fechainiciomatriculacurso)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Fin de matr&iacute;cula: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <p:outputLabel
+                                        value="#{adminCursoBean.translateDate(adminCursoBean.selectedCurso.fechafinmatricula)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Inicio de rematr&iacute;cula: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <p:outputLabel
+                                        value="#{adminCursoBean.translateDate(adminCursoBean.selectedCurso.fechainiciorematricula)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Fin de matr&iacute;cula: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <p:outputLabel
+                                        value="#{adminCursoBean.translateDate(adminCursoBean.selectedCurso.fechafinrematricula)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Graduaci&oacute;n: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <p:outputLabel
+                                        value="#{adminCursoBean.translateDate(adminCursoBean.selectedCurso.fechagraduacion)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{templateBean.translateEstado(adminCursoBean.selectedCurso.cursoactual)}"
+                                        styleClass="#{templateBean.translateBooleanToSeveriy(adminCursoBean.selectedCurso.cursoactual)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoCursoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Curso" showEffect="fade" modal="true"
+                      widgetVar="addCursoDialog"
+                      responsive="true">
+                <p:outputPanel id="add-curso-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-10">
+                                <strong><h:outputLabel value="Curso: #{adminCursoBean.idCurso}"/></strong><br/>
+                            </div>
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminCursoBean.cursoActual}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="fechaInicioMatricula"
+                                               value="Fecha de inicio de matr&iacute;cula *"/><br/>
+                                <p:datePicker id="fechaInicioMatricula" value="#{adminCursoBean.inicioMatricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="fechaFinMatricula" value="Fecha de fin de matr&iacute;cula *"/><br/>
+                                <p:datePicker id="fechaFinMatricula" value="#{adminCursoBean.finMatricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="fechaInicioRematricula"
+                                               value="Fecha de inicio de rematr&iacute;cula *"/><br/>
+                                <p:datePicker id="fechaInicioRematricula" value="#{adminCursoBean.inicioRematricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="fechaFinRematricula"
+                                               value="Fecha de fin de rematr&iacute;cula *"/><br/>
+                                <p:datePicker id="fechaFinRematricula" value="#{adminCursoBean.finRematricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="fechaGraduacion" value="Fecha de Graduaci&oacute;n *"/><br/>
+                                <p:datePicker id="fechaGraduacion" value="#{adminCursoBean.fechaGraduacion}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminCursoBean.addCurso()}"
+                                     update="add-curso-content form:messages" process="add-curso-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addCursoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Curso" showEffect="fade" modal="true"
+                      widgetVar="editCursoDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-curso-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-10">
+                                <strong><h:outputLabel value="Curso: #{adminCursoBean.idCurso}"/></strong><br/>
+                            </div>
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminCursoBean.cursoActual}"
+                                                onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="editFechaInicioMatricula"
+                                               value="Fecha de inicio de matr&iacute;cula *"/><br/>
+                                <p:datePicker id="editFechaInicioMatricula" value="#{adminCursoBean.inicioMatricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="editFechaFinMatricula"
+                                               value="Fecha de fin de matr&iacute;cula *"/><br/>
+                                <p:datePicker id="editFechaFinMatricula" value="#{adminCursoBean.finMatricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="editFechaInicioRematricula"
+                                               value="Fecha de inicio de rematr&iacute;cula *"/><br/>
+                                <p:datePicker id="editFechaInicioRematricula"
+                                              value="#{adminCursoBean.inicioRematricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="editFechaFinRematricula"
+                                               value="Fecha de fin de rematr&iacute;cula *"/><br/>
+                                <p:datePicker id="editFechaFinRematricula" value="#{adminCursoBean.finRematricula}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="editFechaGraduacion" value="Fecha de Graduaci&oacute;n *"/><br/>
+                                <p:datePicker id="editFechaGraduacion" value="#{adminCursoBean.fechaGraduacion}"
+                                              required="true" showIcon="true"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminCursoBean.editCurso()}"
+                                     update="edit-curso-content form:messages" process="edit-curso-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editCursoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>

@@ -10,8 +10,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
 
 <body>
 <ui:composition template="../Template.xhtml">
@@ -41,16 +41,8 @@
                                      styleClass="ui-button-success" style="margin-right: .5rem">
                         <p:resetInput target=":dialogs:add-user-content"/>
                     </p:commandButton>
-                    <!--                    <p:commandButton id="delete-users-button" value="#{crudView.deleteButtonMessage}"-->
-                    <!--                                     icon="pi pi-trash" actionListener="#{crudView.deleteSelectedusers}"-->
-                    <!--                                     styleClass="ui-button-danger" disabled="#{!crudView.hasSelectedusers()}"-->
-                    <!--                                     update="@this">-->
-                    <!--                        <p:confirm header="Confirmation" message="Delete the selected users?"-->
-                    <!--                                   icon="pi pi-exclamation-triangle"/>-->
-                    <!--                    </p:commandButton>-->
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-<!--                    <p:fileUpload mode="simple" skinSimple="true" label="Importar" chooseIcon="pi pi-download"/>-->
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf" styleClass="ui-button ui-button-secondary" ajax="false">
                         <p:dataExporter type="pdf" target="dt-users" fileName="Usuarios" exportHeader="true"/>
                     </p:commandButton>
@@ -71,15 +63,6 @@
                     </span>
                     </div>
                 </f:facet>
-
-                <!--                <p:ajax event="rowSelect" update=":form:delete-users-button"/>-->
-                <!--                <p:ajax event="rowUnselect" update=":form:delete-users-button"/>-->
-                <!--                <p:ajax event="rowSelectCheckbox" update=":form:delete-users-button"/>-->
-                <!--                <p:ajax event="rowUnselectCheckbox" update=":form:delete-users-button"/>-->
-                <!--                <p:ajax event="toggleSelect" update=":form:delete-users-button"/>-->
-
-                <!--                <p:column selectionMode="multiple" exportable="false"></p:column>-->
-
                 <p:column exportHeaderValue="ID" headerText="ID">
                     <h:outputText value="#{user.identificacion}"/>
                 </p:column>
@@ -504,68 +487,6 @@
                                      class="ui-button-secondary" type="button"/>
                 </f:facet>
             </p:dialog>
-            <!--/Edit Dialog-->
-
-            <!--            <p:dialog header="user Details" showEffect="fade" modal="true" widgetVar="manageuserDialog"-->
-            <!--                      responsive="true">-->
-            <!--                <p:outputPanel id="manage-user-content" class="ui-fluid">-->
-            <!--                    <p:outputPanel rendered="#{not empty crudView.selecteduser}">-->
-            <!--                        <p:graphicImage name="images/user/#{crudView.selecteduser.image}" library="demo"-->
-            <!--                                        styleClass="user-image" rendered="#{not empty crudView.selecteduser.image}"/>-->
-            <!--                        <div class="field">-->
-            <!--                            <p:outputLabel for="name">Name</p:outputLabel>-->
-            <!--                            <p:inputText id="name" value="#{crudView.selecteduser.name}" required="true"/>-->
-            <!--                        </div>-->
-            <!--                        <div class="field">-->
-            <!--                            <p:outputLabel for="description">Description</p:outputLabel>-->
-            <!--                            <p:inputTextarea id="description" value="#{crudView.selecteduser.description}"/>-->
-            <!--                        </div>-->
-            <!--                        <div class="field">-->
-            <!--                            <p:outputLabel for="category">Category</p:outputLabel>-->
-            <!--                            <p:selectOneRadio id="category" value="#{crudView.selecteduser.category}"-->
-            <!--                                              layout="responsive" columns="2">-->
-            <!--                                <f:selectItem itemLabel="Accessories" itemValue="Accessories"/>-->
-            <!--                                <f:selectItem itemLabel="Clothing" itemValue="Clothing"/>-->
-            <!--                                <f:selectItem itemLabel="Electronics" itemValue="Electronics"/>-->
-            <!--                                <f:selectItem itemLabel="Fitness" itemValue="Fitness"/>-->
-            <!--                            </p:selectOneRadio>-->
-            <!--                        </div>-->
-            <!--                        <div class="formgrid grid">-->
-            <!--                            <div class="field col">-->
-            <!--                                <p:outputLabel for="price">Price</p:outputLabel>-->
-            <!--                                <p:inputNumber id="price" value="#{crudView.selecteduser.price}" symbol=" USD"-->
-            <!--                                               symbolPosition="s" decimalSeparator="." thousandSeparator=","/>-->
-            <!--                            </div>-->
-            <!--                            <div class="field col">-->
-            <!--                                <p:outputLabel for="quantity">Quantity</p:outputLabel>-->
-            <!--                                <p:spinner id="quantity" min="0" value="#{crudView.selecteduser.quantity}"/>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </p:outputPanel>-->
-            <!--                </p:outputPanel>-->
-
-            <!--                <f:facet name="footer">-->
-            <!--                    <p:commandButton value="Save" icon="pi pi-check" actionListener="#{crudView.saveuser}"-->
-            <!--                                     update="manage-user-content" process="manage-user-content @this"/>-->
-            <!--                    <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageuserDialog').hide()"-->
-            <!--                                     class="ui-button-secondary" type="button"/>-->
-            <!--                </f:facet>-->
-            <!--            </p:dialog>-->
-
-            <!--            <p:confirmDialog widgetVar="deleteuserDialog" showEffect="fade" width="300"-->
-            <!--                             message="Delete the user?" header="Confirm" severity="warn">-->
-            <!--                <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{crudView.deleteuser}"-->
-            <!--                                 process="@this" update=":form:delete-users-button"-->
-            <!--                                 oncomplete="PF('deleteuserDialog').hide()"/>-->
-            <!--                <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"-->
-            <!--                                 onclick="PF('deleteuserDialog').hide()"/>-->
-            <!--            </p:confirmDialog>-->
-
-            <!--            <p:confirmDialog global="true" showEffect="fade" width="300">-->
-            <!--                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>-->
-            <!--                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"-->
-            <!--                                 icon="pi pi-times"/>-->
-            <!--            </p:confirmDialog>-->
             <input type="hidden"
                    name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
