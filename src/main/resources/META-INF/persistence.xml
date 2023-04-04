@@ -65,7 +65,7 @@
         <class>cu.edu.unah.sigenuead.entity.Users</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-                <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5434/SIGENU_EaD"/>
+                <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/SIGENU_EaD"/>
                 <property name="jakarta.persistence.jdbc.user" value="postgres"/>
                 <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
                 <property name="jakarta.persistence.jdbc.password" value="postgres"/>
