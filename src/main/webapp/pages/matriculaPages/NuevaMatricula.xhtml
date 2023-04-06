@@ -1,0 +1,1510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 05/04/2023
+  Time: 11:03AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Nueva Matr&iacute;cula
+        </ui:define>
+
+        <ui:define name="content">
+
+            <style>
+                .ui-inputfield {
+                    width: 100%;
+                }
+
+                .ui-selectonemenu {
+                    width: 100%;
+                }
+
+                .p-datepicker {
+                    width: 100%;
+                }
+            </style>
+
+            <script>
+                PrimeFaces.locales['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: 'Anterior',
+                    nextText: 'Siguiente',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+                    weekHeader: 'Semana',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    timeOnlyTitle: 'Sólo hora',
+                    timeText: 'Tiempo',
+                    hourText: 'Hora',
+                    minuteText: 'Minuto',
+                    secondText: 'Segundo',
+                    millisecondText: 'Milisegundo',
+                    currentText: 'Fecha actual',
+                    ampm: false,
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                    allDayText: 'Todo el día',
+                    today: 'Hoy',
+                    clear: 'Claro'
+                };
+            </script>
+
+            #{nuevaMatriculaBean.loadElementsStep1()}
+            #{nuevaMatriculaBean.init()}
+            <h:form id="form1">
+                <p:growl/>
+                <div class="row">
+                    <div class="col col-sm-9 col-md-9 col-lg-9" align="right">
+                    </div>
+                    <div class="col col-sm-3 col-md-3 col-lg-3">
+                        <div class="ui-inputgroup">
+                            <p:inputMask
+                                    requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                    validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                    placeholder="Identificaci&oacute;n" value="#{nuevaMatriculaBean.id_find}"
+                                    required="true"/>
+                            <p:commandButton id="btnSearch" title="Buscar" update="form"
+                                             icon="pi pi-search"
+                                             action="#{nuevaMatriculaBean.searchEstudiante()}" ajax="true"
+                                             styleClass="ui-button ui-button-info"/>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+            <br/>
+
+            <h:form id="form">
+                <p:growl id="growl" allowDismiss="true"/>
+                <p:wizard id="wizzard" nextLabel="Siguiente" showStepStatus="true" backLabel="Anterior"
+                          style="font-size: 12px">
+                                        <p:tab id="personal" title="Personales">
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4 col-md-4 col-lg-4">
+                                                    <div class="field">
+                                                        <p:outputLabel for="idmatricula"
+                                                                       styleClass="block"> Identificaci&oacute;n </p:outputLabel>
+                                                        <br/>
+                                                        <p:inputMask mask="99999999999"
+                                                                     styleClass="block"
+                                                                     disabled="#{nuevaMatriculaBean.founded}"
+                                                                     id="idmatricula"
+                                                                     validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                                                     placeholder="Identificaci&oacute;n"
+                                                                     value="#{nuevaMatriculaBean.id}"
+                                                                     required="true">
+                                                            <p:ajax update="nac"/>
+                                                            <f:validateLength minimum="11"/>
+                                                        </p:inputMask>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4 col-md-4 col-lg-4">
+                                                    <p:outputPanel id="nac">
+                                                        #{nuevaMatriculaBean.updatebirthday()}
+                                                        <div class="field">
+                                                            <p:outputLabel for="fechaNacimiento"
+                                                                           styleClass="block"> Natalicio </p:outputLabel>
+                                                            <br/>
+                                                            <p:datePicker value="#{nuevaMatriculaBean.fechaNacimiento}"
+                                                                          styleClass="block"
+                                                                          placeholder="Fecha de Nacimiento"
+                                                                          id="fechaNacimiento"
+                                                                          mode="toggle-icon" firstDay="1"
+                                                                          required="true"/>
+                                                        </div>
+                                                    </p:outputPanel>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="cantHijos"
+                                                                   styleClass="block"> Cantidad de Hijos </p:outputLabel>
+                                                    <br/>
+                                                    <p:spinner value="#{nuevaMatriculaBean.cantHijos}" id="cantHijos"
+                                                               min="0" style="width: 100%"
+                                                               styleClass="block"
+                                                               step="1"
+                                                               label="Cantidad de Hijos"/>
+
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_nombre"
+                                                                   styleClass="block"> Nombre </p:outputLabel> <br/>
+                                                    <p:inputText label="Nombre" id="input_nombre"
+                                                                 validatorMessage="ERROR: Nombre no v&aacute;lido"
+                                                                 autocomplete="false"
+                                                                 required="true" class="form-control"
+                                                                 placeholder="Nombre"
+                                                                 value="#{nuevaMatriculaBean.nombre}">
+                                                        <f:validateLength maximum="250"/>
+                                                        <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                    </p:inputText>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_primer_apellido"
+                                                                   styleClass="block"> Primer Apellido </p:outputLabel>
+                                                    <br/>
+                                                    <p:inputText label="Primer Apellido" id="input_primer_apellido"
+                                                                 validatorMessage="ERROR: Primer Apellido no v&aacute;lido"
+                                                                 autocomplete="false" required="true"
+                                                                 class="form-control"
+                                                                 placeholder="Primer Apellido"
+                                                                 value="#{nuevaMatriculaBean.apellido1}">
+                                                        <f:validateLength maximum="250"/>
+                                                        <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                    </p:inputText>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_segundo_apellido"
+                                                                   styleClass="block"> Segundo Apellido </p:outputLabel>
+                                                    <br/>
+                                                    <p:inputText label="Segundo Apellido" id="input_segundo_apellido"
+                                                                 validatorMessage="ERROR: Segundo Apellido no v&aacute;lido"
+                                                                 autocomplete="false" required="true"
+                                                                 class="form-control"
+                                                                 placeholder="Segundo Apellido"
+                                                                 value="#{nuevaMatriculaBean.apellido2}">
+                                                        <f:validateLength maximum="250"/>
+                                                        <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                    </p:inputText>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="sexo"
+                                                                   styleClass="block"> Sexo </p:outputLabel> <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.sexo}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Sexo"
+                                                                     required="true" label="Sexo" autoWidth="false"
+                                                                     id="sexo">
+                                                        <f:selectItem itemLabel="(Seleccione un Sexo)" itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.sexo_list}" var="s"
+                                                                       itemValue="#{s}"
+                                                                       itemLabel="#{s}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="colorPiel"
+                                                                   styleClass="block"> Color de Piel </p:outputLabel>
+                                                    <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.colorPiel}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Color de Piel"
+                                                                     required="true" label="Color de Piel"
+                                                                     id="colorPiel">
+                                                        <f:selectItem itemLabel="(Seleccione un Color de Piel)"
+                                                                      itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.color_piel_list}"
+                                                                       var="cp"
+                                                                       itemValue="#{cp}" itemLabel="#{cp}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_telefono"
+                                                                   styleClass="block"> Tel&eacute;fono </p:outputLabel>
+                                                    <br/>
+                                                    <p:inputMask
+                                                            label="Tel&eacute;fono" id="input_telefono"
+                                                            value="#{nuevaMatriculaBean.telefono}"
+                                                            placeholder="Tel&eacute;fono"
+                                                            mask="99-99-99-99"/>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="organizacionPolitica"
+                                                                   styleClass="block"> Organizaci&oacute;n Pol&iacute;tica </p:outputLabel>
+                                                    <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.organizacionPolitica}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar una Organizaci&oacute;n Pol&iacute;tica"
+                                                                     required="true"
+                                                                     label="Organizaci&oacute;n Pol&iacute;tica"
+                                                                     id="organizacionPolitica">
+                                                        <f:selectItem
+                                                                itemLabel="(Seleccione una Organizaci&oacute;n Pol&iacute;tica)"
+                                                                itemValue=""/>
+                                                        <f:selectItems
+                                                                value="#{nuevaMatriculaBean.organizacion_politica_list}"
+                                                                var="op"
+                                                                itemValue="#{op}" itemLabel="#{op}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="huerfano"
+                                                                   styleClass="block"> Hu&eacute;rfano </p:outputLabel>
+                                                    <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.huerfano}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un tipo de Hu&eacute;rfano"
+                                                                     required="true" label="Hu&eacute;rfano"
+                                                                     id="huerfano">
+                                                        <f:selectItem
+                                                                itemLabel="(Seleccione un tipo de Hu&eacute;rfano)"
+                                                                itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.huerfano_list}"
+                                                                       var="h"
+                                                                       itemValue="#{h}"
+                                                                       itemLabel="#{h}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_natural_de"
+                                                                   styleClass="block"> Natural de </p:outputLabel> <br/>
+                                                    <p:inputText label="Natural de" id="input_natural_de"
+                                                                 validatorMessage="ERROR: Lugar de Procedencia no v&aacute;lido"
+                                                                 autocomplete="false" required="true"
+                                                                 class="form-control"
+                                                                 placeholder="Natural de"
+                                                                 value="#{nuevaMatriculaBean.naturalde}">
+                                                        <f:validateLength maximum="250"/>
+                                                        <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                    </p:inputText>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_direccion"
+                                                                   styleClass="block"> Direcci&oacute;n </p:outputLabel>
+                                                    <br/>
+                                                    <p:inputText label="Direcci&oacute;n" id="input_direccion"
+                                                                 validatorMessage="ERROR: Direccion no v&aacute;lido"
+                                                                 autocomplete="false" required="true"
+                                                                 class="form-control"
+                                                                 placeholder="Direccion"
+                                                                 value="#{nuevaMatriculaBean.direccion}">
+                                                        <f:validateLength maximum="250"/>
+                                                        <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ/#%,]+$"/>
+                                                    </p:inputText>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="estadoCivil"
+                                                                   styleClass="block"> Estado Civil </p:outputLabel>
+                                                    <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.estadoCivil}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Estado Civil"
+                                                                     required="true" label="Estado Civil"
+                                                                     id="estadoCivil">
+                                                        <f:selectItem itemLabel="(Seleccione un Estado Civil)"
+                                                                      itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.estado_civil_list}"
+                                                                       var="ec"
+                                                                       itemValue="#{ec}" itemLabel="#{ec}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="input_correo"
+                                                                   styleClass="block"> Correo </p:outputLabel> <br/>
+                                                    <p:inputText label="Correo" id="input_correo"
+                                                                 validatorMessage="ERROR: Direcci&oacute;n de correo no v&aacute;lido"
+                                                                 autocomplete="false" class="form-control"
+                                                                 placeholder="Correo"
+                                                                 value="#{nuevaMatriculaBean.email}">
+                                                        <f:validateLength maximum="250"/>
+                                                        <f:validateRegex
+                                                                pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+                                                    </p:inputText>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="pais"
+                                                                   styleClass="block"> Pa&iacute;s </p:outputLabel>
+                                                    <br/>
+                                                    <p:selectOneMenu styleClass="block" style="min-width: auto"
+                                                                     value="#{nuevaMatriculaBean.pais}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Pa&iacute;s"
+                                                                     required="true" label="Pa&iacute;s" id="pais">
+                                                        <f:selectItem itemLabel="(Seleccione un Pa&iacute;s)"
+                                                                      itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.pais_list}" var="p"
+                                                                       itemValue="#{p}"
+                                                                       itemLabel="#{p}"/>
+                                                        <p:ajax update="provincia municipio"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputPanel id="provincia">
+                                                        #{nuevaMatriculaBean.updateProvinciaStep1()}
+                                                        #{nuevaMatriculaBean.verifyCubaSelected()}
+                                                        <p:outputLabel for="provincia"
+                                                                       styleClass="block"> Provincia </p:outputLabel>
+                                                        <br/>
+                                                        <p:selectOneMenu value="#{nuevaMatriculaBean.provincia}"
+                                                                         required="#{nuevaMatriculaBean.pais_selected}"
+                                                                         requiredMessage="ERROR: Es necesario seleccionar una Provincia"
+                                                                         label="Provincia">
+                                                            <f:selectItem itemLabel="(Seleccione un Provincia)"
+                                                                          itemValue=""/>
+                                                            <f:selectItems value="#{nuevaMatriculaBean.provincia_list}"
+                                                                           var="prov"
+                                                                           itemValue="#{prov}" itemLabel="#{prov}"/>
+                                                            <p:ajax update="municipio"/>
+                                                        </p:selectOneMenu>
+                                                    </p:outputPanel>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputPanel id="municipio">
+                                                        #{nuevaMatriculaBean.updateMunicipioStep1()}
+                                                        #{nuevaMatriculaBean.verifyCubaSelected()}
+                                                        <p:outputLabel for="municipio"
+                                                                       styleClass="block"> Municipio</p:outputLabel>
+                                                        <br/>
+                                                        <p:selectOneMenu value="#{nuevaMatriculaBean.municipio}"
+                                                                         required="#{nuevaMatriculaBean.pais_selected}"
+                                                                         requiredMessage="ERROR: Es necesario seleccionar un Municipio"
+                                                                         label="Municipio">
+                                                            <f:selectItem itemLabel="(Seleccione un Municipio)"
+                                                                          itemValue=""/>
+                                                            <f:selectItems value="#{nuevaMatriculaBean.municipio_list}"
+                                                                           var="m"
+                                                                           itemValue="#{m}" itemLabel="#{m}"/>
+                                                        </p:selectOneMenu>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-5 col-md-5 col-lg-5">
+                                                    <p:panel header="Minusval&iacute;a" look="primary">
+                                                        <p:selectManyCheckbox
+                                                                value="#{nuevaMatriculaBean.selected_minusvalia}"
+                                                                layout="pageDirection" columns="1">
+                                                            <f:selectItems value="#{nuevaMatriculaBean.minusvalia_list}"
+                                                                           var="min"
+                                                                           itemLabel="&ensp;#{min}" itemValue="#{min}"/>
+                                                        </p:selectManyCheckbox>
+                                                    </p:panel>
+                                                </div>
+                                                <div class="col col-sm-3 col-md-3 col-lg-3">
+                                                    <p:panel header="Org. Popular" look="primary">
+                                                        <p:selectManyCheckbox
+                                                                value="#{nuevaMatriculaBean.selected_org_popular}"
+                                                                layout="pageDirection" columns="1">
+                                                            <f:selectItems
+                                                                    value="#{nuevaMatriculaBean.organizacion_popular_list}"
+                                                                    var="org_p"
+                                                                    itemLabel="&ensp;#{org_p}" itemValue="#{org_p}"/>
+                                                        </p:selectManyCheckbox>
+                                                    </p:panel>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:panel header="ONG" look="primary">
+                                                        <p:selectManyCheckbox value="#{nuevaMatriculaBean.selected_ong}"
+                                                                              layout="pageDirection"
+                                                                              columns="1">
+                                                            <f:selectItems value="#{nuevaMatriculaBean.ONG_list}"
+                                                                           var="ong"
+                                                                           itemLabel="&ensp;#{ong}" itemValue="#{ong}"/>
+                                                        </p:selectManyCheckbox>
+                                                    </p:panel>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                        </p:tab>
+
+                                        <p:tab id="padresotutores" title="Padres o Tutores">
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-6">
+                                                    <p:fieldset legend="Madre" style="border: 1px solid #aaaaaa;">
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="input_nombre_tutor1"
+                                                                               styleClass="block"> Nombre </p:outputLabel> <br/>
+                                                                <p:inputText label="Nombre" id="input_nombre_tutor1"
+                                                                             validatorMessage="ERROR: Nombre no v&aacute;lido"
+                                                                             autocomplete="false" required="true"
+                                                                             placeholder="Nombre"
+                                                                             value="#{nuevaMatriculaBean.nombreTutor1}">
+                                                                    <f:validateLength maximum="250"/>
+                                                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                                </p:inputText>
+                                                            </div>
+
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12 col-md-12 col-lg-12">
+                                                                <p:outputLabel for="nivelEscolarTutor1"
+                                                                               styleClass="block"> Nivel Escolar </p:outputLabel> <br/>
+                                                                <p:selectOneMenu value="#{nuevaMatriculaBean.nivelEscolarTutor1}"
+                                                                                 required="true"
+                                                                                 requiredMessage="ERROR: Es necesario seleccionar un Nivel Escolar"
+                                                                                 label="Nivel Escolar"
+                                                                                 id="nivelEscolarTutor1">
+                                                                    <f:selectItem itemLabel="(Seleccione un Nivel Escolar)"
+                                                                                  itemValue=""/>
+                                                                    <f:selectItems value="#{nuevaMatriculaBean.nivel_escolar_list}"
+                                                                                   var="ne1" itemValue="#{ne1}" itemLabel="#{ne1}"/>
+                                                                </p:selectOneMenu>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12 col-md-12 col-lg-12">
+                                                                <p:outputLabel for="input_nombre_tutor1"
+                                                                               styleClass="block"> Ocupaci&oacute;n </p:outputLabel> <br/>
+                                                                <p:selectOneMenu value="#{nuevaMatriculaBean.ocupacionTutor1}"
+                                                                                 required="true"
+                                                                                 requiredMessage="ERROR: Es necesario seleccionar una Ocupaci&oacute;n"
+                                                                                 label="Ocupaci&oacute;n"
+                                                                                 id="ocupacionTutor1">
+                                                                    <f:selectItem itemLabel="(Seleccione una Ocupaci&oacute;n)"
+                                                                                  itemValue=""/>
+                                                                    <f:selectItems value="#{nuevaMatriculaBean.ocupacion_list}"
+                                                                                   var="ocup1"
+                                                                                   itemValue="#{ocup1}" itemLabel="#{ocup1}"/>
+                                                                </p:selectOneMenu>
+                                                            </div>
+                                                        </div>
+
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="input_salario1"
+                                                                               styleClass="block"> Salario </p:outputLabel> <br/>
+                                                                <span class="ui-input-icon-left">
+                                                                    <i class="pi pi-dollar"/>
+                                                                     <p:inputText label="Salario" id="input_salario1"
+                                                                                  validatorMessage="ERROR: Salario no v&aacute;lido"
+                                                                                  autocomplete="false" required="true"
+                                                                                  placeholder="Salario"
+                                                                                  value="#{nuevaMatriculaBean.salarioTutor1}">
+                                                                    <f:validateDoubleRange minimum="0.00" maximum="1000000.00"/>
+                                                                    <f:convertNumber maxFractionDigits="2" maxIntegerDigits="7"
+                                                                                     minIntegerDigits="1" minFractionDigits="2"
+                                                                                     type="number"/>
+                                                                </p:inputText>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="organizacionPolitica1"
+                                                                               styleClass="block"> Organizaci&oacute;n Pol&iacute;tica </p:outputLabel>
+                                                                <br/>
+                                                                <p:selectOneMenu
+                                                                        value="#{nuevaMatriculaBean.organizacionPoliticaTutor1}"
+                                                                        required="true" id="organizacionPolitica1"
+                                                                        requiredMessage="ERROR: Es necesario seleccionar una Organizaci&oacute;n Pol&iacute;tica"
+                                                                        label="Organizaci&oacute;n Pol&iacute;tica">
+                                                                    <f:selectItem
+                                                                            itemLabel="(Seleccione una Organizaci&oacute;n Pol&iacute;tica)"
+                                                                            itemValue=""/>
+                                                                    <f:selectItems
+                                                                            value="#{nuevaMatriculaBean.organizacion_politica_list}"
+                                                                            var="orgpol1" itemValue="#{orgpol1}"
+                                                                            itemLabel="#{orgpol1}"/>
+                                                                </p:selectOneMenu>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-1">
+                                                                <p:outputLabel for="fallecida"
+                                                                               styleClass="block"> Fallecida </p:outputLabel> <br/>
+                                                                <p:toggleSwitch on-text="Fallecida" off-text="Viva"
+                                                                                value="#{nuevaMatriculaBean.fallecidoTutor1}"
+                                                                                label="Estado"
+                                                                                id="fallecida" onIcon="pi pi-check"
+                                                                                offIcon="pi pi-times"/>
+                                                            </div>
+                                                        </div>
+                                                    </p:fieldset>
+                                                </div>
+
+                                                <div class="col col-sm-6">
+                                                    <p:fieldset legend="Padre" style="border: 1px solid #aaaaaa;">
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="input_nombre_tutor2"
+                                                                               styleClass="block"> Nombre </p:outputLabel> <br/>
+                                                                <p:inputText label="Nombre" id="input_nombre_tutor2"
+                                                                             validatorMessage="ERROR: Nombre no v&aacute;lido"
+                                                                             autocomplete="false" required="true"
+                                                                             placeholder="Nombre"
+                                                                             value="#{nuevaMatriculaBean.nombreTutor2}">
+                                                                    <f:validateLength maximum="250"/>
+                                                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                                </p:inputText>
+                                                            </div>
+
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="nivelEscolarTutor2"
+                                                                               styleClass="block"> Nivel Escolar </p:outputLabel> <br/>
+                                                                <p:selectOneMenu
+                                                                        value="#{nuevaMatriculaBean.nivelEscolarTutor2}"
+                                                                        required="true" id="nivelEscolarTutor2"
+                                                                        requiredMessage="ERROR: Es necesario seleccionar un Nivel Escolar"
+                                                                        label="Nivel Escolar">
+                                                                    <f:selectItem itemLabel="(Seleccione un Nivel Escolar)"
+                                                                                  itemValue=""/>
+                                                                    <f:selectItems
+                                                                            value="#{nuevaMatriculaBean.nivel_escolar_list}"
+                                                                            var="ne1" itemValue="#{ne1}" itemLabel="#{ne1}"/>
+                                                                </p:selectOneMenu>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="ocupacionTutor2"
+                                                                               styleClass="block"> Ocupaci&oacute;n </p:outputLabel> <br/>
+                                                                <p:selectOneMenu value="#{nuevaMatriculaBean.ocupacionTutor2}"
+                                                                                 required="true" id="ocupacionTutor2"
+                                                                                 requiredMessage="ERROR: Es necesario seleccionar una Ocupaci&oacute;n"
+                                                                                 label="Ocupaci&oacute;n">
+                                                                    <f:selectItem itemLabel="(Seleccione una Ocupaci&oacute;n)"
+                                                                                  itemValue=""/>
+                                                                    <f:selectItems value="#{nuevaMatriculaBean.ocupacion_list}"
+                                                                                   var="ocup1" itemValue="#{ocup1}"
+                                                                                   itemLabel="#{ocup1}"/>
+                                                                </p:selectOneMenu>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="input_salario2"
+                                                                               styleClass="block"> Salario </p:outputLabel> <br/>
+                                                                <span class="ui-input-icon-left">
+                                                                <i class="pi pi-dollar"/>
+                                                                <p:inputText label="Salario" id="input_salario2"
+                                                                             validatorMessage="ERROR: Salario no v&aacute;lido"
+                                                                             autocomplete="false" required="true"
+                                                                             class="form-control" placeholder="Salario"
+                                                                             maxlength="8"
+                                                                             value="#{nuevaMatriculaBean.salarioTutor2}">
+                                                                    <f:validateDoubleRange minimum="0.00" maximum="1000000.00"/>
+                                                                    <f:convertNumber maxFractionDigits="2" maxIntegerDigits="7"
+                                                                                     minIntegerDigits="1" minFractionDigits="2"
+                                                                                     type="number"/>
+                                                                </p:inputText>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <p:outputLabel for="organizacionPoliticaTutor2"
+                                                                           styleClass="block">Organizaci&oacute;n Pol&iacute;tica </p:outputLabel>
+                                                            <br/>
+                                                            <div class="col col-sm-12">
+                                                                <p:selectOneMenu
+                                                                        value="#{nuevaMatriculaBean.organizacionPoliticaTutor2}"
+                                                                        required="true" id="organizacionPoliticaTutor2"
+                                                                        requiredMessage="ERROR: Es necesario seleccionar una Organizaci&oacute;n Pol&iacute;tica"
+                                                                        label="Organizaci&oacute;n Pol&iacute;tica">
+                                                                    <f:selectItem
+                                                                            itemLabel="(Seleccione una Organizaci&oacute;n Pol&iacute;tica)"
+                                                                            itemValue=""/>
+                                                                    <f:selectItems
+                                                                            value="#{nuevaMatriculaBean.organizacion_politica_list}"
+                                                                            var="orgpol1" itemValue="#{orgpol1}"
+                                                                            itemLabel="#{orgpol1}"/>
+                                                                </p:selectOneMenu>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p:outputLabel for="fallecido"
+                                                                               styleClass="block"> Fallecido </p:outputLabel> <br/>
+                                                                <p:toggleSwitch on-text="Fallecido" off-text="Vivo" id="fallecido" onIcon="pi pi-check"
+                                                                                offIcon="pi pi-times"
+                                                                                value="#{nuevaMatriculaBean.fallecidoTutor2}"
+                                                                                label="Estado"/>
+                                                            </div>
+                                                        </div>
+
+                                                    </p:fieldset>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                        </p:tab>
+
+                                        <p:tab id="ingreso" title="Ingreso">
+                                            <p:outputPanel id="state1">
+                                                #{nuevaMatriculaBean.disable_pos()}
+                                            </p:outputPanel>
+                                            <br/>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-4">
+                                                    <p:outputLabel for="fechamatricula"
+                                                                   styleClass="block"> Fecha de Matr&iacute;cula </p:outputLabel> <br/>
+                                                    <p:datePicker
+                                                            a:disabled="#{nuevaMatriculaBean.translateboolean(nuevaMatriculaBean.state)}"
+                                                            value="#{nuevaMatriculaBean.fechaMatricula}"
+                                                            placeholder="Fecha de Matr&iacute;cula" id="fechamatricula"
+                                                            mode="toggle-icon" firstDay="1" required="true"
+                                                            label="Fecha de Matr&iacute;cula"/>
+                                                </div>
+                                                <div class="col col-sm-4">
+                                                    <p:outputLabel for="fechaingresoes"
+                                                                   styleClass="block"> Fecha de Ingreso ES </p:outputLabel> <br/>
+                                                    <p:datePicker value="#{nuevaMatriculaBean.fechaIngresoEs}"
+                                                                  placeholder="Fecha de Ingreso ES" id="fechaingresoes"
+                                                                  mode="toggle-icon" firstDay="1" required="true"
+                                                                  label="Fecha de Ingreso ES"/>
+                                                </div>
+                                                <div class="col col-sm-4">
+                                                    <p:outputLabel for="fechaingresoces"
+                                                                   styleClass="block"> Fecha de Ingreso CES </p:outputLabel> <br/>
+                                                    <p:datePicker value="#{nuevaMatriculaBean.fechaIngresoCes}"
+                                                                  placeholder="Fecha de Ingreso CES" id="fechaingresoces"
+                                                                  mode="toggle-icon" firstDay="1" required="true"
+                                                                  label="Fecha de Ingreso CES"/>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="procedenciaEscolar"
+                                                                   styleClass="block"> Procedencia Escolar </p:outputLabel> <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.procedenciaEscolar}"
+                                                                     required="true" id="procedenciaEscolar"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar una Procedencia Escolar"
+                                                                     label="Procedencia Escolar">
+                                                        <f:selectItem itemLabel="(Seleccione una Procedencia Escolar)"
+                                                                      itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.procedencia_escolar_list}"
+                                                                       var="procesc"
+                                                                       itemValue="#{procesc}" itemLabel="#{procesc}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="fuenteIngreso"
+                                                                   styleClass="block"> Fuente de Ingreso </p:outputLabel> <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.fuenteIngreso}" required="true"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar una Fuente de Ingreso"
+                                                                     label="Fuente de Ingreso" id="fuenteIngreso">
+                                                        <f:selectItem itemLabel="(Seleccione una Fuente de Ingreso)" itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.fuente_ingreso_list}"
+                                                                       var="fuentingreso"
+                                                                       itemValue="#{fuentingreso}" itemLabel="#{fuentingreso}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                                    <p:outputLabel for="nivelEscolar" styleClass="block"> Nivel Escolar </p:outputLabel>
+                                                    <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.nivelEscolar}" required="true"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Nivel Escolar"
+                                                                     label="Nivel Escolar" id="nivelEscolar">
+                                                        <f:selectItem itemLabel="(Seleccione un Nivel Escolar)" itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.nivel_escolar_list}"
+                                                                       var="nivelesc"
+                                                                       itemValue="#{nivelesc}" itemLabel="#{nivelesc}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-5">
+                                                    <p:fieldset legend="Evaluaciones de Ingreso" style="border: 1px solid #aaaaaa;">
+                                                        <div class="row">
+                                                            <div class="col col-sm-6">
+                                                                <strong> <h:outputLabel value="Asignatura"/></strong>
+                                                            </div>
+                                                            <div class="col col-sm-6">
+                                                                <strong> <h:outputLabel value="Nota"/> </strong>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-6">
+                                                                <strong> <h:outputLabel value="Espa&ntilde;ol"/></strong>
+                                                            </div>
+                                                            <div class="col col-sm-6">
+                                                                <p:inputText id="input_espanol" autocomplete="false"
+                                                                             class="form-control" mask="decimal"
+                                                                             placeholder="Espa&ntilde;ol"
+                                                                             value="#{nuevaMatriculaBean.notaEsp}">
+                                                                    <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
+                                                                    <f:convertNumber maxFractionDigits="2" maxIntegerDigits="7"
+                                                                                     minIntegerDigits="1" minFractionDigits="2"
+                                                                                     type="number"/>
+                                                                </p:inputText>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-6">
+                                                                <strong> <h:outputLabel value="Historia"/> </strong>
+                                                            </div>
+                                                            <div class="col col-sm-6">
+                                                                <p:inputText id="input_historia" autocomplete="false"
+                                                                             class="form-control" mask="decimal"
+                                                                             placeholder="Historia"
+                                                                             value="#{nuevaMatriculaBean.notaHist}">
+                                                                    <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
+                                                                    <f:convertNumber maxFractionDigits="2" maxIntegerDigits="7"
+                                                                                     minIntegerDigits="1" minFractionDigits="2"
+                                                                                     type="number"/>
+                                                                </p:inputText>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-6">
+                                                                <strong> <h:outputLabel value="Matem&aacute;tica"/></strong>
+                                                            </div>
+                                                            <div class="col col-sm-6">
+                                                                <p:inputText id="input_matematica" autocomplete="false"
+                                                                             class="form-control" mask="decimal"
+                                                                             placeholder="Matem&aacute;tica"
+                                                                             value="#{nuevaMatriculaBean.notaMat}">
+                                                                    <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
+                                                                    <f:convertNumber maxFractionDigits="2" maxIntegerDigits="7"
+                                                                                     minIntegerDigits="1" minFractionDigits="2"
+                                                                                     type="number"/>
+                                                                </p:inputText>
+                                                            </div>
+                                                        </div>
+
+                                                    </p:fieldset>
+                                                </div>
+                                                <div class="col col-sm-7">
+                                                    <p:fieldset legend="Resultados de Ingreso" style="border: 1px solid #aaaaaa;">
+                                                        <div class="row">
+                                                            <div class="col col-sm-6">
+                                                                <p:outputLabel for="input_indice"
+                                                                               styleClass="block"> &Iacute;ndice Acad&eacute;mico </p:outputLabel>
+                                                                <br/>
+                                                                <p:inputText label="&Iacute;ndice Acad&eacute;mico"
+                                                                             id="input_indice"
+                                                                             validatorMessage="ERROR: &Iacute;ndice no v&aacute;lido"
+                                                                             autocomplete="false" class="form-control"
+                                                                             mask="decimal"
+                                                                             placeholder="&Iacute;ndice Acad&eacute;mico"
+                                                                             value="#{nuevaMatriculaBean.promedioIngreso}">
+                                                                    <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
+                                                                    <f:convertNumber maxFractionDigits="2" maxIntegerDigits="7"
+                                                                                     minIntegerDigits="1" minFractionDigits="2"
+                                                                                     type="number"/>
+                                                                </p:inputText>
+                                                            </div>
+                                                            <div class="col col-sm-6">
+                                                                <p:outputLabel for="escalafoningreso"
+                                                                               styleClass="block"> Escalaf&oacute;n Ingreso </p:outputLabel>
+                                                                <br/>
+                                                                <p:spinner value="#{nuevaMatriculaBean.escalafonIngreso}"
+                                                                           id="escalafoningreso" min="1" step="1"
+                                                                           label="Escalafon Ingreso"/>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="row">
+                                                            <div class="col col-sm-6">
+                                                                <p:outputLabel for="reoferta"
+                                                                               styleClass="block"> Carrera obtenida en reoferta </p:outputLabel>
+                                                                <br/>
+                                                                <p:toggleSwitch on-text="Reoferta" off-text="Oferta"
+                                                                                id="reoferta" onIcon="pi pi-check" offIcon="pi pi-times"
+                                                                                value="#{nuevaMatriculaBean.carreraReoferta}"
+                                                                                label="Forma de Obtenci&oacute;n de Carrera"/>
+                                                            </div>
+                                                            <div class="col col-sm-6">
+                                                                <p:outputLabel for="carreraopcion"
+                                                                               styleClass="block"> Carrera obtenida en la opci&oacute;n </p:outputLabel>
+                                                                <br/>
+                                                                <p:spinner value="#{nuevaMatriculaBean.carreraOpcion}"
+                                                                           id="carreraopcion"
+                                                                           min="0" step="1"
+                                                                           label="Carrera obtenida en la opci&oacute;n"/>
+                                                            </div>
+                                                        </div>
+                                                    </p:fieldset>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                        </p:tab>
+
+                                        <p:tab id="docentes" title="Docentes">
+                                            <p:outputPanel id="state">
+                                                #{nuevaMatriculaBean.disable_pos()}
+                                            </p:outputPanel>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-6">
+                                                    <p:outputLabel for="facultad"
+                                                                   styleClass="block"> Facultad </p:outputLabel> <br/>
+                                                    <p:selectOneMenu value="#{nuevaMatriculaBean.facultad}"
+                                                                     disabled="#{nuevaMatriculaBean.state}"
+                                                                     required="true"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar una Facultad"
+                                                                     label="Facultad" id="facultad">
+                                                        <f:selectItem itemLabel="(Seleccione una Facultad)" itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.facultad_list}" var="facultad"
+                                                                       itemValue="#{facultad}" itemLabel="#{facultad}"/>
+                                                        <p:ajax update="cum carrera planestudio"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                                <div class="col col-sm-6">
+                                                    <p:outputPanel id="cum">
+                                                        #{nuevaMatriculaBean.updateCUMStep4()}
+                                                        <p:outputLabel for="inputCum"
+                                                                       styleClass="block"> CUM </p:outputLabel> <br/>
+                                                        <p:selectOneMenu value="#{nuevaMatriculaBean.cum}"
+                                                                         disabled="#{nuevaMatriculaBean.state}"
+                                                                         label="CUM" id="inputCum">
+                                                            <p:ajax update="carrera planestudio"/>
+                                                            <f:selectItem itemLabel="(Seleccione un CUM)" itemValue=""/>
+                                                            <f:selectItems value="#{nuevaMatriculaBean.cum_list}" var="cum"
+                                                                           itemValue="#{cum}"
+                                                                           itemLabel="#{cum}"/>
+                                                        </p:selectOneMenu>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-6">
+                                                    <p:outputPanel id="carrera">
+                                                        #{nuevaMatriculaBean.updateCarreraStep4()}
+                                                        <p:outputLabel for="inputCarrera"
+                                                                       styleClass="block"> Carrera </p:outputLabel> <br/>
+                                                        <p:selectOneMenu value="#{nuevaMatriculaBean.carrera}"
+                                                                         disabled="#{nuevaMatriculaBean.state}"
+                                                                         required="true" id="inputCarrera"
+                                                                         requiredMessage="ERROR: Es necesario seleccionar una Carrera"
+                                                                         label="Carrera">
+                                                            <p:ajax update="planestudio"/>
+                                                            <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                                            <f:selectItems value="#{nuevaMatriculaBean.carrera_list}" var="carrera"
+                                                                           itemValue="#{carrera}" itemLabel="#{carrera}"/>
+                                                        </p:selectOneMenu>
+                                                    </p:outputPanel>
+                                                </div>
+                                                <div class="col col-sm-6">
+                                                    <p:outputLabel for="estadoEstudiante"
+                                                                   styleClass="block"> Estado de Estudiante </p:outputLabel> <br/>
+                                                    <p:selectOneMenu disabled="true" update="state"
+                                                                     value="#{nuevaMatriculaBean.estadoEstudiante}" required="true"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Estado de Estudiante"
+                                                                     label="Estado del Estudiante" id="estadoEstudiante">
+                                                        <f:selectItem itemLabel="(Seleccione un Estado de Estudiante)" itemValue=""/>
+                                                        <f:selectItems value="#{nuevaMatriculaBean.estado_estudiante_list}"
+                                                                       var="estadoest"
+                                                                       itemValue="#{estadoest}" itemLabel="#{estadoest}"/>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col col-sm-6">
+                                                    <p:outputPanel id="planestudio">
+                                                        #{nuevaMatriculaBean.updatePlanEstudioStep4()}
+                                                        <p:outputLabel for="inputPlanEstudio"
+                                                                       styleClass="block"> Plan de Estudio </p:outputLabel> <br/>
+                                                        <p:selectOneMenu value="#{nuevaMatriculaBean.planestudio}"
+                                                                         disabled="#{nuevaMatriculaBean.state}"
+                                                                         requiredMessage="ERROR: Es necesario seleccionar un Plan de Estudio"
+                                                                         required="true" label="Plan de Estudio" id="inputPlanEstudio">
+                                                            <f:selectItem itemLabel="(Seleccione un Plan de Estudio)" itemValue=""/>
+                                                            <f:selectItems value="#{nuevaMatriculaBean.plan_estudio_list}" var="planest"
+                                                                           itemValue="#{planest}" itemLabel="#{planest}"/>
+                                                        </p:selectOneMenu>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                        </p:tab>
+
+                    <p:tab id="Laborales" title="Laborales">
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12 col-md-12 col-lg-12">
+                                <p:outputLabel for="datosLaboralesSwitch"
+                                               styleClass="block"> Datos laborales de Estudiante </p:outputLabel> <br/>
+                                <p:toggleSwitch on-text="Habilitar" off-text="Inhabilitar"
+                                                onIcon="pi pi-lock-open" offIcon="pi pi-lock"
+                                                value="#{nuevaMatriculaBean.datosLaborales}" id="datosLaboralesSwitch"
+                                                label="Datos laborales de Estudiante">
+                                    <p:ajax update="panel"/>
+                                </p:toggleSwitch>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputPanel id="panel">
+                                    <p:panel contentDisabled="#{!nuevaMatriculaBean.datosLaborales}">
+                                        <div class="row">
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="input_centro_trabajo"
+                                                               styleClass="block"> Centro de Trabajo </p:outputLabel>
+                                                <br/>
+                                                <p:inputText disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                             label="Centro de Trabajo" id="input_centro_trabajo"
+                                                             validatorMessage="Centro de Trabajo: Nombre no v&aacute;lido"
+                                                             autocomplete="false"
+                                                             required="#{nuevaMatriculaBean.centrotrabajo}"
+                                                             placeholder="Centro de Trabajo"
+                                                             value="#{nuevaMatriculaBean.nombrecentrotrabajo}">
+                                                    <f:validateLength maximum="250"/>
+                                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ]+$"/>
+                                                </p:inputText>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="input_direccion_centro_trabajo"
+                                                               styleClass="block"> Direcci&oacute;n </p:outputLabel>
+                                                <br/>
+                                                <p:inputText disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                             label="Direcci&oacute;n"
+                                                             id="input_direccion_centro_trabajo"
+                                                             validatorMessage="ERROR: Direcci&oacute;n no v&aacute;lida"
+                                                             autocomplete="false"
+                                                             required="#{nuevaMatriculaBean.datosLaborales}"
+                                                             placeholder="Direcci&oacute;n"
+                                                             value="#{nuevaMatriculaBean.direccioncentrotrabajo}">
+                                                    <f:validateLength maximum="250"/>
+                                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ/#%,]+$"/>
+                                                </p:inputText>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="phone_centro_trabajo"
+                                                               styleClass="block"> Tel&eacute;fono </p:outputLabel>
+                                                <br/>
+                                                <p:inputMask disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                             label="Tel&eacute;fono" id="phone_centro_trabajo"
+                                                             value="#{nuevaMatriculaBean.telefonocentrotrabajo}"
+                                                             placeholder="Tel&eacute;fono" mask="99-99-99-99"/>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="ocupacionLaboral"
+                                                               styleClass="block"> Ocupaci&oacute;n </p:outputLabel>
+                                                <br/>
+                                                <p:selectOneMenu disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                                 value="#{nuevaMatriculaBean.ocupacionocupacionId}"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar una Ocupaci&oacute;n"
+                                                                 required="#{nuevaMatriculaBean.datosLaborales}"
+                                                                 label="Ocupaci&oacute;n" id="ocupacionLaboral">
+                                                    <f:selectItem itemLabel="(Seleccione una Ocupaci&oacute;n)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems value="#{nuevaMatriculaBean.ocupacion_list}"
+                                                                   var="ocup_centro_trabajo"
+                                                                   itemValue="#{ocup_centro_trabajo}"
+                                                                   itemLabel="#{ocup_centro_trabajo}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            #{nuevaMatriculaBean.updateProvinciaStep5()}
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="provincia_centro_trabajo"
+                                                               styleClass="block"> Provincia </p:outputLabel> <br/>
+                                                <p:selectOneMenu disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                                 id="provincia_centro_trabajo"
+                                                                 value="#{nuevaMatriculaBean.provinciaCentroTrabajo}"
+                                                                 required="#{nuevaMatriculaBean.datosLaborales}"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar una Provincia"
+                                                                 label="Provincia">
+                                                    <p:ajax update="municipioct"/>
+                                                    <f:selectItem itemLabel="(Seleccione un Provincia)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems value="#{nuevaMatriculaBean.provincia_org_list}"
+                                                                   var="prov_cent" itemValue="#{prov_cent}"
+                                                                   itemLabel="#{prov_cent}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="organizacion_centro_trabajo"
+                                                               styleClass="block"> Organismo </p:outputLabel> <br/>
+                                                <p:selectOneMenu disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                                 id="organizacion_centro_trabajo"
+                                                                 value="#{nuevaMatriculaBean.organismoidorganismo}"
+                                                                 required="#{nuevaMatriculaBean.datosLaborales}"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar un Organismo"
+                                                                 label="Organismo">
+                                                    <f:selectItem itemLabel="(Seleccione un Organismo)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems value="#{nuevaMatriculaBean.organismo_list}"
+                                                                   var="org_cent" itemValue="#{org_cent}"
+                                                                   itemLabel="#{prov_cent}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col col-sm-6">
+                                                <p:outputPanel id="municipioct">
+                                                    <p:outputLabel for="inputMunicipio"
+                                                                   styleClass="block"> Municipio </p:outputLabel> <br/>
+                                                    #{nuevaMatriculaBean.updateMunicipioStep5()}
+                                                    <p:selectOneMenu disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                                     id="inputMunicipio"
+                                                                     value="#{nuevaMatriculaBean.municipioCentroTrabajo}"
+                                                                     required="#{nuevaMatriculaBean.datosLaborales}"
+                                                                     requiredMessage="ERROR: Es necesario seleccionar un Municipio"
+                                                                     label="Municipio">
+                                                        <f:selectItem itemLabel="(Seleccione un Municipio)"
+                                                                      itemValue=""/>
+                                                        <f:selectItems
+                                                                value="#{nuevaMatriculaBean.municipio_org_list}"
+                                                                var="munic_centro_trabaj"
+                                                                itemValue="#{munic_centro_trabaj}"
+                                                                itemLabel="#{munic_centro_trabaj}"/>
+                                                    </p:selectOneMenu>
+                                                </p:outputPanel>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="sindicato_centro_trabajo"
+                                                               styleClass="block"> Sindicato </p:outputLabel> <br/>
+                                                <p:selectOneMenu disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                                 style="width: 100%"
+                                                                 id="sindicato_centro_trabajo"
+                                                                 value="#{nuevaMatriculaBean.sindicatoidsindicato}"
+                                                                 required="#{nuevaMatriculaBean.datosLaborales}"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar un Sindicato"
+                                                                 label="Sindicato">
+                                                    <f:selectItem itemLabel="(Seleccione un Sindicato)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems value="#{nuevaMatriculaBean.sindicato_org_list}"
+                                                                   var="sind_cent" itemValue="#{sind_cent}"
+                                                                   itemLabel="#{sind_cent}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="input_salario_centro_trabajo"
+                                                               styleClass="block"> Salario </p:outputLabel> <br/>
+                                                <span class="ui-input-icon-left">
+                                                                                                                <i class="pi pi-dollar"/>
+                                                                    <p:inputText
+                                                                            disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                                            label="Salario"
+                                                                            id="input_salario_centro_trabajo"
+                                                                            validatorMessage="ERROR: Salario no v&aacute;lido"
+                                                                            autocomplete="false"
+                                                                            required="#{nuevaMatriculaBean.datosLaborales}"
+                                                                            placeholder="Salario"
+                                                                            maxlength="8"
+                                                                            value="#{nuevaMatriculaBean.salario}">
+                                                                        <f:validateDoubleRange minimum="0.00"
+                                                                                               maximum="1000000.00"/>
+                                                                        <f:convertNumber maxFractionDigits="2"
+                                                                                         maxIntegerDigits="7"
+                                                                                         minIntegerDigits="1"
+                                                                                         minFractionDigits="2"
+                                                                                         type="number"/>
+                                                                    </p:inputText>
+                                                                    </span>
+                                            </div>
+
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="input_jefe_inmediato"
+                                                               styleClass="block"> Jefe Inmediato </p:outputLabel> <br/>
+                                                <p:inputText disabled="#{!nuevaMatriculaBean.datosLaborales}"
+                                                             label="Jefe Inmediato" id="input_jefe_inmediato"
+                                                             validatorMessage="ERROR: Nombre no v&aacute;lido"
+                                                             autocomplete="false"
+                                                             required="#{nuevaMatriculaBean.datosLaborales}"
+                                                             placeholder="Jefe Inmediato"
+                                                             value="#{nuevaMatriculaBean.jefeInmediato}">
+                                                    <f:validateLength maximum="250"/>
+                                                    <f:validateRegex
+                                                            pattern="(Lic. |MsC. |DrC. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                                </p:inputText>
+                                            </div>
+                                        </div>
+                                    </p:panel>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                        <br/>
+                    </p:tab>
+
+                    <p:tab id="militares" title="Militares">
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-3">
+                                <p:outputLabel for="switchDatosMilitares"
+                                               styleClass="block"> Datos Militares del Estudiante </p:outputLabel> <br/>
+                                <p:toggleSwitch on-text="Habilitar" update="panel1" off-text="Inhabilitar"
+                                                onIcon="pi pi-lock-open" offIcon="pi pi-lock"
+                                                id="switchDatosMilitares"
+                                                value="#{nuevaMatriculaBean.datosMilitares}"
+                                                label="Datos Militares de Estudiante">
+                                    <p:ajax update="panel1"/>
+                                </p:toggleSwitch>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputPanel id="panel1">
+                                    <p:panel contentDisabled="#{!nuevaMatriculaBean.datosMilitares}">
+                                        <div class="row">
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="fechalicenciamiento"
+                                                               styleClass="block"> Fecha de Licenciamiento </p:outputLabel>
+                                                <br/>
+                                                <p:datePicker disabled="#{!nuevaMatriculaBean.datosMilitares}"
+                                                              locale="es"
+                                                              value="#{nuevaMatriculaBean.fechaLicenciamientoMilitar}"
+                                                              placeholder="Fecha de Licenciamiento"
+                                                              id="fechalicenciamiento" mode="toggle-icon" firstDay="1"
+                                                              required="#{nuevaMatriculaBean.datosMilitares}"
+                                                              label="Fecha de licenciamiento"/>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="especialidadMilitar"
+                                                               styleClass="block"> Especialidad Militar </p:outputLabel>
+                                                <br/>
+                                                <p:selectOneMenu value="#{nuevaMatriculaBean.especialidadMilitar}"
+                                                                 disabled="#{!nuevaMatriculaBean.datosMilitares}"
+                                                                 id="especialidadMilitar"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar una Especialidad Militar"
+                                                                 label="Especialidad Militar"
+                                                                 required="#{nuevaMatriculaBean.datosMilitares}">
+                                                    <f:selectItem itemLabel="(Seleccione una Especialidad Militar)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems
+                                                            value="#{nuevaMatriculaBean.especialidad_militar_list}"
+                                                            var="esp_mil" itemValue="#{esp_mil}"
+                                                            itemLabel="#{esp_mil}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="tipoMilitar"
+                                                               styleClass="block"> Tipo de Militar </p:outputLabel>
+                                                <br/>
+                                                <p:selectOneMenu value="#{nuevaMatriculaBean.tipoMilitar}"
+                                                                 disabled="#{!nuevaMatriculaBean.datosMilitares}"
+                                                                 id="tipoMilitar"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar un Tipo de Militar"
+                                                                 label="Tipo de Militar"
+                                                                 required="#{nuevaMatriculaBean.datosMilitares}">
+                                                    <f:selectItem itemLabel="(Seleccione un Tipo de Militar)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems value="#{nuevaMatriculaBean.tipo_militar_list}"
+                                                                   var="tip_mil" itemValue="#{tip_mil}"
+                                                                   itemLabel="#{tip_mil}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <p:outputLabel for="gradoMilitar"
+                                                               styleClass="block">Grado Militar </p:outputLabel> <br/>
+                                                <p:selectOneMenu value="#{nuevaMatriculaBean.gradoMilitar}"
+                                                                 id="gradoMilitar"
+                                                                 disabled="#{!nuevaMatriculaBean.datosMilitares}"
+                                                                 requiredMessage="ERROR: Es necesario seleccionar un Grado Militar"
+                                                                 label="Grado Militar"
+                                                                 required="#{nuevaMatriculaBean.datosMilitares}">
+                                                    <f:selectItem itemLabel="(Seleccione un Grado Militar)"
+                                                                  itemValue=""/>
+                                                    <f:selectItems value="#{nuevaMatriculaBean.grado_militar_list}"
+                                                                   var="grad_mil" itemValue="#{grad_mil}"
+                                                                   itemLabel="#{grad_mil}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </p:panel>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                        <br/>
+                    </p:tab>
+
+                    <p:tab id="confirmacion" title="Confirmaci&oacute;n">
+                        <br/>
+                        <p:commandButton styleClass="ui-button ui-button-success" id="matricular"
+                                         value="#{nuevaMatriculaBean.buttonvalue()}" icon="fa fa-plus"
+                                         actionListener="#{nuevaMatriculaBean.matricularEstudiante()}"
+                                         update="form1"/>
+                        <hr/>
+                        <strong>Personales</strong>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Identificaci&oacute;n: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.id}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Natalicio: </strong>
+                                <h:outputText
+                                        value="#{nuevaMatriculaBean.TranslateDate(nuevaMatriculaBean.fechaNacimiento)}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Cantidad de Hijos: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.cantHijos}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nombre: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.nombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Primer Apellido: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.apellido1}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Segundo Apellido: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.apellido2}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Sexo: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.sexo}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Color de Piel: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.colorPiel}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Tel&eacute;fono: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.telefono}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Pol&iacute;tica: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.organizacionPolitica}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Hu&eacute;rfano: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.huerfano}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Natural de: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.naturalde}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Direcci&oacute;n: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.direccion}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Estado Civil: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.estadoCivil}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Correo: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.email}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Pa&iacute;s: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.pais}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Provincia: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.provincia}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Municipio: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.municipio}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <hr/>
+                        <strong>Padres o Tutores</strong>
+                        <hr/>
+                        <strong>Madre o Tutora</strong>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nombre: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.nombreTutor1}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nivel Escolar: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.nivelEscolarTutor1}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Ocupaci&oacute;n: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.ocupacionTutor1}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Salario: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.salarioTutor1}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Pol&iacute;tica: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.organizacionPoliticaTutor1}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Madre Fallecida: </strong>
+                                <h:outputText
+                                        value="#{nuevaMatriculaBean.translateBoolean(nuevaMatriculaBean.fallecidoTutor1)}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <strong>Padre o Tutor</strong>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nombre: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.nombreTutor2}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nivel Escolar: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.nivelEscolarTutor2}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Ocupaci&oacute;n: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.ocupacionTutor2}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Salario: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.salarioTutor2}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Pol&iacute;tica: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.organizacionPoliticaTutor2}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Padre Fallecida: </strong>
+                                <h:outputText
+                                        value="#{nuevaMatriculaBean.translateBoolean(nuevaMatriculaBean.fallecidoTutor2)}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <hr/>
+                        <strong>Ingreso</strong>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fecha Matr&iacute;cula: </strong>
+                                <h:outputText
+                                        value="#{nuevaMatriculaBean.TranslateDate(nuevaMatriculaBean.fechaMatricula)}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fecha Ingreso ES: </strong>
+                                <h:outputText
+                                        value="#{nuevaMatriculaBean.TranslateDate(nuevaMatriculaBean.fechaIngresoEs)}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fecha Ingreso CES: </strong>
+                                <h:outputText
+                                        value="#{nuevaMatriculaBean.TranslateDate(nuevaMatriculaBean.fechaIngresoCes)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Procedencia Escolar: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.procedenciaEscolar}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fuente de Ingreso: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.fuenteIngreso}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nivel Escolar: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.nivelEscolar}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <hr/>
+                        <strong>Docentes</strong>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Facultad: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.facultad}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>CUM: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.cum}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Carrera: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.carrera}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Estado de Estudiante: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.estadoEstudiante}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Plan Estudio: </strong>
+                                <h:outputText value="#{nuevaMatriculaBean.planestudio}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                            </div>
+                        </div>
+                        <hr/>
+                        <br/>
+
+                        <p:commandButton style="float: right" id="matricular1"
+                                         value="#{nuevaMatriculaBean.buttonvalue()}"
+                                         icon="pi pi-plus"
+                                         actionListener="#{nuevaMatriculaBean.matricularEstudiante()}"
+                                         styleClass="ui-button ui-button-success" update="form1"/>
+                    </p:tab>
+                </p:wizard>
+                <br/>
+                <label class="alert alert-warning" style="font-size: 14px; color: black">
+                    <i class="pi pi-info-circle"/>
+                    Los campos marcados con (*) son obligatorios.
+                </label>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

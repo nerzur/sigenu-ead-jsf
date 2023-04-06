@@ -72,28 +72,14 @@
                         <h:form id="search_global">
                             <p:growl id="search_global_growl" allowDismiss="true"/>
                             <div class="ui-inputgroup">
-                                <p:inputMask styleClass="form-control" style="margin-right: 5px; margin-top: 2px"
-                                             mask="99999999999"
-                                             placeholder="Buscar estudiante por CI...."
+                                <p:inputMask
+                                        mask="99999999999"
+                                        placeholder="Buscar estudiante por CI...."
                                 />
                                 <p:commandButton id="btnSearch_global" update="search_global"
                                                  icon="pi pi-search"
-                                                 styleClass="ui-button rounded-button ui-button-secondary"/>
+                                                 styleClass="ui-button ui-button-outlined rounded-top rounded-bottom ui-button-secondary"/>
                             </div>
-
-                            <p:blockUI block="body" trigger="btnSearch_global">
-                                <div class="sk-cube-grid">
-                                    <div class="sk-cube sk-cube1"></div>
-                                    <div class="sk-cube sk-cube2"></div>
-                                    <div class="sk-cube sk-cube3"></div>
-                                    <div class="sk-cube sk-cube4"></div>
-                                    <div class="sk-cube sk-cube5"></div>
-                                    <div class="sk-cube sk-cube6"></div>
-                                    <div class="sk-cube sk-cube7"></div>
-                                    <div class="sk-cube sk-cube8"></div>
-                                    <div class="sk-cube sk-cube9"></div>
-                                </div>
-                            </p:blockUI>
                             <input type="hidden"
                                    name="${_csrf.parameterName}"
                                    value="${_csrf.token}"/>
@@ -509,7 +495,7 @@
                         <div class="collapse" id="form-elements">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Matr&iacute;cula</a>
+                                                        href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Matr&iacute;cula</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Actualizar datos de Estudiante</a>
