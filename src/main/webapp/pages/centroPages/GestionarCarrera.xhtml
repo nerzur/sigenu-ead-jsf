@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 10/04/2023
+  Time: 12:37PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Colores de Piel
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar carreras-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminCarreraBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-carrera-content"
+                                     actionListener="#{adminCarreraBean.updateData()}"
+                                     oncomplete="PF('addCarreraDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-carrera-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-carreras" fileName="carreras" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-carreras" fileName="Usiarios"
+                                        exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-carrera" widgetVar="dt-carrera" var="carrera"
+                         value="#{adminCarreraBean.lista_carrera}" size="small"
+                         reflow="true" styleClass="carreras-table"
+                         rowKey="#{carrera.carreranacionalidcarreranacional.nombrecarreranacional}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="carreras-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-carrera').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
+                    <h:outputText value="#{carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
+                </p:column>
+                <p:column exportHeaderValue="Facultad" headerText="Facultad">
+                    <h:outputText value="#{carrera.facultadcodigoarea.nombrearea}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText
+                            styleClass="#{adminCarreraBean.translateBooleanToSeverity(carrera.canceladacarrera)}"
+                            value="#{adminCarreraBean.translateEstado(carrera.canceladacarrera)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoCarreraDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminCarreraBean.updateSelected_Carrera(carrera)}"
+                                     update=":dialogs:info-carrera-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-carrera-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-carrera-content"
+                                     style="margin-left: 10px"
+                                     oncomplete="PF('editCarreraDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminCarreraBean.updateSelected_Carrera_toEdit(carrera)}">
+                        <p:resetInput target=":dialogs:edit-carrera-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoCarreraDialog"
+                      responsive="true">
+                <p:outputPanel id="info-carrera-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminCarreraBean.carrera_selected.carreranacionalidcarreranacional.nombrecarreranacional}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Facultad: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminCarreraBean.carrera_selected.facultadcodigoarea.nombrearea}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Especialidad: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminCarreraBean.carrera_selected.carreranacionalidcarreranacional.especialidadidespecialidad.nombreespecialidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminCarreraBean.translateEstado(adminCarreraBean.carrera_selected.canceladacarrera)}"
+                                        styleClass="#{adminCarreraBean.translateBooleanToSeverity(adminCarreraBean.carrera_selected.canceladacarrera)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoCarreraDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir carrera" showEffect="fade" modal="true"
+                      widgetVar="addCarreraDialog"
+                      responsive="true">
+                <p:outputPanel id="add-carrera-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="especialidad"
+                                               value="Especialidad *"/><br/>
+                                <p:selectOneMenu value="#{adminCarreraBean.especialidad}"
+                                                 id="especialidad"
+                                                 requiredMessage="Especialidad: Es necesario seleccionar una Especialidad"
+                                                 required="true" label="Especialidad">
+                                    <f:selectItem itemLabel="(Seleccione una Especialidad)" itemValue=""/>
+                                    <f:selectItems value="#{adminCarreraBean.lista_especialidad}" var="c" itemValue="#{c}"
+                                                   itemLabel="#{c}"/>
+                                    <p:ajax update="carrera_nacional" />
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputPanel id="carrera_nacional">
+                                    <h:outputLabel for="carreraNacionalSelect"
+                                                   value="Carrera Nacional *"/><br/>
+                                    #{adminCarreraBean.updateListCarreraNacional()}
+                                    <p:selectOneMenu value="#{adminCarreraBean.carreraNacional}"
+                                                     requiredMessage="Carrera Nacional: Es necesario seleccionar una Carrera Nacional"
+                                                     required="true" label="Carrera Nacional"
+                                    id="carreraNacionalSelect">
+                                        <f:selectItem itemLabel="(Seleccione una Carrera Nacional)" itemValue=""/>
+                                        <f:selectItems value="#{adminCarreraBean.lista_carrera_nacional}" var="ca"
+                                                       itemValue="#{ca}" itemLabel="#{ca}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="facultadSelect"
+                                               value="Facultad *"/><br/>
+                                <p:selectOneMenu value="#{adminCarreraBean.facultad}"
+                                                 requiredMessage="Especialidad: Es necesario seleccionar una Facultad"
+                                                 required="true" label="Facultad" id="facultadSelect">
+                                    <f:selectItem itemLabel="(Seleccione una Facultad)" itemValue=""/>
+                                    <f:selectItems value="#{adminCarreraBean.lista_facultad}" var="f" itemValue="#{f}"
+                                                   itemLabel="#{f}"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminCarreraBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminCarreraBean.addCarrera()}"
+                                     update="add-carrera-content form:messages"
+                                     process="add-carrera-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addCarreraDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar carrera" showEffect="fade" modal="true"
+                      widgetVar="editCarreraDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-carrera-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="especialidad1"
+                                               value="Especialidad *"/><br/>
+                                <p:selectOneMenu disabled="true" value="#{adminCarreraBean.especialidad}"
+                                                 requiredMessage="Especialidad: Es necesario seleccionar una Especialidad"
+                                                 required="true" label="Especialidad" id="especialidad1">
+                                    <f:selectItem itemLabel="(Seleccione una Especialidad)" itemValue=""/>
+                                    <f:selectItems value="#{adminCarreraBean.lista_especialidad}" var="c" itemValue="#{c}"
+                                                   itemLabel="#{c}"/>
+                                    <p:ajax update="carrera_nacional1"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputPanel id="carrera_nacional1">
+                                    #{adminCarreraBean.updateListCarreraNacional()}
+                                    <h:outputLabel for="carreraNacionalSelect1"
+                                                   value="Carrera Nacional *"/><br/>
+                                    <p:selectOneMenu disabled="true" value="#{adminCarreraBean.carreraNacional}"
+                                                     requiredMessage="Carrera Nacional: Es necesario seleccionar una Carrera Nacional"
+                                                     required="true" label="Carrera Nacional" id="carreraNacionalSelect1">
+                                        <f:selectItem itemLabel="(Seleccione una Carrera Nacional)" itemValue=""/>
+                                        <f:selectItems value="#{adminCarreraBean.lista_carrera_nacional}" var="ca"
+                                                       itemValue="#{ca}" itemLabel="#{ca}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="facultadSelect1"
+                                               value="Facultad *"/><br/>
+                                <p:selectOneMenu disabled="true" value="#{adminCarreraBean.facultad}"
+                                                 requiredMessage="Especialidad: Es necesario seleccionar una Facultad"
+                                                 required="true" label="Facultad" id="facultadSelect1">
+                                    <f:selectItem itemLabel="(Seleccione una Facultad)" itemValue=""/>
+                                    <f:selectItems value="#{adminCarreraBean.lista_facultad}" var="f" itemValue="#{f}"
+                                                   itemLabel="#{f}"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminCarreraBean.cancelado}"
+                                                onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminCarreraBean.editCarrera()}"
+                                     update="edit-carrera-content form:messages"
+                                     process="edit-carrera-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editCarreraDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

@@ -49,6 +49,7 @@ public class AdminUniversidadBean implements Serializable {
         lista_universidades.clear();
         lista_universidades = serv.findAllUniversidad();
         updateDisableAdd();
+        cleanVariables();
     }
 
     public void updateDisableAdd() {

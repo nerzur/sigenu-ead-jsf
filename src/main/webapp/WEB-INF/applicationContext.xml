@@ -23,6 +23,9 @@
         <!--Rulers for Centro Pages-->
         <security:intercept-url pattern="/pages/matriculaPages/**" access="hasRole('ROLE_ADMIN')"/>
 
+        <!--Rulers for Plan de Estudio Pages-->
+        <security:intercept-url pattern="/pages/planEstudioPages/**" access="hasRole('ROLE_ADMIN')"/>
+
         <!--Configuration of login and logout pages-->
         <security:form-login login-page='/login.xhtml' default-target-url='/pages/index.xhtml'
                              always-use-default-target='true'/>

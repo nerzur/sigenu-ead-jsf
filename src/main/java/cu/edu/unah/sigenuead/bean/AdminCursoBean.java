@@ -37,6 +37,7 @@ public class AdminCursoBean implements Serializable {
     public void init() {
         lista_curso.clear();
         lista_curso = serv.findAllCursos();
+        cleanVariables();
     }
 
     public void cleanVariables() {

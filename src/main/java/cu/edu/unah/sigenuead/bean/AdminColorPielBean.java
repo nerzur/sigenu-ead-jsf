@@ -29,6 +29,7 @@ public class AdminColorPielBean implements Serializable {
     public void init() {
         colorPielList.clear();
         colorPielList = serv.findAllColorPiel();
+        cleanVariables();
     }
 
     public void cleanVariables() {
