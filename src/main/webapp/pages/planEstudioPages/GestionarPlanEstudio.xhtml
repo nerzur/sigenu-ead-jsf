@@ -376,6 +376,14 @@
                     <p:tab id="confirmacion_tab" title="Confirmaci&oacute;n">
                         <br/>
                         <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton
+                                        disabled="#{planEstudioBean.encontrado}" id="adicionarPlanEstudio"
+                                        value="#{planEstudioBean.updateButtom()}" icon="pi pi-save"
+                                        actionListener="#{planEstudioBean.addplanEstudio()}"
+                                        styleClass="ui-button ui-button-success"
+                                        update="wizzard_form principal_growl"/>
+                            </p:toolbarGroup>
                             <p:toolbarGroup align="right">
                                 <p:commandButton title="Imprimir" style="margin-right: 10px" icon="pi pi-print"
                                                  styleClass="ui-button ui-button-secondary" ajax="false">
@@ -384,13 +392,6 @@
                             </p:toolbarGroup>
                         </p:toolbar>
 
-                        <br/>
-                        <p:commandButton style="margin-left: auto; display: block;"
-                                         disabled="#{planEstudioBean.encontrado}" id="adicionarPlanEstudio"
-                                         value="#{planEstudioBean.updateButtom()}" icon="pi pi-save"
-                                         actionListener="#{planEstudioBean.addplanEstudio()}"
-                                         styleClass="ui-button ui-button-success"
-                                         update="wizzard_form principal_growl"/>
                         <br/>
                         <p:outputPanel id="conf-info" look="info" style="font-size: 14px">
                             <p:growl id="principal_growl" allowDismiss="true"/>
@@ -574,12 +575,16 @@
                             </ui:repeat>
                         </p:outputPanel>
                         <br/>
-                        <p:commandButton style="float: right" id="adicionarPlanEstudio1"
-                                         disabled="#{planEstudioBean.encontrado}"
-                                         value="#{planEstudioBean.updateButtom()}" icon="pi pi-save"
-                                         actionListener="#{planEstudioBean.addplanEstudio()}"
-                                         styleClass="ui-button ui-button-success"
-                                         update="wizzard_form principal_growl"/>
+                        <p:toolbar>
+                            <p:toolbarGroup align="right">
+                                <p:commandButton style="float: right" id="adicionarPlanEstudio1"
+                                                 disabled="#{planEstudioBean.encontrado}"
+                                                 value="#{planEstudioBean.updateButtom()}" icon="pi pi-save"
+                                                 actionListener="#{planEstudioBean.addplanEstudio()}"
+                                                 styleClass="ui-button ui-button-success"
+                                                 update="wizzard_form principal_growl"/>
+                            </p:toolbarGroup>
+                        </p:toolbar>
                     </p:tab>
 
                 </p:wizard>
