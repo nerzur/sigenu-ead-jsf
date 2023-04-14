@@ -560,6 +560,8 @@ public class NuevaMatriculaBean implements Serializable {
         Par submit = new Par(1, "");
         HttpServletRequest origRequest = (HttpServletRequest) context.getExternalContext().getRequest();
         String contextPath = origRequest.getContextPath();
+        if(cum == null)
+            cum = "";
         if (!founded) {
             submit = serv_estudiante.MatricularEstudiante(id, FechaNacimiento, CantHijos, Nombre, Apellido1, Apellido2, Telefono, Direccion, Email, DatosLaborales, Salario, JefeInmediato, nombrecentrotrabajo, direccioncentrotrabajo, telefonocentrotrabajo, ProvinciaCentroTrabajo, MunicipioCentroTrabajo, organismoidorganismo, sindicatoidsindicato, ocupacionocupacionId, DatosMilitares, FechaLicenciamientoMilitar, gradoMilitar, especialidadMilitar, tipoMilitar, naturalde, sexo, colorPiel, organizacionPolitica, huerfano, estadoCivil, procedenciaEscolar, carrera, nivelEscolar, estadoEstudiante, fuenteIngreso, planestudio, notaMat, notaEsp, notaHist, PromedioIngreso, escalafonIngreso, FechaMatricula, FechaIngresoEs, FechaIngresoCes, CarreraOpcion, CarreraReoferta, facultad, cum, municipio, provincia, pais, selected_org_popular, selected_minusvalia, selected_ong, nombreTutor1, "", salarioTutor1, fallecidoTutor1, nivelEscolarTutor1, ocupacionTutor1, organizacionPoliticaTutor1, sexoTutor1, nombreTutor2, "", salarioTutor2, fallecidoTutor2, nivelEscolarTutor2, ocupacionTutor2, organizacionPoliticaTutor2, sexoTutor2);
         } else {

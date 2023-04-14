@@ -208,12 +208,12 @@
                                 <h:outputLabel for="fechaInicioMatricula"
                                                value="Fecha de inicio de matr&iacute;cula *"/><br/>
                                 <p:datePicker id="fechaInicioMatricula" value="#{adminCursoBean.inicioMatricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                             <div class="col col-sm-6">
                                 <h:outputLabel for="fechaFinMatricula" value="Fecha de fin de matr&iacute;cula *"/><br/>
                                 <p:datePicker id="fechaFinMatricula" value="#{adminCursoBean.finMatricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                         </div>
                         <div class="row">
@@ -221,20 +221,20 @@
                                 <h:outputLabel for="fechaInicioRematricula"
                                                value="Fecha de inicio de rematr&iacute;cula *"/><br/>
                                 <p:datePicker id="fechaInicioRematricula" value="#{adminCursoBean.inicioRematricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                             <div class="col col-sm-6">
                                 <h:outputLabel for="fechaFinRematricula"
                                                value="Fecha de fin de rematr&iacute;cula *"/><br/>
                                 <p:datePicker id="fechaFinRematricula" value="#{adminCursoBean.finRematricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <h:outputLabel for="fechaGraduacion" value="Fecha de Graduaci&oacute;n *"/><br/>
                                 <p:datePicker id="fechaGraduacion" value="#{adminCursoBean.fechaGraduacion}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                         </div>
                     </p:outputPanel>
@@ -272,13 +272,13 @@
                                 <h:outputLabel for="editFechaInicioMatricula"
                                                value="Fecha de inicio de matr&iacute;cula *"/><br/>
                                 <p:datePicker id="editFechaInicioMatricula" value="#{adminCursoBean.inicioMatricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                             <div class="col col-sm-6">
                                 <h:outputLabel for="editFechaFinMatricula"
                                                value="Fecha de fin de matr&iacute;cula *"/><br/>
                                 <p:datePicker id="editFechaFinMatricula" value="#{adminCursoBean.finMatricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                         </div>
                         <div class="row">
@@ -287,20 +287,20 @@
                                                value="Fecha de inicio de rematr&iacute;cula *"/><br/>
                                 <p:datePicker id="editFechaInicioRematricula"
                                               value="#{adminCursoBean.inicioRematricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                             <div class="col col-sm-6">
                                 <h:outputLabel for="editFechaFinRematricula"
                                                value="Fecha de fin de rematr&iacute;cula *"/><br/>
                                 <p:datePicker id="editFechaFinRematricula" value="#{adminCursoBean.finRematricula}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <h:outputLabel for="editFechaGraduacion" value="Fecha de Graduaci&oacute;n *"/><br/>
                                 <p:datePicker id="editFechaGraduacion" value="#{adminCursoBean.fechaGraduacion}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true" maxdate="#{adminCursoBean.maxDate}" mindate="#{adminCursoBean.minDate}"/>
                             </div>
                         </div>
                     </p:outputPanel>

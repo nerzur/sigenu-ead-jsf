@@ -11,6 +11,7 @@ import lombok.Data;
 import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +29,8 @@ public class AdminCursoBean implements Serializable {
     private Date inicioRematricula;
     private Date finRematricula;
     private Date fechaGraduacion;
+    private Date minDate;
+    private Date maxDate;
     private boolean cursoActual = true;
 
     private Curso selectedCurso;
@@ -69,10 +72,31 @@ public class AdminCursoBean implements Serializable {
         finRematricula = curso.getFechafinrematricula();
         fechaGraduacion = curso.getFechagraduacion();
         cursoActual = curso.getCursoactual();
+        setMinMaxDate();
     }
 
     public void generateId() {
         idCurso = serv.generateCode();
+        setMinMaxDate();
+        inicioMatricula = (Date) minDate.clone();
+        finMatricula = (Date) minDate.clone();
+        inicioRematricula = (Date) minDate.clone();
+        finRematricula = (Date) minDate.clone();
+        fechaGraduacion = ((Date) minDate.clone());
+        fechaGraduacion.setYear(fechaGraduacion.getYear()-1);
+    }
+
+    public void setMinMaxDate(){
+        int year1 = Integer.parseInt(idCurso.split("-")[0]);
+        int year2 = Integer.parseInt(idCurso.split("-")[1]);
+
+        SimpleDateFormat simpleDateFormatCurrentDate = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            minDate = simpleDateFormatCurrentDate.parse(year1+"-01-01");
+            maxDate = simpleDateFormatCurrentDate.parse(year2+"-12-31");
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addCurso() {
