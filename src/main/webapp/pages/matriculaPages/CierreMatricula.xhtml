@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 14/04/2023
+  Time: 09:56AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Cierre de Matr&iacute;cula
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="form">
+            #{cierreMatriculaBean.init()}
+            <p:growl allowDismiss="true" showDetail="true"/>
+            <div class="row">
+                <div class="col col-sm-5">
+                    <p:outputLabel for="area"
+                                   styleClass="block"> &Aacute;rea </p:outputLabel>
+                    <p:selectOneMenu value="#{cierreMatriculaBean.area}"
+                                     id="area"
+                                     requiredMessage="&Aacute;rea: Es necesario seleccionar un &Aacute;rea"
+                                     required="true" label="&Aacute;rea">
+                        <f:selectItem itemLabel="(Seleccione un &Aacute;rea)" itemValue=""/>
+                        <f:selectItems value="#{cierreMatriculaBean.list_area}" var="ar" itemValue="#{ar}"
+                                       itemLabel="#{ar}"/>
+                        <p:ajax update="carrera"/>
+                    </p:selectOneMenu>
+                </div>
+                <div class="col col-sm-5">
+                    <p:outputPanel id='carrera'>
+                        #{cierreMatriculaBean.update_Carreras()}
+                        <p:outputLabel for="inputCarrera"
+                                       styleClass="block"> Carrera </p:outputLabel>
+                        <p:selectOneMenu value="#{cierreMatriculaBean.carrera}"
+                                         id="inputCarrera"
+                                         requiredMessage="Carrera: Es necesario seleccionar una Carrera" required="true"
+                                         label="Carrera">
+                            <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                            <f:selectItems value="#{cierreMatriculaBean.list_carrera}" var="car" itemValue="#{car}"
+                                           itemLabel="#{car}"/>
+                        </p:selectOneMenu>
+                    </p:outputPanel>
+                </div>
+                <div class="col col-sm-2">
+                    <br/>
+                    <p:commandButton id="cerrar_mat" update="form" value="Cerrar Matr&iacute;cula"
+                                     title="Cerrar Matr&iacute;cula" icon="pi pi-close"
+                                     styleClass="ui-button ui-button-danger"
+                                     action="#{cierreMatriculaBean.cierreMatricula()}">
+                    </p:commandButton>
+                </div>
+            </div>
+            <br/>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

@@ -28911,7 +28911,7 @@ div.tagsinput span.tag a {
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   padding: 0;
-  width: 220px;
+  width: 250px;
   z-index: 11;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
@@ -29261,7 +29261,7 @@ div.tagsinput span.tag a {
     top: 97px;
     bottom: 0;
     overflow: auto;
-    right: -220px;
+    right: -250px;
     -webkit-transition: all 0.25s ease-out;
     -o-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
