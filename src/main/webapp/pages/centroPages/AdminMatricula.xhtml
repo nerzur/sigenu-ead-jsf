@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 14/04/2023
+  Time: 11:46AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Gestionar Matr&iacute;culas
+        </ui:define>
+
+        <ui:define name="content">
+            #{adminMatriculaBean.init()}
+            <h:form id="form">
+                <p:growl id="messages" showDetail="true"/>
+
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                         actionListener="#{adminMatriculaBean.updateData()}"
+                                         update=":dialogs:add-matricula-content"
+                                         oncomplete="PF('addMatriculaDialog').show()"
+                                         styleClass="ui-button-success" style="margin-right: .5rem">
+                            <p:resetInput target=":dialogs:add-matricula-content"/>
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                         styleClass="ui-button ui-button-secondary" ajax="false">
+                            <p:dataExporter type="pdf" target="dt-matriculas" fileName="matriculas"
+                                            exportHeader="true"/>
+                        </p:commandButton>
+                        <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                         styleClass="ui-button ui-button-secondary" ajax="false">
+                            <p:dataExporter type="xlsxstream" target="dt-matriculas" fileName="Usiarios"
+                                            exportHeader="true"/>
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <p:dataTable tableStyleClass="table-striped" id="dt-matricula" widgetVar="dtmatricula" var="matricula"
+                             value="#{adminMatriculaBean.lista_matricula}" size="small"
+                             reflow="true" styleClass="matriculas-table"
+                             rowKey="#{matricula.matriculaFechaInicio}" paginator="true" rows="10"
+                             paginatorPosition="bottom">
+                    <f:facet name="header">
+                        <div class="matriculas-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-matricula').filter()" placeholder="Buscar"/>
+                    </span>
+                        </div>
+                    </f:facet>
+                    <p:column exportHeaderValue="Inicio de Matr&iacute;cula" headerText="Inicio de Matr&iacute;cula"
+                              sortOrder="desc">
+                        <h:outputText value="#{adminMatriculaBean.TranslateDate(matricula.matriculaFechaInicio)}"/>
+                    </p:column>
+                    <p:column exportHeaderValue="Fin de Matr&iacute;cula" headerText="Fin de Matr&iacute;cula">
+                        <h:outputText value="#{adminMatriculaBean.TranslateDate(matricula.matriculaFechaFin)}"/>
+                    </p:column>
+                    <p:column exportHeaderValue="Curso" headerText="Curso">
+                        <h:outputText value="#{matricula.cursoidcurso.idcurso}"/>
+                    </p:column>
+                    <p:column exportHeaderValue="Carrera" headerText="Carrera">
+                        <h:outputText
+                                value="#{matricula.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
+                    </p:column>
+                    <p:column exportHeaderValue="&Aacute;rea" headerText="&Aacute;rea">
+                        <h:outputText value="#{adminMatriculaBean.translatearea(matricula)}"/>
+                    </p:column>
+                    <p:column exportHeaderValue="Estado" headerText="Estado">
+                        <h:outputText styleClass="#{adminMatriculaBean.translateBooleanToSeverity(matricula.cerrada)}"
+                                      value="#{adminMatriculaBean.translateEstado(matricula.cerrada)}"/>
+                    </p:column>
+                    <p:column exportable="false">
+                        <p:commandButton icon="pi pi-info-circle"
+                                         oncomplete="PF('infoMatriculaDialog').show()"
+                                         styleClass="rounded-button ui-button-info" process="@this"
+                                         actionListener="#{adminMatriculaBean.updateSelected_Matricula(matricula)}"
+                                         update=":dialogs:info-matricula-content"
+                                         title="Informaci&oacute;n">
+                            <p:resetInput target=":dialogs:info-matricula-content"/>
+                        </p:commandButton>
+                        <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-matricula-content"
+                                         style="margin-left: 10px"
+                                         oncomplete="PF('editMatriculaDialog').show()"
+                                         styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                         actionListener="#{adminMatriculaBean.updateSelected_Matricula_toEdit(matricula)}">
+                            <p:resetInput target=":dialogs:edit-matricula-content"/>
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <h:form id="dialogs">
+
+                <!--Info Dialog-->
+                <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                          widgetVar="infoMatriculaDialog"
+                          responsive="true">
+                    <p:outputPanel id="info-matricula-content" class="ui-fluid">
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Fecha de Inicio: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMatriculaBean.TranslateDate(adminMatriculaBean.matricula_selected.matriculaFechaInicio)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Fecha de Fin: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMatriculaBean.TranslateDate(adminMatriculaBean.matricula_selected.matriculaFechaFin)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Curso: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMatriculaBean.matricula_selected.cursoidcurso.idcurso}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Carrera: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMatriculaBean.matricula_selected.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="&Aacute;rea: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMatriculaBean.translatearea(adminMatriculaBean.matricula_selected)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMatriculaBean.translateEstado(adminMatriculaBean.matricula_selected.cerrada)}"
+                                        styleClass="#{adminMatriculaBean.translateBooleanToSeverity(adminMatriculaBean.matricula_selected.cerrada)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoMatriculaDialog').hide()"
+                                         class="ui-button-secondary" type="button"/>
+                    </f:facet>
+                </p:dialog>
+                <!--/Info Dialog-->
+
+                <!--Add Dialog-->
+                <p:dialog header="A&ntilde;adir matricula" width="600" showEffect="fade" modal="true"
+                          widgetVar="addMatriculaDialog"
+                          responsive="true">
+                    <p:outputPanel id="add-matricula-content" class="ui-fluid">
+                        <p:outputPanel>
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    <p:outputLabel for="fechaInicioMatricula"
+                                                   value="Fecha de inicio de matr&iacute;cula "/><br/>
+                                    <p:datePicker id="fechaInicioMatricula"
+                                                  value="#{adminMatriculaBean.iniciomatricula}" required="true"/>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <p:outputLabel for="fechaFinMatricula"
+                                                   value="Fecha de fin de matr&iacute;cula "/><br/>
+                                    <p:datePicker id="fechaFinMatricula" value="#{adminMatriculaBean.finmatricula}"
+                                                  required="true"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    <p:outputLabel for="area"
+                                                   value="&Aacute;rea "/><br/>
+                                    <p:selectOneMenu value="#{adminMatriculaBean.facultad}"
+                                                     id="area"
+                                                     requiredMessage="&Aacute;rea: Es necesario seleccionar un &Aacute;rea"
+                                                     required="true" label="&Aacute;rea">
+                                        <f:selectItem itemLabel="(Seleccione una &Aacute;rea)" itemValue=""/>
+                                        <f:selectItems value="#{adminMatriculaBean.lista_facultad}" var="f"
+                                                       itemValue="#{f}"
+                                                       itemLabel="#{f}"/>
+                                        <p:ajax update="carrera"/>
+                                    </p:selectOneMenu>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <p:outputPanel id="carrera">
+                                        #{adminMatriculaBean.updateListCarreras()}
+                                        <p:outputLabel for="inputCarrera"
+                                                       value="Carrera "/><br/>
+                                        <p:selectOneMenu value="#{adminMatriculaBean.carrera}"
+                                                         id="inputCarrera"
+                                                         requiredMessage="Carrera: Es necesario seleccionar una Carrera"
+                                                         required="true" label="Carrera">
+                                            <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                            <f:selectItems value="#{adminMatriculaBean.lista_carrera}" var="ca"
+                                                           itemValue="#{ca}" itemLabel="#{ca}"/>
+                                        </p:selectOneMenu>
+                                    </p:outputPanel>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col col-sm-2">
+                                    <h:outputLabel for="estado" value="Estado"/><br/>
+                                    <p:toggleSwitch id="estado" value="#{adminMatriculaBean.matriculcerrada}"
+                                                    onIcon="pi pi-lock-open" offIcon="pi pi-lock"/>
+                                </div>
+                            </div>
+                        </p:outputPanel>
+                    </p:outputPanel>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Guardar" icon="pi pi-check"
+                                         id="btnAddModal" actionListener="#{adminMatriculaBean.addMatricula()}"
+                                         update="add-matricula-content form:messages"
+                                         process="add-matricula-content @this"/>
+                        <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addMatriculaDialog').hide()"
+                                         class="ui-button-secondary" type="button"/>
+                    </f:facet>
+                </p:dialog>
+                <!--/Add Dialog-->
+
+                <!--Edit Dialog-->
+                <p:dialog header="Editar matricula" showEffect="fade" modal="true"
+                          widgetVar="editMatriculaDialog"
+                          responsive="true">
+                    <p:outputPanel id="edit-matricula-content" class="ui-fluid">
+                        <p:outputPanel>
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    <p:outputLabel for="fechaInicioMatricula1"
+                                                   value="Fecha de inicio de matr&iacute;cula "/><br/>
+                                    <p:datePicker id="fechaInicioMatricula1"
+                                                  value="#{adminMatriculaBean.iniciomatricula}" required="true"/>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <p:outputLabel for="fechaFinMatricula1"
+                                                   value="Fecha de fin de matr&iacute;cula "/><br/>
+                                    <p:datePicker id="fechaFinMatricula1" value="#{adminMatriculaBean.finmatricula}"
+                                                  required="true"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    <p:outputLabel for="area1"
+                                                   value="&Aacute;rea "/><br/>
+                                    <p:selectOneMenu value="#{adminMatriculaBean.facultad}"
+                                                     id="area1"
+                                                     requiredMessage="&Aacute;rea: Es necesario seleccionar un &Aacute;rea"
+                                                     required="true" label="&Aacute;rea">
+                                        <f:selectItem itemLabel="(Seleccione una &Aacute;rea)" itemValue=""/>
+                                        <f:selectItems value="#{adminMatriculaBean.lista_facultad}" var="f"
+                                                       itemValue="#{f}"
+                                                       itemLabel="#{f}"/>
+                                        <p:ajax update="carrera1"/>
+                                    </p:selectOneMenu>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <p:outputPanel id="carrera1">
+                                        #{adminMatriculaBean.updateListCarreras()}
+                                        <p:outputLabel for="inputCarrera1"
+                                                       value="Carrera "/><br/>
+                                        <p:selectOneMenu value="#{adminMatriculaBean.carrera}"
+                                                         id="inputCarrera1"
+                                                         requiredMessage="Carrera: Es necesario seleccionar una Carrera"
+                                                         required="true" label="Carrera">
+                                            <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                            <f:selectItems value="#{adminMatriculaBean.lista_carrera}" var="ca"
+                                                           itemValue="#{ca}" itemLabel="#{ca}"/>
+                                        </p:selectOneMenu>
+                                    </p:outputPanel>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col col-sm-2">
+                                    <h:outputLabel for="estado1" value="Estado"/><br/>
+                                    <p:toggleSwitch id="estado1" value="#{adminMatriculaBean.matriculcerrada}"
+                                                    onIcon="pi pi-lock-open" offIcon="pi pi-lock"/>
+                                </div>
+                            </div>
+                        </p:outputPanel>
+                    </p:outputPanel>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Guardar" icon="pi pi-check"
+                                         id="btnEditModal" actionListener="#{adminMatriculaBean.editMatricula()}"
+                                         update="edit-matricula-content form:messages"
+                                         process="edit-matricula-content @this"/>
+                        <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editMatriculaDialog').hide()"
+                                         class="ui-button-secondary" type="button"/>
+                    </f:facet>
+                </p:dialog>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>
