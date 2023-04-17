@@ -78,7 +78,7 @@
                                                     showTargetControls="true" showCheckbox="true"
                                                     showSourceFilter="true" showTargetFilter="true"
                                                     filterMatchMode="contains"
-                                                    converter="#{asigConverter}">
+                                                    converter="entityConverter">
 
                                             <f:facet name="sourceCaption">Por Matricular</f:facet>
                                             <f:facet name="targetCaption">Matriculadas</f:facet>
@@ -96,7 +96,21 @@
                                 </div>
                             </div>
                             <div class="col col-sm-4">
-                                <p:pieChart model="#{matriculaResponsableBean.pieModel}" style="width: 100%; height: 500px;"/>
+                                <div class="card" style="padding: 5px">
+                                    <p:pieChart model="#{matriculaResponsableBean.pieModel}"
+                                                style="width: 100%; height: 500px;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-10">
+                            </div>
+                            <div class="col col-sm-2">
+                                <p:commandButton id="update" update="search_results"
+                                                 value="Actualizar" title="Actualizar"
+                                                 icon="pi pi-refresh" styleClass="ui-button ui-button-info"
+                                                 action="#{matriculaResponsableBean.update()}"/>
                             </div>
                         </div>
                     </p:panel>
