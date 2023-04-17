@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 16/04/2023
+  Time: 11:29AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Matr&iacute;cula Responsable
+        </ui:define>
+
+        <ui:define name="content">
+
+            #{matriculaResponsableBean.clear()}
+
+            <h:form id="form1">
+
+                <div class="row">
+                    <div class="col col-sm-9 col-md-9 col-lg-9">
+                    </div>
+                    <div class="col col-sm-3 col-md-3 col-lg-3">
+                        <div style="float: right">
+                            <div class="ui-inputgroup">
+                                <p:inputMask
+                                        mask="99999999999"
+                                        requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                        validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                        placeholder="Identificaci&oacute;n" value="#{matriculaResponsableBean.id}"
+                                        required="true"/>
+                                <p:commandButton id="btnSearch" title="Buscar" update="form1 search_results"
+                                                 icon="pi pi-search"
+                                                 action="#{matriculaResponsableBean.search()}" ajax="true"
+                                                 styleClass="ui-button ui-button-info"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <br/>
+
+            <h:form id="search_results">
+                <p:growl id="growl1" allowDismiss="true"/>
+                <p:outputPanel id="search_results_into" rendered="#{matriculaResponsableBean.do_search}">
+                    <p:panel id="panel" header="Realizar Matr&iacute;cula Responsable">
+                        <div class="alert alert-info">Seleccione las asignaturas que ser&aacute;n matriculadas en el pr&oacute;ximo momento por
+                            <strong> #{matriculaResponsableBean.nombre_estudiante} </strong>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-8">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p:pickList responsive="true" addAllLabel="Matricular todo" var="asignatura"
+                                                    value="#{matriculaResponsableBean.list_asignaturas}"
+                                                    addLabel="Matricular asignaturas seleccionadas"
+                                                    removeAllLabel="Desmatricular todo"
+                                                    removeLabel="Desmatricular asignaturas seleccionadas"
+                                                    id="pickList_asignaturas"
+                                                    itemLabel="#{asignatura.asignaturaNombre}"
+                                                    itemValue="#{asignatura}"
+                                                    showSourceControls="true"
+                                                    showTargetControls="true" showCheckbox="true"
+                                                    showSourceFilter="true" showTargetFilter="true"
+                                                    filterMatchMode="contains"
+                                                    converter="#{asigConverter}">
+
+                                            <f:facet name="sourceCaption">Por Matricular</f:facet>
+                                            <f:facet name="targetCaption">Matriculadas</f:facet>
+
+                                            <p:column style="width:94%">
+                                                <div class="flex align-items-center">
+                                                    <span style="color: #{matriculaResponsableBean.translateAsignaturaTypeToColor(asignatura.getTipoAsignaturatipoAsignaturaId().getTipoAsignaturaId())}; width: 30px; height: 20px"
+                                                          class="pi pi-circle-on"/>
+                                                    <h:outputText value="#{asignatura.asignaturaNombre}"/>
+                                                </div>
+                                            </p:column>
+
+                                        </p:pickList>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-sm-4">
+                                <p:pieChart model="#{matriculaResponsableBean.pieModel}" style="width: 100%; height: 500px;"/>
+                            </div>
+                        </div>
+                    </p:panel>
+
+                    <br/>
+                    <div class="row">
+                        <div class="col col-sm-12">
+                            <p:panel styleClass="alert alert-info" header="Tipos de Asignatura">
+                                <ui:repeat value="#{matriculaResponsableBean.listTipoAsignatura}" var="tipoAsignatura">
+                                    <span style="color: #{matriculaResponsableBean.translateAsignaturaTypeToColor(tipoAsignatura.tipoAsignaturaId)}; width: 30px; height: 20px"
+                                          class="pi pi-circle-on"/>
+                                    <h:outputText value="#{tipoAsignatura.tipoAsignaturaNombre}"/>
+                                    <br/>
+                                </ui:repeat>
+
+                            </p:panel>
+                        </div>
+                    </div>
+                </p:outputPanel>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>
