@@ -72,6 +72,8 @@ public class texts {
     static String disciplinaPlanEstudioErroraux = "No se pudo añadir la disciplina ";
     static String asignaturadisciplinaPlanEstudioError = "No se pudo añadir la asignatura ";
     static String asignaturadisciplinaPlanEstudioErroraux = "No se pudo añadir la asignatura ";
+    static String noSearchResults = "No se han encontrado elementos de acuerdo a los criterios de búsqueda indicados.";
+    static String searchResults = "Se han encontrado ";
 
     public static String getPlanEstudioExistente() {
         return PlanEstudioExistente;
@@ -547,4 +549,19 @@ public class texts {
         texts.UsuarioNull = UsuarioNull;
     }
 
+    public static String getNoSearchResults() {
+        return noSearchResults;
+    }
+
+    public static void setNoSearchResults(String noSearchResults) {
+        texts.noSearchResults = noSearchResults;
+    }
+
+    public static String getSearchResults() {
+        return searchResults;
+    }
+
+    public static void setSearchResults(String searchResults) {
+        texts.searchResults = searchResults;
+    }
 }

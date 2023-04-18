@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 18/04/2023
+  Time: 12:10PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Buscar Estudiante
+        </ui:define>
+
+        <ui:define name="content">
+
+            #{buscarEstudianteBean.init()}
+
+            <h:form id="search_form">
+                <p:growl id="messages"/>
+                <div class="row">
+                    <div class="col col-sm-3">
+                        <p:outputLabel for="idSearch"
+                                       styleClass="block"> Identificaci&oacute;n </p:outputLabel>
+                        <p:inputMask
+                                mask="99999999999"
+                                id="idSearch"
+                                requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                placeholder="Identificaci&oacute;n" value="#{buscarEstudianteBean.id_search}"/>
+                    </div>
+                    <div class="col col-sm-3">
+                        <p:outputLabel for="idSearch"
+                                       styleClass="block"> Nombre </p:outputLabel>
+                        <p:inputText
+                                id="nombreSearch"
+                                requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                validatorMessage="ERROR: Nombre no v&aacute;lido"
+                                placeholder="Nombre" value="#{buscarEstudianteBean.nombre_search}">
+                            <f:validateLength maximum="250"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col col-sm-3">
+                        <p:outputLabel for="apellido1Search"
+                                       styleClass="block"> Primer Apellido </p:outputLabel>
+                        <p:inputText
+                                id="apellido1Search"
+                                requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                validatorMessage="ERROR: Primer Apellido no v&aacute;lido"
+                                placeholder="Primer Apellido" value="#{buscarEstudianteBean.primer_apllido_search}">
+                            <f:validateLength maximum="250"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col col-sm-3">
+                        <p:outputLabel for="apellido2Search"
+                                       styleClass="block"> Segundo Apellido </p:outputLabel>
+                        <p:inputText
+                                id="apellido2Search"
+                                requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                validatorMessage="ERROR: Segundo Apellido no v&aacute;lido"
+                                placeholder="Segundo Apellido" value="#{buscarEstudianteBean.segundo_apellido_search}">
+                            <f:validateLength maximum="250"/>
+                        </p:inputText>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col col-sm-4">
+                        <p:outputLabel for="areaSearch"
+                                       styleClass="block"> &Aacute;rea </p:outputLabel>
+                        <p:selectOneMenu value="#{buscarEstudianteBean.area_search}"
+                                         id="areaSearch"
+                                         requiredMessage="&Aacute;rea: Es necesario seleccionar un &Aacute;rea"
+                                         label="&Aacute;rea">
+                            <f:selectItem itemLabel="(Seleccione un &Aacute;rea)" itemValue=""/>
+                            <f:selectItems value="#{buscarEstudianteBean.list_area}" var="ar" itemValue="#{ar}"
+                                           itemLabel="#{ar}"/>
+                            <p:ajax update="carrera"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="col col-sm-4">
+                        <p:outputPanel id="carrera">
+                            #{buscarEstudianteBean.update_Carreras()}
+                            <p:outputLabel for="carreraSearch"
+                                           styleClass="block"> Carrera </p:outputLabel>
+                            <p:selectOneMenu value="#{buscarEstudianteBean.carrera_search}"
+                                             id="carreraSearch"
+                                             requiredMessage="Carrera: Es necesario seleccionar una Carrera"
+                                             label="Carrera">
+                                <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                <f:selectItems value="#{buscarEstudianteBean.list_carrera}" var="car" itemValue="#{car}"
+                                               itemLabel="#{ar}"/>
+                            </p:selectOneMenu>
+                        </p:outputPanel>
+                    </div>
+                    <div class="col col-sm-4">
+                        <p:outputLabel for="estadoSearch"
+                                       styleClass="block"> Estado </p:outputLabel>
+                        <p:selectOneMenu value="#{buscarEstudianteBean.estado_search}"
+                                         id="estadoSearch"
+                                         requiredMessage="Estado: Es necesario seleccionar un Estado"
+                                         label="Carrera">
+                            <f:selectItem itemLabel="(Seleccione un Estado)" itemValue=""/>
+                            <f:selectItems value="#{buscarEstudianteBean.list_estado}" var="est" itemValue="#{est}"
+                                           itemLabel="#{ar}"/>
+                            <p:ajax update="carrera"/>
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col col-sm-10"></div>
+                    <div class="col col-sm-2">
+                        <p:commandButton style="float: left" value="Buscar" icon="pi pi-search"
+                                         styleClass="ui-button ui-button-info"
+                                         action="#{buscarEstudianteBean.search()}" update="searchResults"/>
+                    </div>
+                </div>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <br/>
+            <br/>
+
+            <h:form id="searchResults">
+                <p:growl id="messages1"/>
+                <p:outputPanel rendered="#{buscarEstudianteBean.founded}">
+                    <h4>Resultados de la B&uacute;squeda</h4>
+                    <p:dataTable tableStyleClass="table-striped" id="dt-buscarEstudiante"
+                                 widgetVar="dtbuscarEstudiante" var="buscarEstudiante"
+                                 value="#{buscarEstudianteBean.listEstudiantesSearched}" size="small"
+                                 reflow="true" styleClass="buscarEstudiantes-table"
+                                 rowKey="#{buscarEstudiante.estudiante.estudianteId}" paginator="true" rows="10"
+                                 paginatorPosition="bottom">
+                        <f:facet name="header">
+                            <div class="buscarEstudiantes-table-header">
+                                <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                                <p:inputText id="globalFilter" onkeyup="PF('dt-buscarEstudiante').filter()"
+                                             placeholder="Buscar"/>
+                                </span>
+                            </div>
+                        </f:facet>
+                        <p:column exportHeaderValue="ID" headerText="ID" sortOrder="asc">
+                            <h:outputText
+                                    value="#{buscarEstudiante.estudiante.estudianteId}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="Nombre" headerText="Nombre">
+                            <h:outputText
+                                    value="#{buscarEstudiante.estudiante.estudianteNombre} #{buscarEstudiante.estudiante.estudianteApellido1} #{buscarEstudiante.estudiante.estudianteApellido2}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="&Aacute;rea" headerText="&Aacute;rea">
+                            <h:outputText
+                                    value="#{buscarEstudianteBean.translateAreaEstudiante(buscarEstudiante)}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="Carrera" headerText="Carrera">
+                            <h:outputText
+                                    value="#{buscarEstudianteBean.translateCarreraEstudiante(buscarEstudiante)}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="Estado" headerText="Estado">
+                            <h:outputText
+                                    styleClass="badge badge-dark"
+                                    style="color: #{buscarEstudianteBean.translateEstadoEstudianteToColor(buscarEstudiante)}; border-color: #{buscarEstudianteBean.translateEstadoEstudianteToColor(buscarEstudiante)}"
+                                    value="#{buscarEstudianteBean.translateEstadoEstudiante(buscarEstudiante)}"/>
+                        </p:column>
+                        <p:column exportable="false">
+                            <p:commandButton icon="pi pi-info-circle"
+                                             styleClass="rounded-button ui-button-info" process="@this"
+                                             title="Informaci&oacute;n">
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                </p:outputPanel>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

@@ -1249,4 +1249,7 @@ public class EstudianteServices {
         return getInstanceOfEstudiante().findAsignaturasForNotasByExamen(fcce, e.getExamenId());
     }
 
+    public List<Estudiante> findEstudianteEntities() {
+        return getInstanceOfEstudiante().findEstudianteEntities();
+    }
 }
