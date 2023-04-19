@@ -137,7 +137,10 @@
                                 <h:outputLabel for="nombre"
                                                value="Nombre *"/><br/>
                                 <p:inputText id="nombre" value="#{adminColorPielBean.nombre}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
                             </div>
                         </div>
                         <div class="row">
@@ -171,7 +174,10 @@
                                 <h:outputLabel for="editNombre"
                                                value="Nombre *"/><br/>
                                 <p:inputText id="editNombre" value="#{adminColorPielBean.nombre}"
-                                              required="true" showIcon="true"/>
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
                             </div>
                         </div>
                         <div class="row">
