@@ -8,6 +8,7 @@
         <!--Rulers for common pages-->
         <security:intercept-url pattern="/pages/index.xhtml" access="isAuthenticated()"/>
         <security:intercept-url pattern="/pages/Perfil.xhtml" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/pages/SearchResults.xhtml" access="isAuthenticated()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/fonts/**" access="permitAll()"/>
         <security:intercept-url pattern="/jakarta.faces.resource/**" access="permitAll()"/>

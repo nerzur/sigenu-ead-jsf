@@ -88,9 +88,11 @@
                             <div class="ui-inputgroup">
                                 <p:inputMask
                                         mask="99999999999"
+                                        value="#{buscarEstudianteBean.searchButton}"
                                         placeholder="Buscar estudiante por CI...."
                                 />
                                 <p:commandButton id="btnSearch_global" update="search_global"
+                                                 actionListener="#{buscarEstudianteBean.searchFromSearchButton()}"
                                                  icon="pi pi-search"
                                                  styleClass="ui-button ui-button-outlined rounded-top rounded-bottom ui-button-secondary"/>
                             </div>

@@ -8,12 +8,15 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SessionScoped
 @Named
@@ -22,6 +25,7 @@ public class BuscarEstudianteBean implements Serializable {
 
     private List<Estudiante> buscados = new ArrayList<>();
     private String id_search;
+    private String searchButton;
     private String nombre_search;
     private String primer_apllido_search;
     private String segundo_apellido_search;
@@ -31,11 +35,13 @@ public class BuscarEstudianteBean implements Serializable {
     private String fuente_ingreso_search;
 
     private boolean founded = false;
+    private boolean founded1 = false;
 
     private List<String> list_area = new ArrayList<>();
     private List<String> list_carrera = new ArrayList<>();
     private List<String> list_estado = new ArrayList<>();
-    List<EstudianteSearch> listEstudiantesSearched = new ArrayList<>();
+    private List<EstudianteSearch> listEstudiantesSearched = new ArrayList<>();
+    private EstudianteSearch estudianteSearched = null;
 
     private final FacultadServices serv_facultad = new FacultadServices();
     private final CarreraServices serv_carrera = new CarreraServices();
@@ -56,7 +62,17 @@ public class BuscarEstudianteBean implements Serializable {
         list_area = serv_facultad.findAreasAvailables();
         list_estado = serv_estado.findEstadoEstudianteAvailable();
         founded = false;
+        founded1 = false;
         listEstudiantesSearched.clear();
+        estudianteSearched = null;
+    }
+
+    public void initBusquedaPage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (estudianteSearched == null) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, texts.getNoSearchResults(), ""));
+            founded1 = false;
+        } else founded1 = true;
     }
 
     public void update_Carreras() {
@@ -126,6 +142,25 @@ public class BuscarEstudianteBean implements Serializable {
         }
     }
 
+    public void searchFromSearchButton() {
+        if (searchButton != null) {
+            Estudiante est = serv_estudiante.findEstudianteById(searchButton);
+            if(est == null){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, texts.getIdNotExist(), ""));
+                return;
+            }
+            estudianteSearched = EstudianteSearch.builder()
+                    .estudiante(serv_estudiante.findEstudianteById(searchButton))
+                    .facultadCumCarreraEstudiante(serv_estudiante.findByEstudianteUltimaFecha(searchButton))
+                    .searchTimes(0)
+                    .build();
+            goToPreviewSearchPageFromTable(estudianteSearched);
+            searchButton = "";
+        } else
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, texts.getNoSearchResults(), ""));
+
+    }
+
     public String translateAreaEstudiante(EstudianteSearch estudianteSearch) {
         if (estudianteSearch.getFacultadCumCarreraEstudiante().getFacultadCumCarrera().getFacultadCum().getCum() != null)
             return estudianteSearch.getFacultadCumCarreraEstudiante().getFacultadCumCarrera().getFacultadCum().getCum().getNombrecum();
@@ -155,8 +190,31 @@ public class BuscarEstudianteBean implements Serializable {
                 "#E67E22",
                 "#34495E"
         };
-
         return (type <= colors.length) ? colors[type] : "#FFFFFF";
+    }
+
+    public void goToPreviewSearchPageFromTable(EstudianteSearch estudianteSearch) {
+        final String Request = ((HttpServletRequest) ((FacesContext) FacesContext.getCurrentInstance()).getExternalContext().getRequest()).getContextPath();
+        try {
+            estudianteSearched = estudianteSearch;
+            FacesContext.getCurrentInstance().getExternalContext().redirect(Request + "/pages/SearchResults.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarEstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String translateDate(Date date) {
+        if (date != null) {
+            return new SimpleDateFormat("dd'/'MM'/'yyyy", new Locale("es", "ES")).format(date);
+        }
+        return "No definido";
+    }
+
+    public String translateBoolean(boolean value) {
+        if (value) {
+            return "Sí";
+        }
+        return "No";
     }
 
 }

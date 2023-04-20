@@ -74,6 +74,7 @@ public class texts {
     static String asignaturadisciplinaPlanEstudioErroraux = "No se pudo añadir la asignatura ";
     static String noSearchResults = "No se han encontrado elementos de acuerdo a los criterios de búsqueda indicados.";
     static String searchResults = "Se han encontrado ";
+    static String idNotExist = "El estudiante con el ID indicado no existe.";
 
     public static String getPlanEstudioExistente() {
         return PlanEstudioExistente;
@@ -563,5 +564,13 @@ public class texts {
 
     public static void setSearchResults(String searchResults) {
         texts.searchResults = searchResults;
+    }
+
+    public static String getIdNotExist() {
+        return idNotExist;
+    }
+
+    public static void setIdNotExist(String idNotExist) {
+        texts.idNotExist = idNotExist;
     }
 }
