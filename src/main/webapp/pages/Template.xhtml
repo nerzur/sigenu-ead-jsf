@@ -58,6 +58,38 @@
 <h:body id="body">
     #{templateBean.init()}
 
+    <script>
+        PrimeFaces.locales['es'] = {
+            closeText: 'Cerrar',
+            prevText: 'Anterior',
+            nextText: 'Siguiente',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+            dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Sólo hora',
+            timeText: 'Tiempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            millisecondText: 'Milisegundo',
+            currentText: 'Fecha actual',
+            ampm: false,
+            month: 'Mes',
+            week: 'Semana',
+            day: 'Día',
+            allDayText: 'Todo el día',
+            today: 'Hoy',
+            clear: 'Claro'
+        };
+    </script>
+
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         <nav style="z-index: 100;"
@@ -571,13 +603,13 @@
                                                         href="#{request.contextPath}/pages/estudiantePages/EvaluarAsignaturaEstudiantes.xhtml">Evaluar Asignaturas por Estudiante</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Dar Baja a Estudiante</a>
+                                                        href="#{request.contextPath}/pages/estudiantePages/DarBajaEstudiante.xhtml">Dar Baja a Estudiante</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/estudiantePages/PromoverEstudiante.xhtml">Promover Estudiantes</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Revocar Baja</a>
+                                                        href="#{request.contextPath}/pages/estudiantePages/RevocarBajaEstudiante.xhtml">Revocar Baja</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/ContentUnaviable.xhtml">Revocar Promoción</a>

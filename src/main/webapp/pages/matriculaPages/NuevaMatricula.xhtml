@@ -24,38 +24,6 @@
 
         <ui:define name="content">
 
-            <script>
-                PrimeFaces.locales['es'] = {
-                    closeText: 'Cerrar',
-                    prevText: 'Anterior',
-                    nextText: 'Siguiente',
-                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-                    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
-                    weekHeader: 'Semana',
-                    firstDay: 1,
-                    isRTL: false,
-                    showMonthAfterYear: false,
-                    yearSuffix: '',
-                    timeOnlyTitle: 'Sólo hora',
-                    timeText: 'Tiempo',
-                    hourText: 'Hora',
-                    minuteText: 'Minuto',
-                    secondText: 'Segundo',
-                    millisecondText: 'Milisegundo',
-                    currentText: 'Fecha actual',
-                    ampm: false,
-                    month: 'Mes',
-                    week: 'Semana',
-                    day: 'Día',
-                    allDayText: 'Todo el día',
-                    today: 'Hoy',
-                    clear: 'Claro'
-                };
-            </script>
-
             #{nuevaMatriculaBean.loadElementsStep1()}
             #{nuevaMatriculaBean.init()}
             <h:form id="form1">
@@ -115,7 +83,7 @@
                                         <p:outputLabel for="fechaNacimiento"
                                                        styleClass="block"> Natalicio </p:outputLabel>
                                         <br/>
-                                        <p:datePicker value="#{nuevaMatriculaBean.fechaNacimiento}"
+                                        <p:datePicker locale="es" value="#{nuevaMatriculaBean.fechaNacimiento}"
                                                       styleClass="block"
                                                       placeholder="Fecha de Nacimiento"
                                                       id="fechaNacimiento"
@@ -656,7 +624,7 @@
                             <div class="col col-sm-4">
                                 <p:outputLabel for="fechamatricula"
                                                styleClass="block"> Fecha de Matr&iacute;cula </p:outputLabel> <br/>
-                                <p:datePicker
+                                <p:datePicker locale="es"
                                         a:disabled="#{nuevaMatriculaBean.translateboolean(nuevaMatriculaBean.state)}"
                                         value="#{nuevaMatriculaBean.fechaMatricula}"
                                         placeholder="Fecha de Matr&iacute;cula" id="fechamatricula"
@@ -666,7 +634,7 @@
                             <div class="col col-sm-4">
                                 <p:outputLabel for="fechaingresoes"
                                                styleClass="block"> Fecha de Ingreso ES </p:outputLabel> <br/>
-                                <p:datePicker value="#{nuevaMatriculaBean.fechaIngresoEs}"
+                                <p:datePicker locale="es" value="#{nuevaMatriculaBean.fechaIngresoEs}"
                                               placeholder="Fecha de Ingreso ES" id="fechaingresoes"
                                               mode="toggle-icon" firstDay="1" required="true"
                                               label="Fecha de Ingreso ES"/>
@@ -674,7 +642,7 @@
                             <div class="col col-sm-4">
                                 <p:outputLabel for="fechaingresoces"
                                                styleClass="block"> Fecha de Ingreso CES </p:outputLabel> <br/>
-                                <p:datePicker value="#{nuevaMatriculaBean.fechaIngresoCes}"
+                                <p:datePicker locale="es" value="#{nuevaMatriculaBean.fechaIngresoCes}"
                                               placeholder="Fecha de Ingreso CES" id="fechaingresoces"
                                               mode="toggle-icon" firstDay="1" required="true"
                                               label="Fecha de Ingreso CES"/>
@@ -1171,8 +1139,7 @@
                                                 <p:outputLabel for="fechalicenciamiento"
                                                                styleClass="block"> Fecha de Licenciamiento </p:outputLabel>
                                                 <br/>
-                                                <p:datePicker disabled="#{!nuevaMatriculaBean.datosMilitares}"
-                                                              locale="es"
+                                                <p:datePicker locale="es" disabled="#{!nuevaMatriculaBean.datosMilitares}"
                                                               value="#{nuevaMatriculaBean.fechaLicenciamientoMilitar}"
                                                               placeholder="Fecha de Licenciamiento"
                                                               id="fechalicenciamiento" mode="toggle-icon" firstDay="1"
