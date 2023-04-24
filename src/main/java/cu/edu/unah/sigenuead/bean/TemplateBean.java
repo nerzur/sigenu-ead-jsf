@@ -22,6 +22,7 @@ public class TemplateBean implements Serializable {
 
     private String username;
     private List<String> roles = new ArrayList<String>();
+    private List<String> permisos = new ArrayList<String>();
     private Users user;
     private boolean role_admin, role_secretaria, role_controlador, role_secretario_general, role_matriculador;
     private String password, password1, password2;
@@ -41,6 +42,7 @@ public class TemplateBean implements Serializable {
     public void init() {
         username = getCurrentUser();
         roles = serv.findUsersRoles(username);
+        permisos = serv.findUsersPermisos(username);
         user = serv.findUsersByUsername(username);
         verifyRol();
 //        if(!log){
@@ -55,9 +57,7 @@ public class TemplateBean implements Serializable {
     }
 
     public void verifyRol() {
-        List<String> list_roles = new ArrayList<>();
-//        list_roles = serv_user.findUsersRoles(username);
-        for (String l : list_roles) {
+        for (String l : roles) {
             switch (l) {
                 case "ROLE_ADMIN" -> {
                     role_admin = true;

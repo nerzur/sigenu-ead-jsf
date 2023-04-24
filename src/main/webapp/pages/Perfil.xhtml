@@ -89,6 +89,18 @@
                                     </ui:repeat>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Permisos: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <ui:repeat value="#{templateBean.permisos}" var="permiso">
+                                        <h:outputLabel style="margin-top: 2px; margin-right: 2px"
+                                                       styleClass="badge badge-opacity-success"
+                                                       value="#{permiso}"/>
+                                    </ui:repeat>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -96,7 +108,7 @@
             </div>
 
         </div>
-        <div class="col-lg-6 grid-margin stretch-card">
+        <div class="col-lg-6 grid-margin">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Cambio de contrase&ntilde;a</h4>
@@ -105,55 +117,51 @@
                     </p>
                     <h:form id="passw_renew">
                         <p:growl allow-dismiss="true"/>
-                        <div class="form-group">
-                            <p:outputLabel for="lastestp" value="Contrase&ntilde;a antigua"/>
-                            <p:password value="#{templateBean.password}" required="true" id="lastestp"
-                                        feedback="true"
-                                        promptLabel="Contrase&ntilde;a antigua" weakLabel="Débil"
-                                        placeholder="Contrase&ntilde;a antigua"
-                                        goodLabel="Buena" strongLabel="Fuerte"
-                                        styleClass="form-control"/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputLabel for="lastestp" value="Contrase&ntilde;a antigua"/> <br/>
+                                <p:password value="#{templateBean.password}" required="true" id="lastestp"
+                                            feedback="true"
+                                            promptLabel="Contrase&ntilde;a antigua" weakLabel="Débil"
+                                            placeholder="Contrase&ntilde;a antigua"
+                                            goodLabel="Buena" strongLabel="Fuerte"
+                                            styleClass="form-control"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <p:outputLabel for="nastestp" value="Contrase&ntilde;a nueva"/>
-                            <p:password value="#{templateBean.password1}" required="true" id="nastestp"
-                                        feedback="true"
-                                        promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
-                                        placeholder="Contrase&ntilde;a nueva"
-                                        goodLabel="Buena" strongLabel="Fuerte"
-                                        styleClass="form-control"/>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputLabel for="nastestp" value="Contrase&ntilde;a nueva"/> <br/>
+                                <p:password value="#{templateBean.password1}" required="true" id="nastestp"
+                                            feedback="true"
+                                            promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
+                                            placeholder="Contrase&ntilde;a nueva"
+                                            goodLabel="Buena" strongLabel="Fuerte"
+                                            styleClass="form-control"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <p:outputLabel for="n1astestp" value="Contrase&ntilde;a nueva"/>
-                            <p:password value="#{templateBean.password2}" required="true" id="n1astestp"
-                                        feedback="true"
-                                        promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
-                                        placeholder="Contrase&ntilde;a nueva"
-                                        goodLabel="Buena" strongLabel="Fuerte"
-                                        styleClass="form-control"/>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputLabel for="n1astestp" value="Contrase&ntilde;a nueva"/>
+                                <p:password value="#{templateBean.password2}" required="true" id="n1astestp"
+                                            feedback="true"
+                                            promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
+                                            placeholder="Contrase&ntilde;a nueva"
+                                            goodLabel="Buena" strongLabel="Fuerte"
+                                            styleClass="form-control"/>
+                            </div>
                         </div>
 
-                        <div class="d-flex align-items-center justify-content-start">
-                            <p:commandButton id="btnChange" styleClass="rounded-button ui-button-success"
+                        <br/>
+
+
+                            <p:commandButton style="float: right" id="btnChange" styleClass="ui-button ui-button-success"
                                              icon="pi pi-save"
                                              action="#{templateBean.passwordRenew()}" update="passw_renew"
                                              value="Cambiar"/>
-                            <p:blockUI block="body" trigger="btnChange">
-                                <div class="sk-cube-grid">
-                                    <div class="sk-cube sk-cube1"></div>
-                                    <div class="sk-cube sk-cube2"></div>
-                                    <div class="sk-cube sk-cube3"></div>
-                                    <div class="sk-cube sk-cube4"></div>
-                                    <div class="sk-cube sk-cube5"></div>
-                                    <div class="sk-cube sk-cube6"></div>
-                                    <div class="sk-cube sk-cube7"></div>
-                                    <div class="sk-cube sk-cube8"></div>
-                                    <div class="sk-cube sk-cube9"></div>
-                                </div>
-                            </p:blockUI>
-                        </div>
 
-                        <p:commandButton value="" rendered="false"/>
+
                         <input type="hidden"
                                name="${_csrf.parameterName}"
                                value="${_csrf.token}"/>

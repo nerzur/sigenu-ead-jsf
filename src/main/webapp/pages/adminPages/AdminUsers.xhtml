@@ -20,16 +20,11 @@
         Administrar Usuarios
     </ui:define>
 
-<!--    <ui:define name="description">-->
-<!--        Administrar Usuarios-->
-<!--    </ui:define>-->
+    <!--    <ui:define name="description">-->
+    <!--        Administrar Usuarios-->
+    <!--    </ui:define>-->
 
     <ui:define name="content">
-        <style type="text/css">
-            .ui-selectmanymenu {
-                height: 100px;
-            }
-        </style>
         #{adminUserBean.init()}
         <h:form id="form">
             <p:growl id="messages" showDetail="true"/>
@@ -43,10 +38,12 @@
                     </p:commandButton>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf" styleClass="ui-button ui-button-secondary" ajax="false">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
                         <p:dataExporter type="pdf" target="dt-users" fileName="Usuarios" exportHeader="true"/>
                     </p:commandButton>
-                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel" styleClass="ui-button ui-button-secondary" ajax="false">
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
                         <p:dataExporter type="xlsxstream" target="dt-users" fileName="Usiarios" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
@@ -106,83 +103,81 @@
         <h:form id="dialogs">
 
             <!--Info Dialog-->
-            <p:dialog header="Informaci&oacute;n" width="500px" showEffect="fade" modal="true"
+            <p:dialog header="Informaci&oacute;n" width="700" height="300" showEffect="fade" modal="true"
                       widgetVar="infoUserDialog"
                       responsive="true">
                 <p:outputPanel id="info-user-content" class="ui-fluid">
                     <p:outputPanel>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="CI: "/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="CI: "/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <h:outputText value="#{adminUserBean.selectedUser.identificacion}"/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="Nombre de usuario:"/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="Nombre de usuario:"/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <p:outputLabel value="#{adminUserBean.selectedUser.username}" required="true"/></div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="Nombre completo:"/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="Nombre completo:"/></strong>
                             </div>
-                            <div class="col col-lg-7">
-                                <p:outputLabel value="#{adminUserBean.selectedUser.nombre}"/>
-                                <p:outputLabel value="#{adminUserBean.selectedUser.apellido1}"/>
-                                <p:outputLabel value="#{adminUserBean.selectedUser.apellido2}"/>
+                            <div class="col col-lg-8">
+                                <p:outputLabel value="#{adminUserBean.selectedUser.nombre} #{adminUserBean.selectedUser.apellido1} #{adminUserBean.selectedUser.apellido2}"/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="E-mail:"/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="E-mail:"/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <p:outputLabel value="#{adminUserBean.selectedUser.email}"/></div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="Descripci&oacute;n: "/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="Descripci&oacute;n: "/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <p style="font-size: 1rem; font-family: 'Manrope', sans-serif; font-weight: initial;
                                     line-height: normal;" align="justify">#{adminUserBean.selectedUser.descripcion}</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="Estado: "/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="Estado: "/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <h:outputText
                                         value="#{templateBean.translateEstado(adminUserBean.selectedUser.enabled)}"
                                         styleClass="#{templateBean.translateBooleanToSeveriy(adminUserBean.selectedUser.enabled)}"/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="Roles: "/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="Roles: "/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <ui:repeat value="#{adminUserBean.roles}" var="rol">
-                                    <h:outputLabel style="margin-top: 2px; margin-right: 2px"
+                                    <p:outputLabel style="margin-top: 2px; margin-right: 2px"
                                                    styleClass="badge badge-dark"
                                                    value="#{adminUserBean.translateRole(rol)}"/>
                                 </ui:repeat>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-lg-5">
-                                <strong><h:outputLabel value="Permisos: "/></strong>
+                            <div class="col col-lg-4">
+                                <strong><p:outputLabel value="Permisos: "/></strong>
                             </div>
-                            <div class="col col-lg-7">
+                            <div class="col col-lg-8">
                                 <ui:repeat value="#{adminUserBean.list_permisos}" var="permiso">
-                                    <h:outputLabel style="margin-top: 2px; margin-right: 2px"
-                                                   styleClass="badge badge-dark"
-                                                   value="permiso"/>
+                                    <p:outputLabel style="margin-top: 2px; margin-right: 2px"
+                                                   styleClass="badge badge-opacity-success"
+                                                   value="#{permiso}"/>
                                 </ui:repeat>
                             </div>
                         </div>
@@ -197,21 +192,21 @@
             <!--/Info Dialog-->
 
             <!--Add Dialog-->
-            <p:dialog header="A&ntilde;adir Usuario" showEffect="fade" modal="true"
+            <p:dialog header="A&ntilde;adir Usuario" height="300" showEffect="fade" modal="true"
                       widgetVar="addUserDialog"
                       responsive="true">
                 <p:outputPanel id="add-user-content" class="ui-fluid">
                     <p:outputPanel>
                         <div class="row">
                             <div class="col col-sm-2">
-                                <h:outputLabel for="id" value="Identificaci&oacute;n *"/><br/>
+                                <p:outputLabel for="id" value="Identificaci&oacute;n"/><br/>
                                 <p:inputMask label="Identificaci&oacute;n" style="height: 35px; width: 100%;"
                                              id="id" value="#{adminUserBean.id}"
                                              placeholder="Identificaci&oacute;n" required="true"
                                              mask="99999999999"/>
                             </div>
                             <div class="col col-sm-3">
-                                <h:outputLabel for="input_nombre" value="Nombre *"/><br/>
+                                <p:outputLabel for="input_nombre" value="Nombre"/><br/>
                                 <p:inputText label="Nombre" id="input_nombre"
                                              validatorMessage="ERROR: Nombre no v&aacute;lido" autocomplete="false"
                                              required="true" class="form-control" placeholder="Nombre"
@@ -221,7 +216,7 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-3">
-                                <h:outputLabel for="input_primer_apellido" value="Primer Apellido *"/><br/>
+                                <p:outputLabel for="input_primer_apellido" value="Primer Apellido"/><br/>
                                 <p:inputText label="Primer apellido" id="input_primer_apellido"
                                              validatorMessage="ERROR: Apellido no v&aacute;lido"
                                              autocomplete="false" required="true" class="form-control"
@@ -231,7 +226,7 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-3">
-                                <h:outputLabel for="input_segundo_apellido" value="Segundo Apellido *"/><br/>
+                                <p:outputLabel for="input_segundo_apellido" value="Segundo Apellido"/><br/>
                                 <p:inputText label="Segundo apellido" id="input_segundo_apellido"
                                              validatorMessage="ERROR: Apellido no v&aacute;lido"
                                              autocomplete="false" required="true" class="form-control"
@@ -241,14 +236,14 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-1">
-                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:outputLabel for="estado" value="Estado"/><br/>
                                 <p:toggleSwitch id="estado" value="#{adminUserBean.enabled}" onIcon="pi pi-check"
                                                 offIcon="pi pi-times"/>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-6">
-                                <h:outputLabel for="input_username" value="Nombre de usuario *"/><br/>
+                                <p:outputLabel for="input_username" value="Nombre de usuario"/><br/>
                                 <p:inputText label="Usuario" id="input_username"
                                              validatorMessage="ERROR: Usuario no v&aacute;lido" autocomplete="false"
                                              required="true" class="form-control" placeholder="Usuario"
@@ -258,7 +253,7 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-6">
-                                <h:outputLabel for="input_email" value="E-mail *"/><br/>
+                                <p:outputLabel for="input_email" value="E-mail"/><br/>
                                 <p:inputText label="Correo" id="input_email"
                                              validatorMessage="ERROR: Correo no v&aacute;lido" autocomplete="false"
                                              required="true" class="form-control" placeholder="Correo"
@@ -268,10 +263,10 @@
                                             pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                                 </p:inputText>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-6">
-                                <h:outputLabel for="input_password" value="Contrase&ntilde;a *"/><br/>
+                                <p:outputLabel for="input_password" value="Contrase&ntilde;a"/><br/>
                                 <p:password label="Contrase&ntilde;a" id="input_password" name="inputsecret1"
                                             feedback="true"
                                             autocomplete="false" required="true" class="form-control"
@@ -282,7 +277,7 @@
                                 </p:password>
                             </div>
                             <div class="col col-sm-6">
-                                <h:outputLabel for="input_password1" value="Repetir Contrase&ntilde;a *"/><br/>
+                                <p:outputLabel for="input_password1" value="Repetir Contrase&ntilde;a"/><br/>
                                 <p:password label="Repetir Contrase&ntilde;a" id="input_password1"
                                             feedback="true"
                                             name="inputsecret2" autocomplete="false" required="true"
@@ -293,14 +288,14 @@
                                     <f:validateLength maximum="45"/>
                                 </p:password>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-12" style="padding-left: 15px; padding-right: 15px">
-                                <h:outputLabel for="descripcion" value="Descripci&oacute;n"/><br/>
+                                <p:outputLabel for="descripcion" value="Descripci&oacute;n"/><br/>
                                 <p:inputTextarea id="descripcion" style="height: 30px;"
                                                  value="#{adminUserBean.description}"/>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="basic" value="Roles:"/>
@@ -343,21 +338,21 @@
             <!--/Add Dialog-->
 
             <!--Edit Dialog-->
-            <p:dialog header="Editar Usuario" showEffect="fade" modal="true"
+            <p:dialog header="Editar Usuario" height="300" showEffect="fade" modal="true"
                       widgetVar="editUserDialog"
                       responsive="true">
                 <p:outputPanel id="edit-user-content" class="ui-fluid">
                     <p:outputPanel>
                         <div class="row">
                             <div class="col col-sm-2">
-                                <h:outputLabel for="edit-id" value="Identificaci&oacute;n *"/><br/>
+                                <p:outputLabel for="edit-id" value="Identificaci&oacute;n"/><br/>
                                 <p:inputMask label="Identificaci&oacute;n" style="height: 35px; width: 100%;"
                                              id="edit-id" value="#{adminUserBean.id}"
                                              placeholder="Identificaci&oacute;n" required="true"
                                              mask="99999999999"/>
                             </div>
                             <div class="col col-sm-3">
-                                <h:outputLabel for="edit-input_nombre" value="Nombre *"/><br/>
+                                <p:outputLabel for="edit-input_nombre" value="Nombre"/><br/>
                                 <p:inputText label="Nombre" id="edit-input_nombre"
                                              validatorMessage="ERROR: Nombre no v&aacute;lido" autocomplete="false"
                                              required="true" class="form-control" placeholder="Nombre"
@@ -367,7 +362,7 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-3">
-                                <h:outputLabel for="edit-input_primer_apellido" value="Primer Apellido *"/><br/>
+                                <p:outputLabel for="edit-input_primer_apellido" value="Primer Apellido"/><br/>
                                 <p:inputText label="Primer apellido" id="edit-input_primer_apellido"
                                              validatorMessage="ERROR: Apellido no v&aacute;lido"
                                              autocomplete="false" required="true" class="form-control"
@@ -377,7 +372,7 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-3">
-                                <h:outputLabel for="edit-input_segundo_apellido" value="Segundo Apellido *"/><br/>
+                                <p:outputLabel for="edit-input_segundo_apellido" value="Segundo Apellido"/><br/>
                                 <p:inputText label="Segundo apellido" id="edit-input_segundo_apellido"
                                              validatorMessage="ERROR: Apellido no v&aacute;lido"
                                              autocomplete="false" required="true" class="form-control"
@@ -387,14 +382,14 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-1">
-                                <h:outputLabel for="edit-estado" value="Estado"/><br/>
+                                <p:outputLabel for="edit-estado" value="Estado"/><br/>
                                 <p:toggleSwitch id="edit-estado" value="#{adminUserBean.enabled}" onIcon="pi pi-check"
                                                 offIcon="pi pi-times"/>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-6">
-                                <h:outputLabel for="edit-input_username" value="Nombre de usuario *"/><br/>
+                                <p:outputLabel for="edit-input_username" value="Nombre de usuario"/><br/>
                                 <p:inputText label="Usuario" id="edit-input_username"
                                              validatorMessage="ERROR: Usuario no v&aacute;lido" autocomplete="false"
                                              required="true" class="form-control" placeholder="Usuario"
@@ -404,7 +399,7 @@
                                 </p:inputText>
                             </div>
                             <div class="col col-sm-6">
-                                <h:outputLabel for="edit-input_email" value="E-mail *"/><br/>
+                                <p:outputLabel for="edit-input_email" value="E-mail"/><br/>
                                 <p:inputText label="Correo" id="edit-input_email"
                                              validatorMessage="ERROR: Correo no v&aacute;lido" autocomplete="false"
                                              required="true" class="form-control" placeholder="Correo"
@@ -414,10 +409,10 @@
                                             pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                                 </p:inputText>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-6">
-                                <h:outputLabel for="edit-input_password" value="Contrase&ntilde;a *"/><br/>
+                                <p:outputLabel for="edit-input_password" value="Contrase&ntilde;a"/><br/>
                                 <p:password label="Contrase&ntilde;a" id="edit-input_password" name="inputsecret1"
                                             feedback="true"
                                             autocomplete="false"
@@ -429,7 +424,7 @@
                                 </p:password>
                             </div>
                             <div class="col col-sm-6">
-                                <h:outputLabel for="edit-input_password1" value="Repetir Contrase&ntilde;a *"/><br/>
+                                <p:outputLabel for="edit-input_password1" value="Repetir Contrase&ntilde;a"/><br/>
                                 <p:password label="Repetir Contrase&ntilde;a" id="edit-input_password1"
                                             feedback="true"
                                             name="inputsecret2" autocomplete="false"
@@ -440,14 +435,14 @@
                                     <f:validateLength maximum="45"/>
                                 </p:password>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-12" style="padding-left: 15px; padding-right: 15px">
-                                <h:outputLabel for="edit-descripcion" value="Descripci&oacute;n"/><br/>
+                                <p:outputLabel for="edit-descripcion" value="Descripci&oacute;n"/><br/>
                                 <p:inputTextarea id="edit-descripcion" style="height: 30px;"
                                                  value="#{adminUserBean.description}"/>
                             </div>
-                        </div>
+                        </div> <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="edit-basic" value="Roles:"/>
