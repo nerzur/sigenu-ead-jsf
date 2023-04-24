@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 21/04/2023
+  Time: 05:15PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Certificación de Calificaciones del Curso Acad&eacute;mico
+        </ui:define>
+
+        <ui:define name="content">
+            #{reportsBean.init()}
+            #{reportsBean.update_Area()}
+            <h:form id="form1">
+                <p:growl id="messages" allowDismiss="true"/>
+                <div class="row">
+                    <div class="col col-sm-6">
+                        <p:outputLabel for="areaInput"
+                                       styleClass="block"> &Aacute;rea </p:outputLabel> <br/>
+                        <p:selectOneMenu value="#{reportsBean.area}"
+                                         id="areaInput"
+                                         requiredMessage="&Aacute;rea: Es necesario seleccionar una Facultad"
+                                         required="true" label="&Aacute;rea">
+                            <f:selectItem itemLabel="(Seleccione un &Aacute;rea)" itemValue=""/>
+                            <f:selectItems value="#{reportsBean.list_area}" var="a" itemValue="#{a}"
+                                           itemLabel="#{a}"/>
+                            <p:ajax update="carrera plan_estudio asignatura"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="col col-sm-6">
+                        <p:outputPanel id="carrera">
+                            #{reportsBean.updtate_carrera()}
+                            <p:outputLabel for="carreraInput"
+                                           styleClass="block"> Carrera </p:outputLabel> <br/>
+                            <p:selectOneMenu value="#{reportsBean.carrera}"
+                                             id="carreraInput"
+                                             requiredMessage="Carrera: Es necesario seleccionar una Carrera"
+                                             required="true" label="Carrera">
+                                <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                <f:selectItems value="#{reportsBean.list_carrera}" var="c" itemValue="#{c}"
+                                               itemLabel="#{c}"/>
+                                <p:ajax update="plan_estudio asignatura"/>
+                            </p:selectOneMenu>
+                        </p:outputPanel>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col col-sm-6">
+                        <p:outputPanel id="plan_estudio">
+                            #{reportsBean.update_plan_estudio()}
+                            <p:outputLabel for="planEstudioInput"
+                                           styleClass="block"> Plan de Estudio </p:outputLabel> <br/>
+                            <p:selectOneMenu id="planEstudioInput" value="#{reportsBean.plan_estudio}"
+                                             requiredMessage="Plan de Estudio: Es necesario seleccionar un Plan de Estudio"
+                                             required="true" label="Plan de Estudio">
+                                <f:selectItem itemLabel="(Seleccione un Plan de Estudio)" itemValue=""/>
+                                <f:selectItems value="#{reportsBean.list_plan_estudio}" var="pe" itemValue="#{pe}"
+                                               itemLabel="#{pe}"/>
+                                <p:ajax update="asignatura"/>
+                            </p:selectOneMenu>
+                        </p:outputPanel>
+                    </div>
+                    <div class="col col-sm-6">
+                        <p:outputPanel id="asignatura">
+                            <p:outputLabel for="asignaturaInput"
+                                           styleClass="block"> Asignatura </p:outputLabel> <br/>
+                            #{reportsBean.update_Asignaturas()}
+                            <p:selectOneMenu value="#{reportsBean.asignatura_Ms13d}"
+                                             id="asignaturaInput"
+                                             requiredMessage="Asignatura: Es necesario seleccionar una Asignatura"
+                                             required="true" label="Asignatura">
+                                <f:selectItem itemLabel="(Seleccione una Asignatura)" itemValue=""/>
+                                <f:selectItems value="#{reportsBean.list_asignatura}" var="pe" itemValue="#{pe}"
+                                               itemLabel="#{pe}"/>
+                            </p:selectOneMenu>
+                        </p:outputPanel>
+                    </div>
+                </div>
+                <br/>
+
+                <div style="float: right">
+
+                    <p:commandButton title="PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="true"
+                                     actionListener="#{reportsBean.print_ms13d_PDF()}" update="form1">
+                    </p:commandButton>
+                    <p:commandButton title="DOC" style="margin-right: 10px" icon="pi pi-file-word"
+                                     styleClass="ui-button ui-button-secondary" ajax="true"
+                                     actionListener="#{reportsBean.print_ms13d_DOC()}" update="form1">
+                    </p:commandButton>
+                    <p:commandButton title="RTF" style="margin-right: 10px" icon="pi pi-file"
+                                     styleClass="ui-button ui-button-secondary" ajax="true"
+                                     actionListener="#{reportsBean.print_ms13d_RTF()}" update="form1">
+                    </p:commandButton>
+                </div>
+                <br/>
+                <br/>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
+</h:body>
+
+</html>

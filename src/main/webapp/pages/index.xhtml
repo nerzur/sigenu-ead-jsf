@@ -17,14 +17,91 @@
 <ui:composition template="./Template.xhtml">
 
     <ui:define name="title">
-        Index
+        Inicio
     </ui:define>
 
-<!--    <ui:define name="description">-->
-<!--        Index-->
-<!--    </ui:define>-->
+    <ui:define name="profile-data">
 
-    <ui:define name="content">
+        <style type="text/css">
+            #content-data {
+                display: none;
+            }
+        </style>
+
+        #{indexBean.init()}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="statistics-details d-flex align-items-center justify-content-between">
+                    <div>
+                        <p class="statistics-title">Estudiantes Activos</p>
+                        <h3 class="rate-percentage">#{indexBean.estudiantesActivos}</h3>
+                        <br/>
+                    </div>
+                    <div>
+                        <p class="statistics-title">Estudiantes Baja</p>
+                        <h3 class="rate-percentage">#{indexBean.estudiantesBaja}</h3>
+                        <br/>
+                    </div>
+                    <div>
+                        <p class="statistics-title">Estudiantes Egresados</p>
+                        <h3 class="rate-percentage">#{indexBean.estudiantesEgresados}</h3>
+                        <br/>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <p class="statistics-title">Curso Actual</p>
+                        <h3 class="rate-percentage">#{indexBean.cursoActual}</h3>
+                        <br/>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <p class="statistics-title">Carreras activas</p>
+                        <h3 class="rate-percentage">1</h3>
+                        <br/>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <p class="statistics-title">Total de Estudiantes</p>
+                        <h3 class="rate-percentage">#{indexBean.totalEstudiantes}</h3>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col col-sm-12 col-md-8 col-lg-7">
+                <div class="card card-rounded">
+                    <div class="card-body">
+                        <div class="d-sm-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="card-title card-title-dash">Estudiantes Matriculados por &Aacute;rea</h4>
+<!--                                <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>-->
+                            </div>
+                        </div>
+
+                        <div class="chartjs-bar-wrapper mt-3">
+                            <p:barChart model="#{indexBean.barModel}" style="width: 250px; height: 100%"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="col col-sm-12 col-md-4 col-lg-5">
+                <div class="card card-rounded">
+                    <div class="card-body">
+                        <div class="d-sm-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="card-title card-title-dash">Estudiantes Matriculados por Carrera</h4>
+<!--                                <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>-->
+                            </div>
+                        </div>
+                        <div class="chartjs-bar-wrapper mt-3">
+                            <p:donutChart model="#{indexBean.donutModel}" style="width: 250%; height: 100%;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
 </body>
