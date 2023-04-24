@@ -7,6 +7,7 @@ import cu.edu.unah.sigenuead.service.EstudianteServices;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Data;
+import org.jfree.util.Log;
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
@@ -20,6 +21,8 @@ import org.primefaces.model.charts.optionconfig.animation.Animation;
 import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import org.primefaces.model.charts.optionconfig.title.Title;
+import org.primefaces.model.charts.polar.PolarAreaChartDataSet;
+import org.primefaces.model.charts.polar.PolarAreaChartModel;
 
 import java.io.Serializable;
 import java.util.*;
@@ -37,7 +40,7 @@ public class IndexBean implements Serializable {
     private int totalEstudiantes = 0;
 
     private BarChartModel barModel;
-    private DonutChartModel donutModel;
+    private PolarAreaChartModel polarAreaModel;
     private List<Estudiante> estudianteList;
     private Map<String, Integer> estudiantesByArea = new HashMap<>();
     private Map<String, Integer> estudiantesByCarrera = new HashMap<>();
@@ -75,7 +78,7 @@ public class IndexBean implements Serializable {
         totalEstudiantes = 0;
         searchWorks();
         createBarModel();
-        createDonutModel();
+        createPolarAreaModel();
     }
 
     private void searchWorks() {
@@ -99,7 +102,7 @@ public class IndexBean implements Serializable {
                     estudiantesByCarrera.put(carrera, 1);
                 else {
                     int cant = estudiantesByCarrera.get(carrera);
-                    estudiantesByArea.replace(carrera, cant + 1);
+                    estudiantesByCarrera.replace(carrera, cant + 1);
                 }
                 String estado = facultadCumCarreraEstudiante.getEstadoEstudianteestadoEstucianteId().getEstadoEstudianteNombre();
                 switch (estado.toLowerCase()) {
@@ -168,11 +171,11 @@ public class IndexBean implements Serializable {
         barModel.setOptions(options);
     }
 
-    public void createDonutModel() {
-        donutModel = new DonutChartModel();
+    private void createPolarAreaModel() {
+        polarAreaModel = new PolarAreaChartModel();
         ChartData data = new ChartData();
 
-        DonutChartDataSet dataSet = new DonutChartDataSet();
+        PolarAreaChartDataSet dataSet = new PolarAreaChartDataSet();
         List<Number> values = new ArrayList<>(estudiantesByCarrera.values());
         dataSet.setData(values);
 
@@ -183,6 +186,6 @@ public class IndexBean implements Serializable {
         List<String> labels = new ArrayList<>(estudiantesByCarrera.keySet());
         data.setLabels(labels);
 
-        donutModel.setData(data);
+        polarAreaModel.setData(data);
     }
 }
