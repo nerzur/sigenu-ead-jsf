@@ -150,16 +150,24 @@ public class AdminUniversidadBean implements Serializable {
     }
 
     public String translateEstado(boolean estado) {
-        if (!estado) {
+        if (estado) {
             return "Inactivo";
         }
         return "Activo";
     }
 
     public String translateBooleanToSeverity(boolean element) {
-        if (element) {
+        if (!element) {
             return "badge badge-success";
         }
         return "badge badge-danger";
+    }
+
+    public boolean isCancelado() {
+        return !cancelado;
+    }
+
+    public void setCancelado(boolean cancelado) {
+        this.cancelado = !cancelado;
     }
 }
