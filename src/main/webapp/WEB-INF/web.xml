@@ -34,6 +34,18 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>crudTable.xhtml</welcome-file>
+        <welcome-file>login.xhtml</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/errorPages/Error404.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/pages/errorPages/Error403.xhtml</location>
+    </error-page>
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/pages/errorPages/Error500.xhtml</location>-->
+<!--    </error-page>-->
 </web-app>
