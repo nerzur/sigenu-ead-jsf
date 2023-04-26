@@ -55,7 +55,8 @@
         <security:logout logout-success-url="/login.xhtml" delete-cookies="JSESSIONID"/>
 
         <security:session-management>
-            <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>
+            <security:concurrency-control max-sessions="2"/>
+<!--            <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>-->
         </security:session-management>
     </security:http>
 
