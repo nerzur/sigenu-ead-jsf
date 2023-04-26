@@ -186,7 +186,7 @@
                 <div id="settings-trigger"><i class="ti-settings"></i></div>
                 <div id="theme-settings" class="settings-panel">
                     <i class="settings-close ti-close"></i>
-                    <p class="settings-heading">SIDEBAR SKINS</p>
+                    <p class="settings-heading">SKINS BARRA LATERAL</p>
                     <div class="sidebar-bg-options selected" id="sidebar-light-theme">
                         <div class="img-ss rounded-circle bg-light border me-3"></div>
                         Light
@@ -195,7 +195,7 @@
                         <div class="img-ss rounded-circle bg-dark border me-3"></div>
                         Dark
                     </div>
-                    <p class="settings-heading mt-2">HEADER SKINS</p>
+                    <p class="settings-heading mt-2">SKINS CABECERA</p>
                     <div class="color-tiles mx-0 px-4">
                         <div class="tiles success"></div>
                         <div class="tiles warning"></div>
@@ -371,8 +371,12 @@
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
-                    <li class="nav-item nav-category">Administraci&oacute;n</li>
-                    <li class="nav-item">
+                    <li class="nav-item nav-category"
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">Administraci&oacute;n
+                    </li>
+                    <!--Administrar-->
+                    <li class="nav-item"
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                            aria-controls="ui-basic">
                             <i class="menu-icon pi pi-cog"></i>
@@ -380,160 +384,167 @@
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Carrera Nacional</a>
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Carrera Nacional</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/adminPages/AdminColorPiel.xhtml">Color Piel</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/adminPages/AdminCurso.xhtml">Curso</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Disciplina</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Especialidad</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Especialidad Militar</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Estado Civil</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Estado Estudiante</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Fuente de Ingreso</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Grado Militar</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Orfandad</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Minusval&iacute;a</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Municipio</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Nivel Escolar</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Ocupación</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">ONG</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Organismo</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Organismo</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Organizaci&oacute;n Pol&iacute;tica</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Organizaci&oacute;n Popular</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Pa&iacute;</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Procedencia Escolar</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Provincia</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Sexo</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Sindicato</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Tipo de Asignatura</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Tipo de Evaluaci&oacute;n</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Tipo de Militar</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Tipo de Plan de Estudio</a>
                                 </li>
                             </ul>
-                            <ul class="nav flex-column sub-menu">
+                            <ul class="nav flex-column sub-menu" style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/adminPages/AdminUsers.xhtml">Usuarios</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">Herramientas</li>
-                    <li class="nav-item">
+
+                    <!--Herramientas-->
+                    <li class="nav-item nav-category"
+                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general, templateBean.role_admin, templateBean.role_controlador)}">Herramientas
+                    </li>
+                    <!--Matricula-->
+                    <li class="nav-item"
+                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
                            aria-controls="form-elements">
                             <i class="menu-icon mdi mdi-card-text-outline"></i>
@@ -542,22 +553,32 @@
                         </a>
                         <div class="collapse" id="form-elements">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Matr&iacute;cula</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Matr&iacute;cula</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Actualizar datos de Estudiante</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Actualizar datos de Estudiante</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/matriculaPages/CierreMatricula.xhtml">Cerrar Matr&iacute;cula</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_secretaria, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/matriculaPages/CierreMatricula.xhtml">Cerrar Matr&iacute;cula</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/matriculaPages/MatriculaResponsable.xhtml">Realizar Matr&iacute;cula Responsable</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_secretaria)}"><a
+                                        class="nav-link"
+                                        href="#{request.contextPath}/pages/matriculaPages/MatriculaResponsable.xhtml">Realizar Matr&iacute;cula Responsable</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!--Centro-->
+                    <li class="nav-item"
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general, templateBean.role_controlador)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
                            aria-controls="charts">
                             <i class="menu-icon pi pi-building"></i>
@@ -566,28 +587,41 @@
                         </a>
                         <div class="collapse" id="charts">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/centroPages/AdminUniversidad.xhtml">Universidad</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/AdminUniversidad.xhtml">Universidad</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Facultad</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/errorPages/Error410.xhtml">Facultad</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/errorPages/Error410.xhtml">CUM</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/errorPages/Error410.xhtml">CUM</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/centroPages/GestionarCarrera.xhtml">Carrera</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_controlador, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/GestionarCarrera.xhtml">Carrera</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/centroPages/UbicarCarrerasCUM.xhtml">Ubicar Carreras en CUM</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_controlador)}"><a
+                                        class="nav-link"
+                                        href="#{request.contextPath}/pages/centroPages/UbicarCarrerasCUM.xhtml">Ubicar Carreras en CUM</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link"
-                                                        href="#{request.contextPath}/pages/centroPages/AdminMatricula.xhtml">Abrir Matr&iacute;cula Responsable</a>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_controlador, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/AdminMatricula.xhtml">Abrir Matr&iacute;cula Responsable</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!--Estudiante-->
+                    <li class="nav-item" style="#{templateBean.translateRole_visible(templateBean.role_secretaria)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
                            aria-controls="tables">
                             <i class="menu-icon pi pi-users"></i>
@@ -617,7 +651,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!--Plan de Estudio-->
+                    <li class="nav-item" style="#{templateBean.translateRole_visible(templateBean.role_controlador)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
                            aria-controls="icons">
                             <i class="menu-icon pi pi-book"></i>

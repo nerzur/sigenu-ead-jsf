@@ -17,21 +17,37 @@
 
         <!--Rulers for Admin Pages-->
         <security:intercept-url pattern="/pages/adminPages/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/pages/adminPages/AdminCurso.xhtml"
+                                access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>
 
         <!--Rulers for Centro Pages-->
-        <security:intercept-url pattern="/pages/centroPages/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/pages/centroPages/AdminUniversidad.xhtml"
+                                access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>
+        <!--        <security:intercept-url pattern="/pages/centroPages/AdminFacultad.xhtml" access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>-->
+        <!--        <security:intercept-url pattern="/pages/centroPages/AdminCum.xhtml" access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>-->
+        <security:intercept-url pattern="/pages/centroPages/GestionarCarrera.xhtml"
+                                access="hasAnyRole('ROLE_CONTROLADOR','ROLE_SECRETARIO_GENERAL')"/>
+        <security:intercept-url pattern="/pages/centroPages/AdminMatricula.xhtml"
+                                access="hasAnyRole('ROLE_CONTROLADOR','ROLE_SECRETARIO_GENERAL')"/>
+        <security:intercept-url pattern="/pages/centroPages/UbicarCarrerasCUM.xhtml.xhtml"
+                                access="hasAnyRole('ROLE_CONTROLADOR')"/>
 
-        <!--Rulers for Centro Pages-->
-        <security:intercept-url pattern="/pages/matriculaPages/**" access="hasRole('ROLE_ADMIN')"/>
+        <!--Rulers for Matricula Pages-->
+        <security:intercept-url pattern="/pages/matriculaPages/NuevaMatricula.xhtml"
+                                access="hasAnyRole('ROLE_MATRICULADOR','ROLE_SECRETARIA')"/>
+        <security:intercept-url pattern="/pages/matriculaPages/CierreMatricula.xhtml.xhtml"
+                                access="hasAnyRole('ROLE_SECRETARIO_GENERAL','ROLE_SECRETARIA')"/>
+        <security:intercept-url pattern="/pages/matriculaPages/MatriculaResponsable.xhtml"
+                                access="hasAnyRole('ROLE_SECRETARIA')"/>
 
         <!--Rulers for Plan de Estudio Pages-->
-        <security:intercept-url pattern="/pages/planEstudioPages/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/pages/planEstudioPages/**" access="hasRole('ROLE_CONTROLADOR')"/>
 
         <!--Rulers for Estudiantes Pages-->
-        <security:intercept-url pattern="/pages/estudiantePages/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/pages/estudiantePages/**" access="hasRole('ROLE_SECRETARIA')"/>
 
         <!--Rulers for Report Pages-->
-        <security:intercept-url pattern="/pages/reportPages/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/pages/reportPages/**" access="isAuthenticated()"/>
 
         <!--Configuration of login and logout pages-->
         <security:form-login login-page='/login.xhtml' default-target-url='/pages/index.xhtml'
@@ -39,8 +55,7 @@
         <security:logout logout-success-url="/login.xhtml" delete-cookies="JSESSIONID"/>
 
         <security:session-management>
-            <security:concurrency-control max-sessions="2"/>
-            <!--            <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>-->
+            <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>
         </security:session-management>
     </security:http>
 
@@ -56,7 +71,7 @@
     </security:authentication-manager>
 
     <bean id="passwordEncoder"
-            class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <!--Configuration of DB source to login-->
     <bean id="securityDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
