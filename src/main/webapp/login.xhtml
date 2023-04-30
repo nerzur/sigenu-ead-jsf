@@ -82,23 +82,24 @@
                                         <br/>
                                     </form>
                                 </div>
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                    <p class="mb-4 text-sm mx-auto">
-                                        <a href="#" onclick="PF('about').show()"
-                                           class="text-primary text-gradient font-weight-bold"> Acerca de...</a>
-                                    </p>
-                                </div>
+<!--                                <div class="card-footer text-center pt-0 px-lg-2 px-1">-->
+<!--                                    <p class="mb-4 text-sm mx-auto">-->
+<!--                                        <a href="#" onclick="PF('about').show()"-->
+<!--                                           class="text-primary text-gradient font-weight-bold"> Acerca de...</a>-->
+<!--                                    </p>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </div>
                     <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
                         <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                             style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
+                             style="background-image: url('#{request.contextPath}/resources/img/login-study.jpg');
           background-size: cover;">
                             <span class="mask bg-gradient-primary opacity-6"></span>
-                            <h4 class="mt-5 text-white font-weight-bolder position-relative">Acerca de</h4>
+                            <h4 class="mt-5 text-white font-weight-bolder position-relative">SIGENU-EaD</h4>
                             <p class="text-white position-relative">
-                                <strong>SIGENU-EaD (Módulo de Educaci&oacute;n a Distancia)</strong> es un prototipo funcional de módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana, que brinda las funcionalidades necesarias para la gestión de los procesos de la secretaría docente en la Educaci&oacute;n a Distancia (EaD). Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios (asignaturas matriculadas, notas, procesos de baja, etc) por parte de las secretarías docentes.
+                                Es un módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana. Es utilizado para la gestión de los procesos de la secretaría docente correspondiente a la Educaci&oacute;n a Distancia (EaD) de las universidades cubanas.
+                                Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios por parte de las secretarías docentes. Incluye los procesos de matricular asignaturas, notas, baja, promoción, entre otros.
                             </p>
                         </div>
                     </div>
@@ -107,22 +108,22 @@
         </section>
     </main>
 
-    <p:dialog header="SIGENU - Educaci&oacute;n a Distancia" widgetVar="about" minHeight="40" width="768"
-              showEffect="fade">
-        <div class="nk-int-st">
-            <p align="justify">
-                <strong>SIGENU-EaD</strong> es un prototipo funcional de módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana, que brinda las funcionalidades necesarias para la gestión de los procesos de la secretaría docente en la Educaci&oacute;n a Distancia (EaD). Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios (asignaturas matriculadas, notas, procesos de baja, etc) por parte de las secretarías docentes.
-            </p>
-            <strong>Desarrollado por:</strong>
-            <ul>
-                <li><a href="mailto:claudiaar@unah.edu.cu">Claudia Aguilar Rajme</a></li>
-                <li><a href="mailto:gabrielpg@unah.edu.cu">Gabriel Alberto P&eacute;rez Guerra</a></li>
-            </ul>
-        </div>
-        <f:facet name="footer">
-            <p:commandButton type="button" value="Cerrar" onclick="PF('about').hide()"/>
-        </f:facet>
-    </p:dialog>
+<!--    <p:dialog header="SIGENU - Educaci&oacute;n a Distancia" widgetVar="about" minHeight="40" width="768"-->
+<!--              showEffect="fade">-->
+<!--        <div class="nk-int-st">-->
+<!--            <p align="justify">-->
+<!--                <strong>SIGENU-EaD</strong> es un prototipo funcional de módulo web para SIGENU, desarrollado en la Universidad Agraria de La Habana, que brinda las funcionalidades necesarias para la gestión de los procesos de la secretaría docente en la Educaci&oacute;n a Distancia (EaD). Permite realizar un seguimiento desde que los estudiantes matriculan en la universidad hasta que culminan sus estudios (asignaturas matriculadas, notas, procesos de baja, etc) por parte de las secretarías docentes.-->
+<!--            </p>-->
+<!--            <strong>Desarrollado por:</strong>-->
+<!--            <ul>-->
+<!--                <li><a href="mailto:claudiaar@unah.edu.cu">Claudia Aguilar Rajme</a></li>-->
+<!--                <li><a href="mailto:gabrielpg@unah.edu.cu">Gabriel Alberto P&eacute;rez Guerra</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <f:facet name="footer">-->
+<!--            <p:commandButton type="button" value="Cerrar" onclick="PF('about').hide()"/>-->
+<!--        </f:facet>-->
+<!--    </p:dialog>-->
     <!--   Core JS Files   -->
     <!--<h:outputScript library="js" name="jquery-2.2.4.js"/>-->
     <h:outputScript library="primefaces" value="primefaces/jquery"/>
