@@ -25,15 +25,15 @@ Este proyecto requiere además de una base de datos. Para ello se de debe utiliz
 
 ## Flujo de actividades
 
-![Diagrama de activiades SIGENU-EaD](docs\Imagen1.png)
+![Diagrama de activiades SIGENU-EaD](docs/Imagen1.png)
 
 **Imagen 1**: Descripción del flujo de actividades
 
 ## Ejemplos de interfaz
 
-![Página de Autenticación](docs\Imagen2.jpg)
-![Dashboard](docs\Imagen3.jpg)
-![Perfil](docs\Imagen4.jpg)
-![Nueva Matrícula](docs\Imagen5.jpg)
-![Matrícula Responsable](docs\Imagen6.jpg)
+![Página de Autenticación](docs/Imagen2.jpg)
+![Dashboard](docs/Imagen3.jpg)
+![Perfil](docs/Imagen4.jpg)
+![Nueva Matrícula](docs/Imagen5.jpg)
+![Matrícula Responsable](docs/Imagen6.jpg)
 
