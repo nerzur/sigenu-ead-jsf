@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  disciplina: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Disciplinas
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar disciplinas-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminDisciplinaBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-disciplina-content" oncomplete="PF('addDisciplinaDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-disciplina-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-disciplina" fileName="disciplinas" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-disciplina" fileName="Usiarios" exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-disciplina" widgetVar="dtdisciplina" var="disciplina"
+                         value="#{adminDisciplinaBean.lista_disciplinaes}" size="small"
+                         reflow="true" styleClass="disciplinas-table"
+                         rowKey="#{disciplina.disciplinaNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="disciplinas-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-disciplina').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" sortOrder="asc">
+                    <h:outputText value="#{disciplina.disciplinaCodigo}"/>
+                </p:column>
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" >
+                    <h:outputText value="#{disciplina.disciplinaNombre}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminDisciplinaBean.translateBooleanToSeverity(disciplina.disciplinaCancelada)}"
+                                  value="#{adminDisciplinaBean.translateEstado(disciplina.disciplinaCancelada)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoDisciplinaDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminDisciplinaBean.updateSelected_Disciplina(disciplina)}"
+                                     update=":dialogs:info-disciplina-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-disciplina-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-disciplina-content" style="margin-left: 10px"
+                                     oncomplete="PF('editDisciplinaDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminDisciplinaBean.updateSelected_Disciplina_toEdit(disciplina)}">
+                        <p:resetInput target=":dialogs:edit-disciplina-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoDisciplinaDialog"
+                      responsive="true">
+                <p:outputPanel id="info-disciplina-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="C&oacute;digo: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminDisciplinaBean.disciplina_selected.disciplinaCodigo}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminDisciplinaBean.disciplina_selected.disciplinaNombre}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminDisciplinaBean.translateEstado(adminDisciplinaBean.disciplina_selected.disciplinaCancelada)}"
+                                        styleClass="#{adminDisciplinaBean.translateBooleanToSeverity(adminDisciplinaBean.disciplina_selected.disciplinaCancelada)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoDisciplinaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir disciplina" showEffect="fade" modal="true"
+                      widgetVar="addDisciplinaDialog"
+                      responsive="true">
+                <p:outputPanel id="add-disciplina-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="codigo"
+                                               value="C&oacute;digo *"/><br/>
+                                <p:inputText id="codigo" value="#{adminDisciplinaBean.codigo}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminDisciplinaBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminDisciplinaBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminDisciplinaBean.addDisciplina()}"
+                                     update="add-disciplina-content form:messages" process="add-disciplina-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addDisciplinaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar disciplina" showEffect="fade" modal="true"
+                      widgetVar="editDisciplinaDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-disciplina-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="editCodigo"
+                                               value="C&oacute;digo *"/><br/>
+                                <p:inputText id="editCodigo" value="#{adminDisciplinaBean.codigo}"
+                                             required="true" showIcon="true" disabled="true">
+                                    <f:validateLength maximum="250"/>
+
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                            <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="editNombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="editNombre" value="#{adminDisciplinaBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminDisciplinaBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminDisciplinaBean.editDisciplina()}"
+                                     update="edit-disciplina-content form:messages" process="edit-disciplina-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editDisciplinaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>

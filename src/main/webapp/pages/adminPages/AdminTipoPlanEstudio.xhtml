@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  tipoPlanEstudio: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Tipos de PLanes de Estudio
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar tipoPlanEstudios-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminTipoPlanEstudioBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-tipoPlanEstudio-content" oncomplete="PF('addTipoPlanEstudioDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-tipoPlanEstudio-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-tipoPlanEstudio" fileName="tipoPlanEstudios" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-tipoPlanEstudio" fileName="Usiarios" exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-tipoPlanEstudio" widgetVar="dttipoPlanEstudio" var="tipoPlanEstudio"
+                         value="#{adminTipoPlanEstudioBean.lista_tipoplanestudioes}" size="small"
+                         reflow="true" styleClass="tipoPlanEstudios-table"
+                         rowKey="#{tipoPlanEstudio.tipoPlanEstudionombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="tipoPlanEstudios-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-tipoPlanEstudio').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
+                    <h:outputText value="#{tipoPlanEstudio.nombretipoplanestudio}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminTipoPlanEstudioBean.translateBooleanToSeverity(tipoPlanEstudio.tipoplanestudiocancelado)}"
+                                  value="#{adminTipoPlanEstudioBean.translateEstado(tipoPlanEstudio.tipoplanestudiocancelado)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoTipoPlanEstudioDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminTipoPlanEstudioBean.updateSelected_TipoPlanestudio(tipoPlanEstudio)}"
+                                     update=":dialogs:info-tipoPlanEstudio-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-tipoPlanEstudio-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-tipoPlanEstudio-content" style="margin-left: 10px"
+                                     oncomplete="PF('editTipoPlanEstudioDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminTipoPlanEstudioBean.updateSelected_Tipoplanestudio_toEdit(tipoPlanEstudio)}">
+                        <p:resetInput target=":dialogs:edit-tipoPlanEstudio-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoTipoPlanEstudioDialog"
+                      responsive="true">
+                <p:outputPanel id="info-tipoPlanEstudio-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminTipoPlanEstudioBean.tipoplanestudio_selected.nombretipoplanestudio}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminTipoPlanEstudioBean.translateEstado(adminTipoPlanEstudioBean.tipoplanestudio_selected.tipoplanestudiocancelado)}"
+                                        styleClass="#{adminTipoPlanEstudioBean.translateBooleanToSeverity(adminTipoPlanEstudioBean.tipoplanestudio_selected.tipoplanestudiocancelado)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoTipoPlanEstudioDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir tipoPlanEstudio" showEffect="fade" modal="true"
+                      widgetVar="addTipoPlanEstudioDialog"
+                      responsive="true">
+                <p:outputPanel id="add-tipoPlanEstudio-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminTipoPlanEstudioBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminTipoPlanEstudioBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminTipoPlanEstudioBean.addTipoplanestudio()}"
+                                     update="add-tipoPlanEstudio-content form:messages" process="add-tipoPlanEstudio-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addTipoPlanEstudioDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar tipoPlanEstudio" showEffect="fade" modal="true"
+                      widgetVar="editTipoPlanEstudioDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-tipoPlanEstudio-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="editNombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="editNombre" value="#{adminTipoPlanEstudioBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminTipoPlanEstudioBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminTipoPlanEstudioBean.editTipoplanestudio()}"
+                                     update="edit-tipoPlanEstudio-content form:messages" process="edit-tipoPlanEstudio-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editTipoPlanEstudioDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>
