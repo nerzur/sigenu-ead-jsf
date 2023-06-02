@@ -117,7 +117,7 @@ public class IndexBean implements Serializable {
         estudiantesByArea = new HashMap<>();
         estudiantesByCarrera = new HashMap<>();
         totalEstudiantes = estudianteList.size();
-        cursoActual = cursoServices.findCursoActual().getIdcurso();
+        cursoActual = cursoServices.findCursoActual() != null ? cursoServices.findCursoActual().getIdcurso() : "-";
         estudianteList.forEach(estudiante -> {
             estudiante.getFacultadCumCarreraEstudianteList().forEach(facultadCumCarreraEstudiante -> {
                 String area = !facultadCumCarreraEstudiante.getFacultadCumCarrera().getFacultadCum().getCum().getNombrecum().equals("")
