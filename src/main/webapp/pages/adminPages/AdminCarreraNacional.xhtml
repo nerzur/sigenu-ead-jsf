@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  carreraNacional: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Carrera Nacional
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar carreraNacionals-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminCarreraNacionalBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-carreraNacional-content"
+                                     oncomplete="PF('addCarreraNacionalDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-carreraNacional-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-carreraNacionals" fileName="carreraNacionals" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-carreraNacionals" fileName="Usiarios"
+                                        exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-carreraNacional" widgetVar="dtcarreraNacional" var="carreraNacional"
+                         value="#{adminCarreraNacionalBean.lista_carreranacionales}" size="small"
+                         reflow="true" styleClass="carreraNacionals-table"
+                         rowKey="#{carreraNacional.nombrecarreranacional}" paginator="true" rows="10"
+                         paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="carreraNacionals-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-carreraNacional').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" sortOrder="asc">
+                    <h:outputText value="#{carreraNacional.codigocarreranacional}"/>
+                </p:column>
+                <p:column exportHeaderValue="Nombre" headerText="Nombre">
+                    <h:outputText value="#{carreraNacional.nombrecarreranacional}"/>
+                </p:column>
+                <p:column exportHeaderValue="Diploma" headerText="Diploma">
+                    <h:outputText value="#{carreraNacional.diplomacarreranacional}"/>
+                </p:column>
+                <p:column exportHeaderValue="Especialidad" headerText="Especialidad">
+                    <h:outputText value="#{carreraNacional.especialidadidespecialidad.nombreespecialidad}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText
+                            styleClass="#{adminCarreraNacionalBean.translateBooleanToSeverity(carreraNacional.canceladocarreranacional)}"
+                            value="#{adminCarreraNacionalBean.translateEstado(carreraNacional.canceladocarreranacional)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoCarreraNacionalDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminCarreraNacionalBean.updateSelected_Carreranacional(carreraNacional)}"
+                                     update=":dialogs:info-carreraNacional-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-carreraNacional-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-carreraNacional-content"
+                                     style="margin-left: 10px"
+                                     oncomplete="PF('editCarreraNacionalDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminCarreraNacionalBean.updateSelected_Carreranacional_toEdit(carreraNacional)}">
+                        <p:resetInput target=":dialogs:edit-carreraNacional-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoCarreraNacionalDialog"
+                      responsive="true">
+                <p:outputPanel id="info-carreraNacional-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="C&oacute;digo: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminCarreraNacionalBean.carreranacional_selected.codigocarreranacional}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminCarreraNacionalBean.carreranacional_selected.nombrecarreranacional}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Diploma: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminCarreraNacionalBean.carreranacional_selected.diplomacarreranacional}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Especialidad: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminCarreraNacionalBean.carreranacional_selected.especialidadidespecialidad.nombreespecialidad}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminCarreraNacionalBean.translateEstado(adminCarreraNacionalBean.carreranacional_selected.canceladocarreranacional)}"
+                                        styleClass="#{adminCarreraNacionalBean.translateBooleanToSeverity(adminCarreraNacionalBean.carreranacional_selected.canceladocarreranacional)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoCarreraNacionalDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Carrera Nacional" showEffect="fade" modal="true"
+                      widgetVar="addCarreraNacionalDialog"
+                      responsive="true">
+                <p:outputPanel id="add-carreraNacional-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="codigo"
+                                               value="C&oacute;digo *"/><br/>
+                                <p:inputText id="codigo" value="#{adminCarreraNacionalBean.codigo}"
+                                             requiredMessage="C&oacute;digo: Es necesario indicar un C&oacute;digo"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminCarreraNacionalBean.nombre}"
+                                             requiredMessage="Nombre: Es necesario indicar un Nombre"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="diploma"
+                                               value="Diploma *"/><br/>
+                                <p:inputText id="diploma" value="#{adminCarreraNacionalBean.diploma}"
+                                             requiredMessage="Diploma: Es necesario indicar un Diploma"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="especialidad"
+                                               value="Especialidad *"/><br/>
+                                <p:selectOneMenu id="especialidad"
+                                                 value="#{adminCarreraNacionalBean.especialidad}"
+                                                 requiredMessage="Especialidad: Es necesario seleccionar una Especialidad"
+                                                 required="true" label="Especialidad">
+                                    <f:selectItem itemLabel="(Seleccione una Especialidad)" itemValue=""/>
+                                    <f:selectItems value="#{adminCarreraNacionalBean.lista_especialidades}" var="c"
+                                                   itemValue="#{c}" itemLabel="#{c}"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminCarreraNacionalBean.cancelado}"
+                                                onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminCarreraNacionalBean.addCarreranacional()}"
+                                     update="add-carreraNacional-content form:messages"
+                                     process="add-carreraNacional-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addCarreraNacionalDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Carrera Nacional" showEffect="fade" modal="true"
+                      widgetVar="editCarreraNacionalDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-carreraNacional-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="codigo1"
+                                               value="C&oacute;digo *"/><br/>
+                                <p:inputText disabled="true" id="codigo1" value="#{adminCarreraNacionalBean.codigo}"
+                                             requiredMessage="C&oacute;digo: Es necesario indicar un C&oacute;digo"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre1"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre1" value="#{adminCarreraNacionalBean.nombre}"
+                                             requiredMessage="Nombre: Es necesario indicar un Nombre"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="diploma1"
+                                               value="Diploma *"/><br/>
+                                <p:inputText id="diploma1" value="#{adminCarreraNacionalBean.diploma}"
+                                             requiredMessage="Diploma: Es necesario indicar un Diploma"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="especialidad1"
+                                               value="Especialidad *"/><br/>
+                                <p:selectOneMenu id="especialidad1"
+                                                 value="#{adminCarreraNacionalBean.especialidad}"
+                                                 requiredMessage="Especialidad: Es necesario seleccionar una Especialidad"
+                                                 required="true" label="Especialidad">
+                                    <f:selectItem itemLabel="(Seleccione una Especialidad)" itemValue=""/>
+                                    <f:selectItems value="#{adminCarreraNacionalBean.lista_especialidades}" var="c"
+                                                   itemValue="#{c}" itemLabel="#{c}"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado1" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado1" value="#{adminCarreraNacionalBean.cancelado}"
+                                                onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminCarreraNacionalBean.editCarreranacional()}"
+                                     update="edit-carreraNacional-content form:messages"
+                                     process="edit-carreraNacional-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editCarreraNacionalDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>
