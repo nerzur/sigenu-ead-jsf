@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  Provincia: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Provincias
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar Provincias-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminProvinciaBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-Provincia-content" oncomplete="PF('addProvinciaDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-Provincia-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-Provincias" fileName="Provincias" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-Provincias" fileName="Usiarios" exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-Provincia" widgetVar="dtProvincia" var="provincia"
+                         value="#{adminProvinciaBean.provinciaList}" size="small"
+                         reflow="true" styleClass="Provincias-table"
+                         rowKey="#{provincia.nombreprovincia}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="Provincias-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-Provincia').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
+                    <h:outputText value="#{provincia.nombreprovincia}"/>
+                </p:column>
+                <p:column exportHeaderValue="Pa&iacute;s" headerText="Pa&iacute;s">
+                    <h:outputText value="#{provincia.paisidpais.nombrepais}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminProvinciaBean.translateBooleanToSeverity(provincia.canceladoprovincia)}"
+                                  value="#{adminProvinciaBean.translateEstado(provincia.canceladoprovincia)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoProvinciaDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminProvinciaBean.updateSelected_Provincia(provincia)}"
+                                     update=":dialogs:info-Provincia-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-Provincia-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-Provincia-content" style="margin-left: 10px"
+                                     oncomplete="PF('editProvinciaDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminProvinciaBean.updateSelected_Provincia_toEdit(provincia)}">
+                        <p:resetInput target=":dialogs:edit-Provincia-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoProvinciaDialog"
+                      responsive="true">
+                <p:outputPanel id="info-Provincia-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminProvinciaBean.provinciaSelected.nombreprovincia}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Pa&iacute;s: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminProvinciaBean.provinciaSelected.paisidpais.nombrepais}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminProvinciaBean.translateEstado(adminProvinciaBean.provinciaSelected.canceladoprovincia)}"
+                                        styleClass="#{adminProvinciaBean.translateBooleanToSeverity(adminProvinciaBean.provinciaSelected.canceladoprovincia)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoProvinciaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Provincia" showEffect="fade" modal="true"
+                      widgetVar="addProvinciaDialog"
+                      responsive="true">
+                <p:outputPanel id="add-Provincia-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminProvinciaBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="pais"
+                                               value="Pa&iacute;s *"/><br/>
+                                <p:selectOneMenu id="pais" value="#{adminProvinciaBean.nombrepais}" requiredMessage="Pais: Es necesario seleccionar un Pa&iacute;s" required="true" label="Pa&iacute;s">
+                                    <f:selectItem itemLabel="(Seleccione un Pais)" itemValue="" />
+                                    <f:selectItems value="#{adminProvinciaBean.paisList}" var="c" itemValue="#{c.nombrepais}" itemLabel="#{c.nombrepais}" />
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminProvinciaBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminProvinciaBean.addProvincia()}"
+                                     update="add-Provincia-content form:messages" process="add-Provincia-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addProvinciaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Provincia" showEffect="fade" modal="true"
+                      widgetVar="editProvinciaDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-Provincia-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre1"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre1" value="#{adminProvinciaBean.nombre}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="pais1"
+                                               value="Pa&iacute;s *"/><br/>
+                                <p:selectOneMenu id="pais1" value="#{adminProvinciaBean.nombrepais}" requiredMessage="Pais: Es necesario seleccionar un Pa&iacute;s" required="true" label="Pa&iacute;s">
+                                    <f:selectItem itemLabel="(Seleccione un Pais)" itemValue="" />
+                                    <f:selectItems value="#{adminProvinciaBean.paisList}" var="c" itemValue="#{c.nombrepais}" itemLabel="#{c.nombrepais}" />
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado1" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado1" value="#{adminProvinciaBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminProvinciaBean.editProvincia()}"
+                                     update="edit-Provincia-content form:messages" process="edit-Provincia-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editProvinciaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>
