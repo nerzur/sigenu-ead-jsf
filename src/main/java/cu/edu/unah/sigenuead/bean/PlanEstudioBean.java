@@ -101,6 +101,7 @@ public class PlanEstudioBean implements Serializable {
     private final VicedecanoServices serv_vice_decano = new VicedecanoServices();
     private boolean founded;
     private boolean encontrado;
+    private boolean duplicate;
 
     public void cleanVar1() {
         area_find = "";
@@ -108,6 +109,7 @@ public class PlanEstudioBean implements Serializable {
         plan_estudio_find = "";
         encontrado = false;
         founded = false;
+        duplicate = false;
         cleanVariables();
     }
 
@@ -379,7 +381,7 @@ public class PlanEstudioBean implements Serializable {
     }
 
     public void findPlanEstudioExiste() {
-        if (facultad != null && !facultad.equals("") && copy_carrera_value != null && !copy_carrera_value.equals("") && tipo_plan_estudio != null && !tipo_plan_estudio.equals("")) {
+        if (!duplicate && facultad != null && !facultad.equals("") && copy_carrera_value != null && !copy_carrera_value.equals("") && tipo_plan_estudio != null && !tipo_plan_estudio.equals("")) {
             if (!founded) {
                 Planestudio p = serv_plan_estudio.findPlanEstudioByCarrera(facultad, copy_carrera_value, tipo_plan_estudio);
                 encontrado = p != null;
@@ -396,6 +398,7 @@ public class PlanEstudioBean implements Serializable {
 
     public void search() {
         cleanVariables();
+        duplicate = false;
         Planestudio p = serv_plan_estudio.findPlanEstudioByCarrera(area_find, carrera_find, plan_estudio_find);
         if (p == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No existe un Plan de Estudio en el sistema con esos Datos", "Error"));
@@ -427,6 +430,13 @@ public class PlanEstudioBean implements Serializable {
         for (PlanEstudio_Disciplina dp1 : disciplina_plan_estudio_list) {
             disciplina_list.remove(dp1.getDisciplina());
         }
+
+    }
+
+    public void duplicate(){
+        founded = false;
+        duplicate = true;
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Datos duplicados", "INFO"));
 
     }
 

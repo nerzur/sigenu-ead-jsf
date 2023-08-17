@@ -82,10 +82,14 @@
                     </div>
                     <div class="col col-sm-2 col-md-2 col-lg-2">
                         <br/>
-                        <p:commandButton id="btnsearch" update="find_form wizzard_form"
+                        <p:commandButton id="btnsearch" update="find_form wizzard_form btnduplucate"
                                          styleClass="ui-button ui-button-info"
                                          actionListener="#{planEstudioBean.search()}" value="Buscar"
                                          icon="pi pi-search"/>
+                        <p:commandButton style="margin-left: 5px" id="btnduplucate" update="wizzard_form btnduplucate"
+                                         styleClass="ui-button ui-button-success" disabled="#{!planEstudioBean.founded}"
+                                         actionListener="#{planEstudioBean.duplicate()}" value="Duplicar"
+                                         icon="pi pi-copy"/>
                     </div>
                 </div>
                 <input type="hidden"
