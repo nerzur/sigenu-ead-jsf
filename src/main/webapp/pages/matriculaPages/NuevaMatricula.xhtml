@@ -1227,7 +1227,7 @@
                         </p:toolbar>
                         <br/>
 
-                        <p:outputPanel id="confirmStudentData">
+                        <p:outputPanel id="confirmStudentData" style="font-size: medium">
                             <hr/>
                             <strong>Personales</strong>
                             <hr/>
@@ -1319,6 +1319,34 @@
                                 <div class="col col-sm-4 col-md-4 col-lg-4">
                                     <strong>Municipio: </strong>
                                     <h:outputText value="#{nuevaMatriculaBean.municipio}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Minusval&iacute;a: </strong>
+                                    <br/>
+                                    <ui:repeat value="#{nuevaMatriculaBean.selected_minusvalia}"
+                                               var="minusvalia">
+                                        <strong>-</strong> <h:outputText value="#{minusvalia}"/> <br/>
+                                    </ui:repeat>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Org. Popular: </strong>
+                                    <br/>
+                                    <ui:repeat
+                                            value="#{nuevaMatriculaBean.selected_org_popular}"
+                                            var="orgPopular">
+                                        <strong>-</strong> <h:outputText value="#{orgPopular}"/>
+                                        <br/>
+                                    </ui:repeat>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <strong>ONG: </strong>
+                                    <br/>
+                                    <ui:repeat value="#{nuevaMatriculaBean.selected_ong}"
+                                               var="ong">
+                                        <strong>-</strong> <h:outputText value="#{ong}"/> <br/>
+                                    </ui:repeat>
                                 </div>
                             </div>
 
@@ -1457,8 +1485,104 @@
                                 <div class="col col-sm-4 col-md-4 col-lg-4">
                                 </div>
                             </div>
-                            <hr/>
+
+                            <br/>
+                            <p:outputPanel
+                                           rendered="#{nuevaMatriculaBean.datosLaborales}">
+                                <hr/>
+                                <strong>Laborales</strong>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Centro de Trabajo: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.nombrecentrotrabajo}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Direcci&oacute;n: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.direccioncentrotrabajo}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Tel&eacute;fono: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.telefonocentrotrabajo}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Ocupaci&oacute;n: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.ocupacionocupacionId}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Provincia: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.provinciaCentroTrabajo}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Municipio: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.municipioCentroTrabajo}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Sindicato: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.sindicatoidsindicato}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Salario: </strong>
+                                        <h:outputText
+                                                value="$ #{nuevaMatriculaBean.salario}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Jefe Inmediato: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.jefeInmediato}"/>
+                                    </div>
+                                </div>
+
+                            </p:outputPanel>
+
+                            <br/>
+
+                            <p:outputPanel
+                                           rendered="#{nuevaMatriculaBean.datosMilitares}">
+                                <hr/>
+                                <strong>Militares</strong>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Fecha de Licenciamiento: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.TranslateDate(nuevaMatriculaBean.fechaLicenciamientoMilitar)}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Especialidad Militar: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.especialidadMilitar}"/>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Tipo de Militar: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.tipoMilitar}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4 col-md-4 col-lg-4">
+                                        <strong>Grado Militar: </strong>
+                                        <h:outputText
+                                                value="#{nuevaMatriculaBean.gradoMilitar}"/>
+                                    </div>
+                                </div>
+                            </p:outputPanel>
+
                         </p:outputPanel>
+                        <hr/>
                         <br/>
 
                         <p:toolbar>
@@ -1470,6 +1594,7 @@
                                                  styleClass="ui-button ui-button-success" update="form1"/>
                             </p:toolbarGroup>
                         </p:toolbar>
+                        <br/>
                     </p:tab>
                 </p:wizard>
                 <br/>
