@@ -23,8 +23,10 @@
         <!--Rulers for Centro Pages-->
         <security:intercept-url pattern="/pages/centroPages/AdminUniversidad.xhtml"
                                 access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>
-        <!--        <security:intercept-url pattern="/pages/centroPages/AdminFacultad.xhtml" access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>-->
-        <!--        <security:intercept-url pattern="/pages/centroPages/AdminCum.xhtml" access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>-->
+        <security:intercept-url pattern="/pages/centroPages/AdminFacultad.xhtml"
+                                access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>
+        <security:intercept-url pattern="/pages/centroPages/AdminCum.xhtml"
+                                access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>
         <security:intercept-url pattern="/pages/centroPages/GestionarCarrera.xhtml"
                                 access="hasAnyRole('ROLE_CONTROLADOR','ROLE_SECRETARIO_GENERAL')"/>
         <security:intercept-url pattern="/pages/centroPages/AdminMatricula.xhtml"
@@ -56,7 +58,7 @@
 
         <security:session-management>
             <security:concurrency-control max-sessions="2"/>
-<!--            <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>-->
+            <!--            <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>-->
         </security:session-management>
     </security:http>
 
@@ -78,7 +80,7 @@
     <bean id="securityDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/SIGENU_EaD"/>
-<!--        <property name="url" value="jdbc:postgresql://db:5432/SIGENU_EaD"/>-->
+        <!--        <property name="url" value="jdbc:postgresql://db:5432/SIGENU_EaD"/>-->
         <property name="username" value="postgres"/>
         <property name="password" value="postgres"/>
     </bean>
