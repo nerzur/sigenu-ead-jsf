@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SessionScoped
-
 @Named
 @Data
 public class AdminOrganizacionPoliticaBean implements Serializable {

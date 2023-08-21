@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  user: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Organismo
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar organismos-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminOrganismoBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-organismo-content" oncomplete="PF('addOrganismoDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-organismo-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-organismo" fileName="Organismos" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-organismo" fileName="Organismos" exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-organismo" widgetVar="dtorganismo" var="organismo"
+                         value="#{adminOrganismoBean.organismoList}" size="small"
+                         reflow="true" styleClass="organismos-table"
+                         rowKey="#{organismo.organismoNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="organismos-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-organismo').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" >
+                    <h:outputText value="#{organismo.nombreorganismo}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminOrganismoBean.translateBooleanToSeverity(organismo.canceladoorganismo)}"
+                                  value="#{adminOrganismoBean.translateEstado(organismo.canceladoorganismo)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoOrganismoDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminOrganismoBean.updateSelected_Organismo(organismo)}"
+                                     update=":dialogs:info-organismo-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-organismo-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-organismo-content" style="margin-left: 10px"
+                                     oncomplete="PF('editOrganismoDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminOrganismoBean.updateSelected_Organismo_toEdit(organismo)}">
+                        <p:resetInput target=":dialogs:edit-organismo-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoOrganismoDialog"
+                      responsive="true">
+                <p:outputPanel id="info-organismo-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminOrganismoBean.organismoSelected.nombreorganismo}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminOrganismoBean.translateEstado(adminOrganismoBean.organismoSelected.canceladoorganismo)}"
+                                        styleClass="#{adminOrganismoBean.translateBooleanToSeverity(adminOrganismoBean.organismoSelected.canceladoorganismo)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoOrganismoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Organizacion Politica" showEffect="fade" modal="true"
+                      widgetVar="addOrganismoDialog"
+                      responsive="true">
+                <p:outputPanel id="add-organismo-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminOrganismoBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminOrganismoBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminOrganismoBean.addOrganismo()}"
+                                     update="add-organismo-content form:messages" process="add-organismo-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addOrganismoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Organizacion Politica" showEffect="fade" modal="true"
+                      widgetVar="editOrganismoDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-organismo-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="editNombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="editNombre" value="#{adminOrganismoBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminOrganismoBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminOrganismoBean.editOrganismo()}"
+                                     update="edit-organismo-content form:messages" process="edit-organismo-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editOrganismoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>
