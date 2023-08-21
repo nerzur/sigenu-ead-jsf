@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  user: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Minusval&iacute;as
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar minusvalias-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminMinusvaliaBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-minusvalia-content" oncomplete="PF('addMinusvaliaDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-minusvalia-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-minusvalia" fileName="Minusvalias" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-minusvalia" fileName="Minusvalias" exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-minusvalia" widgetVar="dtminusvalia" var="minusvalia"
+                         value="#{adminMinusvaliaBean.minusvaliaList}" size="small"
+                         reflow="true" styleClass="minusvalias-table"
+                         rowKey="#{minusvalia.minusvaliaNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="minusvalias-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-minusvalia').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" >
+                    <h:outputText value="#{minusvalia.minusvaliaNombre}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminMinusvaliaBean.translateBooleanToSeverity(minusvalia.minusvaliaCancelado)}"
+                                  value="#{adminMinusvaliaBean.translateEstado(minusvalia.minusvaliaCancelado)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoMinusvaliaDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminMinusvaliaBean.updateSelected_Minusvalia(minusvalia)}"
+                                     update=":dialogs:info-minusvalia-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-minusvalia-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-minusvalia-content" style="margin-left: 10px"
+                                     oncomplete="PF('editMinusvaliaDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminMinusvaliaBean.updateSelected_Minusvalia_toEdit(minusvalia)}">
+                        <p:resetInput target=":dialogs:edit-minusvalia-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoMinusvaliaDialog"
+                      responsive="true">
+                <p:outputPanel id="info-minusvalia-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminMinusvaliaBean.minusvaliaSelected.minusvaliaNombre}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMinusvaliaBean.translateEstado(adminMinusvaliaBean.minusvaliaSelected.minusvaliaCancelado)}"
+                                        styleClass="#{adminMinusvaliaBean.translateBooleanToSeverity(adminMinusvaliaBean.minusvaliaSelected.minusvaliaCancelado)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoMinusvaliaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Ocupaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="addMinusvaliaDialog"
+                      responsive="true">
+                <p:outputPanel id="add-minusvalia-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminMinusvaliaBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminMinusvaliaBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminMinusvaliaBean.addMinusvalia()}"
+                                     update="add-minusvalia-content form:messages" process="add-minusvalia-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addMinusvaliaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Ocupaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="editMinusvaliaDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-minusvalia-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="editNombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="editNombre" value="#{adminMinusvaliaBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminMinusvaliaBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminMinusvaliaBean.editMinusvalia()}"
+                                     update="edit-minusvalia-content form:messages" process="edit-minusvalia-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editMinusvaliaDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>
