@@ -17,7 +17,7 @@
 <ui:composition template="../Template.xhtml">
 
     <ui:define name="title">
-        Administrar sexo
+        Administrar Sexos
     </ui:define>
 
     <!--    <ui:define name="description">-->
@@ -40,11 +40,11 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-sexo" fileName="sexos" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dt-sexo" fileName="Sexos" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-sexo" fileName="sexos" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dt-sexo" fileName="Sexos" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
@@ -133,7 +133,7 @@
             <!--/Info Dialog-->
 
             <!--Add Dialog-->
-            <p:dialog header="A&ntilde;adir sexo" showEffect="fade" modal="true"
+            <p:dialog header="A&ntilde;adir Sexo" showEffect="fade" modal="true"
                       widgetVar="addSexoDialog"
                       responsive="true">
                 <p:outputPanel id="add-sexo-content" class="ui-fluid">
@@ -175,7 +175,7 @@
             <!--/Add Dialog-->
 
             <!--Edit Dialog-->
-            <p:dialog header="Editar sexo" showEffect="fade" modal="true"
+            <p:dialog header="Editar Sexo" showEffect="fade" modal="true"
                       widgetVar="editSexoDialog"
                       responsive="true">
                 <p:outputPanel id="edit-sexo-content" class="ui-fluid">

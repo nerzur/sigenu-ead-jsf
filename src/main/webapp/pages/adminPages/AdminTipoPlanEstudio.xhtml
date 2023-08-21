@@ -17,7 +17,7 @@
 <ui:composition template="../Template.xhtml">
 
     <ui:define name="title">
-        Administrar Tipos de PLanes de Estudio
+        Administrar Tipos de Planes de Estudio
     </ui:define>
 
     <!--    <ui:define name="description">-->
@@ -40,11 +40,11 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-tipoPlanEstudio" fileName="tipoPlanEstudios" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dt-tipoPlanEstudio" fileName="Tipos de Plan de Estudio" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-tipoPlanEstudio" fileName="Usiarios" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dt-tipoPlanEstudio" fileName="Tipos de Plan de Estudio" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
@@ -128,7 +128,7 @@
             <!--/Info Dialog-->
 
             <!--Add Dialog-->
-            <p:dialog header="A&ntilde;adir tipoPlanEstudio" showEffect="fade" modal="true"
+            <p:dialog header="A&ntilde;adir Tipo de Plan de Estudio" showEffect="fade" modal="true"
                       widgetVar="addTipoPlanEstudioDialog"
                       responsive="true">
                 <p:outputPanel id="add-tipoPlanEstudio-content" class="ui-fluid">
@@ -166,7 +166,7 @@
             <!--/Add Dialog-->
 
             <!--Edit Dialog-->
-            <p:dialog header="Editar tipoPlanEstudio" showEffect="fade" modal="true"
+            <p:dialog header="Editar Tipo de Plan de Estudio" showEffect="fade" modal="true"
                       widgetVar="editTipoPlanEstudioDialog"
                       responsive="true">
                 <p:outputPanel id="edit-tipoPlanEstudio-content" class="ui-fluid">

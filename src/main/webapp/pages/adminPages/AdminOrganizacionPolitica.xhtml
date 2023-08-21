@@ -17,7 +17,7 @@
 <ui:composition template="../Template.xhtml">
 
     <ui:define name="title">
-        Administrar Organización Pol&iacute;tica
+        Administrar Organizaciones Pol&iacute;ticas
     </ui:define>
 
     <!--    <ui:define name="description">-->
@@ -40,11 +40,11 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-organizacionPolitica" fileName="Organizaciones Politicaes" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dt-organizacionPolitica" fileName="Organizaciones Politicas" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-organizacionPolitica" fileName="Organizaciones Politicaes" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dt-organizacionPolitica" fileName="Organizaciones Politicas" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
@@ -133,7 +133,7 @@
             <!--/Info Dialog-->
 
             <!--Add Dialog-->
-            <p:dialog header="A&ntilde;adir Organizacion Politica" showEffect="fade" modal="true"
+            <p:dialog header="A&ntilde;adir Organizaci&oacute;n Politica" showEffect="fade" modal="true"
                       widgetVar="addOrganizacionPoliticaDialog"
                       responsive="true">
                 <p:outputPanel id="add-organizacionPolitica-content" class="ui-fluid">
@@ -175,7 +175,7 @@
             <!--/Add Dialog-->
 
             <!--Edit Dialog-->
-            <p:dialog header="Editar Organizacion Politica" showEffect="fade" modal="true"
+            <p:dialog header="Editar Organizaci&oacute;n Politica" showEffect="fade" modal="true"
                       widgetVar="editOrganizacionPoliticaDialog"
                       responsive="true">
                 <p:outputPanel id="edit-organizacionPolitica-content" class="ui-fluid">
