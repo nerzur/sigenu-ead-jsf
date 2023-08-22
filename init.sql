@@ -2,15 +2,15 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.0
+-- Dumped from database version 15.2 (Ubuntu 15.2-1.pgdg22.04+1)
 -- Dumped by pg_dump version 15.2
 
--- Started on 2023-08-15 12:07:29
+-- Started on 2023-08-22 13:08:42
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
+SET client_encoding = 'SQL_ASCII';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
@@ -18,12 +18,22 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- TOC entry 5 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+ALTER SCHEMA public OWNER TO postgres;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 247 (class 1259 OID 16428)
+-- TOC entry 214 (class 1259 OID 33568)
 -- Name: asignatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -45,7 +55,7 @@ CREATE TABLE public.asignatura (
 ALTER TABLE public.asignatura OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 16434)
+-- TOC entry 215 (class 1259 OID 33571)
 -- Name: asignatura_asignatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -59,7 +69,7 @@ CREATE TABLE public.asignatura_asignatura (
 ALTER TABLE public.asignatura_asignatura OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 16395)
+-- TOC entry 216 (class 1259 OID 33574)
 -- Name: asignatura_asignatura_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -74,8 +84,8 @@ CREATE SEQUENCE public.asignatura_asignatura_id_seq
 ALTER TABLE public.asignatura_asignatura_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3896 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3706 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: asignatura_asignatura_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -83,7 +93,7 @@ ALTER SEQUENCE public.asignatura_asignatura_id_seq OWNED BY public.asignatura.as
 
 
 --
--- TOC entry 249 (class 1259 OID 16437)
+-- TOC entry 217 (class 1259 OID 33575)
 -- Name: authorities; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -96,7 +106,7 @@ CREATE TABLE public.authorities (
 ALTER TABLE public.authorities OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 16440)
+-- TOC entry 218 (class 1259 OID 33578)
 -- Name: baja; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -117,7 +127,7 @@ CREATE TABLE public.baja (
 ALTER TABLE public.baja OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 16445)
+-- TOC entry 219 (class 1259 OID 33581)
 -- Name: carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -132,7 +142,7 @@ CREATE TABLE public.carrera (
 ALTER TABLE public.carrera OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 16449)
+-- TOC entry 220 (class 1259 OID 33584)
 -- Name: carrera_curso; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -147,7 +157,7 @@ CREATE TABLE public.carrera_curso (
 ALTER TABLE public.carrera_curso OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 16396)
+-- TOC entry 221 (class 1259 OID 33587)
 -- Name: carrera_idcarrera_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -162,8 +172,8 @@ CREATE SEQUENCE public.carrera_idcarrera_seq
 ALTER TABLE public.carrera_idcarrera_seq OWNER TO postgres;
 
 --
--- TOC entry 3897 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3707 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: carrera_idcarrera_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -171,7 +181,7 @@ ALTER SEQUENCE public.carrera_idcarrera_seq OWNED BY public.carrera.idcarrera;
 
 
 --
--- TOC entry 253 (class 1259 OID 16452)
+-- TOC entry 222 (class 1259 OID 33588)
 -- Name: carreranacional; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -188,7 +198,7 @@ CREATE TABLE public.carreranacional (
 ALTER TABLE public.carreranacional OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 16397)
+-- TOC entry 223 (class 1259 OID 33591)
 -- Name: carreranacional_idcarreranacional_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -203,8 +213,8 @@ CREATE SEQUENCE public.carreranacional_idcarreranacional_seq
 ALTER TABLE public.carreranacional_idcarreranacional_seq OWNER TO postgres;
 
 --
--- TOC entry 3898 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3708 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: carreranacional_idcarreranacional_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -212,7 +222,7 @@ ALTER SEQUENCE public.carreranacional_idcarreranacional_seq OWNED BY public.carr
 
 
 --
--- TOC entry 254 (class 1259 OID 16458)
+-- TOC entry 224 (class 1259 OID 33592)
 -- Name: color_piel; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -226,7 +236,7 @@ CREATE TABLE public.color_piel (
 ALTER TABLE public.color_piel OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 16398)
+-- TOC entry 225 (class 1259 OID 33595)
 -- Name: color_piel_color_piel_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -241,8 +251,8 @@ CREATE SEQUENCE public.color_piel_color_piel_id_seq
 ALTER TABLE public.color_piel_color_piel_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3899 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3709 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: color_piel_color_piel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -250,7 +260,7 @@ ALTER SEQUENCE public.color_piel_color_piel_id_seq OWNED BY public.color_piel.co
 
 
 --
--- TOC entry 255 (class 1259 OID 16462)
+-- TOC entry 226 (class 1259 OID 33596)
 -- Name: cum; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -274,7 +284,7 @@ CREATE TABLE public.cum (
 ALTER TABLE public.cum OWNER TO postgres;
 
 --
--- TOC entry 256 (class 1259 OID 16467)
+-- TOC entry 227 (class 1259 OID 33601)
 -- Name: cum_authorities; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -288,7 +298,7 @@ CREATE TABLE public.cum_authorities (
 ALTER TABLE public.cum_authorities OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 16472)
+-- TOC entry 228 (class 1259 OID 33604)
 -- Name: curso; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -308,7 +318,7 @@ CREATE TABLE public.curso (
 ALTER TABLE public.curso OWNER TO postgres;
 
 --
--- TOC entry 258 (class 1259 OID 16477)
+-- TOC entry 229 (class 1259 OID 33607)
 -- Name: disciplina; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -322,7 +332,7 @@ CREATE TABLE public.disciplina (
 ALTER TABLE public.disciplina OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 16482)
+-- TOC entry 230 (class 1259 OID 33610)
 -- Name: disciplina_planestudio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -338,7 +348,7 @@ CREATE TABLE public.disciplina_planestudio (
 ALTER TABLE public.disciplina_planestudio OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 16487)
+-- TOC entry 231 (class 1259 OID 33615)
 -- Name: especialidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -352,7 +362,7 @@ CREATE TABLE public.especialidad (
 ALTER TABLE public.especialidad OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 16399)
+-- TOC entry 232 (class 1259 OID 33618)
 -- Name: especialidad_idespecialidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -367,8 +377,8 @@ CREATE SEQUENCE public.especialidad_idespecialidad_seq
 ALTER TABLE public.especialidad_idespecialidad_seq OWNER TO postgres;
 
 --
--- TOC entry 3900 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3710 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: especialidad_idespecialidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -376,7 +386,7 @@ ALTER SEQUENCE public.especialidad_idespecialidad_seq OWNED BY public.especialid
 
 
 --
--- TOC entry 261 (class 1259 OID 16491)
+-- TOC entry 233 (class 1259 OID 33619)
 -- Name: especialidad_militar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -390,7 +400,7 @@ CREATE TABLE public.especialidad_militar (
 ALTER TABLE public.especialidad_militar OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 16400)
+-- TOC entry 234 (class 1259 OID 33622)
 -- Name: especialidad_militar_especialidad_militar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -405,8 +415,8 @@ CREATE SEQUENCE public.especialidad_militar_especialidad_militar_id_seq
 ALTER TABLE public.especialidad_militar_especialidad_militar_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3901 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3711 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: especialidad_militar_especialidad_militar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -414,7 +424,7 @@ ALTER SEQUENCE public.especialidad_militar_especialidad_militar_id_seq OWNED BY 
 
 
 --
--- TOC entry 262 (class 1259 OID 16495)
+-- TOC entry 235 (class 1259 OID 33623)
 -- Name: estado_civil; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -428,7 +438,7 @@ CREATE TABLE public.estado_civil (
 ALTER TABLE public.estado_civil OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 16401)
+-- TOC entry 236 (class 1259 OID 33626)
 -- Name: estado_civil_estado_civil_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -443,8 +453,8 @@ CREATE SEQUENCE public.estado_civil_estado_civil_id_seq
 ALTER TABLE public.estado_civil_estado_civil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3902 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3712 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: estado_civil_estado_civil_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -452,7 +462,7 @@ ALTER SEQUENCE public.estado_civil_estado_civil_id_seq OWNED BY public.estado_ci
 
 
 --
--- TOC entry 263 (class 1259 OID 16499)
+-- TOC entry 237 (class 1259 OID 33627)
 -- Name: estado_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -466,7 +476,7 @@ CREATE TABLE public.estado_estudiante (
 ALTER TABLE public.estado_estudiante OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 16402)
+-- TOC entry 238 (class 1259 OID 33630)
 -- Name: estado_estudiante_estado_estuciante_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -481,8 +491,8 @@ CREATE SEQUENCE public.estado_estudiante_estado_estuciante_id_seq
 ALTER TABLE public.estado_estudiante_estado_estuciante_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3903 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 3713 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: estado_estudiante_estado_estuciante_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -490,7 +500,7 @@ ALTER SEQUENCE public.estado_estudiante_estado_estuciante_id_seq OWNED BY public
 
 
 --
--- TOC entry 264 (class 1259 OID 16503)
+-- TOC entry 239 (class 1259 OID 33631)
 -- Name: estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -538,7 +548,7 @@ CREATE TABLE public.estudiante (
 ALTER TABLE public.estudiante OWNER TO postgres;
 
 --
--- TOC entry 265 (class 1259 OID 16509)
+-- TOC entry 240 (class 1259 OID 33637)
 -- Name: examen; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -552,7 +562,7 @@ CREATE TABLE public.examen (
 ALTER TABLE public.examen OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 16403)
+-- TOC entry 241 (class 1259 OID 33640)
 -- Name: examen_examen_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -567,8 +577,8 @@ CREATE SEQUENCE public.examen_examen_id_seq
 ALTER TABLE public.examen_examen_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3904 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3714 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: examen_examen_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -576,7 +586,7 @@ ALTER SEQUENCE public.examen_examen_id_seq OWNED BY public.examen.examen_id;
 
 
 --
--- TOC entry 266 (class 1259 OID 16513)
+-- TOC entry 242 (class 1259 OID 33641)
 -- Name: examen_matricula_facultad_cum_carrera_estudiante_asignatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -597,7 +607,7 @@ CREATE TABLE public.examen_matricula_facultad_cum_carrera_estudiante_asignatura 
 ALTER TABLE public.examen_matricula_facultad_cum_carrera_estudiante_asignatura OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 16518)
+-- TOC entry 243 (class 1259 OID 33644)
 -- Name: facultad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -617,7 +627,7 @@ CREATE TABLE public.facultad (
 ALTER TABLE public.facultad OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 16523)
+-- TOC entry 244 (class 1259 OID 33647)
 -- Name: facultad_authorities; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -631,7 +641,7 @@ CREATE TABLE public.facultad_authorities (
 ALTER TABLE public.facultad_authorities OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 16528)
+-- TOC entry 245 (class 1259 OID 33650)
 -- Name: facultad_cum; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -645,7 +655,7 @@ CREATE TABLE public.facultad_cum (
 ALTER TABLE public.facultad_cum OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 16533)
+-- TOC entry 246 (class 1259 OID 33653)
 -- Name: facultad_cum_carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -660,7 +670,7 @@ CREATE TABLE public.facultad_cum_carrera (
 ALTER TABLE public.facultad_cum_carrera OWNER TO postgres;
 
 --
--- TOC entry 271 (class 1259 OID 16538)
+-- TOC entry 247 (class 1259 OID 33656)
 -- Name: facultad_cum_carrera_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -686,7 +696,7 @@ CREATE TABLE public.facultad_cum_carrera_estudiante (
 ALTER TABLE public.facultad_cum_carrera_estudiante OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 16543)
+-- TOC entry 248 (class 1259 OID 33659)
 -- Name: facultad_cum_carrera_estudiante_asignatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -705,7 +715,7 @@ CREATE TABLE public.facultad_cum_carrera_estudiante_asignatura (
 ALTER TABLE public.facultad_cum_carrera_estudiante_asignatura OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 16548)
+-- TOC entry 249 (class 1259 OID 33662)
 -- Name: fuente_ingreso; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -719,7 +729,7 @@ CREATE TABLE public.fuente_ingreso (
 ALTER TABLE public.fuente_ingreso OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 16404)
+-- TOC entry 250 (class 1259 OID 33665)
 -- Name: fuente_ingreso_fuente_ingreso_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -734,8 +744,8 @@ CREATE SEQUENCE public.fuente_ingreso_fuente_ingreso_id_seq
 ALTER TABLE public.fuente_ingreso_fuente_ingreso_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3905 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3715 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: fuente_ingreso_fuente_ingreso_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -743,7 +753,7 @@ ALTER SEQUENCE public.fuente_ingreso_fuente_ingreso_id_seq OWNED BY public.fuent
 
 
 --
--- TOC entry 274 (class 1259 OID 16552)
+-- TOC entry 251 (class 1259 OID 33666)
 -- Name: grado_militar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -757,7 +767,7 @@ CREATE TABLE public.grado_militar (
 ALTER TABLE public.grado_militar OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 16405)
+-- TOC entry 252 (class 1259 OID 33669)
 -- Name: grado_militar_grado_militar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -772,8 +782,8 @@ CREATE SEQUENCE public.grado_militar_grado_militar_id_seq
 ALTER TABLE public.grado_militar_grado_militar_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3906 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3716 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: grado_militar_grado_militar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -781,7 +791,7 @@ ALTER SEQUENCE public.grado_militar_grado_militar_id_seq OWNED BY public.grado_m
 
 
 --
--- TOC entry 275 (class 1259 OID 16556)
+-- TOC entry 253 (class 1259 OID 33670)
 -- Name: huerfano; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -795,7 +805,7 @@ CREATE TABLE public.huerfano (
 ALTER TABLE public.huerfano OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 16406)
+-- TOC entry 254 (class 1259 OID 33673)
 -- Name: huerfano_huerfano_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -810,8 +820,8 @@ CREATE SEQUENCE public.huerfano_huerfano_id_seq
 ALTER TABLE public.huerfano_huerfano_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3907 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 3717 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: huerfano_huerfano_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -819,7 +829,7 @@ ALTER SEQUENCE public.huerfano_huerfano_id_seq OWNED BY public.huerfano.huerfano
 
 
 --
--- TOC entry 276 (class 1259 OID 16560)
+-- TOC entry 255 (class 1259 OID 33674)
 -- Name: matricula; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -839,7 +849,7 @@ CREATE TABLE public.matricula (
 ALTER TABLE public.matricula OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 16566)
+-- TOC entry 256 (class 1259 OID 33677)
 -- Name: matricula_facultad_cum_carrera_estudiante_asignatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -859,7 +869,7 @@ CREATE TABLE public.matricula_facultad_cum_carrera_estudiante_asignatura (
 ALTER TABLE public.matricula_facultad_cum_carrera_estudiante_asignatura OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 16407)
+-- TOC entry 257 (class 1259 OID 33680)
 -- Name: matricula_matricula_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -874,8 +884,8 @@ CREATE SEQUENCE public.matricula_matricula_id_seq
 ALTER TABLE public.matricula_matricula_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3908 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3718 (class 0 OID 0)
+-- Dependencies: 257
 -- Name: matricula_matricula_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -883,7 +893,7 @@ ALTER SEQUENCE public.matricula_matricula_id_seq OWNED BY public.matricula.matri
 
 
 --
--- TOC entry 278 (class 1259 OID 16571)
+-- TOC entry 258 (class 1259 OID 33681)
 -- Name: minusvalia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -897,7 +907,7 @@ CREATE TABLE public.minusvalia (
 ALTER TABLE public.minusvalia OWNER TO postgres;
 
 --
--- TOC entry 279 (class 1259 OID 16575)
+-- TOC entry 259 (class 1259 OID 33684)
 -- Name: minusvalia_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -910,7 +920,7 @@ CREATE TABLE public.minusvalia_estudiante (
 ALTER TABLE public.minusvalia_estudiante OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 16408)
+-- TOC entry 260 (class 1259 OID 33687)
 -- Name: minusvalia_minusvalia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -925,8 +935,8 @@ CREATE SEQUENCE public.minusvalia_minusvalia_id_seq
 ALTER TABLE public.minusvalia_minusvalia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3909 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 3719 (class 0 OID 0)
+-- Dependencies: 260
 -- Name: minusvalia_minusvalia_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -934,7 +944,7 @@ ALTER SEQUENCE public.minusvalia_minusvalia_id_seq OWNED BY public.minusvalia.mi
 
 
 --
--- TOC entry 280 (class 1259 OID 16578)
+-- TOC entry 261 (class 1259 OID 33688)
 -- Name: motivo_baja; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -949,7 +959,7 @@ CREATE TABLE public.motivo_baja (
 ALTER TABLE public.motivo_baja OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 16409)
+-- TOC entry 262 (class 1259 OID 33691)
 -- Name: motivo_baja_id_motivo_baja_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -964,8 +974,8 @@ CREATE SEQUENCE public.motivo_baja_id_motivo_baja_seq
 ALTER TABLE public.motivo_baja_id_motivo_baja_seq OWNER TO postgres;
 
 --
--- TOC entry 3910 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3720 (class 0 OID 0)
+-- Dependencies: 262
 -- Name: motivo_baja_id_motivo_baja_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -973,7 +983,7 @@ ALTER SEQUENCE public.motivo_baja_id_motivo_baja_seq OWNED BY public.motivo_baja
 
 
 --
--- TOC entry 281 (class 1259 OID 16584)
+-- TOC entry 263 (class 1259 OID 33692)
 -- Name: municipio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -988,7 +998,7 @@ CREATE TABLE public.municipio (
 ALTER TABLE public.municipio OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 16410)
+-- TOC entry 264 (class 1259 OID 33695)
 -- Name: municipio_idmunicipio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1003,8 +1013,8 @@ CREATE SEQUENCE public.municipio_idmunicipio_seq
 ALTER TABLE public.municipio_idmunicipio_seq OWNER TO postgres;
 
 --
--- TOC entry 3911 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3721 (class 0 OID 0)
+-- Dependencies: 264
 -- Name: municipio_idmunicipio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1012,7 +1022,7 @@ ALTER SEQUENCE public.municipio_idmunicipio_seq OWNED BY public.municipio.idmuni
 
 
 --
--- TOC entry 282 (class 1259 OID 16588)
+-- TOC entry 265 (class 1259 OID 33696)
 -- Name: nivel_escolar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1026,7 +1036,7 @@ CREATE TABLE public.nivel_escolar (
 ALTER TABLE public.nivel_escolar OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 16411)
+-- TOC entry 266 (class 1259 OID 33699)
 -- Name: nivel_escolar_nivel_escolar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1041,8 +1051,8 @@ CREATE SEQUENCE public.nivel_escolar_nivel_escolar_id_seq
 ALTER TABLE public.nivel_escolar_nivel_escolar_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3912 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3722 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: nivel_escolar_nivel_escolar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1050,7 +1060,7 @@ ALTER SEQUENCE public.nivel_escolar_nivel_escolar_id_seq OWNED BY public.nivel_e
 
 
 --
--- TOC entry 283 (class 1259 OID 16592)
+-- TOC entry 267 (class 1259 OID 33700)
 -- Name: ocupacion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1064,7 +1074,7 @@ CREATE TABLE public.ocupacion (
 ALTER TABLE public.ocupacion OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 16412)
+-- TOC entry 268 (class 1259 OID 33703)
 -- Name: ocupacion_ocupacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1079,8 +1089,8 @@ CREATE SEQUENCE public.ocupacion_ocupacion_id_seq
 ALTER TABLE public.ocupacion_ocupacion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3913 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3723 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: ocupacion_ocupacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1088,7 +1098,7 @@ ALTER SEQUENCE public.ocupacion_ocupacion_id_seq OWNED BY public.ocupacion.ocupa
 
 
 --
--- TOC entry 284 (class 1259 OID 16596)
+-- TOC entry 269 (class 1259 OID 33704)
 -- Name: ong; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1102,7 +1112,7 @@ CREATE TABLE public.ong (
 ALTER TABLE public.ong OWNER TO postgres;
 
 --
--- TOC entry 285 (class 1259 OID 16600)
+-- TOC entry 270 (class 1259 OID 33707)
 -- Name: ong_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1115,7 +1125,7 @@ CREATE TABLE public.ong_estudiante (
 ALTER TABLE public.ong_estudiante OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 16413)
+-- TOC entry 271 (class 1259 OID 33710)
 -- Name: ong_ong_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1130,8 +1140,8 @@ CREATE SEQUENCE public.ong_ong_id_seq
 ALTER TABLE public.ong_ong_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3914 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3724 (class 0 OID 0)
+-- Dependencies: 271
 -- Name: ong_ong_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1139,7 +1149,7 @@ ALTER SEQUENCE public.ong_ong_id_seq OWNED BY public.ong.ong_id;
 
 
 --
--- TOC entry 286 (class 1259 OID 16603)
+-- TOC entry 272 (class 1259 OID 33711)
 -- Name: organismo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1153,7 +1163,7 @@ CREATE TABLE public.organismo (
 ALTER TABLE public.organismo OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 16414)
+-- TOC entry 273 (class 1259 OID 33714)
 -- Name: organismo_idorganismo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1168,8 +1178,8 @@ CREATE SEQUENCE public.organismo_idorganismo_seq
 ALTER TABLE public.organismo_idorganismo_seq OWNER TO postgres;
 
 --
--- TOC entry 3915 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3725 (class 0 OID 0)
+-- Dependencies: 273
 -- Name: organismo_idorganismo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1177,7 +1187,7 @@ ALTER SEQUENCE public.organismo_idorganismo_seq OWNED BY public.organismo.idorga
 
 
 --
--- TOC entry 287 (class 1259 OID 16607)
+-- TOC entry 274 (class 1259 OID 33715)
 -- Name: organizacion_politica; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1191,7 +1201,7 @@ CREATE TABLE public.organizacion_politica (
 ALTER TABLE public.organizacion_politica OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 16415)
+-- TOC entry 275 (class 1259 OID 33718)
 -- Name: organizacion_politica_organizacion_politica_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1206,8 +1216,8 @@ CREATE SEQUENCE public.organizacion_politica_organizacion_politica_id_seq
 ALTER TABLE public.organizacion_politica_organizacion_politica_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3916 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3726 (class 0 OID 0)
+-- Dependencies: 275
 -- Name: organizacion_politica_organizacion_politica_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1215,7 +1225,7 @@ ALTER SEQUENCE public.organizacion_politica_organizacion_politica_id_seq OWNED B
 
 
 --
--- TOC entry 288 (class 1259 OID 16611)
+-- TOC entry 276 (class 1259 OID 33719)
 -- Name: organizacion_popular; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1229,7 +1239,7 @@ CREATE TABLE public.organizacion_popular (
 ALTER TABLE public.organizacion_popular OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 16615)
+-- TOC entry 277 (class 1259 OID 33722)
 -- Name: organizacion_popular_estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1242,7 +1252,7 @@ CREATE TABLE public.organizacion_popular_estudiante (
 ALTER TABLE public.organizacion_popular_estudiante OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 16416)
+-- TOC entry 278 (class 1259 OID 33725)
 -- Name: organizacion_popular_organizacion_popular_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1257,8 +1267,8 @@ CREATE SEQUENCE public.organizacion_popular_organizacion_popular_id_seq
 ALTER TABLE public.organizacion_popular_organizacion_popular_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3917 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 3727 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: organizacion_popular_organizacion_popular_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1266,7 +1276,7 @@ ALTER SEQUENCE public.organizacion_popular_organizacion_popular_id_seq OWNED BY 
 
 
 --
--- TOC entry 290 (class 1259 OID 16618)
+-- TOC entry 279 (class 1259 OID 33726)
 -- Name: pais; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1280,7 +1290,7 @@ CREATE TABLE public.pais (
 ALTER TABLE public.pais OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 16417)
+-- TOC entry 280 (class 1259 OID 33729)
 -- Name: pais_idpais_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1295,8 +1305,8 @@ CREATE SEQUENCE public.pais_idpais_seq
 ALTER TABLE public.pais_idpais_seq OWNER TO postgres;
 
 --
--- TOC entry 3918 (class 0 OID 0)
--- Dependencies: 236
+-- TOC entry 3728 (class 0 OID 0)
+-- Dependencies: 280
 -- Name: pais_idpais_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1304,7 +1314,7 @@ ALTER SEQUENCE public.pais_idpais_seq OWNED BY public.pais.idpais;
 
 
 --
--- TOC entry 291 (class 1259 OID 16622)
+-- TOC entry 281 (class 1259 OID 33730)
 -- Name: planestudio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1323,7 +1333,7 @@ CREATE TABLE public.planestudio (
 ALTER TABLE public.planestudio OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1259 OID 16418)
+-- TOC entry 282 (class 1259 OID 33735)
 -- Name: planestudio_idplanestudio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1338,8 +1348,8 @@ CREATE SEQUENCE public.planestudio_idplanestudio_seq
 ALTER TABLE public.planestudio_idplanestudio_seq OWNER TO postgres;
 
 --
--- TOC entry 3919 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3729 (class 0 OID 0)
+-- Dependencies: 282
 -- Name: planestudio_idplanestudio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1347,7 +1357,7 @@ ALTER SEQUENCE public.planestudio_idplanestudio_seq OWNED BY public.planestudio.
 
 
 --
--- TOC entry 292 (class 1259 OID 16628)
+-- TOC entry 283 (class 1259 OID 33736)
 -- Name: procedencia_escolar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1361,7 +1371,7 @@ CREATE TABLE public.procedencia_escolar (
 ALTER TABLE public.procedencia_escolar OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 16419)
+-- TOC entry 284 (class 1259 OID 33739)
 -- Name: procedencia_escolar_procedencia_escolar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1376,8 +1386,8 @@ CREATE SEQUENCE public.procedencia_escolar_procedencia_escolar_id_seq
 ALTER TABLE public.procedencia_escolar_procedencia_escolar_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3920 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 3730 (class 0 OID 0)
+-- Dependencies: 284
 -- Name: procedencia_escolar_procedencia_escolar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1385,7 +1395,7 @@ ALTER SEQUENCE public.procedencia_escolar_procedencia_escolar_id_seq OWNED BY pu
 
 
 --
--- TOC entry 293 (class 1259 OID 16632)
+-- TOC entry 285 (class 1259 OID 33740)
 -- Name: provincia; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1400,7 +1410,7 @@ CREATE TABLE public.provincia (
 ALTER TABLE public.provincia OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1259 OID 16420)
+-- TOC entry 286 (class 1259 OID 33743)
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1415,8 +1425,8 @@ CREATE SEQUENCE public.provincia_idprovincia_seq
 ALTER TABLE public.provincia_idprovincia_seq OWNER TO postgres;
 
 --
--- TOC entry 3921 (class 0 OID 0)
--- Dependencies: 239
+-- TOC entry 3731 (class 0 OID 0)
+-- Dependencies: 286
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1424,7 +1434,7 @@ ALTER SEQUENCE public.provincia_idprovincia_seq OWNED BY public.provincia.idprov
 
 
 --
--- TOC entry 294 (class 1259 OID 16636)
+-- TOC entry 287 (class 1259 OID 33744)
 -- Name: sexo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1438,7 +1448,7 @@ CREATE TABLE public.sexo (
 ALTER TABLE public.sexo OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1259 OID 16421)
+-- TOC entry 288 (class 1259 OID 33747)
 -- Name: sexo_sexo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1453,8 +1463,8 @@ CREATE SEQUENCE public.sexo_sexo_id_seq
 ALTER TABLE public.sexo_sexo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3922 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3732 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: sexo_sexo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1462,7 +1472,7 @@ ALTER SEQUENCE public.sexo_sexo_id_seq OWNED BY public.sexo.sexo_id;
 
 
 --
--- TOC entry 295 (class 1259 OID 16640)
+-- TOC entry 289 (class 1259 OID 33748)
 -- Name: sindicato; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1476,7 +1486,7 @@ CREATE TABLE public.sindicato (
 ALTER TABLE public.sindicato OWNER TO postgres;
 
 --
--- TOC entry 241 (class 1259 OID 16422)
+-- TOC entry 290 (class 1259 OID 33751)
 -- Name: sindicato_idsindicato_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1491,8 +1501,8 @@ CREATE SEQUENCE public.sindicato_idsindicato_seq
 ALTER TABLE public.sindicato_idsindicato_seq OWNER TO postgres;
 
 --
--- TOC entry 3923 (class 0 OID 0)
--- Dependencies: 241
+-- TOC entry 3733 (class 0 OID 0)
+-- Dependencies: 290
 -- Name: sindicato_idsindicato_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1500,7 +1510,7 @@ ALTER SEQUENCE public.sindicato_idsindicato_seq OWNED BY public.sindicato.idsind
 
 
 --
--- TOC entry 296 (class 1259 OID 16644)
+-- TOC entry 291 (class 1259 OID 33752)
 -- Name: tipo_asignatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1514,7 +1524,7 @@ CREATE TABLE public.tipo_asignatura (
 ALTER TABLE public.tipo_asignatura OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 16423)
+-- TOC entry 292 (class 1259 OID 33755)
 -- Name: tipo_asignatura_tipo_asignatura_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1529,8 +1539,8 @@ CREATE SEQUENCE public.tipo_asignatura_tipo_asignatura_id_seq
 ALTER TABLE public.tipo_asignatura_tipo_asignatura_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3924 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 3734 (class 0 OID 0)
+-- Dependencies: 292
 -- Name: tipo_asignatura_tipo_asignatura_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1538,7 +1548,7 @@ ALTER SEQUENCE public.tipo_asignatura_tipo_asignatura_id_seq OWNED BY public.tip
 
 
 --
--- TOC entry 297 (class 1259 OID 16648)
+-- TOC entry 293 (class 1259 OID 33756)
 -- Name: tipo_baja; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1552,7 +1562,7 @@ CREATE TABLE public.tipo_baja (
 ALTER TABLE public.tipo_baja OWNER TO postgres;
 
 --
--- TOC entry 243 (class 1259 OID 16424)
+-- TOC entry 294 (class 1259 OID 33759)
 -- Name: tipo_baja_id_tipo_baja_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1567,8 +1577,8 @@ CREATE SEQUENCE public.tipo_baja_id_tipo_baja_seq
 ALTER TABLE public.tipo_baja_id_tipo_baja_seq OWNER TO postgres;
 
 --
--- TOC entry 3925 (class 0 OID 0)
--- Dependencies: 243
+-- TOC entry 3735 (class 0 OID 0)
+-- Dependencies: 294
 -- Name: tipo_baja_id_tipo_baja_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1576,7 +1586,7 @@ ALTER SEQUENCE public.tipo_baja_id_tipo_baja_seq OWNED BY public.tipo_baja.id_ti
 
 
 --
--- TOC entry 298 (class 1259 OID 16652)
+-- TOC entry 295 (class 1259 OID 33760)
 -- Name: tipo_evaluacion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1590,7 +1600,7 @@ CREATE TABLE public.tipo_evaluacion (
 ALTER TABLE public.tipo_evaluacion OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 16425)
+-- TOC entry 296 (class 1259 OID 33763)
 -- Name: tipo_evaluacion_tipo_evaluacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1605,8 +1615,8 @@ CREATE SEQUENCE public.tipo_evaluacion_tipo_evaluacion_id_seq
 ALTER TABLE public.tipo_evaluacion_tipo_evaluacion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3926 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3736 (class 0 OID 0)
+-- Dependencies: 296
 -- Name: tipo_evaluacion_tipo_evaluacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1614,7 +1624,7 @@ ALTER SEQUENCE public.tipo_evaluacion_tipo_evaluacion_id_seq OWNED BY public.tip
 
 
 --
--- TOC entry 299 (class 1259 OID 16656)
+-- TOC entry 297 (class 1259 OID 33764)
 -- Name: tipo_militar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1628,7 +1638,7 @@ CREATE TABLE public.tipo_militar (
 ALTER TABLE public.tipo_militar OWNER TO postgres;
 
 --
--- TOC entry 245 (class 1259 OID 16426)
+-- TOC entry 298 (class 1259 OID 33767)
 -- Name: tipo_militar_id_tipo_militar_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1643,8 +1653,8 @@ CREATE SEQUENCE public.tipo_militar_id_tipo_militar_seq
 ALTER TABLE public.tipo_militar_id_tipo_militar_seq OWNER TO postgres;
 
 --
--- TOC entry 3927 (class 0 OID 0)
--- Dependencies: 245
+-- TOC entry 3737 (class 0 OID 0)
+-- Dependencies: 298
 -- Name: tipo_militar_id_tipo_militar_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1652,7 +1662,7 @@ ALTER SEQUENCE public.tipo_militar_id_tipo_militar_seq OWNED BY public.tipo_mili
 
 
 --
--- TOC entry 300 (class 1259 OID 16660)
+-- TOC entry 299 (class 1259 OID 33768)
 -- Name: tipoplanestudio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1666,7 +1676,7 @@ CREATE TABLE public.tipoplanestudio (
 ALTER TABLE public.tipoplanestudio OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1259 OID 16663)
+-- TOC entry 300 (class 1259 OID 33771)
 -- Name: tutor; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1687,7 +1697,7 @@ CREATE TABLE public.tutor (
 ALTER TABLE public.tutor OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 16427)
+-- TOC entry 301 (class 1259 OID 33774)
 -- Name: tutor_tutor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1702,8 +1712,8 @@ CREATE SEQUENCE public.tutor_tutor_id_seq
 ALTER TABLE public.tutor_tutor_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3928 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3738 (class 0 OID 0)
+-- Dependencies: 301
 -- Name: tutor_tutor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1711,7 +1721,7 @@ ALTER SEQUENCE public.tutor_tutor_id_seq OWNED BY public.tutor.tutor_id;
 
 
 --
--- TOC entry 302 (class 1259 OID 16669)
+-- TOC entry 302 (class 1259 OID 33775)
 -- Name: universidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1734,7 +1744,7 @@ CREATE TABLE public.universidad (
 ALTER TABLE public.universidad OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1259 OID 16674)
+-- TOC entry 303 (class 1259 OID 33780)
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1745,7 +1755,7 @@ CREATE TABLE public.users (
     apellido1 character varying(255) NOT NULL,
     apellido2 character varying(255),
     email character varying(255) NOT NULL,
-    password character varying(100) NOT NULL,
+    password character varying(80) NOT NULL,
     enabled boolean NOT NULL,
     descripcion character varying(255)
 );
@@ -1754,7 +1764,7 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 3429 (class 2604 OID 16431)
+-- TOC entry 3434 (class 2604 OID 33783)
 -- Name: asignatura asignatura_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1762,7 +1772,7 @@ ALTER TABLE ONLY public.asignatura ALTER COLUMN asignatura_id SET DEFAULT nextva
 
 
 --
--- TOC entry 3430 (class 2604 OID 16448)
+-- TOC entry 3435 (class 2604 OID 33784)
 -- Name: carrera idcarrera; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1770,7 +1780,7 @@ ALTER TABLE ONLY public.carrera ALTER COLUMN idcarrera SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3431 (class 2604 OID 16455)
+-- TOC entry 3436 (class 2604 OID 33785)
 -- Name: carreranacional idcarreranacional; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1778,7 +1788,7 @@ ALTER TABLE ONLY public.carreranacional ALTER COLUMN idcarreranacional SET DEFAU
 
 
 --
--- TOC entry 3432 (class 2604 OID 16461)
+-- TOC entry 3437 (class 2604 OID 33786)
 -- Name: color_piel color_piel_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1786,7 +1796,7 @@ ALTER TABLE ONLY public.color_piel ALTER COLUMN color_piel_id SET DEFAULT nextva
 
 
 --
--- TOC entry 3433 (class 2604 OID 16490)
+-- TOC entry 3438 (class 2604 OID 33787)
 -- Name: especialidad idespecialidad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1794,7 +1804,7 @@ ALTER TABLE ONLY public.especialidad ALTER COLUMN idespecialidad SET DEFAULT nex
 
 
 --
--- TOC entry 3434 (class 2604 OID 16494)
+-- TOC entry 3439 (class 2604 OID 33788)
 -- Name: especialidad_militar especialidad_militar_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1802,7 +1812,7 @@ ALTER TABLE ONLY public.especialidad_militar ALTER COLUMN especialidad_militar_i
 
 
 --
--- TOC entry 3435 (class 2604 OID 16498)
+-- TOC entry 3440 (class 2604 OID 33789)
 -- Name: estado_civil estado_civil_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1810,7 +1820,7 @@ ALTER TABLE ONLY public.estado_civil ALTER COLUMN estado_civil_id SET DEFAULT ne
 
 
 --
--- TOC entry 3436 (class 2604 OID 16502)
+-- TOC entry 3441 (class 2604 OID 33790)
 -- Name: estado_estudiante estado_estuciante_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1818,7 +1828,7 @@ ALTER TABLE ONLY public.estado_estudiante ALTER COLUMN estado_estuciante_id SET 
 
 
 --
--- TOC entry 3438 (class 2604 OID 16512)
+-- TOC entry 3443 (class 2604 OID 33791)
 -- Name: examen examen_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1826,7 +1836,7 @@ ALTER TABLE ONLY public.examen ALTER COLUMN examen_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3439 (class 2604 OID 16551)
+-- TOC entry 3444 (class 2604 OID 33792)
 -- Name: fuente_ingreso fuente_ingreso_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1834,7 +1844,7 @@ ALTER TABLE ONLY public.fuente_ingreso ALTER COLUMN fuente_ingreso_id SET DEFAUL
 
 
 --
--- TOC entry 3440 (class 2604 OID 16555)
+-- TOC entry 3445 (class 2604 OID 33793)
 -- Name: grado_militar grado_militar_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1842,7 +1852,7 @@ ALTER TABLE ONLY public.grado_militar ALTER COLUMN grado_militar_id SET DEFAULT 
 
 
 --
--- TOC entry 3441 (class 2604 OID 16559)
+-- TOC entry 3446 (class 2604 OID 33794)
 -- Name: huerfano huerfano_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1850,7 +1860,7 @@ ALTER TABLE ONLY public.huerfano ALTER COLUMN huerfano_id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3442 (class 2604 OID 16563)
+-- TOC entry 3447 (class 2604 OID 33795)
 -- Name: matricula matricula_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1858,7 +1868,7 @@ ALTER TABLE ONLY public.matricula ALTER COLUMN matricula_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3443 (class 2604 OID 16574)
+-- TOC entry 3448 (class 2604 OID 33796)
 -- Name: minusvalia minusvalia_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1866,7 +1876,7 @@ ALTER TABLE ONLY public.minusvalia ALTER COLUMN minusvalia_id SET DEFAULT nextva
 
 
 --
--- TOC entry 3444 (class 2604 OID 16581)
+-- TOC entry 3449 (class 2604 OID 33797)
 -- Name: motivo_baja id_motivo_baja; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1874,7 +1884,7 @@ ALTER TABLE ONLY public.motivo_baja ALTER COLUMN id_motivo_baja SET DEFAULT next
 
 
 --
--- TOC entry 3445 (class 2604 OID 16587)
+-- TOC entry 3450 (class 2604 OID 33798)
 -- Name: municipio idmunicipio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1882,7 +1892,7 @@ ALTER TABLE ONLY public.municipio ALTER COLUMN idmunicipio SET DEFAULT nextval('
 
 
 --
--- TOC entry 3446 (class 2604 OID 16591)
+-- TOC entry 3451 (class 2604 OID 33799)
 -- Name: nivel_escolar nivel_escolar_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1890,7 +1900,7 @@ ALTER TABLE ONLY public.nivel_escolar ALTER COLUMN nivel_escolar_id SET DEFAULT 
 
 
 --
--- TOC entry 3447 (class 2604 OID 16595)
+-- TOC entry 3452 (class 2604 OID 33800)
 -- Name: ocupacion ocupacion_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1898,7 +1908,7 @@ ALTER TABLE ONLY public.ocupacion ALTER COLUMN ocupacion_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3448 (class 2604 OID 16599)
+-- TOC entry 3453 (class 2604 OID 33801)
 -- Name: ong ong_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1906,7 +1916,7 @@ ALTER TABLE ONLY public.ong ALTER COLUMN ong_id SET DEFAULT nextval('public.ong_
 
 
 --
--- TOC entry 3449 (class 2604 OID 16606)
+-- TOC entry 3454 (class 2604 OID 33802)
 -- Name: organismo idorganismo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1914,7 +1924,7 @@ ALTER TABLE ONLY public.organismo ALTER COLUMN idorganismo SET DEFAULT nextval('
 
 
 --
--- TOC entry 3450 (class 2604 OID 16610)
+-- TOC entry 3455 (class 2604 OID 33803)
 -- Name: organizacion_politica organizacion_politica_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1922,7 +1932,7 @@ ALTER TABLE ONLY public.organizacion_politica ALTER COLUMN organizacion_politica
 
 
 --
--- TOC entry 3451 (class 2604 OID 16614)
+-- TOC entry 3456 (class 2604 OID 33804)
 -- Name: organizacion_popular organizacion_popular_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1930,7 +1940,7 @@ ALTER TABLE ONLY public.organizacion_popular ALTER COLUMN organizacion_popular_i
 
 
 --
--- TOC entry 3452 (class 2604 OID 16621)
+-- TOC entry 3457 (class 2604 OID 33805)
 -- Name: pais idpais; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1938,7 +1948,7 @@ ALTER TABLE ONLY public.pais ALTER COLUMN idpais SET DEFAULT nextval('public.pai
 
 
 --
--- TOC entry 3453 (class 2604 OID 16625)
+-- TOC entry 3458 (class 2604 OID 33806)
 -- Name: planestudio idplanestudio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1946,7 +1956,7 @@ ALTER TABLE ONLY public.planestudio ALTER COLUMN idplanestudio SET DEFAULT nextv
 
 
 --
--- TOC entry 3454 (class 2604 OID 16631)
+-- TOC entry 3459 (class 2604 OID 33807)
 -- Name: procedencia_escolar procedencia_escolar_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1954,7 +1964,7 @@ ALTER TABLE ONLY public.procedencia_escolar ALTER COLUMN procedencia_escolar_id 
 
 
 --
--- TOC entry 3455 (class 2604 OID 16635)
+-- TOC entry 3460 (class 2604 OID 33808)
 -- Name: provincia idprovincia; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1962,7 +1972,7 @@ ALTER TABLE ONLY public.provincia ALTER COLUMN idprovincia SET DEFAULT nextval('
 
 
 --
--- TOC entry 3456 (class 2604 OID 16639)
+-- TOC entry 3461 (class 2604 OID 33809)
 -- Name: sexo sexo_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1970,7 +1980,7 @@ ALTER TABLE ONLY public.sexo ALTER COLUMN sexo_id SET DEFAULT nextval('public.se
 
 
 --
--- TOC entry 3457 (class 2604 OID 16643)
+-- TOC entry 3462 (class 2604 OID 33810)
 -- Name: sindicato idsindicato; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1978,7 +1988,7 @@ ALTER TABLE ONLY public.sindicato ALTER COLUMN idsindicato SET DEFAULT nextval('
 
 
 --
--- TOC entry 3458 (class 2604 OID 16647)
+-- TOC entry 3463 (class 2604 OID 33811)
 -- Name: tipo_asignatura tipo_asignatura_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1986,7 +1996,7 @@ ALTER TABLE ONLY public.tipo_asignatura ALTER COLUMN tipo_asignatura_id SET DEFA
 
 
 --
--- TOC entry 3459 (class 2604 OID 16651)
+-- TOC entry 3464 (class 2604 OID 33812)
 -- Name: tipo_baja id_tipo_baja; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1994,7 +2004,7 @@ ALTER TABLE ONLY public.tipo_baja ALTER COLUMN id_tipo_baja SET DEFAULT nextval(
 
 
 --
--- TOC entry 3460 (class 2604 OID 16655)
+-- TOC entry 3465 (class 2604 OID 33813)
 -- Name: tipo_evaluacion tipo_evaluacion_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2002,7 +2012,7 @@ ALTER TABLE ONLY public.tipo_evaluacion ALTER COLUMN tipo_evaluacion_id SET DEFA
 
 
 --
--- TOC entry 3461 (class 2604 OID 16659)
+-- TOC entry 3466 (class 2604 OID 33814)
 -- Name: tipo_militar id_tipo_militar; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2010,7 +2020,7 @@ ALTER TABLE ONLY public.tipo_militar ALTER COLUMN id_tipo_militar SET DEFAULT ne
 
 
 --
--- TOC entry 3462 (class 2604 OID 16666)
+-- TOC entry 3467 (class 2604 OID 33815)
 -- Name: tutor tutor_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2018,261 +2028,245 @@ ALTER TABLE ONLY public.tutor ALTER COLUMN tutor_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3834 (class 0 OID 16428)
--- Dependencies: 247
+-- TOC entry 3610 (class 0 OID 33568)
+-- Dependencies: 214
 -- Data for Name: asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.asignatura VALUES (1, '1AQ', 'Introducci√≥n a la Programaci√≥n', 'IP', false, 1, 1, true, true, 'IDS', 1);
-INSERT INTO public.asignatura VALUES (2, '2AQ', 'Dise√±o y Programaci√≥n Orientada a Objetos', 'DPOO', false, 1, 1, true, true, 'IDS', 1);
-INSERT INTO public.asignatura VALUES (3, '1qaz', 'Elementos', 'El', false, 3, 1, true, true, ',mcpo9', 2);
 
 
 --
--- TOC entry 3835 (class 0 OID 16434)
--- Dependencies: 248
+-- TOC entry 3611 (class 0 OID 33571)
+-- Dependencies: 215
 -- Data for Name: asignatura_asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.asignatura_asignatura VALUES (1, 2, false);
 
 
 --
--- TOC entry 3836 (class 0 OID 16437)
--- Dependencies: 249
+-- TOC entry 3613 (class 0 OID 33575)
+-- Dependencies: 217
 -- Data for Name: authorities; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.authorities VALUES ('gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.authorities VALUES ('gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.authorities VALUES ('gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.authorities VALUES ('gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.authorities VALUES ('gabrielpg', 'ROLE_MATRICULADOR');
 INSERT INTO public.authorities VALUES ('ead', 'ROLE_ADMIN');
 
 
 --
--- TOC entry 3837 (class 0 OID 16440)
--- Dependencies: 250
+-- TOC entry 3614 (class 0 OID 33578)
+-- Dependencies: 218
 -- Data for Name: baja; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.baja VALUES (1, 4, '2023-04-21', '2023-2024', '', '120', 1, '94091027302', '2023-04-18', true);
-INSERT INTO public.baja VALUES (1, 6, '2023-04-21', '2023-2024', '', '120', 1, '94091027302', '2023-04-18', true);
-INSERT INTO public.baja VALUES (1, 4, '2023-04-26', '2023-2024', '', '120', 1, '94091027302', '2023-04-18', true);
 
 
 --
--- TOC entry 3838 (class 0 OID 16445)
--- Dependencies: 251
+-- TOC entry 3615 (class 0 OID 33581)
+-- Dependencies: 219
 -- Data for Name: carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.carrera VALUES (1, false, 39, '120');
-INSERT INTO public.carrera VALUES (2, false, 35, '120');
 
 
 --
--- TOC entry 3839 (class 0 OID 16449)
--- Dependencies: 252
+-- TOC entry 3616 (class 0 OID 33584)
+-- Dependencies: 220
 -- Data for Name: carrera_curso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.carrera_curso VALUES (1, '2023-2024', 3, false);
-INSERT INTO public.carrera_curso VALUES (2, '2023-2024', 3, false);
 
 
 --
--- TOC entry 3840 (class 0 OID 16452)
--- Dependencies: 253
+-- TOC entry 3618 (class 0 OID 33588)
+-- Dependencies: 222
 -- Data for Name: carreranacional; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.carreranacional VALUES (1, '041600', 'Ingenier√≠a Forestal', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (2, '011600', 'Ingenier√≠a Biom√©dica', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (1, '041600', 'IngenierÌa Forestal', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (2, '011600', 'IngenierÌa BiomÈdica', NULL, false, 1);
 INSERT INTO public.carreranacional VALUES (3, '063700', 'Lengua Inglesa (Con segunda Lengua Extranjera)', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (4, '023001', 'F√≠sica N√∫clear Aplicada', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (5, '022100', 'Matem√°tica', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (4, '023001', 'FÌsica N˙clear Aplicada', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (5, '022100', 'Matem·tica', NULL, false, 2);
 INSERT INTO public.carreranacional VALUES (6, '063501', 'Periodismo', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (7, '100500', 'Comunicaci√≥n Audiovisual', NULL, false, 9);
+INSERT INTO public.carreranacional VALUES (7, '100500', 'ComunicaciÛn Audiovisual', NULL, false, 9);
 INSERT INTO public.carreranacional VALUES (8, '064000', 'Letras', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (9, '030100', 'Medicina', NULL, false, 3);
 INSERT INTO public.carreranacional VALUES (10, '064801', 'Lengua Inglesa (Preparatoria)', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (11, '064900', 'Relaciones Internacionales', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (12, '022200', 'F√≠sica', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (13, '022000', 'Ciencias de la Computaci√≥n', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (14, '022300', 'Qu√≠mica', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (15, '051800', 'Econom√≠a', NULL, false, 5);
-INSERT INTO public.carreranacional VALUES (16, '010200', 'Ingenier√≠a en Minas', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (17, '011401', 'Dise√±o Industrial', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (18, '022400', 'Geograf√≠a', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (12, '022200', 'FÌsica', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (13, '022000', 'Ciencias de la ComputaciÛn', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (14, '022300', 'QuÌmica', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (15, '051800', 'EconomÌa', NULL, false, 5);
+INSERT INTO public.carreranacional VALUES (16, '010200', 'IngenierÌa en Minas', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (17, '011401', 'DiseÒo Industrial', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (18, '022400', 'GeografÌa', NULL, false, 2);
 INSERT INTO public.carreranacional VALUES (19, '063100', 'Historia', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (20, '030300', 'Enfermer√≠a', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (20, '030300', 'EnfermerÌa', NULL, false, 3);
 INSERT INTO public.carreranacional VALUES (21, '100400', 'Arte Teatral', NULL, false, 9);
-INSERT INTO public.carreranacional VALUES (22, '064600', 'Lengua de se√±as', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (23, '100200', 'Artes pl√°sticas', NULL, false, 9);
-INSERT INTO public.carreranacional VALUES (24, '042000', 'Ingenier√≠a Agr√≠cola', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (25, '064700', 'Preservaci√≥n y Gesti√≥n del Patrimonio Hist√≥rico Cultural', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (26, '064200', 'Sociolog√≠a', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (22, '064600', 'Lengua de seÒas', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (23, '100200', 'Artes pl·sticas', NULL, false, 9);
+INSERT INTO public.carreranacional VALUES (24, '042000', 'IngenierÌa AgrÌcola', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (25, '064700', 'PreservaciÛn y GestiÛn del Patrimonio HistÛrico Cultural', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (26, '064200', 'SociologÌa', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (27, '063800', 'Lengua Alemana (Con segunda Lengua Extranjera)', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (28, '041502', 'Ingenier√≠a Agropecuaria', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (29, '100100', 'M√∫sica', NULL, false, 9);
-INSERT INTO public.carreranacional VALUES (30, '022600', 'Biolog√≠a', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (28, '041502', 'IngenierÌa Agropecuaria', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (29, '100100', 'M˙sica', NULL, false, 9);
+INSERT INTO public.carreranacional VALUES (30, '022600', 'BiologÌa', NULL, false, 2);
 INSERT INTO public.carreranacional VALUES (31, '063900', 'Lengua Francesa (Con segunda Lengua Extranjera)', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (32, '011700', 'Ingenier√≠a F√≠sica', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (33, '041500', 'Agronom√≠a', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (34, '010400', 'Ingenier√≠a Mec√°nica', 'Ingeniero Mec√°nico', false, 1);
-INSERT INTO public.carreranacional VALUES (35, '011000', 'Ingenier√≠a Industrial', 'Ingeniero Industrial', false, 1);
-INSERT INTO public.carreranacional VALUES (36, '010500', 'Ingenier√≠a El√©ctrica', 'Ingeniero Electricista', false, 1);
-INSERT INTO public.carreranacional VALUES (37, '010700', 'Ingenier√≠a en Telecomunicaciones y Electr√≥nica', 'Ingeniero en Telecomunicaciones y Electr√≥nica', false, 1);
-INSERT INTO public.carreranacional VALUES (38, '010900', 'Ingenier√≠a Qu√≠mica', 'Ingeniero Qu√≠mico', false, 1);
-INSERT INTO public.carreranacional VALUES (39, '010800', 'Ingenier√≠a Inform√°tica', 'Ingeniero Inform√°tico', false, 1);
-INSERT INTO public.carreranacional VALUES (40, '011100', 'Ingenier√≠a Hidr√°ulica', 'Ingeniero Hidr√°ulico', false, 1);
-INSERT INTO public.carreranacional VALUES (41, '011001', 'Organizaci√≥n de Empresas', 'Ingeniero Industrial Especializaci√≥n Organizaci√≥n de Empresas', false, 1);
-INSERT INTO public.carreranacional VALUES (42, '072400', 'Educaci√≥n Especial', 'Licenciado en Educaci√≥n Especial', false, 7);
-INSERT INTO public.carreranacional VALUES (43, '072800', 'Educaci√≥n Primaria', 'Licenciado en Educaci√≥n Primaria', false, 7);
-INSERT INTO public.carreranacional VALUES (44, '073500', 'Educaci√≥n Agropecuaria', 'Licenciado en Educaci√≥n Agropecuaria', false, 7);
-INSERT INTO public.carreranacional VALUES (45, '072200', 'Educaci√≥n Econom√≠a', 'Licenciado en Educaci√≥n Econom√≠a', false, 7);
-INSERT INTO public.carreranacional VALUES (46, '073400', 'Educaci√≥n Mec√°nica', 'Licenciado en Educaci√≥n Mec√°nica', false, 7);
-INSERT INTO public.carreranacional VALUES (47, '064800', 'Lengua Espa√±ola para Estudiantes no Hispanohablantes', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (48, '020302', 'Radioqu√≠mica', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (49, '011500', 'Dise√±o de Comunicaci√≥n Visual', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (50, '022900', 'Ciencias Farmac√©uticas', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (32, '011700', 'IngenierÌa FÌsica', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (33, '041500', 'AgronomÌa', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (34, '010400', 'IngenierÌa Mec·nica', 'Ingeniero Mec·nico', false, 1);
+INSERT INTO public.carreranacional VALUES (35, '011000', 'IngenierÌa Industrial', 'Ingeniero Industrial', false, 1);
+INSERT INTO public.carreranacional VALUES (36, '010500', 'IngenierÌa ElÈctrica', 'Ingeniero Electricista', false, 1);
+INSERT INTO public.carreranacional VALUES (37, '010700', 'IngenierÌa en Telecomunicaciones y ElectrÛnica', 'Ingeniero en Telecomunicaciones y ElectrÛnica', false, 1);
+INSERT INTO public.carreranacional VALUES (38, '010900', 'IngenierÌa QuÌmica', 'Ingeniero QuÌmico', false, 1);
+INSERT INTO public.carreranacional VALUES (39, '010800', 'IngenierÌa Inform·tica', 'Ingeniero Inform·tico', false, 1);
+INSERT INTO public.carreranacional VALUES (40, '011100', 'IngenierÌa Hidr·ulica', 'Ingeniero Hidr·ulico', false, 1);
+INSERT INTO public.carreranacional VALUES (41, '011001', 'OrganizaciÛn de Empresas', 'Ingeniero Industrial EspecializaciÛn OrganizaciÛn de Empresas', false, 1);
+INSERT INTO public.carreranacional VALUES (42, '072400', 'EducaciÛn Especial', 'Licenciado en EducaciÛn Especial', false, 7);
+INSERT INTO public.carreranacional VALUES (43, '072800', 'EducaciÛn Primaria', 'Licenciado en EducaciÛn Primaria', false, 7);
+INSERT INTO public.carreranacional VALUES (44, '073500', 'EducaciÛn Agropecuaria', 'Licenciado en EducaciÛn Agropecuaria', false, 7);
+INSERT INTO public.carreranacional VALUES (45, '072200', 'EducaciÛn EconomÌa', 'Licenciado en EducaciÛn EconomÌa', false, 7);
+INSERT INTO public.carreranacional VALUES (46, '073400', 'EducaciÛn Mec·nica', 'Licenciado en EducaciÛn Mec·nica', false, 7);
+INSERT INTO public.carreranacional VALUES (47, '064800', 'Lengua EspaÒola para Estudiantes no Hispanohablantes', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (48, '020302', 'RadioquÌmica', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (49, '011500', 'DiseÒo de ComunicaciÛn Visual', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (50, '022900', 'Ciencias FarmacÈuticas', NULL, false, 2);
 INSERT INTO public.carreranacional VALUES (51, '100300', 'Arte Danzario', NULL, false, 9);
-INSERT INTO public.carreranacional VALUES (52, '022700', 'Microbiolog√≠a', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (53, '030200', 'Estomatolog√≠a', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (52, '022700', 'MicrobiologÌa', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (53, '030200', 'EstomatologÌa', NULL, false, 3);
 INSERT INTO public.carreranacional VALUES (54, '063600', 'Lengua Rusa (Con segunda Lengua Extranjera)', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (55, '022801', 'Ciencias Alimentarias', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (56, '041900', 'Ingenier√≠a en Mecanizaci√≥n de la Producci√≥n Agropecuaria', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (57, '030400', 'Tecnolog√≠a de la salud', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (58, '074200', 'Educaci√≥n Mecanizaci√≥n', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (56, '041900', 'IngenierÌa en MecanizaciÛn de la ProducciÛn Agropecuaria', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (57, '030400', 'TecnologÌa de la salud', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (58, '074200', 'EducaciÛn MecanizaciÛn', NULL, false, 7);
 INSERT INTO public.carreranacional VALUES (59, '063300', 'Historia del Arte', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (60, '064400', 'Estudios Socioculturales', 'Licenciado en Estudios Socioculturales', false, 6);
-INSERT INTO public.carreranacional VALUES (61, '071300', 'Educaci√≥n Lengua Extranjera (Ingl√©s)', 'Licenciado en Educaci√≥n Especialidad Lengua Extranjera (Ingl√©s)', false, 7);
+INSERT INTO public.carreranacional VALUES (61, '071300', 'EducaciÛn Lengua Extranjera (InglÈs)', 'Licenciado en EducaciÛn Especialidad Lengua Extranjera (InglÈs)', false, 7);
 INSERT INTO public.carreranacional VALUES (62, '063400', 'Derecho', 'Licenciado en Derecho', false, 6);
 INSERT INTO public.carreranacional VALUES (63, '051900', 'Contabilidad y Finanzas', 'Licenciado en Contabilidad y Finanzas', false, 5);
-INSERT INTO public.carreranacional VALUES (64, '064300', 'Psicolog√≠a', 'Licenciado en Psicolog√≠a', false, 6);
-INSERT INTO public.carreranacional VALUES (65, '063500', 'Comunicaci√≥n Social', 'Licenciado en Comunicaci√≥n Social', false, 6);
-INSERT INTO public.carreranacional VALUES (66, '023100', 'Meteorolog√≠a', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (64, '064300', 'PsicologÌa', 'Licenciado en PsicologÌa', false, 6);
+INSERT INTO public.carreranacional VALUES (65, '063500', 'ComunicaciÛn Social', 'Licenciado en ComunicaciÛn Social', false, 6);
+INSERT INTO public.carreranacional VALUES (66, '023100', 'MeteorologÌa', NULL, false, 2);
 INSERT INTO public.carreranacional VALUES (67, '011900', 'Ingenieria Geofisica', NULL, false, 1);
 INSERT INTO public.carreranacional VALUES (68, '052000', 'Turismo', NULL, false, 5);
-INSERT INTO public.carreranacional VALUES (69, '090300', 'Cultura F√≠sica', 'Licenciado en Cultura F√≠sica', false, 8);
-INSERT INTO public.carreranacional VALUES (70, '074100', 'Educaci√≥n Logopedia', 'Licenciado en Educaci√≥n Logopedia', false, 7);
-INSERT INTO public.carreranacional VALUES (71, '071400', 'Educaci√≥n Construcci√≥n', 'Licenciado en Educaci√≥n Construcci√≥n', false, 7);
-INSERT INTO public.carreranacional VALUES (72, '073300', 'Educaci√≥n El√©ctrica', 'Licenciado en Educaci√≥n El√©ctrica', false, 7);
-INSERT INTO public.carreranacional VALUES (73, '073600', 'Educaci√≥n Pedagog√≠a-Psicolog√≠a', 'Licenciado en Educaci√≥n Pedagog√≠a-Psicolog√≠a', false, 7);
-INSERT INTO public.carreranacional VALUES (74, '074300', 'Educaci√≥n Instructor de Arte', 'Licenciado en Instructor de Arte', false, 7);
-INSERT INTO public.carreranacional VALUES (75, '074400', 'Educaci√≥n Matem√°tica-F√≠sica', 'Licenciado en Educaci√≥n Matem√°tica -F√≠sica', false, 7);
-INSERT INTO public.carreranacional VALUES (76, '074500', 'Educaci√≥n Biolog√≠a-Qu√≠mica', 'Licenciado en Educaci√≥n Biolog√≠a -Geograf√≠a', false, 7);
-INSERT INTO public.carreranacional VALUES (77, '074600', 'Educaci√≥n Biolog√≠a-Geograf√≠a', 'Licenciado en Educaci√≥n Biolog√≠a -Qu√≠mica', false, 7);
-INSERT INTO public.carreranacional VALUES (78, '074900', 'Educaci√≥n Espa√±ol-Literatura', 'Licenciado en Educaci√≥n Espa√±ol-Literatura', false, 7);
-INSERT INTO public.carreranacional VALUES (79, '010100', 'Ingenier√≠a Geol√≥gica', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (80, '010300', 'Ingenier√≠a en Metalurgia y Materiales', 'Ingeniero Metal√∫rgico', false, 1);
-INSERT INTO public.carreranacional VALUES (81, '010600', 'Ingenier√≠a Autom√°tica', 'Ingeniero en Autom√°tica', false, 1);
-INSERT INTO public.carreranacional VALUES (82, '011200', 'Ingenier√≠a Civil', 'Ingeniero Civil', false, 1);
+INSERT INTO public.carreranacional VALUES (69, '090300', 'Cultura FÌsica', 'Licenciado en Cultura FÌsica', false, 8);
+INSERT INTO public.carreranacional VALUES (70, '074100', 'EducaciÛn Logopedia', 'Licenciado en EducaciÛn Logopedia', false, 7);
+INSERT INTO public.carreranacional VALUES (71, '071400', 'EducaciÛn ConstrucciÛn', 'Licenciado en EducaciÛn ConstrucciÛn', false, 7);
+INSERT INTO public.carreranacional VALUES (72, '073300', 'EducaciÛn ElÈctrica', 'Licenciado en EducaciÛn ElÈctrica', false, 7);
+INSERT INTO public.carreranacional VALUES (73, '073600', 'EducaciÛn PedagogÌa-PsicologÌa', 'Licenciado en EducaciÛn PedagogÌa-PsicologÌa', false, 7);
+INSERT INTO public.carreranacional VALUES (74, '074300', 'EducaciÛn Instructor de Arte', 'Licenciado en Instructor de Arte', false, 7);
+INSERT INTO public.carreranacional VALUES (75, '074400', 'EducaciÛn Matem·tica-FÌsica', 'Licenciado en EducaciÛn Matem·tica -FÌsica', false, 7);
+INSERT INTO public.carreranacional VALUES (76, '074500', 'EducaciÛn BiologÌa-QuÌmica', 'Licenciado en EducaciÛn BiologÌa -GeografÌa', false, 7);
+INSERT INTO public.carreranacional VALUES (77, '074600', 'EducaciÛn BiologÌa-GeografÌa', 'Licenciado en EducaciÛn BiologÌa -QuÌmica', false, 7);
+INSERT INTO public.carreranacional VALUES (78, '074900', 'EducaciÛn EspaÒol-Literatura', 'Licenciado en EducaciÛn EspaÒol-Literatura', false, 7);
+INSERT INTO public.carreranacional VALUES (79, '010100', 'IngenierÌa GeolÛgica', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (80, '010300', 'IngenierÌa en Metalurgia y Materiales', 'Ingeniero Metal˙rgico', false, 1);
+INSERT INTO public.carreranacional VALUES (81, '010600', 'IngenierÌa Autom·tica', 'Ingeniero en Autom·tica', false, 1);
+INSERT INTO public.carreranacional VALUES (82, '011200', 'IngenierÌa Civil', 'Ingeniero Civil', false, 1);
 INSERT INTO public.carreranacional VALUES (83, '011300', 'Arquitectura y Urbanismo', 'Arquitecto', false, 1);
-INSERT INTO public.carreranacional VALUES (84, '011800', 'Ingenier√≠a en Ciencias Inform√°ticas', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (85, '022500', 'Bioqu√≠mica y Biolog√≠a Molecular', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (86, '023003', 'Ingenier√≠a en Tecnolog√≠as Nucleares y Energ√©ticas', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (87, '063200', 'Filosof√≠a Marxista Leninista', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (88, '071100', 'Educaci√≥n Preescolar', 'Licenciado en Educaci√≥n Preescolar', false, 7);
-INSERT INTO public.carreranacional VALUES (89, '030401', 'Bioan√°lisis Cl√≠nico', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (90, '030402', 'Imagenolog√≠a y Radiof√≠sica M√©dica', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (91, '030403', 'Optometr√≠a y √ìptica', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (92, '030404', 'Rehabilitaci√≥n en Salud', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (93, '030405', 'Nutrici√≥n', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (94, '030406', 'Higiene y Epidemiolog√≠a', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (95, '030407', 'Logofonoaudiolog√≠a', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (96, '030408', 'Sistema de Informaci√≥n en Salud', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (84, '011800', 'IngenierÌa en Ciencias Inform·ticas', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (85, '022500', 'BioquÌmica y BiologÌa Molecular', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (86, '023003', 'IngenierÌa en TecnologÌas Nucleares y EnergÈticas', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (87, '063200', 'FilosofÌa Marxista Leninista', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (88, '071100', 'EducaciÛn Preescolar', 'Licenciado en EducaciÛn Preescolar', false, 7);
+INSERT INTO public.carreranacional VALUES (89, '030401', 'Bioan·lisis ClÌnico', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (90, '030402', 'ImagenologÌa y RadiofÌsica MÈdica', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (91, '030403', 'OptometrÌa y ”ptica', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (92, '030404', 'RehabilitaciÛn en Salud', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (93, '030405', 'NutriciÛn', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (94, '030406', 'Higiene y EpidemiologÌa', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (95, '030407', 'LogofonoaudiologÌa', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (96, '030408', 'Sistema de InformaciÛn en Salud', NULL, false, 3);
 INSERT INTO public.carreranacional VALUES (97, '063601', 'Lengua Rusa (Preparatoria)', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (98, '063801', 'Lengua Alemana (Preparatoria)', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (99, '063901', 'Lengua Francesa (Preparatoria)', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (100, '064102', 'Ciencias de la Informaci√≥n', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (101, '070300', 'Educaci√≥n Lengua Inglesa', 'Licenciado en Educaci√≥n Lengua Extranjera (Ingl√©s)', false, 7);
-INSERT INTO public.carreranacional VALUES (102, '074700', 'Educaci√≥n Laboral-Inform√°tica', 'Licenciado en Educaci√≥n Espa√±ol-Literatura', false, 7);
-INSERT INTO public.carreranacional VALUES (103, '074800', 'Educaci√≥n Qu√≠mica Industrial', 'Licenciado en Educaci√≥n Educaci√≥n Laboral-Inform√°tica', false, 7);
-INSERT INTO public.carreranacional VALUES (104, '074901', 'Educaci√≥n Inform√°tica', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (105, '041800', 'Ingenier√≠a en Procesos Agroindustriales', 'Ingeniero en Procesos Agroindustriales', false, 4);
-INSERT INTO public.carreranacional VALUES (106, '070200', 'Educaci√≥n Marxismo Leninismo e Historia', 'Licenciado en Educaci√≥n Marxismo Leninismo e Historia', false, 7);
+INSERT INTO public.carreranacional VALUES (100, '064102', 'Ciencias de la InformaciÛn', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (101, '070300', 'EducaciÛn Lengua Inglesa', 'Licenciado en EducaciÛn Lengua Extranjera (InglÈs)', false, 7);
+INSERT INTO public.carreranacional VALUES (102, '074700', 'EducaciÛn Laboral-Inform·tica', 'Licenciado en EducaciÛn EspaÒol-Literatura', false, 7);
+INSERT INTO public.carreranacional VALUES (103, '074800', 'EducaciÛn QuÌmica Industrial', 'Licenciado en EducaciÛn EducaciÛn Laboral-Inform·tica', false, 7);
+INSERT INTO public.carreranacional VALUES (104, '074901', 'EducaciÛn Inform·tica', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (105, '041800', 'IngenierÌa en Procesos Agroindustriales', 'Ingeniero en Procesos Agroindustriales', false, 4);
+INSERT INTO public.carreranacional VALUES (106, '070200', 'EducaciÛn Marxismo Leninismo e Historia', 'Licenciado en EducaciÛn Marxismo Leninismo e Historia', false, 7);
 INSERT INTO public.carreranacional VALUES (107, '041700', 'Medicina Veterinaria y Zootecnia', 'Doctor en Medicina Veterinaria y Zootecnia', false, 4);
-INSERT INTO public.carreranacional VALUES (108, '075400', 'Educaci√≥n Qu√≠mica', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (109, '075700', 'Educaci√≥n Laboral', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (110, '075500', 'Educaci√≥n Geograf√≠a', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (111, '075300', 'Educaci√≥n Biolog√≠a', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (112, '075100', 'Educaci√≥n Matem√°tica', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (113, '075200', 'Educaci√≥n en F√≠sica', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (114, '075000', 'Educaci√≥n Art√≠stica', 'Licenciado en Educaci√≥n Art√≠stica', false, 7);
-INSERT INTO public.carreranacional VALUES (115, '070301', 'Educaci√≥n Lengua Extranjera: Ingl√©s para profesores de Educaci√≥n Superior', NULL, false, 7);
-INSERT INTO public.carreranacional VALUES (116, '064401', 'Gesti√≥n Sociocultural para el Desarrollo', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (108, '075400', 'EducaciÛn QuÌmica', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (109, '075700', 'EducaciÛn Laboral', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (110, '075500', 'EducaciÛn GeografÌa', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (111, '075300', 'EducaciÛn BiologÌa', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (112, '075100', 'EducaciÛn Matem·tica', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (113, '075200', 'EducaciÛn en FÌsica', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (114, '075000', 'EducaciÛn ArtÌstica', 'Licenciado en EducaciÛn ArtÌstica', false, 7);
+INSERT INTO public.carreranacional VALUES (115, '070301', 'EducaciÛn Lengua Extranjera: InglÈs para profesores de EducaciÛn Superior', NULL, false, 7);
+INSERT INTO public.carreranacional VALUES (116, '064401', 'GestiÛn Sociocultural para el Desarrollo', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (117, '041702', 'Medicina Veterinaria', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (118, '001501', 'T√©cnico Superior en Administraci√≥n de Redes y Seguridad Inform√°tica (ARSI)', '', false, 1);
-INSERT INTO public.carreranacional VALUES (119, '001533', 'T√©cnico Superior en Agua y Saneamiento', '', false, 1);
-INSERT INTO public.carreranacional VALUES (120, '001534', 'T√©cnico Superior en Electromec√°nica de equipos ferroviarios', '', false, 1);
-INSERT INTO public.carreranacional VALUES (121, '001535', 'T√©cnico Superior en Geolog√≠a', '', false, 1);
-INSERT INTO public.carreranacional VALUES (122, '001537', 'T√©cnico Superior en Gesti√≥n de la infraestructura ferroviaria', '', false, 1);
-INSERT INTO public.carreranacional VALUES (123, '001540', 'T√©cnico Superior en Montaje Industrial', '', false, 1);
-INSERT INTO public.carreranacional VALUES (124, '001541', 'T√©cnico Superior en Riego y Drenaje', '', false, 1);
-INSERT INTO public.carreranacional VALUES (125, '001542', 'T√©cnico Superior en Transporte Automotor', '', false, 1);
-INSERT INTO public.carreranacional VALUES (126, '005529', 'T√©cnico Superior en Comercio Sostenible', '', false, 5);
-INSERT INTO public.carreranacional VALUES (127, '005530', 'T√©cnico Superior en Log√≠stica', '', false, 5);
-INSERT INTO public.carreranacional VALUES (128, '005531', 'T√©cnico Superior en Asistencia Tur√≠stica', '', false, 5);
-INSERT INTO public.carreranacional VALUES (129, '005539', 'T√©cnico Superior en Mantenimiento para el Turismo', '', false, 5);
-INSERT INTO public.carreranacional VALUES (130, '005544', 'T√©cnico Superior en Auditor√≠a', '', false, 5);
-INSERT INTO public.carreranacional VALUES (131, '006536', 'T√©cnico Superior en Gesti√≥n de la Administraci√≥n P√∫blica', '', false, 6);
-INSERT INTO public.carreranacional VALUES (132, '006538', 'T√©cnico Superior en Interpretaci√≥n de la Lengua de Se√±as Cubanas', '', false, 6);
-INSERT INTO public.carreranacional VALUES (133, '006543', 'T√©cnico Superior en Gesti√≥n del Desarrollo Local Sostenible', '', false, 6);
-INSERT INTO public.carreranacional VALUES (134, '007502', 'Profesor de Matem√°tica para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (135, '007503', 'Profesor de F√≠sica para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (136, '007504', 'Profesor de Qu√≠mica para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (137, '007505', 'Profesor de Biolog√≠a para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (138, '007506', 'Profesor de Geograf√≠a para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (139, '007507', 'Profesor de Educaci√≥n Laboral para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (140, '007508', 'Profesor de Espa√±ol para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (141, '007509', 'Profesor de Historia y Educaci√≥n Moral y Ciudadana para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (142, '007527', 'Profesor de Educaci√≥n Art√≠stica para Secundaria B√°sica', '', false, 7);
-INSERT INTO public.carreranacional VALUES (143, '009528', 'T√©cnico Superior en Entrenamiento Deportivo', '', false, 8);
-INSERT INTO public.carreranacional VALUES (144, '011802', 'Ingenier√≠a en Ciberseguridad', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (145, '022701', 'Microbiolog√≠a y Virolog√≠a', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (146, '023004', 'F√≠sica Nuclear', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (147, '063201', 'Filosof√≠a', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (118, '001501', 'TÈcnico Superior en AdministraciÛn de Redes y Seguridad Inform·tica (ARSI)', '', false, 1);
+INSERT INTO public.carreranacional VALUES (119, '001533', 'TÈcnico Superior en Agua y Saneamiento', '', false, 1);
+INSERT INTO public.carreranacional VALUES (120, '001534', 'TÈcnico Superior en Electromec·nica de equipos ferroviarios', '', false, 1);
+INSERT INTO public.carreranacional VALUES (121, '001535', 'TÈcnico Superior en GeologÌa', '', false, 1);
+INSERT INTO public.carreranacional VALUES (122, '001537', 'TÈcnico Superior en GestiÛn de la infraestructura ferroviaria', '', false, 1);
+INSERT INTO public.carreranacional VALUES (123, '001540', 'TÈcnico Superior en Montaje Industrial', '', false, 1);
+INSERT INTO public.carreranacional VALUES (124, '001541', 'TÈcnico Superior en Riego y Drenaje', '', false, 1);
+INSERT INTO public.carreranacional VALUES (125, '001542', 'TÈcnico Superior en Transporte Automotor', '', false, 1);
+INSERT INTO public.carreranacional VALUES (126, '005529', 'TÈcnico Superior en Comercio Sostenible', '', false, 5);
+INSERT INTO public.carreranacional VALUES (127, '005530', 'TÈcnico Superior en LogÌstica', '', false, 5);
+INSERT INTO public.carreranacional VALUES (128, '005531', 'TÈcnico Superior en Asistencia TurÌstica', '', false, 5);
+INSERT INTO public.carreranacional VALUES (129, '005539', 'TÈcnico Superior en Mantenimiento para el Turismo', '', false, 5);
+INSERT INTO public.carreranacional VALUES (130, '005544', 'TÈcnico Superior en AuditorÌa', '', false, 5);
+INSERT INTO public.carreranacional VALUES (131, '006536', 'TÈcnico Superior en GestiÛn de la AdministraciÛn P˙blica', '', false, 6);
+INSERT INTO public.carreranacional VALUES (132, '006538', 'TÈcnico Superior en InterpretaciÛn de la Lengua de SeÒas Cubanas', '', false, 6);
+INSERT INTO public.carreranacional VALUES (133, '006543', 'TÈcnico Superior en GestiÛn del Desarrollo Local Sostenible', '', false, 6);
+INSERT INTO public.carreranacional VALUES (134, '007502', 'Profesor de Matem·tica para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (135, '007503', 'Profesor de FÌsica para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (136, '007504', 'Profesor de QuÌmica para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (137, '007505', 'Profesor de BiologÌa para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (138, '007506', 'Profesor de GeografÌa para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (139, '007507', 'Profesor de EducaciÛn Laboral para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (140, '007508', 'Profesor de EspaÒol para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (141, '007509', 'Profesor de Historia y EducaciÛn Moral y Ciudadana para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (142, '007527', 'Profesor de EducaciÛn ArtÌstica para Secundaria B·sica', '', false, 7);
+INSERT INTO public.carreranacional VALUES (143, '009528', 'TÈcnico Superior en Entrenamiento Deportivo', '', false, 8);
+INSERT INTO public.carreranacional VALUES (144, '011802', 'IngenierÌa en Ciberseguridad', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (145, '022701', 'MicrobiologÌa y VirologÌa', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (146, '023004', 'FÌsica Nuclear', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (147, '063201', 'FilosofÌa', NULL, false, 6);
 INSERT INTO public.carreranacional VALUES (148, '100700', 'Artes Visuales', NULL, false, 9);
-INSERT INTO public.carreranacional VALUES (149, '100800', 'Arte de los Medios de Comunicaci√≥n Visual', NULL, false, 9);
-INSERT INTO public.carreranacional VALUES (150, '001546', 'T√©cnico Superior Profesor de El√©ctrica', '', false, 1);
-INSERT INTO public.carreranacional VALUES (151, '001547', 'T√©cnico Superior Profesor de Mec√°nica', '', false, 1);
-INSERT INTO public.carreranacional VALUES (152, '001548', 'T√©cnico Superior Profesor de Mecanizaci√≥n', '', false, 1);
-INSERT INTO public.carreranacional VALUES (153, '004550', 'T√©cnico Superior Profesor de Agropecuaria', '', false, 4);
-INSERT INTO public.carreranacional VALUES (154, '005551', 'T√©cnico Superior Profesor de Econom√≠a', '', false, 5);
-INSERT INTO public.carreranacional VALUES (155, '001549', 'T√©cnico Superior Profesor de Construcci√≥n', '', false, 1);
-INSERT INTO public.carreranacional VALUES (156, '006552', 'T√©cnico Superior Profesor de Interpretaci√≥n de se√±as Cubanas', '', false, 6);
-INSERT INTO public.carreranacional VALUES (157, '008553', 'Ingeniero en Equipos Radioelectr√≥nicos de Aviaci√≥n', '', false, 12);
-INSERT INTO public.carreranacional VALUES (158, '008554', 'Ingeniero en Medios T√©cnicos de aseguramiento de Aer√≥dromos', '', false, 12);
+INSERT INTO public.carreranacional VALUES (149, '100800', 'Arte de los Medios de ComunicaciÛn Visual', NULL, false, 9);
+INSERT INTO public.carreranacional VALUES (150, '001546', 'TÈcnico Superior Profesor de ElÈctrica', '', false, 1);
+INSERT INTO public.carreranacional VALUES (151, '001547', 'TÈcnico Superior Profesor de Mec·nica', '', false, 1);
+INSERT INTO public.carreranacional VALUES (152, '001548', 'TÈcnico Superior Profesor de MecanizaciÛn', '', false, 1);
+INSERT INTO public.carreranacional VALUES (153, '004550', 'TÈcnico Superior Profesor de Agropecuaria', '', false, 4);
+INSERT INTO public.carreranacional VALUES (154, '005551', 'TÈcnico Superior Profesor de EconomÌa', '', false, 5);
+INSERT INTO public.carreranacional VALUES (155, '001549', 'TÈcnico Superior Profesor de ConstrucciÛn', '', false, 1);
+INSERT INTO public.carreranacional VALUES (156, '006552', 'TÈcnico Superior Profesor de InterpretaciÛn de seÒas Cubanas', '', false, 6);
+INSERT INTO public.carreranacional VALUES (157, '008553', 'Ingeniero en Equipos RadioelectrÛnicos de AviaciÛn', '', false, 12);
+INSERT INTO public.carreranacional VALUES (158, '008554', 'Ingeniero en Medios TÈcnicos de aseguramiento de AerÛdromos', '', false, 12);
 INSERT INTO public.carreranacional VALUES (159, '008855', 'Ingeniero en Telecomunicaciones CACSA', '', false, 12);
-INSERT INTO public.carreranacional VALUES (160, '005556', 'T√©cnico Superior en Administraci√≥n Tributaria', '', false, 5);
-INSERT INTO public.carreranacional VALUES (161, '001557', 'T√©cnico Superior de Tecnolog√≠a para el Montaje Industrial', '', false, 1);
-INSERT INTO public.carreranacional VALUES (162, '005558', 'T√©cnico Superior en Servicios T√©cnicos a Instalaciones Tur√≠sticas', '', false, 5);
-INSERT INTO public.carreranacional VALUES (163, '001559', 'T√©cnico Superior en Explotaci√≥n y Mantenimiento del Transporte Automotor', '', false, 1);
-INSERT INTO public.carreranacional VALUES (164, '008560', 'Ingeniero en radioelectr√≥nico en equipos electro autom√°ticos de aviaci√≥n', '', false, 12);
-INSERT INTO public.carreranacional VALUES (165, '008561', 'T√©cnico Superior en Radioelectr√≥nico en equipos electro autom√°ticos de aviaci√≥n', '', false, 12);
-INSERT INTO public.carreranacional VALUES (166, '008562', 'T√©cnico Superior Mec√°nico Aeron√°utico en Motores y Estructuras', '', false, 12);
-INSERT INTO public.carreranacional VALUES (167, '008563', 'T√©cnico Superior Mec√°nico en Aseguramiento T√©cnico en Equipos Especiales', '', false, 12);
-INSERT INTO public.carreranacional VALUES (168, '003524', 'T√©cnico Superior en Trabajo Social', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (169, '004551', 'T√©cnico Superior Agroindustrial en Tabaco', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (170, '006532', 'T√©cnico Superior en Asistencia Jur√≠dica', '', false, 6);
-INSERT INTO public.carreranacional VALUES (171, '005548', 'T√©cnico Superior en Riesgo de Impago en el Turismo', NULL, false, 5);
-INSERT INTO public.carreranacional VALUES (172, '002549', 'T√©cnico Superior en Procesos Qu√≠micos', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (173, '001558', 'T√©cnico Superior en Metrolog√≠a', NULL, false, 1);
-INSERT INTO public.carreranacional VALUES (174, '012100', 'Ingenier√≠a en Transporte', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (160, '005556', 'TÈcnico Superior en AdministraciÛn Tributaria', '', false, 5);
+INSERT INTO public.carreranacional VALUES (161, '001557', 'TÈcnico Superior de TecnologÌa para el Montaje Industrial', '', false, 1);
+INSERT INTO public.carreranacional VALUES (162, '005558', 'TÈcnico Superior en Servicios TÈcnicos a Instalaciones TurÌsticas', '', false, 5);
+INSERT INTO public.carreranacional VALUES (163, '001559', 'TÈcnico Superior en ExplotaciÛn y Mantenimiento del Transporte Automotor', '', false, 1);
+INSERT INTO public.carreranacional VALUES (164, '008560', 'Ingeniero en radioelectrÛnico en equipos electro autom·ticos de aviaciÛn', '', false, 12);
+INSERT INTO public.carreranacional VALUES (165, '008561', 'TÈcnico Superior en RadioelectrÛnico en equipos electro autom·ticos de aviaciÛn', '', false, 12);
+INSERT INTO public.carreranacional VALUES (166, '008562', 'TÈcnico Superior Mec·nico Aeron·utico en Motores y Estructuras', '', false, 12);
+INSERT INTO public.carreranacional VALUES (167, '008563', 'TÈcnico Superior Mec·nico en Aseguramiento TÈcnico en Equipos Especiales', '', false, 12);
+INSERT INTO public.carreranacional VALUES (168, '003524', 'TÈcnico Superior en Trabajo Social', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (169, '004551', 'TÈcnico Superior Agroindustrial en Tabaco', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (170, '006532', 'TÈcnico Superior en Asistencia JurÌdica', '', false, 6);
+INSERT INTO public.carreranacional VALUES (171, '005548', 'TÈcnico Superior en Riesgo de Impago en el Turismo', NULL, false, 5);
+INSERT INTO public.carreranacional VALUES (172, '002549', 'TÈcnico Superior en Procesos QuÌmicos', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (173, '001558', 'TÈcnico Superior en MetrologÌa', NULL, false, 1);
+INSERT INTO public.carreranacional VALUES (174, '012100', 'IngenierÌa en Transporte', NULL, false, 1);
 INSERT INTO public.carreranacional VALUES (175, '022001', 'Ciencia de Datos', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (176, '030409', 'Servicios Estomatol√≥gicos', NULL, false, 3);
-INSERT INTO public.carreranacional VALUES (177, '002555', 'T√©cnico Superior en Gesti√≥n de Residuos S√≥lidos Urbanos e Industriales', NULL, false, 2);
-INSERT INTO public.carreranacional VALUES (178, '004554', 'T√©cnico Superior en Gesti√≥n de la Innovaci√≥n Agraria', NULL, false, 4);
-INSERT INTO public.carreranacional VALUES (179, '006556', 'T√©cnico Superior en Gesti√≥n y Desarrollo Cooperativo Agropecuario', NULL, false, 6);
-INSERT INTO public.carreranacional VALUES (180, '005552', 'T√©cnico Superior en Comercio Agropecuario', NULL, false, 5);
+INSERT INTO public.carreranacional VALUES (176, '030409', 'Servicios EstomatolÛgicos', NULL, false, 3);
+INSERT INTO public.carreranacional VALUES (177, '002555', 'TÈcnico Superior en GestiÛn de Residuos SÛlidos Urbanos e Industriales', NULL, false, 2);
+INSERT INTO public.carreranacional VALUES (178, '004554', 'TÈcnico Superior en GestiÛn de la InnovaciÛn Agraria', NULL, false, 4);
+INSERT INTO public.carreranacional VALUES (179, '006556', 'TÈcnico Superior en GestiÛn y Desarrollo Cooperativo Agropecuario', NULL, false, 6);
+INSERT INTO public.carreranacional VALUES (180, '005552', 'TÈcnico Superior en Comercio Agropecuario', NULL, false, 5);
 
 
 --
--- TOC entry 3841 (class 0 OID 16458)
--- Dependencies: 254
+-- TOC entry 3620 (class 0 OID 33592)
+-- Dependencies: 224
 -- Data for Name: color_piel; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2283,484 +2277,427 @@ INSERT INTO public.color_piel VALUES (4, 'Amarillo', false);
 
 
 --
--- TOC entry 3842 (class 0 OID 16462)
--- Dependencies: 255
+-- TOC entry 3622 (class 0 OID 33596)
+-- Dependencies: 226
 -- Data for Name: cum; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.cum VALUES ('', '', '', '', '', '', '', '', '', '', false, '', -1);
-INSERT INTO public.cum VALUES ('06815.0211', 'CUM Nueva Paz', 'Docente - Investigativa', 'CUM Nueva Paz', 'OLPP calle 12 esq 15', '', '', 'Neysi Molina Borges', 'Lic. Olga Lidia Rodr√≠guez S√°nchez', 'Continuidad de Estudios', false, '223.0.06815', 92);
-INSERT INTO public.cum VALUES ('06815.0216', 'CUM Quivic√°n', 'Docente - Investigativa', 'CUM Quivic√°n', '', '', '', '', '', 'Continuidad de Estudios', false, '223.0.06815', 97);
-INSERT INTO public.cum VALUES ('06815.0209', 'CUM Santa Cruz', 'Docente - Investigativa', 'CUM Santa Cruz del Norte', 'Escuela MINAZ Carretera CAI Camilo Cienfuegos', '', '', 'Lic. Adriana Sosa Gonz√°lez', 'Lic. Miguel Ram√≥n Garc√≠a Guzm√°n', 'Continuidad de Estudios', false, '223.0.06815', 90);
-INSERT INTO public.cum VALUES ('06815.0207', 'CUM San Jos√©', 'Docente - Investigativa', 'CUM San Jos√© de las Lajas', '', '', '', 'Aleiny Ojito Mart√≠nez', 'Lic. Edaida Rivero Palenzuela', 'Continuidad de Estudios', false, '223.0.06815', 88);
+INSERT INTO public.cum VALUES ('06815.0211', 'CUM Nueva Paz', 'Docente - Investigativa', 'CUM Nueva Paz', 'OLPP calle 12 esq 15', '', '', 'Neysi Molina Borges', 'Lic. Olga Lidia RodrÌguez S·nchez', 'Continuidad de Estudios', false, '223.0.06815', 92);
+INSERT INTO public.cum VALUES ('06815.0216', 'CUM Quivic·n', 'Docente - Investigativa', 'CUM Quivic·n', '', '', '', '', '', 'Continuidad de Estudios', false, '223.0.06815', 97);
+INSERT INTO public.cum VALUES ('06815.0209', 'CUM Santa Cruz', 'Docente - Investigativa', 'CUM Santa Cruz del Norte', 'Escuela MINAZ Carretera CAI Camilo Cienfuegos', '', '', 'Lic. Adriana Sosa Gonz·lez', 'Lic. Miguel RamÛn GarcÌa Guzm·n', 'Continuidad de Estudios', false, '223.0.06815', 90);
+INSERT INTO public.cum VALUES ('06815.0207', 'CUM San JosÈ', 'Docente - Investigativa', 'CUM San JosÈ de las Lajas', '', '', '', 'Aleiny Ojito MartÌnez', 'Lic. Edaida Rivero Palenzuela', 'Continuidad de Estudios', false, '223.0.06815', 88);
 INSERT INTO public.cum VALUES ('0221', 'CUM Bejucal', 'Docente - Investigativa', 'CUM Bejucal', 'Calle 4 # 1706 e/ 17 y 19', '', '', '', '', 'Continuidad de Estudios', false, '223.0.06815', 87);
-INSERT INTO public.cum VALUES ('06815.0215', 'CUM Bataban√≥', 'Docente - Investigativa', 'CUM Bataban√≥', '', '', '', 'Georgi Licea P√©rez', 'MsC. Marl√©n Tabares Mesa', 'Continuidad de Estudios', false, '223.0.06815', 96);
-INSERT INTO public.cum VALUES ('06815.0212', 'CUM San Nicol√°s', 'Docente - Investigativa', 'CUM San Nicol√°s de Bari', 'Ave 63 #4825 %48 y 52', '', '', '', 'MsC. Artemio Mart√≠nez Rosa', 'Continuidad de Estudios', false, '223.0.06815', 93);
-INSERT INTO public.cum VALUES ('06815.0213', 'CUM Guines', 'Docente - Investigativa', 'CUM Guines', 'Ave 91 e/ 74 y 76', '', '', '', 'Elizabeth P√©rez Mateu', 'Continuidad de Estudios', false, '223.0.06815', 94);
-INSERT INTO public.cum VALUES ('06815.0214', 'CUM Melena ', 'Docente - Investigativa', 'CUM Melena del Sur', '', '', '', 'Lic. Syliany Salda√±a Fumero', '', 'Continuidad de Estudios', false, '223.0.06815', 95);
-INSERT INTO public.cum VALUES ('06815.0210', 'CUM Madruga', 'Docente - Investigativa', 'CUM Madruga', 'Ave 33 e/ Calle 34 y Calle 36, #3404', '', '', 'Jacqueline Arteaga Barrueta', 'MsC. Alideylis M√©ndez S√°nchez', 'Continuidad de Estudios', false, '223.0.06815', 91);
-INSERT INTO public.cum VALUES ('0225', 'CUM Jaruco', 'Docente - Investigativa', 'CUM Jaruco', '', '', '', 'Tatiana Rodr√≠guez Salazar', '', 'Continuidad de Estudios', false, '223.0.06815', 89);
+INSERT INTO public.cum VALUES ('06815.0215', 'CUM BatabanÛ', 'Docente - Investigativa', 'CUM BatabanÛ', '', '', '', 'Georgi Licea PÈrez', 'MsC. MarlÈn Tabares Mesa', 'Continuidad de Estudios', false, '223.0.06815', 96);
+INSERT INTO public.cum VALUES ('06815.0212', 'CUM San Nicol·s', 'Docente - Investigativa', 'CUM San Nicol·s de Bari', 'Ave 63 #4825 %48 y 52', '', '', '', 'MsC. Artemio MartÌnez Rosa', 'Continuidad de Estudios', false, '223.0.06815', 93);
+INSERT INTO public.cum VALUES ('06815.0213', 'CUM Guines', 'Docente - Investigativa', 'CUM Guines', 'Ave 91 e/ 74 y 76', '', '', '', 'Elizabeth PÈrez Mateu', 'Continuidad de Estudios', false, '223.0.06815', 94);
+INSERT INTO public.cum VALUES ('06815.0214', 'CUM Melena ', 'Docente - Investigativa', 'CUM Melena del Sur', '', '', '', 'Lic. Syliany SaldaÒa Fumero', '', 'Continuidad de Estudios', false, '223.0.06815', 95);
+INSERT INTO public.cum VALUES ('06815.0210', 'CUM Madruga', 'Docente - Investigativa', 'CUM Madruga', 'Ave 33 e/ Calle 34 y Calle 36, #3404', '', '', 'Jacqueline Arteaga Barrueta', 'MsC. Alideylis MÈndez S·nchez', 'Continuidad de Estudios', false, '223.0.06815', 91);
+INSERT INTO public.cum VALUES ('0225', 'CUM Jaruco', 'Docente - Investigativa', 'CUM Jaruco', '', '', '', 'Tatiana RodrÌguez Salazar', '', 'Continuidad de Estudios', false, '223.0.06815', 89);
 
 
 --
--- TOC entry 3843 (class 0 OID 16467)
--- Dependencies: 256
+-- TOC entry 3623 (class 0 OID 33601)
+-- Dependencies: 227
 -- Data for Name: cum_authorities; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.cum_authorities VALUES ('0221', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('0225', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0207', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0209', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0210', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0211', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0212', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0213', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0214', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0215', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('06815.0216', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.cum_authorities VALUES ('0221', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('0225', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0207', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0209', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0210', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0211', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0212', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0213', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0214', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0215', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('06815.0216', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.cum_authorities VALUES ('0221', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('0225', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0207', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0209', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0210', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0211', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0212', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0213', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0214', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0215', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('06815.0216', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.cum_authorities VALUES ('0221', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('0225', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0207', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0209', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0210', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0211', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0212', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0213', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0214', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0215', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0216', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.cum_authorities VALUES ('0221', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('0225', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0207', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0209', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0210', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0211', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0212', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0213', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0214', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0215', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.cum_authorities VALUES ('06815.0216', 'gabrielpg', 'ROLE_MATRICULADOR');
 
 
 --
--- TOC entry 3844 (class 0 OID 16472)
--- Dependencies: 257
+-- TOC entry 3624 (class 0 OID 33604)
+-- Dependencies: 228
 -- Data for Name: curso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.curso VALUES ('2023-2024', '2023-04-01', '2023-10-02', '2023-10-03', '2023-11-01', '2024-07-01', true, '223.0.06815', false);
 
 
 --
--- TOC entry 3845 (class 0 OID 16477)
--- Dependencies: 258
+-- TOC entry 3625 (class 0 OID 33607)
+-- Dependencies: 229
 -- Data for Name: disciplina; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.disciplina VALUES ('GYM', 'Gerencia y Marketing', false);
 INSERT INTO public.disciplina VALUES ('C', 'Calidad', false);
-INSERT INTO public.disciplina VALUES ('IDM', 'Ingenier√≠a de M√©todos', false);
-INSERT INTO public.disciplina VALUES ('FYM', 'Fisiolog√≠a y Metabolismo', false);
-INSERT INTO public.disciplina VALUES ('IA', 'Ingenier√≠a Agr√≠cola', false);
-INSERT INTO public.disciplina VALUES ('PDP', 'Procesos de Producci√≥n Agropecuaria', false);
+INSERT INTO public.disciplina VALUES ('IDM', 'IngenierÌa de MÈtodos', false);
+INSERT INTO public.disciplina VALUES ('FYM', 'FisiologÌa y Metabolismo', false);
+INSERT INTO public.disciplina VALUES ('IA', 'IngenierÌa AgrÌcola', false);
+INSERT INTO public.disciplina VALUES ('PDP', 'Procesos de ProducciÛn Agropecuaria', false);
 INSERT INTO public.disciplina VALUES ('PID', 'Proyecto Interador de Ingenieria Industrial', false);
-INSERT INTO public.disciplina VALUES ('EDL', 'Estudios de Lengua Espa√±ola', false);
-INSERT INTO public.disciplina VALUES ('PPL', 'Preparaci√≥n para la Defensa', false);
-INSERT INTO public.disciplina VALUES ('PA', 'Producci√≥n Agr√≠cola', false);
+INSERT INTO public.disciplina VALUES ('EDL', 'Estudios de Lengua EspaÒola', false);
+INSERT INTO public.disciplina VALUES ('PPL', 'PreparaciÛn para la Defensa', false);
+INSERT INTO public.disciplina VALUES ('PA', 'ProducciÛn AgrÌcola', false);
 INSERT INTO public.disciplina VALUES ('CN', 'Cuentas Nacionales', false);
-INSERT INTO public.disciplina VALUES ('IAL', 'Introducci√≥n a la Computaci√≥n', false);
+INSERT INTO public.disciplina VALUES ('IAL', 'IntroducciÛn a la ComputaciÛn', false);
 INSERT INTO public.disciplina VALUES ('A', 'Auditoria', false);
-INSERT INTO public.disciplina VALUES ('IYS', 'Informaci√≥n y Sociedad', false);
-INSERT INTO public.disciplina VALUES ('B', 'Biolog√≠a', false);
-INSERT INTO public.disciplina VALUES ('DDL', 'Direcci√≥n de la Cultura F√≠sica', false);
+INSERT INTO public.disciplina VALUES ('IYS', 'InformaciÛn y Sociedad', false);
+INSERT INTO public.disciplina VALUES ('B', 'BiologÌa', false);
+INSERT INTO public.disciplina VALUES ('DDL', 'DirecciÛn de la Cultura FÌsica', false);
 INSERT INTO public.disciplina VALUES ('CE', 'Ciencias Empresariles', false);
-INSERT INTO public.disciplina VALUES ('SDI', 'Sistemas de Ingemier√≠a Agr√≠cola', false);
-INSERT INTO public.disciplina VALUES ('IS', 'Intervenci√≥n Sociocultural', false);
-INSERT INTO public.disciplina VALUES ('PDD', 'Psicolog√≠a del Desarrollo', false);
-INSERT INTO public.disciplina VALUES ('EF', 'Educaci√≥n F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('G', 'Geograf√≠a', false);
+INSERT INTO public.disciplina VALUES ('SDI', 'Sistemas de IngemierÌa AgrÌcola', false);
+INSERT INTO public.disciplina VALUES ('IS', 'IntervenciÛn Sociocultural', false);
+INSERT INTO public.disciplina VALUES ('PDD', 'PsicologÌa del Desarrollo', false);
+INSERT INTO public.disciplina VALUES ('EF', 'EducaciÛn FÌsica', false);
+INSERT INTO public.disciplina VALUES ('G', 'GeografÌa', false);
 INSERT INTO public.disciplina VALUES ('IE', 'Idioma Extranjero', false);
-INSERT INTO public.disciplina VALUES ('F', 'F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('SYT', 'Sistemas y Tecnolog√≠as de la Informaci√≥n para el Contador', false);
+INSERT INTO public.disciplina VALUES ('F', 'FÌsica', false);
+INSERT INTO public.disciplina VALUES ('SYT', 'Sistemas y TecnologÌas de la InformaciÛn para el Contador', false);
 INSERT INTO public.disciplina VALUES ('TE', 'Temas Especiales', false);
 INSERT INTO public.disciplina VALUES ('DC', 'Derecho Civil', false);
-INSERT INTO public.disciplina VALUES ('EFG', 'Educaci√≥n F√≠sica General', false);
-INSERT INTO public.disciplina VALUES ('Q', 'Qu√≠mica', false);
+INSERT INTO public.disciplina VALUES ('EFG', 'EducaciÛn FÌsica General', false);
+INSERT INTO public.disciplina VALUES ('Q', 'QuÌmica', false);
 INSERT INTO public.disciplina VALUES ('PL', 'Procesos Laborales', false);
-INSERT INTO public.disciplina VALUES ('CB', 'Ciencias Biol√≥gicas  ', false);
-INSERT INTO public.disciplina VALUES ('RA', 'Reproducci√≥n Animal', false);
+INSERT INTO public.disciplina VALUES ('CB', 'Ciencias BiolÛgicas  ', false);
+INSERT INTO public.disciplina VALUES ('RA', 'ReproducciÛn Animal', false);
 INSERT INTO public.disciplina VALUES ('I', 'Introductorio', false);
 INSERT INTO public.disciplina VALUES ('TS', 'Trabajo Social', false);
 INSERT INTO public.disciplina VALUES ('D', 'Dibujo', false);
-INSERT INTO public.disciplina VALUES ('M', 'Matem√°tica', false);
+INSERT INTO public.disciplina VALUES ('M', 'Matem·tica', false);
 INSERT INTO public.disciplina VALUES ('SE', 'Seminarios Especiales', false);
-INSERT INTO public.disciplina VALUES ('CYS', 'Comunicaci√≥n y Sociedad', false);
-INSERT INTO public.disciplina VALUES ('PB', 'Procesos B√°sicos', false);
-INSERT INTO public.disciplina VALUES ('TYM', 'Teor√≠a y Metodolog√≠a Social', false);
+INSERT INTO public.disciplina VALUES ('CYS', 'ComunicaciÛn y Sociedad', false);
+INSERT INTO public.disciplina VALUES ('PB', 'Procesos B·sicos', false);
+INSERT INTO public.disciplina VALUES ('TYM', 'TeorÌa y MetodologÌa Social', false);
 INSERT INTO public.disciplina VALUES ('TDD', 'Trabajo de Diploma', false);
-INSERT INTO public.disciplina VALUES ('QG', 'Qu√≠mica General', false);
-INSERT INTO public.disciplina VALUES ('TYS', 'Teor√≠as y Sistemas', false);
+INSERT INTO public.disciplina VALUES ('QG', 'QuÌmica General', false);
+INSERT INTO public.disciplina VALUES ('TYS', 'TeorÌas y Sistemas', false);
 INSERT INTO public.disciplina VALUES ('ASD', 'Aspectos Socioculturales del Territorio', false);
-INSERT INTO public.disciplina VALUES ('GVY', 'Gerencia Veterinaria y Zoot√©cnica', false);
+INSERT INTO public.disciplina VALUES ('GVY', 'Gerencia Veterinaria y ZootÈcnica', false);
 INSERT INTO public.disciplina VALUES ('CP', 'Ciencias Penales', false);
-INSERT INTO public.disciplina VALUES ('TDP', 'T√©cnica de Programaci√≥n de Computadoras', false);
-INSERT INTO public.disciplina VALUES ('TEI', 'Teor√≠a e Investigaci√≥n en Comunicaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('EDP', 'Explotaci√≥n del Parque de la Maquinaria', false);
+INSERT INTO public.disciplina VALUES ('TDP', 'TÈcnica de ProgramaciÛn de Computadoras', false);
+INSERT INTO public.disciplina VALUES ('TEI', 'TeorÌa e InvestigaciÛn en ComunicaciÛn', false);
+INSERT INTO public.disciplina VALUES ('EDP', 'ExplotaciÛn del Parque de la Maquinaria', false);
 INSERT INTO public.disciplina VALUES ('CDS', 'Ciencias del Suelo', false);
 INSERT INTO public.disciplina VALUES ('HYC', 'Historia y Cultura', false);
-INSERT INTO public.disciplina VALUES ('TDL', 'Tecnolog√≠a de los Materiales', false);
+INSERT INTO public.disciplina VALUES ('TDL', 'TecnologÌa de los Materiales', false);
 INSERT INTO public.disciplina VALUES ('ML', 'Marxismo Leninismo', false);
 INSERT INTO public.disciplina VALUES ('O', 'Optativa', false);
 INSERT INTO public.disciplina VALUES ('LE', 'Lengua Extranjera', false);
-INSERT INTO public.disciplina VALUES ('IYG', 'Ingenier√≠a y gesti√≥n de Software', false);
-INSERT INTO public.disciplina VALUES ('MG', 'Matem√°tica General', false);
+INSERT INTO public.disciplina VALUES ('IYG', 'IngenierÌa y gestiÛn de Software', false);
+INSERT INTO public.disciplina VALUES ('MG', 'Matem·tica General', false);
 INSERT INTO public.disciplina VALUES ('AYL', 'Arte y Literatura', false);
-INSERT INTO public.disciplina VALUES ('FTY', 'Fundamentos Te√≥ricos y Pr√°cticos del Desempe√±o Jur√≠dico', false);
-INSERT INTO public.disciplina VALUES ('GDP', 'Gesti√≥n de Procesos Industriales', false);
-INSERT INTO public.disciplina VALUES ('NA', 'Nutrici√≥n Animal', false);
-INSERT INTO public.disciplina VALUES ('P', 'Psicopedagog√≠a', false);
+INSERT INTO public.disciplina VALUES ('FTY', 'Fundamentos TeÛricos y Pr·cticos del DesempeÒo JurÌdico', false);
+INSERT INTO public.disciplina VALUES ('GDP', 'GestiÛn de Procesos Industriales', false);
+INSERT INTO public.disciplina VALUES ('NA', 'NutriciÛn Animal', false);
+INSERT INTO public.disciplina VALUES ('P', 'PsicopedagogÌa', false);
 INSERT INTO public.disciplina VALUES ('DI', 'Disciplina Integradora', false);
-INSERT INTO public.disciplina VALUES ('BYC', 'Bibliotecolog√≠a y Ciencias de la Informaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('SI', 'Seguridad Inform√°tica', false);
-INSERT INTO public.disciplina VALUES ('FDL', 'Fundamentos de la Ingenier√≠a Industrial', false);
+INSERT INTO public.disciplina VALUES ('BYC', 'BibliotecologÌa y Ciencias de la InformaciÛn', false);
+INSERT INTO public.disciplina VALUES ('SI', 'Seguridad Inform·tica', false);
+INSERT INTO public.disciplina VALUES ('FDL', 'Fundamentos de la IngenierÌa Industrial', false);
 INSERT INTO public.disciplina VALUES ('DCY', 'Derecho Civil y Familia', false);
-INSERT INTO public.disciplina VALUES ('II', 'Inform√°tica Industrial', false);
-INSERT INTO public.disciplina VALUES ('MA', 'Matem√°tica Aplicada', false);
-INSERT INTO public.disciplina VALUES ('MB', 'MorfoBiomec√°nica', false);
+INSERT INTO public.disciplina VALUES ('II', 'Inform·tica Industrial', false);
+INSERT INTO public.disciplina VALUES ('MA', 'Matem·tica Aplicada', false);
+INSERT INTO public.disciplina VALUES ('MB', 'MorfoBiomec·nica', false);
 INSERT INTO public.disciplina VALUES ('H', 'Historia', false);
 INSERT INTO public.disciplina VALUES ('MP', 'Medicina Preventiva', false);
-INSERT INTO public.disciplina VALUES ('EYA', 'Econom√≠a y Administraci√≥n Agr√≠cola', false);
-INSERT INTO public.disciplina VALUES ('TSY', 'Teor√≠as Sociol√≥gicas y Pol√≠ticas Sociol√≥gicas Especiales', false);
-INSERT INTO public.disciplina VALUES ('PP', 'Pr√°ctica Profesional', false);
-INSERT INTO public.disciplina VALUES ('GDL', 'Gesti√≥n de las Organizaciones', false);
+INSERT INTO public.disciplina VALUES ('EYA', 'EconomÌa y AdministraciÛn AgrÌcola', false);
+INSERT INTO public.disciplina VALUES ('TSY', 'TeorÌas SociolÛgicas y PolÌticas SociolÛgicas Especiales', false);
+INSERT INTO public.disciplina VALUES ('PP', 'Pr·ctica Profesional', false);
+INSERT INTO public.disciplina VALUES ('GDL', 'GestiÛn de las Organizaciones', false);
 INSERT INTO public.disciplina VALUES ('ZG', 'Zootecnia General', false);
-INSERT INTO public.disciplina VALUES ('TC', 'Tronco Com√∫n', false);
-INSERT INTO public.disciplina VALUES ('PT', 'Procesos Tecnol√≥gicos', false);
-INSERT INTO public.disciplina VALUES ('MDL', 'Metodolog√≠a de la Investigaci√≥n Social', false);
+INSERT INTO public.disciplina VALUES ('TC', 'Tronco Com˙n', false);
+INSERT INTO public.disciplina VALUES ('PT', 'Procesos TecnolÛgicos', false);
+INSERT INTO public.disciplina VALUES ('MDL', 'MetodologÌa de la InvestigaciÛn Social', false);
 INSERT INTO public.disciplina VALUES ('CA', 'Ciencias Agropecuarias', false);
-INSERT INTO public.disciplina VALUES ('CSY', 'Ciencias Sociales y Human√≠sticas', false);
-INSERT INTO public.disciplina VALUES ('TDI', 'Tecnolog√≠as de Informaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('SDY', 'Sistemas Digitales y Aseguramiento B√°sico de Programas', false);
-INSERT INTO public.disciplina VALUES ('FTD', 'Fundamentos Te√≥ricos del Estado y el Derecho', false);
+INSERT INTO public.disciplina VALUES ('CSY', 'Ciencias Sociales y HumanÌsticas', false);
+INSERT INTO public.disciplina VALUES ('TDI', 'TecnologÌas de InformaciÛn', false);
+INSERT INTO public.disciplina VALUES ('SDY', 'Sistemas Digitales y Aseguramiento B·sico de Programas', false);
+INSERT INTO public.disciplina VALUES ('FTD', 'Fundamentos TeÛricos del Estado y el Derecho', false);
 INSERT INTO public.disciplina VALUES ('CI', 'Curso Introductorio', false);
-INSERT INTO public.disciplina VALUES ('SDP', 'Sistema de Producci√≥n (ca√±a) ', false);
-INSERT INTO public.disciplina VALUES ('DDA', 'Derecho de Administraci√≥n y de la Empresa', false);
-INSERT INTO public.disciplina VALUES ('RF', 'Recreaci√≥n F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('DIJ', 'Disciplina Integradora:Ejercicio Jur√≠dico Profesional', false);
-INSERT INTO public.disciplina VALUES ('PC', 'Psicolog√≠a Cl√≠nica', false);
-INSERT INTO public.disciplina VALUES ('PEC', 'Procesos Econ√≥micos Contables', false);
-INSERT INTO public.disciplina VALUES ('MYR', 'Mantenimiento y Reparaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('SYP', 'Salud y Producci√≥n Animal', false);
-INSERT INTO public.disciplina VALUES ('DT', 'Dibujo T√©cnico', false);
-INSERT INTO public.disciplina VALUES ('L', 'Log√≠stica', false);
-INSERT INTO public.disciplina VALUES ('TFY', 'Teor√≠a Filos√≥fica y Sociopol√≠tica', false);
+INSERT INTO public.disciplina VALUES ('SDP', 'Sistema de ProducciÛn (caÒa) ', false);
+INSERT INTO public.disciplina VALUES ('DDA', 'Derecho de AdministraciÛn y de la Empresa', false);
+INSERT INTO public.disciplina VALUES ('RF', 'RecreaciÛn FÌsica', false);
+INSERT INTO public.disciplina VALUES ('DIJ', 'Disciplina Integradora:Ejercicio JurÌdico Profesional', false);
+INSERT INTO public.disciplina VALUES ('PC', 'PsicologÌa ClÌnica', false);
+INSERT INTO public.disciplina VALUES ('PEC', 'Procesos EconÛmicos Contables', false);
+INSERT INTO public.disciplina VALUES ('MYR', 'Mantenimiento y ReparaciÛn', false);
+INSERT INTO public.disciplina VALUES ('SYP', 'Salud y ProducciÛn Animal', false);
+INSERT INTO public.disciplina VALUES ('DT', 'Dibujo TÈcnico', false);
+INSERT INTO public.disciplina VALUES ('L', 'LogÌstica', false);
+INSERT INTO public.disciplina VALUES ('TFY', 'TeorÌa FilosÛfica y SociopolÌtica', false);
 INSERT INTO public.disciplina VALUES ('SV', 'Sanidad Vegetal', false);
-INSERT INTO public.disciplina VALUES ('SP', 'Salud P√∫blica  Veterinaria', false);
+INSERT INTO public.disciplina VALUES ('SP', 'Salud P˙blica  Veterinaria', false);
 INSERT INTO public.disciplina VALUES ('AO', 'Asignaturas Optativas', false);
-INSERT INTO public.disciplina VALUES ('CFT', 'Cultura F√≠sica Terape√∫tica y Profil√°ctica', false);
-INSERT INTO public.disciplina VALUES ('ODL', 'Organizaci√≥n de la Informaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('PCY', 'Patrimonio Cultural y Tur√≠stico', false);
-INSERT INTO public.disciplina VALUES ('E', 'Electrificaci√≥n', false);
+INSERT INTO public.disciplina VALUES ('CFT', 'Cultura FÌsica Terape˙tica y Profil·ctica', false);
+INSERT INTO public.disciplina VALUES ('ODL', 'OrganizaciÛn de la InformaciÛn', false);
+INSERT INTO public.disciplina VALUES ('PCY', 'Patrimonio Cultural y TurÌstico', false);
+INSERT INTO public.disciplina VALUES ('E', 'ElectrificaciÛn', false);
 INSERT INTO public.disciplina VALUES ('TDC', 'Trabajos de Cursos', false);
-INSERT INTO public.disciplina VALUES ('PYD', 'Planificaci√≥n y Desarrollo', false);
-INSERT INTO public.disciplina VALUES ('PDC', 'Procesos de Capacitaci√≥n', false);
+INSERT INTO public.disciplina VALUES ('PYD', 'PlanificaciÛn y Desarrollo', false);
+INSERT INTO public.disciplina VALUES ('PDC', 'Procesos de CapacitaciÛn', false);
 INSERT INTO public.disciplina VALUES ('LI', 'Lengua Inglesa', false);
-INSERT INTO public.disciplina VALUES ('ADS', 'Administraci√≥n de Sistemas de Ingener√≠a', false);
+INSERT INTO public.disciplina VALUES ('ADS', 'AdministraciÛn de Sistemas de IngenerÌa', false);
 INSERT INTO public.disciplina VALUES ('EI', 'Economia Internacional', false);
-INSERT INTO public.disciplina VALUES ('EA', 'Energ√≠a Agr√≠cola', false);
-INSERT INTO public.disciplina VALUES ('AYG', 'Administraci√≥n y Gesti√≥n de Empresas', false);
-INSERT INTO public.disciplina VALUES ('IDS', 'Infraestructura de sistemas inform√°ticos', false);
-INSERT INTO public.disciplina VALUES ('DP', 'Diagn√≥stico Paracl√≠nico', false);
-INSERT INTO public.disciplina VALUES ('CO', 'Comunicaci√≥n Organizacional', false);
-INSERT INTO public.disciplina VALUES ('TYA', 'Tractores y Autom√≥viles', false);
+INSERT INTO public.disciplina VALUES ('EA', 'EnergÌa AgrÌcola', false);
+INSERT INTO public.disciplina VALUES ('AYG', 'AdministraciÛn y GestiÛn de Empresas', false);
+INSERT INTO public.disciplina VALUES ('IDS', 'Infraestructura de sistemas inform·ticos', false);
+INSERT INTO public.disciplina VALUES ('DP', 'DiagnÛstico ParaclÌnico', false);
+INSERT INTO public.disciplina VALUES ('CO', 'ComunicaciÛn Organizacional', false);
+INSERT INTO public.disciplina VALUES ('TYA', 'Tractores y AutomÛviles', false);
 INSERT INTO public.disciplina VALUES ('EDT', 'Estudio del Trabajo', false);
-INSERT INTO public.disciplina VALUES ('CDL', 'Ciencias de la Ingenier√≠a', false);
-INSERT INTO public.disciplina VALUES ('FHD', 'Fundamentos Hist√≥ricos del Estado y del Derecho', false);
-INSERT INTO public.disciplina VALUES ('TYPD', 'Teor√≠a y Pr√°ctica del Deporte', false);
+INSERT INTO public.disciplina VALUES ('CDL', 'Ciencias de la IngenierÌa', false);
+INSERT INTO public.disciplina VALUES ('FHD', 'Fundamentos HistÛricos del Estado y del Derecho', false);
+INSERT INTO public.disciplina VALUES ('TYPD', 'TeorÌa y Pr·ctica del Deporte', false);
 INSERT INTO public.disciplina VALUES ('RYD', 'Riego y Drenaje', false);
 INSERT INTO public.disciplina VALUES ('AOY', 'Asignaturas Optativas y Electivas', false);
-INSERT INTO public.disciplina VALUES ('EP', 'Econom√≠a Pol√≠tica', false);
+INSERT INTO public.disciplina VALUES ('EP', 'EconomÌa PolÌtica', false);
 INSERT INTO public.disciplina VALUES ('Z', 'Zootecnia', false);
-INSERT INTO public.disciplina VALUES ('MAA', 'Matem√°tica Aplicada a la Toma de Decisiones', false);
-INSERT INTO public.disciplina VALUES ('PPD', 'Problemas Pr√°cticos de Ingenier√≠a Industrial', false);
+INSERT INTO public.disciplina VALUES ('MAA', 'Matem·tica Aplicada a la Toma de Decisiones', false);
+INSERT INTO public.disciplina VALUES ('PPD', 'Problemas Pr·cticos de IngenierÌa Industrial', false);
 INSERT INTO public.disciplina VALUES ('MDS', 'Manejo de suelo y agua', false);
-INSERT INTO public.disciplina VALUES ('GE', 'Gesti√≥n Ecxon√≥mica', false);
-INSERT INTO public.disciplina VALUES ('PTA', 'Procesos Tecnol√≥gicos Agropecuarios', false);
+INSERT INTO public.disciplina VALUES ('GE', 'GestiÛn EcxonÛmica', false);
+INSERT INTO public.disciplina VALUES ('PTA', 'Procesos TecnolÛgicos Agropecuarios', false);
 INSERT INTO public.disciplina VALUES ('HDC', 'Historia de Cuba', false);
 INSERT INTO public.disciplina VALUES ('FG', 'Fitotecnia General', false);
-INSERT INTO public.disciplina VALUES ('trfgertrr', 'Procesos de Informaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('123er54', 'F√≠sica General', false);
+INSERT INTO public.disciplina VALUES ('trfgertrr', 'Procesos de InformaciÛn', false);
+INSERT INTO public.disciplina VALUES ('123er54', 'FÌsica General', false);
 INSERT INTO public.disciplina VALUES ('15', 'Derecho de la Empresa', false);
-INSERT INTO public.disciplina VALUES ('ingfact56', 'Ingenier√≠a del Factor Humano', false);
-INSERT INTO public.disciplina VALUES ('pedg380', 'Pedagog√≠a y Did√°ctica de la Educaci√≥n Superior', false);
-INSERT INTO public.disciplina VALUES ('GDO', 'Gesti√≥n de Organizaciones', false);
+INSERT INTO public.disciplina VALUES ('ingfact56', 'IngenierÌa del Factor Humano', false);
+INSERT INTO public.disciplina VALUES ('pedg380', 'PedagogÌa y Did·ctica de la EducaciÛn Superior', false);
+INSERT INTO public.disciplina VALUES ('GDO', 'GestiÛn de Organizaciones', false);
 INSERT INTO public.disciplina VALUES ('7859', 'Historia y Pensamiento Cultural', false);
-INSERT INTO public.disciplina VALUES ('0589', 'Promoci√≥n Sociocultural', false);
+INSERT INTO public.disciplina VALUES ('0589', 'PromociÛn Sociocultural', false);
 INSERT INTO public.disciplina VALUES ('0165', 'Curriculo Propio', false);
 INSERT INTO public.disciplina VALUES ('06914', 'Cultura Cubana', false);
-INSERT INTO public.disciplina VALUES ('02341', 'Investigaci√≥n Sociocultural', false);
+INSERT INTO public.disciplina VALUES ('02341', 'InvestigaciÛn Sociocultural', false);
 INSERT INTO public.disciplina VALUES ('20156', 'Psicologia', false);
 INSERT INTO public.disciplina VALUES ('5620', 'Fundamentos de Periodismo', false);
-INSERT INTO public.disciplina VALUES ('9531', 'Est√©tica', false);
-INSERT INTO public.disciplina VALUES ('885958', 'Metodolog√≠a e la Investigaci√≥n Sociol√≥gica', false);
-INSERT INTO public.disciplina VALUES ('8965', 'Aspectos Metodol√≥gicos Instrumentales', false);
-INSERT INTO public.disciplina VALUES ('8956', 'Psicolog√≠a Social', false);
-INSERT INTO public.disciplina VALUES ('56942', 'Psicolog√≠a de la Salud', false);
-INSERT INTO public.disciplina VALUES ('3265', 'Psicolog√≠a Organizacional I', false);
-INSERT INTO public.disciplina VALUES ('9653', 'Psicolog√≠a Laboral y de las Organizaciones', false);
-INSERT INTO public.disciplina VALUES ('965', 'Psicolog√≠a Educativa', false);
-INSERT INTO public.disciplina VALUES ('1027', 'M√°rxismo - Leninnismo e Ideario Martiano', false);
-INSERT INTO public.disciplina VALUES ('1031', 'Servicios T√©cnicos Agropecuarios', false);
-INSERT INTO public.disciplina VALUES ('1033', 'Did√°ctica de las Especialidades de la ETP', false);
-INSERT INTO public.disciplina VALUES ('1034', 'Ciencias Biol√≥gicas', false);
-INSERT INTO public.disciplina VALUES ('9998', 'Reflexi√≥n y debate', false);
-INSERT INTO public.disciplina VALUES ('1039', 'Curr√≠culo Propio', false);
-INSERT INTO public.disciplina VALUES ('52365', 'Metodolog√≠a de la Investigaci√≥n Sociol√≥gica', false);
-INSERT INTO public.disciplina VALUES ('25656', 'Teor√≠as Sociol√≥gicas y Pol√≠ticas Sociales Especiales', false);
-INSERT INTO public.disciplina VALUES ('3356', 'CULMINACI√ìN DE ESTUDIO', false);
-INSERT INTO public.disciplina VALUES ('1041', 'Formaci√≥n Pedag√≥gica General', false);
-INSERT INTO public.disciplina VALUES ('6235', 'Psicolog√≠a General', false);
+INSERT INTO public.disciplina VALUES ('9531', 'EstÈtica', false);
+INSERT INTO public.disciplina VALUES ('885958', 'MetodologÌa e la InvestigaciÛn SociolÛgica', false);
+INSERT INTO public.disciplina VALUES ('8965', 'Aspectos MetodolÛgicos Instrumentales', false);
+INSERT INTO public.disciplina VALUES ('8956', 'PsicologÌa Social', false);
+INSERT INTO public.disciplina VALUES ('56942', 'PsicologÌa de la Salud', false);
+INSERT INTO public.disciplina VALUES ('3265', 'PsicologÌa Organizacional I', false);
+INSERT INTO public.disciplina VALUES ('9653', 'PsicologÌa Laboral y de las Organizaciones', false);
+INSERT INTO public.disciplina VALUES ('965', 'PsicologÌa Educativa', false);
+INSERT INTO public.disciplina VALUES ('1027', 'M·rxismo - Leninnismo e Ideario Martiano', false);
+INSERT INTO public.disciplina VALUES ('1031', 'Servicios TÈcnicos Agropecuarios', false);
+INSERT INTO public.disciplina VALUES ('1033', 'Did·ctica de las Especialidades de la ETP', false);
+INSERT INTO public.disciplina VALUES ('1034', 'Ciencias BiolÛgicas', false);
+INSERT INTO public.disciplina VALUES ('9998', 'ReflexiÛn y debate', false);
+INSERT INTO public.disciplina VALUES ('1039', 'CurrÌculo Propio', false);
+INSERT INTO public.disciplina VALUES ('52365', 'MetodologÌa de la InvestigaciÛn SociolÛgica', false);
+INSERT INTO public.disciplina VALUES ('25656', 'TeorÌas SociolÛgicas y PolÌticas Sociales Especiales', false);
+INSERT INTO public.disciplina VALUES ('3356', 'CULMINACI”N DE ESTUDIO', false);
+INSERT INTO public.disciplina VALUES ('1041', 'FormaciÛn PedagÛgica General', false);
+INSERT INTO public.disciplina VALUES ('6235', 'PsicologÌa General', false);
 INSERT INTO public.disciplina VALUES ('1', 'MARXISMO - LENINISMO', false);
-INSERT INTO public.disciplina VALUES ('3', 'PR√ÅCTICA DE LA LENGUA INGLESA', false);
-INSERT INTO public.disciplina VALUES ('5', 'INFORM√ÅTICA EDUCATIVA', false);
-INSERT INTO public.disciplina VALUES ('32', 'EDUCACI√ìN ART√çSTICA', false);
-INSERT INTO public.disciplina VALUES ('67', 'ESTUDIOS LING√ú√çSTICOS', false);
+INSERT INTO public.disciplina VALUES ('3', 'PR¡CTICA DE LA LENGUA INGLESA', false);
+INSERT INTO public.disciplina VALUES ('5', 'INFORM¡TICA EDUCATIVA', false);
+INSERT INTO public.disciplina VALUES ('32', 'EDUCACI”N ARTÕSTICA', false);
+INSERT INTO public.disciplina VALUES ('67', 'ESTUDIOS LING‹ÕSTICOS', false);
 INSERT INTO public.disciplina VALUES ('87', 'ESTUDIOS LITERARIOS', false);
-INSERT INTO public.disciplina VALUES ('80', 'ANATOM√çA Y FISIOLOG√çA HUMANAS', false);
+INSERT INTO public.disciplina VALUES ('80', 'ANATOMÕA Y FISIOLOGÕA HUMANAS', false);
 INSERT INTO public.disciplina VALUES ('86', 'LOGOPEDIA', false);
-INSERT INTO public.disciplina VALUES ('54', 'DID√ÅCTICAS PARTICULARES', false);
-INSERT INTO public.disciplina VALUES ('65', 'FORMACI√ìN LABORAL - INVESTIGATIVA', false);
-INSERT INTO public.disciplina VALUES ('458', 'FUNDAMENTOS FILOS√ìFICOS Y SOCIOL√ìGICOS DE LA EDUCACI√ìN', false);
-INSERT INTO public.disciplina VALUES ('333', 'FUNDAMENTOS FISIOL√ìGICOS Y PSICOL√ìGICOS DE LA EDUCACI√ìN', false);
-INSERT INTO public.disciplina VALUES ('331', 'FUNDAMENTOS PEDAG√ìGICOS DE LA EDUCACI√ìN', false);
-INSERT INTO public.disciplina VALUES ('332', 'ORIENTACI√ìN EN EL CONTEXTO EDUCATIVO', false);
-INSERT INTO public.disciplina VALUES ('334', 'DID√ÅCTICA Y CURR√çCULO', false);
-INSERT INTO public.disciplina VALUES ('335', 'METODOLOG√çA DE LA INVESTIGACI√ìN', false);
-INSERT INTO public.disciplina VALUES ('337', 'FORMACI√ìN  LABORAL INVESTIGATIVA', false);
+INSERT INTO public.disciplina VALUES ('54', 'DID¡CTICAS PARTICULARES', false);
+INSERT INTO public.disciplina VALUES ('65', 'FORMACI”N LABORAL - INVESTIGATIVA', false);
+INSERT INTO public.disciplina VALUES ('458', 'FUNDAMENTOS FILOS”FICOS Y SOCIOL”GICOS DE LA EDUCACI”N', false);
+INSERT INTO public.disciplina VALUES ('333', 'FUNDAMENTOS FISIOL”GICOS Y PSICOL”GICOS DE LA EDUCACI”N', false);
+INSERT INTO public.disciplina VALUES ('331', 'FUNDAMENTOS PEDAG”GICOS DE LA EDUCACI”N', false);
+INSERT INTO public.disciplina VALUES ('332', 'ORIENTACI”N EN EL CONTEXTO EDUCATIVO', false);
+INSERT INTO public.disciplina VALUES ('334', 'DID¡CTICA Y CURRÕCULO', false);
+INSERT INTO public.disciplina VALUES ('335', 'METODOLOGÕA DE LA INVESTIGACI”N', false);
+INSERT INTO public.disciplina VALUES ('337', 'FORMACI”N  LABORAL INVESTIGATIVA', false);
 INSERT INTO public.disciplina VALUES ('354', 'MARXISMO - LENINISMO E IDEARIO MARTIANO', false);
 INSERT INTO public.disciplina VALUES ('258', 'HISTORIA DE CUBA', false);
-INSERT INTO public.disciplina VALUES ('147', 'PR√ÅCTICA INTEGRAL DE LA LENGUA ESPA√ëOLA', false);
-INSERT INTO public.disciplina VALUES ('3836', 'Sociolog√≠a', false);
-INSERT INTO public.disciplina VALUES ('9895', 'Psicolog√≠a', false);
+INSERT INTO public.disciplina VALUES ('147', 'PR¡CTICA INTEGRAL DE LA LENGUA ESPA—OLA', false);
+INSERT INTO public.disciplina VALUES ('3836', 'SociologÌa', false);
+INSERT INTO public.disciplina VALUES ('9895', 'PsicologÌa', false);
 INSERT INTO public.disciplina VALUES ('9887', 'Propiedad intelectual', false);
 INSERT INTO public.disciplina VALUES ('9668', 'Propiedad Intelectual', false);
-INSERT INTO public.disciplina VALUES ('9878', 'pedagog√≠a', false);
-INSERT INTO public.disciplina VALUES ('1452', 'Pr√°ctica Integral de la Lengua Inglesa ', false);
-INSERT INTO public.disciplina VALUES ('365', 'ESTUDIOS LINGUISTICOS DEL ESPA√ëOL ', false);
-INSERT INTO public.disciplina VALUES ('1235', 'ESTUDIOS LINGUISTICOS DEL INGL√âS', false);
+INSERT INTO public.disciplina VALUES ('9878', 'pedagogÌa', false);
+INSERT INTO public.disciplina VALUES ('1452', 'Pr·ctica Integral de la Lengua Inglesa ', false);
+INSERT INTO public.disciplina VALUES ('365', 'ESTUDIOS LINGUISTICOS DEL ESPA—OL ', false);
+INSERT INTO public.disciplina VALUES ('1235', 'ESTUDIOS LINGUISTICOS DEL INGL…S', false);
 INSERT INTO public.disciplina VALUES ('7893', 'DIDACTICA DE LAS LENGUAS EXTRANJERAS ', false);
 INSERT INTO public.disciplina VALUES ('3641', 'HISTORIA DE LA CULTURA DE LOS PUEBLOS DE HABLA INGLESA', false);
-INSERT INTO public.disciplina VALUES ('2541', 'FORMACI√ìN LABORAL INVESTIGATIVA', false);
+INSERT INTO public.disciplina VALUES ('2541', 'FORMACI”N LABORAL INVESTIGATIVA', false);
 INSERT INTO public.disciplina VALUES ('362', 'ESTUDIOS DE LA NATURALEZA', false);
 INSERT INTO public.disciplina VALUES ('030', 'Asignatura propia', false);
-INSERT INTO public.disciplina VALUES ('201030', 'Espa√±ol y Literatura', false);
-INSERT INTO public.disciplina VALUES ('2001', 'Introducci√≥n a la Metodolog√≠a de la investigaci√≥n educativa', false);
-INSERT INTO public.disciplina VALUES ('25413', 'DID√ÅCTICA DE LA LENGUA ESPA√ëOLA Y LA LITERATURA', false);
-INSERT INTO public.disciplina VALUES ('3602', 'LENGUAJE Y COMUNICACI√ìN', false);
-INSERT INTO public.disciplina VALUES ('6565', 'Promoci√≥n Cultural', false);
-INSERT INTO public.disciplina VALUES ('65487', 'Historia y Apreciaci√≥n de las Artes', false);
-INSERT INTO public.disciplina VALUES ('65875', 'Teor√≠a y Metodolog√≠a de la Educaci√≥n Art√≠stica', false);
-INSERT INTO public.disciplina VALUES ('89547', 'Talleres de Perfeccionamiento Art√≠stico', false);
+INSERT INTO public.disciplina VALUES ('201030', 'EspaÒol y Literatura', false);
+INSERT INTO public.disciplina VALUES ('2001', 'IntroducciÛn a la MetodologÌa de la investigaciÛn educativa', false);
+INSERT INTO public.disciplina VALUES ('25413', 'DID¡CTICA DE LA LENGUA ESPA—OLA Y LA LITERATURA', false);
+INSERT INTO public.disciplina VALUES ('3602', 'LENGUAJE Y COMUNICACI”N', false);
+INSERT INTO public.disciplina VALUES ('6565', 'PromociÛn Cultural', false);
+INSERT INTO public.disciplina VALUES ('65487', 'Historia y ApreciaciÛn de las Artes', false);
+INSERT INTO public.disciplina VALUES ('65875', 'TeorÌa y MetodologÌa de la EducaciÛn ArtÌstica', false);
+INSERT INTO public.disciplina VALUES ('89547', 'Talleres de Perfeccionamiento ArtÌstico', false);
 INSERT INTO public.disciplina VALUES ('65689', 'Lengua y Literatura', false);
-INSERT INTO public.disciplina VALUES ('87549', 'Requerimientos Metodol√≥gicos', false);
-INSERT INTO public.disciplina VALUES ('65989', 'Talleres para la culminaci√≥n de estudios', false);
-INSERT INTO public.disciplina VALUES ('123456', 'Investigaci√≥n y M√©todos de An√°lisis en la Cultura F√≠sica', false);
+INSERT INTO public.disciplina VALUES ('87549', 'Requerimientos MetodolÛgicos', false);
+INSERT INTO public.disciplina VALUES ('65989', 'Talleres para la culminaciÛn de estudios', false);
+INSERT INTO public.disciplina VALUES ('123456', 'InvestigaciÛn y MÈtodos de An·lisis en la Cultura FÌsica', false);
 INSERT INTO public.disciplina VALUES ('DESC', 'Desconocida', false);
-INSERT INTO public.disciplina VALUES ('saddsa', '√âtica e Ideario martiano', false);
-INSERT INTO public.disciplina VALUES ('ss55', 'Reflexi√≥n y Debate', false);
-INSERT INTO public.disciplina VALUES ('asdww', 'Comunicaci√≥n Educativa', false);
+INSERT INTO public.disciplina VALUES ('saddsa', '…tica e Ideario martiano', false);
+INSERT INTO public.disciplina VALUES ('ss55', 'ReflexiÛn y Debate', false);
+INSERT INTO public.disciplina VALUES ('asdww', 'ComunicaciÛn Educativa', false);
 INSERT INTO public.disciplina VALUES ('asdasd', 'PANORAMA DEL ARTE Y LA LITERATURA', false);
-INSERT INTO public.disciplina VALUES ('xzcva', 'HISTORIA DE LA FILOSOF√çA', false);
-INSERT INTO public.disciplina VALUES ('xccx', 'DID√ÅCTICA DE LAS CIENCIAS SOCIALES', false);
+INSERT INTO public.disciplina VALUES ('xzcva', 'HISTORIA DE LA FILOSOFÕA', false);
+INSERT INTO public.disciplina VALUES ('xccx', 'DID¡CTICA DE LAS CIENCIAS SOCIALES', false);
 INSERT INTO public.disciplina VALUES ('14s4s4s', 'HISTORIA UNIVERSAL', false);
-INSERT INTO public.disciplina VALUES ('sadsaxx', 'HISTORIA DE AM√âRICA', false);
-INSERT INTO public.disciplina VALUES ('asdcxz', '√âTICA E IDEARIO MARTIANOS', false);
-INSERT INTO public.disciplina VALUES ('4567342', 'Procesos Tecnol√≥gicos Industriales', false);
-INSERT INTO public.disciplina VALUES ('56', 'FUNDAMENTOS DE LA MATEM√ÅTICA ESCOLAR', false);
-INSERT INTO public.disciplina VALUES ('45', 'FUNDAMENTOS DE LA F√çSICA ESCOLAR', false);
-INSERT INTO public.disciplina VALUES ('58', 'DID√ÅCTICA DE LA F√çSICA', false);
-INSERT INTO public.disciplina VALUES ('546', 'AN√ÅLISIS MATEM√ÅTICO', false);
-INSERT INTO public.disciplina VALUES ('587', '√ÅLGEBRA', false);
-INSERT INTO public.disciplina VALUES ('412', 'F√çSICA GENERAL', false);
-INSERT INTO public.disciplina VALUES ('231432', 'Culminaci√≥n de Estudios', false);
-INSERT INTO public.disciplina VALUES ('231433', 'Culminaci√≥n de Estudio', false);
-INSERT INTO public.disciplina VALUES ('500', 'Gerencia de Informaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('InfEd', 'Inform√°tica Educativa', false);
-INSERT INTO public.disciplina VALUES ('PILI', 'Pr√°ctica Integral de la Lengua Inglesa', false);
+INSERT INTO public.disciplina VALUES ('sadsaxx', 'HISTORIA DE AM…RICA', false);
+INSERT INTO public.disciplina VALUES ('asdcxz', '…TICA E IDEARIO MARTIANOS', false);
+INSERT INTO public.disciplina VALUES ('4567342', 'Procesos TecnolÛgicos Industriales', false);
+INSERT INTO public.disciplina VALUES ('56', 'FUNDAMENTOS DE LA MATEM¡TICA ESCOLAR', false);
+INSERT INTO public.disciplina VALUES ('45', 'FUNDAMENTOS DE LA FÕSICA ESCOLAR', false);
+INSERT INTO public.disciplina VALUES ('58', 'DID¡CTICA DE LA FÕSICA', false);
+INSERT INTO public.disciplina VALUES ('546', 'AN¡LISIS MATEM¡TICO', false);
+INSERT INTO public.disciplina VALUES ('587', '¡LGEBRA', false);
+INSERT INTO public.disciplina VALUES ('412', 'FÕSICA GENERAL', false);
+INSERT INTO public.disciplina VALUES ('231432', 'CulminaciÛn de Estudios', false);
+INSERT INTO public.disciplina VALUES ('231433', 'CulminaciÛn de Estudio', false);
+INSERT INTO public.disciplina VALUES ('500', 'Gerencia de InformaciÛn', false);
+INSERT INTO public.disciplina VALUES ('InfEd', 'Inform·tica Educativa', false);
+INSERT INTO public.disciplina VALUES ('PILI', 'Pr·ctica Integral de la Lengua Inglesa', false);
 INSERT INTO public.disciplina VALUES ('San Ag', 'Sanidad Agropecuaria', false);
-INSERT INTO public.disciplina VALUES ('Prod An', 'Producci√≥n Animal', false);
-INSERT INTO public.disciplina VALUES ('05961', 'Formaci√≥n Pedag√≥gica', false);
-INSERT INTO public.disciplina VALUES ('112266448', 'EJERCICIO DE CULMINACI√ìN DE ESTUDIO', false);
-INSERT INTO public.disciplina VALUES ('1144557', 'Fundamentos biol√≥gicos del ejercicio f√≠sico', false);
-INSERT INTO public.disciplina VALUES ('123412', 'M√©todos de an√°lisis e investigaci√≥n de la Cultura F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('110036', 'Recreaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('10324', 'Fundamentos Biol√≥gicos de la Actividad F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('222aa', 'FUNDAMENTOS METODOL√ìGICOS PARA LA ENSE√ëANZA ', false);
-INSERT INTO public.disciplina VALUES ('asd12', 'FUNDAMENTOS SIENT√çFICOS DE LAS DISCIPLINAS DEL AREA ', false);
-INSERT INTO public.disciplina VALUES ('dsadasdas', 'FUNDAMENTOS CIENT√çFICOS DE LAS DISCIPLINAS DEL AREA ', false);
-INSERT INTO public.disciplina VALUES ('kjcnbjhvduqjdm', 'Elementos de Inform√°tica', false);
-INSERT INTO public.disciplina VALUES ('hcbhafdd6534hji', 'Lenguaje y T√©cnica de Programaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('jnstfwe53oaqks0', 'Pr√°ctica Integral de la Lengua Espa√±ola', false);
-INSERT INTO public.disciplina VALUES ('jsnuyfgiwju', 'Formaci√≥n Laboral Investigativa', false);
+INSERT INTO public.disciplina VALUES ('Prod An', 'ProducciÛn Animal', false);
+INSERT INTO public.disciplina VALUES ('05961', 'FormaciÛn PedagÛgica', false);
+INSERT INTO public.disciplina VALUES ('112266448', 'EJERCICIO DE CULMINACI”N DE ESTUDIO', false);
+INSERT INTO public.disciplina VALUES ('1144557', 'Fundamentos biolÛgicos del ejercicio fÌsico', false);
+INSERT INTO public.disciplina VALUES ('123412', 'MÈtodos de an·lisis e investigaciÛn de la Cultura FÌsica', false);
+INSERT INTO public.disciplina VALUES ('110036', 'RecreaciÛn', false);
+INSERT INTO public.disciplina VALUES ('10324', 'Fundamentos BiolÛgicos de la Actividad FÌsica', false);
+INSERT INTO public.disciplina VALUES ('222aa', 'FUNDAMENTOS METODOL”GICOS PARA LA ENSE—ANZA ', false);
+INSERT INTO public.disciplina VALUES ('asd12', 'FUNDAMENTOS SIENTÕFICOS DE LAS DISCIPLINAS DEL AREA ', false);
+INSERT INTO public.disciplina VALUES ('dsadasdas', 'FUNDAMENTOS CIENTÕFICOS DE LAS DISCIPLINAS DEL AREA ', false);
+INSERT INTO public.disciplina VALUES ('kjcnbjhvduqjdm', 'Elementos de Inform·tica', false);
+INSERT INTO public.disciplina VALUES ('hcbhafdd6534hji', 'Lenguaje y TÈcnica de ProgramaciÛn', false);
+INSERT INTO public.disciplina VALUES ('jnstfwe53oaqks0', 'Pr·ctica Integral de la Lengua EspaÒola', false);
+INSERT INTO public.disciplina VALUES ('jsnuyfgiwju', 'FormaciÛn Laboral Investigativa', false);
 INSERT INTO public.disciplina VALUES ('jbdncuyugtsd4321guywg', 'Sistemas de Aplicaciones', false);
 INSERT INTO public.disciplina VALUES ('2028', 'Procesos Agroindustriales', false);
-INSERT INTO public.disciplina VALUES ('3021', 'Procesos Tecnol√≥gicos Agroindustriales', false);
+INSERT INTO public.disciplina VALUES ('3021', 'Procesos TecnolÛgicos Agroindustriales', false);
 INSERT INTO public.disciplina VALUES ('Ingreso', 'Requirimientos de Ingreso', false);
-INSERT INTO public.disciplina VALUES ('sad211234', 'ESPA√ëOL B√ÅSICO', false);
-INSERT INTO public.disciplina VALUES ('213sda', 'PREPARACI√ìN PARA LA DEFENSA', false);
-INSERT INTO public.disciplina VALUES ('sad21ss', 'MATEM√ÅTICA B√ÅSICA', false);
-INSERT INTO public.disciplina VALUES ('SD2D2', 'Introducci√≥n al estudio de la Biolog√≠a', false);
-INSERT INTO public.disciplina VALUES ('22231', 'Historia B√°sica', false);
-INSERT INTO public.disciplina VALUES ('l√±jsadlkh', 'Estudios  lingu√≠sticos y  literarios', false);
-INSERT INTO public.disciplina VALUES ('sadn2lnl2', 'Formaci√≥n Investigativa Laboral', false);
+INSERT INTO public.disciplina VALUES ('sad211234', 'ESPA—OL B¡SICO', false);
+INSERT INTO public.disciplina VALUES ('213sda', 'PREPARACI”N PARA LA DEFENSA', false);
+INSERT INTO public.disciplina VALUES ('sad21ss', 'MATEM¡TICA B¡SICA', false);
+INSERT INTO public.disciplina VALUES ('SD2D2', 'IntroducciÛn al estudio de la BiologÌa', false);
+INSERT INTO public.disciplina VALUES ('22231', 'Historia B·sica', false);
+INSERT INTO public.disciplina VALUES ('lÒjsadlkh', 'Estudios  linguÌsticos y  literarios', false);
+INSERT INTO public.disciplina VALUES ('sadn2lnl2', 'FormaciÛn Investigativa Laboral', false);
 INSERT INTO public.disciplina VALUES ('sdd222', 'ESTUDIOS LINGUISTICOS Y LITERARIOS', false);
 INSERT INTO public.disciplina VALUES ('68477', 'Principal Integradora', false);
-INSERT INTO public.disciplina VALUES ('95656', 'Metodolog√≠a Social', false);
+INSERT INTO public.disciplina VALUES ('95656', 'MetodologÌa Social', false);
 INSERT INTO public.disciplina VALUES ('32155', 'Requisitos de Ingreso', false);
-INSERT INTO public.disciplina VALUES ('sackj', 'Mec√°nica', false);
-INSERT INTO public.disciplina VALUES ('asdlkjh', 'Metodolog√≠a de la Investigaci√≥n Educativa', false);
+INSERT INTO public.disciplina VALUES ('sackj', 'Mec·nica', false);
+INSERT INTO public.disciplina VALUES ('asdlkjh', 'MetodologÌa de la InvestigaciÛn Educativa', false);
 INSERT INTO public.disciplina VALUES ('jasdklasd', 'Salud y Sexualidad ', false);
 INSERT INTO public.disciplina VALUES ('cvzx31', 'Asignatura Requisito', false);
-INSERT INTO public.disciplina VALUES ('222222', 'DIRECCI√ìN DEL PROCESO DE ENSE√ëANZA-APRENDIZAJE DE LA BIOLOG√çA', false);
-INSERT INTO public.disciplina VALUES ('2201200', 'BIOLOG√çA MOLECULAR Y CELULAR ', false);
-INSERT INTO public.disciplina VALUES ('88888', 'EDUCACI√ìN', false);
-INSERT INTO public.disciplina VALUES ('22222', 'ORIENTACI√ìN EDUCATIVA', false);
-INSERT INTO public.disciplina VALUES ('22', 'DID√ÅCTICA DE LA QU√çMICA', false);
-INSERT INTO public.disciplina VALUES ('3333', 'Qu√≠mica Org√°nica', false);
-INSERT INTO public.disciplina VALUES ('555555', 'DPI FLI para la Ense√±anza de la Geograf√≠a', false);
-INSERT INTO public.disciplina VALUES ('0140', 'Cartograf√≠a y Sistema de Informaci√≥n Geogr√°fica', false);
-INSERT INTO public.disciplina VALUES ('123', 'Geograf√≠a F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('234', 'Geograf√≠a Econ√≥mica y Social', false);
-INSERT INTO public.disciplina VALUES ('12567', 'Pr√°ctica de Campo', false);
+INSERT INTO public.disciplina VALUES ('222222', 'DIRECCI”N DEL PROCESO DE ENSE—ANZA-APRENDIZAJE DE LA BIOLOGÕA', false);
+INSERT INTO public.disciplina VALUES ('2201200', 'BIOLOGÕA MOLECULAR Y CELULAR ', false);
+INSERT INTO public.disciplina VALUES ('88888', 'EDUCACI”N', false);
+INSERT INTO public.disciplina VALUES ('22222', 'ORIENTACI”N EDUCATIVA', false);
+INSERT INTO public.disciplina VALUES ('22', 'DID¡CTICA DE LA QUÕMICA', false);
+INSERT INTO public.disciplina VALUES ('3333', 'QuÌmica Org·nica', false);
+INSERT INTO public.disciplina VALUES ('555555', 'DPI FLI para la EnseÒanza de la GeografÌa', false);
+INSERT INTO public.disciplina VALUES ('0140', 'CartografÌa y Sistema de InformaciÛn Geogr·fica', false);
+INSERT INTO public.disciplina VALUES ('123', 'GeografÌa FÌsica', false);
+INSERT INTO public.disciplina VALUES ('234', 'GeografÌa EconÛmica y Social', false);
+INSERT INTO public.disciplina VALUES ('12567', 'Pr·ctica de Campo', false);
 INSERT INTO public.disciplina VALUES ('xzcxz', 'ALGEBRA', false);
-INSERT INTO public.disciplina VALUES ('xzcqew', 'FUNDAMENTOS B√ÅSICOS DE LA MATEM√ÅTICA ', false);
-INSERT INTO public.disciplina VALUES ('xzcasd', 'Optativa I: La Educaci√≥n Integral para la sexualidad', false);
-INSERT INTO public.disciplina VALUES ('02802-1', 'Auditor√≠a', false);
+INSERT INTO public.disciplina VALUES ('xzcqew', 'FUNDAMENTOS B¡SICOS DE LA MATEM¡TICA ', false);
+INSERT INTO public.disciplina VALUES ('xzcasd', 'Optativa I: La EducaciÛn Integral para la sexualidad', false);
+INSERT INTO public.disciplina VALUES ('02802-1', 'AuditorÌa', false);
 INSERT INTO public.disciplina VALUES ('04802-2', 'Costos', false);
-INSERT INTO public.disciplina VALUES ('7488', 'AN√ÅLISIS Y CR√çTICA LITERARIA', false);
-INSERT INTO public.disciplina VALUES ('547', 'EXPRESIONES ART√çSTICAS', false);
-INSERT INTO public.disciplina VALUES ('asdsa', 'EDUCACU√ìN F√çSICA', false);
-INSERT INTO public.disciplina VALUES ('321', 'Fundamentos te√≥ricos y did√°cticos de Nociones Elementales de la Matem√°tica', false);
-INSERT INTO public.disciplina VALUES ('23', 'MICROBIOLOG√çA', false);
-INSERT INTO public.disciplina VALUES ('sc sa', 'Bot√°nica', false);
-INSERT INTO public.disciplina VALUES ('322332', 'Gen√©tica Ecol√≥gica', false);
+INSERT INTO public.disciplina VALUES ('7488', 'AN¡LISIS Y CRÕTICA LITERARIA', false);
+INSERT INTO public.disciplina VALUES ('547', 'EXPRESIONES ARTÕSTICAS', false);
+INSERT INTO public.disciplina VALUES ('asdsa', 'EDUCACU”N FÕSICA', false);
+INSERT INTO public.disciplina VALUES ('321', 'Fundamentos teÛricos y did·cticos de Nociones Elementales de la Matem·tica', false);
+INSERT INTO public.disciplina VALUES ('23', 'MICROBIOLOGÕA', false);
+INSERT INTO public.disciplina VALUES ('sc sa', 'Bot·nica', false);
+INSERT INTO public.disciplina VALUES ('322332', 'GenÈtica EcolÛgica', false);
 INSERT INTO public.disciplina VALUES ('7890', 'Disciplina Principal Integradora', false);
-INSERT INTO public.disciplina VALUES ('ccc', 'Qu√≠mica F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('2223', 'ZOOLOG√çA GENERAL', false);
-INSERT INTO public.disciplina VALUES ('vv', 'ASIGNATURAS B√ÅSICAS', false);
-INSERT INTO public.disciplina VALUES ('55555', 'Formaci√≥n laboral Investigativa en la Cultura F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('02267', 'Pr√°ctica laboral Investigativa en la Cultura F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('5847', 'FORMACI√ìN CIUDADANA', false);
+INSERT INTO public.disciplina VALUES ('ccc', 'QuÌmica FÌsica', false);
+INSERT INTO public.disciplina VALUES ('2223', 'ZOOLOGÕA GENERAL', false);
+INSERT INTO public.disciplina VALUES ('vv', 'ASIGNATURAS B¡SICAS', false);
+INSERT INTO public.disciplina VALUES ('55555', 'FormaciÛn laboral Investigativa en la Cultura FÌsica', false);
+INSERT INTO public.disciplina VALUES ('02267', 'Pr·ctica laboral Investigativa en la Cultura FÌsica', false);
+INSERT INTO public.disciplina VALUES ('5847', 'FORMACI”N CIUDADANA', false);
 INSERT INTO public.disciplina VALUES ('kikiki', 'ASIGNATURAS DE REQUISITO', false);
-INSERT INTO public.disciplina VALUES ('5678', 'Formaci√≥n Laboral Investigativa en la ense√±anza de la F√≠sica', false);
-INSERT INTO public.disciplina VALUES ('30980938104', 'Gesti√≥n Sociocultural', false);
-INSERT INTO public.disciplina VALUES ('Des1', 'DESARROLLO Y POL√çTICAS SOCIALES', false);
+INSERT INTO public.disciplina VALUES ('5678', 'FormaciÛn Laboral Investigativa en la enseÒanza de la FÌsica', false);
+INSERT INTO public.disciplina VALUES ('30980938104', 'GestiÛn Sociocultural', false);
+INSERT INTO public.disciplina VALUES ('Des1', 'DESARROLLO Y POLÕTICAS SOCIALES', false);
 INSERT INTO public.disciplina VALUES ('met1', 'METODOLOGIA SOCIAL', false);
 INSERT INTO public.disciplina VALUES ('hist1', 'HISTORIA CULTURAL Y PENSAMIENTO SOCIAL ', false);
-INSERT INTO public.disciplina VALUES ('ECO', 'Econom√≠a Empresarial', false);
-INSERT INTO public.disciplina VALUES ('INFR', 'Infraestructuras de Sistemas Inform√°ticos', false);
+INSERT INTO public.disciplina VALUES ('ECO', 'EconomÌa Empresarial', false);
+INSERT INTO public.disciplina VALUES ('INFR', 'Infraestructuras de Sistemas Inform·ticos', false);
 INSERT INTO public.disciplina VALUES ('INTC', 'Inteligencia Computacional', false);
-INSERT INTO public.disciplina VALUES ('ECE', 'Econom√≠a Empresarial ', false);
+INSERT INTO public.disciplina VALUES ('ECE', 'EconomÌa Empresarial ', false);
 INSERT INTO public.disciplina VALUES ('INTC2', 'Inteligencia Computacional ', false);
-INSERT INTO public.disciplina VALUES ('ASB', 'Asignaturas B√°sicas', false);
-INSERT INTO public.disciplina VALUES ('MFGA', 'Morfolog√≠a', false);
+INSERT INTO public.disciplina VALUES ('ASB', 'Asignaturas B·sicas', false);
+INSERT INTO public.disciplina VALUES ('MFGA', 'MorfologÌa', false);
 INSERT INTO public.disciplina VALUES ('SMA', 'SMA', false);
-INSERT INTO public.disciplina VALUES ('oooo', 'Historia de Cuba B√°sica', false);
-INSERT INTO public.disciplina VALUES ('223a', 'Did√°ctica de la Educaci√≥n Superior', false);
-INSERT INTO public.disciplina VALUES ('IG', 'Ingl√©s', false);
-INSERT INTO public.disciplina VALUES ('DESARROLLO Y POL√çTICAS SOCIALES', 'Desarrollo y Pol√≠ticas Sociales', false);
-INSERT INTO public.disciplina VALUES ('PRO.Agro', 'PRODUCCI√ìN AGROPECUARIA', false);
+INSERT INTO public.disciplina VALUES ('oooo', 'Historia de Cuba B·sica', false);
+INSERT INTO public.disciplina VALUES ('223a', 'Did·ctica de la EducaciÛn Superior', false);
+INSERT INTO public.disciplina VALUES ('IG', 'InglÈs', false);
+INSERT INTO public.disciplina VALUES ('DESARROLLO Y POLÕTICAS SOCIALES', 'Desarrollo y PolÌticas Sociales', false);
+INSERT INTO public.disciplina VALUES ('PRO.Agro', 'PRODUCCI”N AGROPECUARIA', false);
 INSERT INTO public.disciplina VALUES ('ZOO', 'ZOOTECNIA', false);
-INSERT INTO public.disciplina VALUES ('2019-1', 'Teor√≠a Filos√≥fica y Sociopol√≠tica Marxista Leninista', false);
-INSERT INTO public.disciplina VALUES ('2019-2', 'Teor√≠a Econ√≥mica Marxista Leninista', false);
-INSERT INTO public.disciplina VALUES ('2019-3', 'M√©todos Econ√≥mico - Matem√°ticos', false);
-INSERT INTO public.disciplina VALUES ('PLCF', 'Pr√°ctica Laboral Contable y Financiera', false);
+INSERT INTO public.disciplina VALUES ('2019-1', 'TeorÌa FilosÛfica y SociopolÌtica Marxista Leninista', false);
+INSERT INTO public.disciplina VALUES ('2019-2', 'TeorÌa EconÛmica Marxista Leninista', false);
+INSERT INTO public.disciplina VALUES ('2019-3', 'MÈtodos EconÛmico - Matem·ticos', false);
+INSERT INTO public.disciplina VALUES ('PLCF', 'Pr·ctica Laboral Contable y Financiera', false);
 INSERT INTO public.disciplina VALUES ('2019-4', 'Contabilidad', false);
-INSERT INTO public.disciplina VALUES ('2019-5', 'Administraci√≥n', false);
+INSERT INTO public.disciplina VALUES ('2019-5', 'AdministraciÛn', false);
 INSERT INTO public.disciplina VALUES ('2019-8', 'Sistemas', false);
 INSERT INTO public.disciplina VALUES ('2019-9', 'Finanzas', false);
-INSERT INTO public.disciplina VALUES ('2019-10', 'Econom√≠a Internacional', false);
-INSERT INTO public.disciplina VALUES (',mcpo9', 'Administraci√≥n de Sistemas de Ingenier√≠a', false);
-INSERT INTO public.disciplina VALUES ('jhvx453fc', 'Explotaci√≥n de la Maquinaria Agr√≠cola', false);
-INSERT INTO public.disciplina VALUES ('bxndjeur', 'Sistemas de Ingenier√≠a Agr√≠cola', false);
+INSERT INTO public.disciplina VALUES ('2019-10', 'EconomÌa Internacional', false);
+INSERT INTO public.disciplina VALUES (',mcpo9', 'AdministraciÛn de Sistemas de IngenierÌa', false);
+INSERT INTO public.disciplina VALUES ('jhvx453fc', 'ExplotaciÛn de la Maquinaria AgrÌcola', false);
+INSERT INTO public.disciplina VALUES ('bxndjeur', 'Sistemas de IngenierÌa AgrÌcola', false);
 INSERT INTO public.disciplina VALUES ('GSPD-ML', 'Marxismo-Leninismo', false);
-INSERT INTO public.disciplina VALUES ('GSPD-EL', 'Estudios de la lengua espa√±ola', false);
-INSERT INTO public.disciplina VALUES ('GSPD-C', 'Computaci√≥n', false);
-INSERT INTO public.disciplina VALUES ('GSPD-DPS', 'Desarrollo y pol√≠ticas sociales', false);
+INSERT INTO public.disciplina VALUES ('GSPD-EL', 'Estudios de la lengua espaÒola', false);
+INSERT INTO public.disciplina VALUES ('GSPD-C', 'ComputaciÛn', false);
+INSERT INTO public.disciplina VALUES ('GSPD-DPS', 'Desarrollo y polÌticas sociales', false);
 INSERT INTO public.disciplina VALUES ('GSPD-HCPS', 'Historia Cultural y Pensamiento Social', false);
-INSERT INTO public.disciplina VALUES ('GSPD-PD', 'Preparaci√≥n para la defensa', false);
+INSERT INTO public.disciplina VALUES ('GSPD-PD', 'PreparaciÛn para la defensa', false);
 INSERT INTO public.disciplina VALUES ('GSD-CEI', 'Cumplimiento Exigencias de Ingreso ', false);
-INSERT INTO public.disciplina VALUES ('RPMA', 'Reproducci√≥n y mejora animal', false);
-INSERT INTO public.disciplina VALUES ('Derecho(E)LE', 'Idioma Ingl√©s', false);
-INSERT INTO public.disciplina VALUES ('345', 'Fundamentos Hist√≥ricos del Estado y el Derecho', false);
+INSERT INTO public.disciplina VALUES ('RPMA', 'ReproducciÛn y mejora animal', false);
+INSERT INTO public.disciplina VALUES ('Derecho(E)LE', 'Idioma InglÈs', false);
+INSERT INTO public.disciplina VALUES ('345', 'Fundamentos HistÛricos del Estado y el Derecho', false);
 INSERT INTO public.disciplina VALUES ('Derecho E FGED', 'Fundamentos Generales del Estado y el Derecho', false);
-INSERT INTO public.disciplina VALUES ('1314-1', 'Teor√≠a Filos√≥fica y Sociopol√≠tica Marxista - Leninista', false);
+INSERT INTO public.disciplina VALUES ('1314-1', 'TeorÌa FilosÛfica y SociopolÌtica Marxista - Leninista', false);
 INSERT INTO public.disciplina VALUES ('970', 'Derecho Civil y de Familia', false);
 INSERT INTO public.disciplina VALUES ('GSPD HCPS', 'HIstoria Cultural y Pensamiento Social', false);
-INSERT INTO public.disciplina VALUES ('DPS GSPD', 'Desarollo y Pol√≠ticas Sociales', false);
-INSERT INTO public.disciplina VALUES ('10601-2', 'Matem√°tica Superior', false);
-INSERT INTO public.disciplina VALUES ('098021', 'Inform√°tica Empresarial', false);
-INSERT INTO public.disciplina VALUES ('PII', 'Proyecto de Ingenier√≠a Industrial', false);
-INSERT INTO public.disciplina VALUES ('10601', 'Estad√≠stica e Investigaci√≥n de Operaciones', false);
-INSERT INTO public.disciplina VALUES ('10602', 'Econom√≠a y Direcci√≥n de Procesos', false);
+INSERT INTO public.disciplina VALUES ('DPS GSPD', 'Desarollo y PolÌticas Sociales', false);
+INSERT INTO public.disciplina VALUES ('10601-2', 'Matem·tica Superior', false);
+INSERT INTO public.disciplina VALUES ('098021', 'Inform·tica Empresarial', false);
+INSERT INTO public.disciplina VALUES ('PII', 'Proyecto de IngenierÌa Industrial', false);
+INSERT INTO public.disciplina VALUES ('10601', 'EstadÌstica e InvestigaciÛn de Operaciones', false);
+INSERT INTO public.disciplina VALUES ('10602', 'EconomÌa y DirecciÛn de Procesos', false);
 INSERT INTO public.disciplina VALUES ('32155-1', 'Requisitos de Ingreso y Permanencia', false);
-INSERT INTO public.disciplina VALUES ('23123', 'Diagn√≥stico Patol√≥gico', false);
-INSERT INTO public.disciplina VALUES ('Gestion socioec y administ', 'GESTI√ìN SOCIOECON√ìMICA Y ADMINISTRATIVA', false);
+INSERT INTO public.disciplina VALUES ('23123', 'DiagnÛstico PatolÛgico', false);
+INSERT INTO public.disciplina VALUES ('Gestion socioec y administ', 'GESTI”N SOCIOECON”MICA Y ADMINISTRATIVA', false);
 INSERT INTO public.disciplina VALUES ('Der', 'Derecho', false);
-INSERT INTO public.disciplina VALUES ('10601-3', 'MATEM√ÅTICA', false);
-INSERT INTO public.disciplina VALUES ('26802-4', 'Sistemas y Tecnolog√≠a de la Informaci√≥n para el Contador', false);
+INSERT INTO public.disciplina VALUES ('10601-3', 'MATEM¡TICA', false);
+INSERT INTO public.disciplina VALUES ('26802-4', 'Sistemas y TecnologÌa de la InformaciÛn para el Contador', false);
 INSERT INTO public.disciplina VALUES ('090909', 'Agua y Saneamiento', false);
-INSERT INTO public.disciplina VALUES ('98745', 'Disciplina Derecho Penal y Criminolog√≠a', false);
-INSERT INTO public.disciplina VALUES ('3456', 'Teor√≠a Marxista Leninista', false);
+INSERT INTO public.disciplina VALUES ('98745', 'Disciplina Derecho Penal y CriminologÌa', false);
+INSERT INTO public.disciplina VALUES ('3456', 'TeorÌa Marxista Leninista', false);
+INSERT INTO public.disciplina VALUES ('DTS', 'Disciplina Principal de Trabajo Social ', false);
 
 
 --
--- TOC entry 3846 (class 0 OID 16482)
--- Dependencies: 259
+-- TOC entry 3626 (class 0 OID 33610)
+-- Dependencies: 230
 -- Data for Name: disciplina_planestudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.disciplina_planestudio VALUES ('IDS', 1, 'Objetivo 1', 'Programa 1', false);
-INSERT INTO public.disciplina_planestudio VALUES (',mcpo9', 2, 'asd', 'asd', false);
 
 
 --
--- TOC entry 3847 (class 0 OID 16487)
--- Dependencies: 260
+-- TOC entry 3627 (class 0 OID 33615)
+-- Dependencies: 231
 -- Data for Name: especialidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.especialidad VALUES (1, 'Ciencias T√©cnicas', false);
-INSERT INTO public.especialidad VALUES (2, 'Ciencias Naturales y Matem√°ticas', false);
-INSERT INTO public.especialidad VALUES (3, 'Ciencias M√©dicas', false);
+INSERT INTO public.especialidad VALUES (1, 'Ciencias TÈcnicas', false);
+INSERT INTO public.especialidad VALUES (2, 'Ciencias Naturales y Matem·ticas', false);
+INSERT INTO public.especialidad VALUES (3, 'Ciencias MÈdicas', false);
 INSERT INTO public.especialidad VALUES (4, 'Ciencias Agropecuarias', false);
-INSERT INTO public.especialidad VALUES (5, 'Ciencias Econ√≥micas', false);
-INSERT INTO public.especialidad VALUES (6, 'Ciencias Sociales y Human√≠sticas', false);
-INSERT INTO public.especialidad VALUES (7, 'Ciencias Pedag√≥gicas', false);
-INSERT INTO public.especialidad VALUES (8, 'Cultura F√≠sica y Deportes', false);
+INSERT INTO public.especialidad VALUES (5, 'Ciencias EconÛmicas', false);
+INSERT INTO public.especialidad VALUES (6, 'Ciencias Sociales y HumanÌsticas', false);
+INSERT INTO public.especialidad VALUES (7, 'Ciencias PedagÛgicas', false);
+INSERT INTO public.especialidad VALUES (8, 'Cultura FÌsica y Deportes', false);
 INSERT INTO public.especialidad VALUES (9, 'Arte', false);
 INSERT INTO public.especialidad VALUES (10, 'Estudios en el extranjero', false);
 INSERT INTO public.especialidad VALUES (11, 'Facultad Preparatoria', false);
@@ -2768,12 +2705,12 @@ INSERT INTO public.especialidad VALUES (12, 'Ciencias Militares', false);
 
 
 --
--- TOC entry 3848 (class 0 OID 16491)
--- Dependencies: 261
+-- TOC entry 3629 (class 0 OID 33619)
+-- Dependencies: 233
 -- Data for Name: especialidad_militar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.especialidad_militar VALUES (1, 'Artiller√≠a', false);
+INSERT INTO public.especialidad_militar VALUES (1, 'ArtillerÌa', false);
 INSERT INTO public.especialidad_militar VALUES (2, 'Inteligencia', false);
 INSERT INTO public.especialidad_militar VALUES (3, 'Ninguna', false);
 INSERT INTO public.especialidad_militar VALUES (4, 'Otra', false);
@@ -2781,8 +2718,8 @@ INSERT INTO public.especialidad_militar VALUES (5, 'Zapadores', false);
 
 
 --
--- TOC entry 3849 (class 0 OID 16495)
--- Dependencies: 262
+-- TOC entry 3631 (class 0 OID 33623)
+-- Dependencies: 235
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2795,34 +2732,30 @@ INSERT INTO public.estado_civil VALUES (6, 'Unido (a)', false);
 
 
 --
--- TOC entry 3850 (class 0 OID 16499)
--- Dependencies: 263
+-- TOC entry 3633 (class 0 OID 33627)
+-- Dependencies: 237
 -- Data for Name: estado_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.estado_estudiante VALUES (1, 'Activo', false);
-INSERT INTO public.estado_estudiante VALUES (2, 'Nueva Matr√≠cula', false);
+INSERT INTO public.estado_estudiante VALUES (2, 'Nueva MatrÌcula', false);
 INSERT INTO public.estado_estudiante VALUES (3, 'Baja', false);
 INSERT INTO public.estado_estudiante VALUES (4, 'Egresado', false);
-INSERT INTO public.estado_estudiante VALUES (5, 'Pr√≥rroga de Tesis', false);
+INSERT INTO public.estado_estudiante VALUES (5, 'PrÛrroga de Tesis', false);
 INSERT INTO public.estado_estudiante VALUES (6, 'Matricula Pasiva', false);
 
 
 --
--- TOC entry 3851 (class 0 OID 16503)
--- Dependencies: 264
+-- TOC entry 3635 (class 0 OID 33631)
+-- Dependencies: 239
 -- Data for Name: estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.estudiante VALUES ('98061804576', '1998-06-18', 0, 'Ivett', 'Sosa', 'Franco', '47-84-32-12', 'Nueva Paz', 'gabrielpga20@gmail.com', false, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL, NULL, 'Nueva Paz', 1, 1, 4, 4, 2, 1, 3, '2023-04-18', '2023-04-18', 92, 2, 1);
-INSERT INTO public.estudiante VALUES ('94091027302', '1994-09-10', 0, 'Gabriel Alberto', 'P√©rez', 'Guerra', '47-84-32-12', 'Edificio 43', 'gabrielpga20@gmail.com', true, 18000, 'Carmen Gri√±√°n Ramos', 'EPEP Occidente', 'Via blanca', '77-96-25-01', 90, 15, 20, 2, true, '2014-04-20', 4, 2, 1, 'Santa Cruz del Norte', 2, 1, 4, 4, 2, 2, 3, '2023-04-18', '2023-04-18', 88, 2, 1);
-INSERT INTO public.estudiante VALUES ('95052501457', '1995-05-25', 0, 'H√©ctor', 'Guti√©rrez', 'Fern√°ndez', '54-54-54-54', 'Campo Florido 1', 'hector9505@gmail.com', false, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL, NULL, 'Campo Florido', 2, 1, 4, 4, 1, 2, 2, '2023-04-23', '2023-04-23', 77, 4, 1);
-INSERT INTO public.estudiante VALUES ('91141525454', '1992-02-15', 0, 'Luis', 'Vuit√≥n', 'Benitez', '23-42-34-23', 'asd', 'asd@asd.asd', false, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, NULL, NULL, NULL, 'asd', 2, 1, 1, 4, 5, 7, 2, '2023-04-24', '2023-04-24', NULL, NULL, 22);
 
 
 --
--- TOC entry 3852 (class 0 OID 16509)
--- Dependencies: 265
+-- TOC entry 3636 (class 0 OID 33637)
+-- Dependencies: 240
 -- Data for Name: examen; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2832,83 +2765,40 @@ INSERT INTO public.examen VALUES (3, 'Convocatoria 3', false);
 
 
 --
--- TOC entry 3853 (class 0 OID 16513)
--- Dependencies: 266
+-- TOC entry 3638 (class 0 OID 33641)
+-- Dependencies: 242
 -- Data for Name: examen_matricula_facultad_cum_carrera_estudiante_asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.examen_matricula_facultad_cum_carrera_estudiante_asignatura VALUES (1, 1, '', '120', 1, '94091027302', '2023-04-18', 1, false, 0);
-INSERT INTO public.examen_matricula_facultad_cum_carrera_estudiante_asignatura VALUES (2, 1, '', '120', 1, '94091027302', '2023-04-18', 1, true, 0);
-INSERT INTO public.examen_matricula_facultad_cum_carrera_estudiante_asignatura VALUES (3, 1, '', '120', 1, '94091027302', '2023-04-18', 1, true, 0);
 
 
 --
--- TOC entry 3854 (class 0 OID 16518)
--- Dependencies: 267
+-- TOC entry 3639 (class 0 OID 33644)
+-- Dependencies: 243
 -- Data for Name: facultad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.facultad VALUES ('111', 'Ciencias Pedag√≥gicas', '', 'DrC. Orlianis Farradas L√≥pez', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
-INSERT INTO public.facultad VALUES ('802', 'Ciencias Econ√≥micas', 'Gabriela Ramos Reyes', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('111', 'Ciencias PedagÛgicas', '', 'DrC. Orlianis Farradas LÛpez', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('802', 'Ciencias EconÛmicas', 'Gabriela Ramos Reyes', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
 INSERT INTO public.facultad VALUES ('7118e3c1:11d012c1880:-7214', 'Preparatoria', 'Lic. Yamaily Cepero Atencio', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
-INSERT INTO public.facultad VALUES ('602', 'Agronom√≠a', 'Miriam Gladys Ofarrill Ferrer', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
-INSERT INTO public.facultad VALUES ('120', 'Ciencias T√©cnicas', '', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
-INSERT INTO public.facultad VALUES ('603', 'Medicina Veterinaria y Zootecnia', 'Andrea Susana Laguardia Garc√≠a', 'DrC.  Walberto L√≥riga Pe√±a', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
-INSERT INTO public.facultad VALUES ('-3eb40587:11d6e697e6e:-566d', 'Cultura F√≠sica', '', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
-INSERT INTO public.facultad VALUES ('314', 'Ciencias Sociales y Human√≠sticas', 'M√≥nica Alvarez Gonz√°lez', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('602', 'AgronomÌa', 'Miriam Gladys Ofarrill Ferrer', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('120', 'Ciencias TÈcnicas', '', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('-3eb40587:11d6e697e6e:-566d', 'Cultura FÌsica', '', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('314', 'Ciencias Sociales y HumanÌsticas', 'MÛnica Alvarez Gonz·lez', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
+INSERT INTO public.facultad VALUES ('603', 'Medicina Veterinaria y Zootecnia', 'Andrea Susana Laguardia GarcÌa', '', '', 'Carretera Tapaste y Autopista Nacional km 23 1/2', false, 88, '223.0.06815');
 
 
 --
--- TOC entry 3855 (class 0 OID 16523)
--- Dependencies: 268
+-- TOC entry 3640 (class 0 OID 33647)
+-- Dependencies: 244
 -- Data for Name: facultad_authorities; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.facultad_authorities VALUES ('-3eb40587:11d6e697e6e:-566d', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('111', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('120', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('314', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('602', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('603', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('7118e3c1:11d012c1880:-7214', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('802', 'gabrielpg', 'ROLE_ADMIN');
-INSERT INTO public.facultad_authorities VALUES ('-3eb40587:11d6e697e6e:-566d', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('111', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('120', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('314', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('602', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('603', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('7118e3c1:11d012c1880:-7214', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('802', 'gabrielpg', 'ROLE_SECRETARIA');
-INSERT INTO public.facultad_authorities VALUES ('-3eb40587:11d6e697e6e:-566d', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('111', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('120', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('314', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('602', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('603', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('7118e3c1:11d012c1880:-7214', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('802', 'gabrielpg', 'ROLE_SECRETARIO_GENERAL');
-INSERT INTO public.facultad_authorities VALUES ('-3eb40587:11d6e697e6e:-566d', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('111', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('120', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('314', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('602', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('603', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('7118e3c1:11d012c1880:-7214', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('802', 'gabrielpg', 'ROLE_CONTROLADOR');
-INSERT INTO public.facultad_authorities VALUES ('-3eb40587:11d6e697e6e:-566d', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('111', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('120', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('314', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('602', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('603', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('7118e3c1:11d012c1880:-7214', 'gabrielpg', 'ROLE_MATRICULADOR');
-INSERT INTO public.facultad_authorities VALUES ('802', 'gabrielpg', 'ROLE_MATRICULADOR');
 
 
 --
--- TOC entry 3856 (class 0 OID 16528)
--- Dependencies: 269
+-- TOC entry 3641 (class 0 OID 33650)
+-- Dependencies: 245
 -- Data for Name: facultad_cum; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2917,67 +2807,38 @@ INSERT INTO public.facultad_cum VALUES ('', '802', false);
 INSERT INTO public.facultad_cum VALUES ('', '7118e3c1:11d012c1880:-7214', false);
 INSERT INTO public.facultad_cum VALUES ('', '602', false);
 INSERT INTO public.facultad_cum VALUES ('', '120', false);
-INSERT INTO public.facultad_cum VALUES ('', '603', false);
 INSERT INTO public.facultad_cum VALUES ('', '-3eb40587:11d6e697e6e:-566d', false);
 INSERT INTO public.facultad_cum VALUES ('', '314', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0214', '120', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0211', '120', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0216', '120', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0207', '120', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0212', '120', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0209', '120', false);
-INSERT INTO public.facultad_cum VALUES ('06815.0215', '120', false);
-INSERT INTO public.facultad_cum VALUES ('0221', '120', false);
+INSERT INTO public.facultad_cum VALUES ('', '603', false);
 
 
 --
--- TOC entry 3857 (class 0 OID 16533)
--- Dependencies: 270
+-- TOC entry 3642 (class 0 OID 33653)
+-- Dependencies: 246
 -- Data for Name: facultad_cum_carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.facultad_cum_carrera VALUES ('', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0214', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0211', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0216', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0207', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0212', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0209', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('06815.0215', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('0221', '120', 1, false);
-INSERT INTO public.facultad_cum_carrera VALUES ('', '120', 2, false);
 
 
 --
--- TOC entry 3858 (class 0 OID 16538)
--- Dependencies: 271
+-- TOC entry 3643 (class 0 OID 33656)
+-- Dependencies: 247
 -- Data for Name: facultad_cum_carrera_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.facultad_cum_carrera_estudiante VALUES ('06815.0211', '120', 1, '98061804576', '2023-04-18', false, 1, 0, 0, 0, 0, 1, 2, 1, 15);
-INSERT INTO public.facultad_cum_carrera_estudiante VALUES ('06815.0216', '120', 1, '95052501457', '2023-04-23', false, 1, 0, 0, 0, 0, 1, 2, 1, 5);
-INSERT INTO public.facultad_cum_carrera_estudiante VALUES ('', '120', 2, '91141525454', '2023-04-24', false, 1, 0, 0, 0, 0, 1, 2, 2, 8);
-INSERT INTO public.facultad_cum_carrera_estudiante VALUES ('', '120', 1, '94091027302', '2023-04-18', false, 1, 100, 100, 100, 100, 1, 1, 1, 7);
 
 
 --
--- TOC entry 3859 (class 0 OID 16543)
--- Dependencies: 272
+-- TOC entry 3644 (class 0 OID 33659)
+-- Dependencies: 248
 -- Data for Name: facultad_cum_carrera_estudiante_asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('', '120', 1, '94091027302', '2023-04-18', 2, false, true);
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('06815.0211', '120', 1, '98061804576', '2023-04-18', 1, false, true);
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('06815.0211', '120', 1, '98061804576', '2023-04-18', 2, false, true);
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('06815.0216', '120', 1, '95052501457', '2023-04-23', 1, false, true);
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('06815.0216', '120', 1, '95052501457', '2023-04-23', 2, false, true);
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('', '120', 2, '91141525454', '2023-04-24', 3, false, true);
-INSERT INTO public.facultad_cum_carrera_estudiante_asignatura VALUES ('', '120', 1, '94091027302', '2023-04-18', 1, false, false);
 
 
 --
--- TOC entry 3860 (class 0 OID 16548)
--- Dependencies: 273
+-- TOC entry 3645 (class 0 OID 33662)
+-- Dependencies: 249
 -- Data for Name: fuente_ingreso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2989,19 +2850,19 @@ INSERT INTO public.fuente_ingreso VALUES (5, 'Cadetes MININT', false);
 INSERT INTO public.fuente_ingreso VALUES (6, 'Discapacitados', false);
 INSERT INTO public.fuente_ingreso VALUES (7, 'Concurso', false);
 INSERT INTO public.fuente_ingreso VALUES (8, 'Cadetes MINFAR', false);
-INSERT INTO public.fuente_ingreso VALUES (9, 'Escuelas de Iniciaci√≥n Deportiva (EIDE)', false);
+INSERT INTO public.fuente_ingreso VALUES (9, 'Escuelas de IniciaciÛn Deportiva (EIDE)', false);
 INSERT INTO public.fuente_ingreso VALUES (10, 'Ganadores de Eventos', false);
 INSERT INTO public.fuente_ingreso VALUES (11, 'Servicio Militar Voluntario Femenino', false);
 INSERT INTO public.fuente_ingreso VALUES (12, 'Curso por Encuentro', false);
-INSERT INTO public.fuente_ingreso VALUES (13, 'Ense√±anza T√©cnico Provincial', false);
+INSERT INTO public.fuente_ingreso VALUES (13, 'EnseÒanza TÈcnico Provincial', false);
 INSERT INTO public.fuente_ingreso VALUES (14, 'Academias Deportivas de Alto Rendimiento', false);
 INSERT INTO public.fuente_ingreso VALUES (15, 'Institutos Preuniversitarios', false);
-INSERT INTO public.fuente_ingreso VALUES (16, 'Escuela de formaci√≥n de maestros', false);
+INSERT INTO public.fuente_ingreso VALUES (16, 'Escuela de formaciÛn de maestros', false);
 
 
 --
--- TOC entry 3861 (class 0 OID 16552)
--- Dependencies: 274
+-- TOC entry 3647 (class 0 OID 33666)
+-- Dependencies: 251
 -- Data for Name: grado_militar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3013,8 +2874,8 @@ INSERT INTO public.grado_militar VALUES (5, 'Otro', false);
 
 
 --
--- TOC entry 3862 (class 0 OID 16556)
--- Dependencies: 275
+-- TOC entry 3649 (class 0 OID 33670)
+-- Dependencies: 253
 -- Data for Name: huerfano; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3025,35 +2886,33 @@ INSERT INTO public.huerfano VALUES (4, 'Ninguno', false);
 
 
 --
--- TOC entry 3863 (class 0 OID 16560)
--- Dependencies: 276
+-- TOC entry 3651 (class 0 OID 33674)
+-- Dependencies: 255
 -- Data for Name: matricula; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.matricula VALUES (1, '2023-04-26', '2023-08-01', false, false, '2023-2024', '', '120', 1);
 
 
 --
--- TOC entry 3864 (class 0 OID 16566)
--- Dependencies: 277
+-- TOC entry 3652 (class 0 OID 33677)
+-- Dependencies: 256
 -- Data for Name: matricula_facultad_cum_carrera_estudiante_asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.matricula_facultad_cum_carrera_estudiante_asignatura VALUES (1, '', '120', 1, '94091027302', '2023-04-18', 1, false, true);
 
 
 --
--- TOC entry 3865 (class 0 OID 16571)
--- Dependencies: 278
+-- TOC entry 3654 (class 0 OID 33681)
+-- Dependencies: 258
 -- Data for Name: minusvalia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.minusvalia VALUES (1, 'D√©bil auditivo', false);
+INSERT INTO public.minusvalia VALUES (1, 'DÈbil auditivo', false);
 INSERT INTO public.minusvalia VALUES (2, 'Deficiente permanente del habla o mudo', false);
-INSERT INTO public.minusvalia VALUES (3, 'D√©bil visual', false);
+INSERT INTO public.minusvalia VALUES (3, 'DÈbil visual', false);
 INSERT INTO public.minusvalia VALUES (4, 'Sordo', false);
-INSERT INTO public.minusvalia VALUES (5, 'F√≠sico Motor', false);
-INSERT INTO public.minusvalia VALUES (6, 'Enfermo mental cr√≥nico', false);
+INSERT INTO public.minusvalia VALUES (5, 'FÌsico Motor', false);
+INSERT INTO public.minusvalia VALUES (6, 'Enfermo mental crÛnico', false);
 INSERT INTO public.minusvalia VALUES (7, 'Retraso mental', false);
 INSERT INTO public.minusvalia VALUES (8, 'Ausencia de extremidades inferiores', false);
 INSERT INTO public.minusvalia VALUES (9, 'Invalidez de extremidades inferiores', false);
@@ -3063,36 +2922,33 @@ INSERT INTO public.minusvalia VALUES (12, 'Ciego', false);
 
 
 --
--- TOC entry 3866 (class 0 OID 16575)
--- Dependencies: 279
+-- TOC entry 3655 (class 0 OID 33684)
+-- Dependencies: 259
 -- Data for Name: minusvalia_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.minusvalia_estudiante VALUES (1, '94091027302');
-INSERT INTO public.minusvalia_estudiante VALUES (8, '94091027302');
-INSERT INTO public.minusvalia_estudiante VALUES (12, '94091027302');
 
 
 --
--- TOC entry 3867 (class 0 OID 16578)
--- Dependencies: 280
+-- TOC entry 3657 (class 0 OID 33688)
+-- Dependencies: 261
 -- Data for Name: motivo_baja; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.motivo_baja VALUES (1, 'Definitiva', 2, false);
-INSERT INTO public.motivo_baja VALUES (2, 'Deserci√≥n', 2, false);
+INSERT INTO public.motivo_baja VALUES (2, 'DeserciÛn', 2, false);
 INSERT INTO public.motivo_baja VALUES (3, 'Voluntaria', 2, false);
 INSERT INTO public.motivo_baja VALUES (4, 'Inasistencia', 1, false);
 INSERT INTO public.motivo_baja VALUES (5, 'Insuficiencia Docente', 1, false);
-INSERT INTO public.motivo_baja VALUES (6, 'Licencia de Matr√≠cula', 1, false);
-INSERT INTO public.motivo_baja VALUES (7, 'P√©rdida de Requisitos', 1, false);
-INSERT INTO public.motivo_baja VALUES (8, 'Sanci√≥n Disciplinaria', 1, false);
+INSERT INTO public.motivo_baja VALUES (6, 'Licencia de MatrÌcula', 1, false);
+INSERT INTO public.motivo_baja VALUES (7, 'PÈrdida de Requisitos', 1, false);
+INSERT INTO public.motivo_baja VALUES (8, 'SanciÛn Disciplinaria', 1, false);
 INSERT INTO public.motivo_baja VALUES (9, 'Traslado', 1, false);
 
 
 --
--- TOC entry 3868 (class 0 OID 16584)
--- Dependencies: 281
+-- TOC entry 3659 (class 0 OID 33692)
+-- Dependencies: 263
 -- Data for Name: municipio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3260,16 +3116,16 @@ INSERT INTO public.municipio VALUES (160, 15, 'SAN ANTONIO DEL SUR', false);
 INSERT INTO public.municipio VALUES (161, 15, 'CAIMANERA', false);
 INSERT INTO public.municipio VALUES (162, 15, 'NICETO PEREZ', false);
 INSERT INTO public.municipio VALUES (163, 16, 'ISLA DE LA JUVENTUD', false);
-INSERT INTO public.municipio VALUES (164, 3, 'VI√ëALES', false);
-INSERT INTO public.municipio VALUES (165, 1, 'SAN ANTONIO DE LOS BA√ëOS', false);
+INSERT INTO public.municipio VALUES (164, 3, 'VI—ALES', false);
+INSERT INTO public.municipio VALUES (165, 1, 'SAN ANTONIO DE LOS BA—OS', false);
 INSERT INTO public.municipio VALUES (166, 7, 'AGUADA DE PASAJEROS', false);
 INSERT INTO public.municipio VALUES (167, 3, 'SAN LUIS', false);
 INSERT INTO public.municipio VALUES (168, 7, 'CIENFUEGOS', false);
 
 
 --
--- TOC entry 3869 (class 0 OID 16588)
--- Dependencies: 282
+-- TOC entry 3661 (class 0 OID 33696)
+-- Dependencies: 265
 -- Data for Name: nivel_escolar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3281,13 +3137,13 @@ INSERT INTO public.nivel_escolar VALUES (5, 'Desconocido', false);
 
 
 --
--- TOC entry 3870 (class 0 OID 16592)
--- Dependencies: 283
+-- TOC entry 3663 (class 0 OID 33700)
+-- Dependencies: 267
 -- Data for Name: ocupacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.ocupacion VALUES (1, 'Obrero', false);
-INSERT INTO public.ocupacion VALUES (2, 'T√©cnico', false);
+INSERT INTO public.ocupacion VALUES (2, 'TÈcnico', false);
 INSERT INTO public.ocupacion VALUES (3, 'Dirigente', false);
 INSERT INTO public.ocupacion VALUES (4, 'Profesional', false);
 INSERT INTO public.ocupacion VALUES (5, 'Ama de casa', false);
@@ -3297,29 +3153,29 @@ INSERT INTO public.ocupacion VALUES (8, 'Jubilado', false);
 INSERT INTO public.ocupacion VALUES (9, 'Servicios', false);
 INSERT INTO public.ocupacion VALUES (10, 'Administrativo', false);
 INSERT INTO public.ocupacion VALUES (11, 'Desconocido', false);
-INSERT INTO public.ocupacion VALUES (12, 'Otra ocupaci√≥n', false);
+INSERT INTO public.ocupacion VALUES (12, 'Otra ocupaciÛn', false);
 INSERT INTO public.ocupacion VALUES (13, 'Turismo', false);
 
 
 --
--- TOC entry 3871 (class 0 OID 16596)
--- Dependencies: 284
+-- TOC entry 3665 (class 0 OID 33704)
+-- Dependencies: 269
 -- Data for Name: ong; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3872 (class 0 OID 16600)
--- Dependencies: 285
+-- TOC entry 3666 (class 0 OID 33707)
+-- Dependencies: 270
 -- Data for Name: ong_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3873 (class 0 OID 16603)
--- Dependencies: 286
+-- TOC entry 3668 (class 0 OID 33711)
+-- Dependencies: 272
 -- Data for Name: organismo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3373,8 +3229,8 @@ INSERT INTO public.organismo VALUES (47, 'Organismo Desconocido', false);
 
 
 --
--- TOC entry 3874 (class 0 OID 16607)
--- Dependencies: 287
+-- TOC entry 3670 (class 0 OID 33715)
+-- Dependencies: 274
 -- Data for Name: organizacion_politica; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3385,8 +3241,8 @@ INSERT INTO public.organizacion_politica VALUES (4, 'Ninguna', false);
 
 
 --
--- TOC entry 3875 (class 0 OID 16611)
--- Dependencies: 288
+-- TOC entry 3672 (class 0 OID 33719)
+-- Dependencies: 276
 -- Data for Name: organizacion_popular; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3395,18 +3251,16 @@ INSERT INTO public.organizacion_popular VALUES (2, 'FMC', false);
 
 
 --
--- TOC entry 3876 (class 0 OID 16615)
--- Dependencies: 289
+-- TOC entry 3673 (class 0 OID 33722)
+-- Dependencies: 277
 -- Data for Name: organizacion_popular_estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.organizacion_popular_estudiante VALUES (1, '94091027302');
-INSERT INTO public.organizacion_popular_estudiante VALUES (1, '91141525454');
 
 
 --
--- TOC entry 3877 (class 0 OID 16618)
--- Dependencies: 290
+-- TOC entry 3675 (class 0 OID 33726)
+-- Dependencies: 279
 -- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3414,7 +3268,7 @@ INSERT INTO public.pais VALUES (1, 'Cuba', false);
 INSERT INTO public.pais VALUES (-1, '', false);
 INSERT INTO public.pais VALUES (2, 'Egipto', false);
 INSERT INTO public.pais VALUES (3, 'Croacia', false);
-INSERT INTO public.pais VALUES (4, 'T√∫nez', false);
+INSERT INTO public.pais VALUES (4, 'T˙nez', false);
 INSERT INTO public.pais VALUES (5, 'Bolivia', false);
 INSERT INTO public.pais VALUES (6, 'Noruega', false);
 INSERT INTO public.pais VALUES (7, 'Arabia Saudita', false);
@@ -3422,46 +3276,46 @@ INSERT INTO public.pais VALUES (8, 'Timor Leste', false);
 INSERT INTO public.pais VALUES (9, 'Sri Lanka', false);
 INSERT INTO public.pais VALUES (10, 'Servia', false);
 INSERT INTO public.pais VALUES (11, 'Gibraltar', false);
-INSERT INTO public.pais VALUES (12, 'Turkmenist√°n', false);
+INSERT INTO public.pais VALUES (12, 'Turkmenist·n', false);
 INSERT INTO public.pais VALUES (13, 'Argentina', false);
-INSERT INTO public.pais VALUES (14, 'Espa√±a', false);
+INSERT INTO public.pais VALUES (14, 'EspaÒa', false);
 INSERT INTO public.pais VALUES (15, 'Burkina Faso', false);
 INSERT INTO public.pais VALUES (16, 'Guernesey', false);
-INSERT INTO public.pais VALUES (17, 'Rep√∫blica de Corea', false);
+INSERT INTO public.pais VALUES (17, 'Rep˙blica de Corea', false);
 INSERT INTO public.pais VALUES (18, 'Zimbabwe', false);
 INSERT INTO public.pais VALUES (19, 'Islas Marshall', false);
-INSERT INTO public.pais VALUES (20, 'Islas V√≠rgenes de los Estados Unidos', false);
-INSERT INTO public.pais VALUES (21, 'Rep√∫blica Bolivariana de Venezuela', false);
+INSERT INTO public.pais VALUES (20, 'Islas VÌrgenes de los Estados Unidos', false);
+INSERT INTO public.pais VALUES (21, 'Rep˙blica Bolivariana de Venezuela', false);
 INSERT INTO public.pais VALUES (22, 'Francia', false);
 INSERT INTO public.pais VALUES (23, 'Mongolia', false);
 INSERT INTO public.pais VALUES (24, 'Mozambique', false);
 INSERT INTO public.pais VALUES (25, 'Chad', false);
-INSERT INTO public.pais VALUES (26, 'Pakist√°n', false);
+INSERT INTO public.pais VALUES (26, 'Pakist·n', false);
 INSERT INTO public.pais VALUES (27, 'Fiji', false);
 INSERT INTO public.pais VALUES (28, 'Guadalupe', false);
 INSERT INTO public.pais VALUES (29, 'Filipinas', false);
 INSERT INTO public.pais VALUES (30, 'Armenia', false);
 INSERT INTO public.pais VALUES (31, 'Sierra Leona', false);
-INSERT INTO public.pais VALUES (32, 'Belar√∫s', false);
-INSERT INTO public.pais VALUES (33, 'Rep√∫blica Unida de Tanzania', false);
-INSERT INTO public.pais VALUES (34, 'Islas √Öland', false);
-INSERT INTO public.pais VALUES (35, 'Ir√°n', false);
+INSERT INTO public.pais VALUES (32, 'Belar˙s', false);
+INSERT INTO public.pais VALUES (33, 'Rep˙blica Unida de Tanzania', false);
+INSERT INTO public.pais VALUES (34, 'Islas ≈land', false);
+INSERT INTO public.pais VALUES (35, 'Ir·n', false);
 INSERT INTO public.pais VALUES (36, 'Lesotho', false);
-INSERT INTO public.pais VALUES (37, 'Islas V√≠rgenes Brit√°nicas', false);
+INSERT INTO public.pais VALUES (37, 'Islas VÌrgenes Brit·nicas', false);
 INSERT INTO public.pais VALUES (38, 'Iraq', false);
 INSERT INTO public.pais VALUES (39, 'Montenegro', false);
-INSERT INTO public.pais VALUES (40, 'Gab√≥n', false);
+INSERT INTO public.pais VALUES (40, 'GabÛn', false);
 INSERT INTO public.pais VALUES (41, 'Chipre', false);
 INSERT INTO public.pais VALUES (42, 'Marruecos', false);
 INSERT INTO public.pais VALUES (43, 'Qatar', false);
 INSERT INTO public.pais VALUES (44, 'China', false);
 INSERT INTO public.pais VALUES (45, 'Andorra', false);
-INSERT INTO public.pais VALUES (46, 'Jap√≥n', false);
+INSERT INTO public.pais VALUES (46, 'JapÛn', false);
 INSERT INTO public.pais VALUES (47, 'Anguila', false);
 INSERT INTO public.pais VALUES (48, 'Saint Kitts y Nevis', false);
-INSERT INTO public.pais VALUES (49, 'Bhut√°n', false);
+INSERT INTO public.pais VALUES (49, 'Bhut·n', false);
 INSERT INTO public.pais VALUES (50, 'Bahrein', false);
-INSERT INTO public.pais VALUES (51, 'Kazajst√°n', false);
+INSERT INTO public.pais VALUES (51, 'Kazajst·n', false);
 INSERT INTO public.pais VALUES (52, 'El Salvador', false);
 INSERT INTO public.pais VALUES (53, 'Territorio Palestino Ocupado', false);
 INSERT INTO public.pais VALUES (54, 'Granada', false);
@@ -3469,7 +3323,7 @@ INSERT INTO public.pais VALUES (55, 'Tailandia', false);
 INSERT INTO public.pais VALUES (56, 'Grecia', false);
 INSERT INTO public.pais VALUES (57, 'Islas Norfolk', false);
 INSERT INTO public.pais VALUES (58, 'Islas Feroe', false);
-INSERT INTO public.pais VALUES (59, 'C√¥te D¬¥Ivoire', false);
+INSERT INTO public.pais VALUES (59, 'CÙte D¥Ivoire', false);
 INSERT INTO public.pais VALUES (60, 'Nueva Caledonia', false);
 INSERT INTO public.pais VALUES (61, 'Suiza', false);
 INSERT INTO public.pais VALUES (62, 'Gambia', false);
@@ -3480,19 +3334,19 @@ INSERT INTO public.pais VALUES (66, 'Austria', false);
 INSERT INTO public.pais VALUES (67, 'Puerto Rico', false);
 INSERT INTO public.pais VALUES (68, 'Singapur', false);
 INSERT INTO public.pais VALUES (69, 'Bermuda', false);
-INSERT INTO public.pais VALUES (70, 'Rep√∫blica Centro Africana', false);
+INSERT INTO public.pais VALUES (70, 'Rep˙blica Centro Africana', false);
 INSERT INTO public.pais VALUES (71, 'Comores', false);
 INSERT INTO public.pais VALUES (72, 'Kiribati', false);
 INSERT INTO public.pais VALUES (73, 'Nauru', false);
 INSERT INTO public.pais VALUES (74, 'Nueva Zelanda', false);
-INSERT INTO public.pais VALUES (75, 'Rep√∫blica Dominicana', false);
+INSERT INTO public.pais VALUES (75, 'Rep˙blica Dominicana', false);
 INSERT INTO public.pais VALUES (76, 'Irlanda', false);
-INSERT INTO public.pais VALUES (77, 'L√≠bano', false);
+INSERT INTO public.pais VALUES (77, 'LÌbano', false);
 INSERT INTO public.pais VALUES (78, 'Aruba', false);
 INSERT INTO public.pais VALUES (79, 'Liberia', false);
-INSERT INTO public.pais VALUES (80, 'Federaci√≥n Rusa', false);
+INSERT INTO public.pais VALUES (80, 'FederaciÛn Rusa', false);
 INSERT INTO public.pais VALUES (81, 'Reino Unido', false);
-INSERT INTO public.pais VALUES (82, 'Hungr√≠a', false);
+INSERT INTO public.pais VALUES (82, 'HungrÌa', false);
 INSERT INTO public.pais VALUES (83, 'Dinamarca', false);
 INSERT INTO public.pais VALUES (84, 'Paraguay', false);
 INSERT INTO public.pais VALUES (85, 'Malasia', false);
@@ -3500,7 +3354,7 @@ INSERT INTO public.pais VALUES (86, 'Estonia', false);
 INSERT INTO public.pais VALUES (87, 'Islas Wallis y Futuna', false);
 INSERT INTO public.pais VALUES (88, 'Santa Sede', false);
 INSERT INTO public.pais VALUES (89, 'Portugal', false);
-INSERT INTO public.pais VALUES (90, 'Santo Tom√© y Pr√≠ncipe', false);
+INSERT INTO public.pais VALUES (90, 'Santo TomÈ y PrÌncipe', false);
 INSERT INTO public.pais VALUES (91, 'Honduras', false);
 INSERT INTO public.pais VALUES (92, 'Jordania', false);
 INSERT INTO public.pais VALUES (93, 'Montserrat', false);
@@ -3510,11 +3364,11 @@ INSERT INTO public.pais VALUES (96, 'Macedonia', false);
 INSERT INTO public.pais VALUES (97, 'Rwanda', false);
 INSERT INTO public.pais VALUES (98, 'Djibouti', false);
 INSERT INTO public.pais VALUES (99, 'Suriname', false);
-INSERT INTO public.pais VALUES (100, 'M√©xico', false);
+INSERT INTO public.pais VALUES (100, 'MÈxico', false);
 INSERT INTO public.pais VALUES (101, 'Nigeria', false);
-INSERT INTO public.pais VALUES (102, 'Pa√≠ses Bajos', false);
-INSERT INTO public.pais VALUES (103, 'Hait√≠', false);
-INSERT INTO public.pais VALUES (104, 'Rep√∫blica Democr√°tica del Congo', false);
+INSERT INTO public.pais VALUES (102, 'PaÌses Bajos', false);
+INSERT INTO public.pais VALUES (103, 'HaitÌ', false);
+INSERT INTO public.pais VALUES (104, 'Rep˙blica Democr·tica del Congo', false);
 INSERT INTO public.pais VALUES (105, 'Malta', false);
 INSERT INTO public.pais VALUES (106, 'Polonia', false);
 INSERT INTO public.pais VALUES (107, 'Senegal', false);
@@ -3530,7 +3384,7 @@ INSERT INTO public.pais VALUES (116, 'Isla de Man', false);
 INSERT INTO public.pais VALUES (117, 'Saint Pierre y Miquelon', false);
 INSERT INTO public.pais VALUES (118, 'Swazilandia', false);
 INSERT INTO public.pais VALUES (119, 'Togo', false);
-INSERT INTO public.pais VALUES (120, 'Kirguizist√°n', false);
+INSERT INTO public.pais VALUES (120, 'Kirguizist·n', false);
 INSERT INTO public.pais VALUES (121, 'Nepal', false);
 INSERT INTO public.pais VALUES (122, 'Mauricio', false);
 INSERT INTO public.pais VALUES (123, 'Luxemburgo', false);
@@ -3543,14 +3397,15 @@ INSERT INTO public.pais VALUES (129, 'Ucrania', false);
 INSERT INTO public.pais VALUES (130, 'Letonia', false);
 INSERT INTO public.pais VALUES (131, 'Tuvalu', false);
 INSERT INTO public.pais VALUES (132, 'Bosnia y Herzegovina', false);
-INSERT INTO public.pais VALUES (133, 'Turqu√≠a', false);
+INSERT INTO public.pais VALUES (133, 'TurquÌa', false);
+INSERT INTO public.pais VALUES (134, 'Afganist·n', false);
 INSERT INTO public.pais VALUES (135, 'Samoa Americana', false);
 INSERT INTO public.pais VALUES (136, 'Congo', false);
 INSERT INTO public.pais VALUES (137, 'Indonesia', false);
 INSERT INTO public.pais VALUES (138, 'Ecuador', false);
 INSERT INTO public.pais VALUES (139, 'Islas Turcas y Caicos', false);
 INSERT INTO public.pais VALUES (140, 'Israel', false);
-INSERT INTO public.pais VALUES (141, 'B√©lgica', false);
+INSERT INTO public.pais VALUES (141, 'BÈlgica', false);
 INSERT INTO public.pais VALUES (142, 'Groenlandia', false);
 INSERT INTO public.pais VALUES (143, 'Alemania', false);
 INSERT INTO public.pais VALUES (144, 'Palau', false);
@@ -3560,80 +3415,80 @@ INSERT INTO public.pais VALUES (147, 'Lituania', false);
 INSERT INTO public.pais VALUES (148, 'Myanmar', false);
 INSERT INTO public.pais VALUES (149, 'Burundi', false);
 INSERT INTO public.pais VALUES (150, 'Islas Svalbard y Jan Mayen', false);
-INSERT INTO public.pais VALUES (151, 'Panam√°', false);
+INSERT INTO public.pais VALUES (151, 'Panam·', false);
 INSERT INTO public.pais VALUES (152, 'Micronesia', false);
 INSERT INTO public.pais VALUES (153, 'Eritrea', false);
 INSERT INTO public.pais VALUES (154, 'Jersey', false);
 INSERT INTO public.pais VALUES (155, 'Benin', false);
 INSERT INTO public.pais VALUES (156, 'Malawi', false);
 INSERT INTO public.pais VALUES (157, 'Estados Unidos', false);
-INSERT INTO public.pais VALUES (158, 'Azerbaiy√°n', false);
+INSERT INTO public.pais VALUES (158, 'Azerbaiy·n', false);
 INSERT INTO public.pais VALUES (159, 'Georgia', false);
-INSERT INTO public.pais VALUES (160, 'Uzbekist√°n', false);
+INSERT INTO public.pais VALUES (160, 'Uzbekist·n', false);
 INSERT INTO public.pais VALUES (161, 'India', false);
-INSERT INTO public.pais VALUES (162, 'Islas Caim√°n', false);
+INSERT INTO public.pais VALUES (162, 'Islas Caim·n', false);
 INSERT INTO public.pais VALUES (163, 'Madagascar', false);
 INSERT INTO public.pais VALUES (164, 'Santa Elena', false);
 INSERT INTO public.pais VALUES (165, 'Uruguay', false);
-INSERT INTO public.pais VALUES (166, 'Santa Luc√≠a', false);
-INSERT INTO public.pais VALUES (167, 'Sud√°frica', false);
+INSERT INTO public.pais VALUES (166, 'Santa LucÌa', false);
+INSERT INTO public.pais VALUES (167, 'Sud·frica', false);
 INSERT INTO public.pais VALUES (168, 'Bahamas', false);
-INSERT INTO public.pais VALUES (169, 'Hong Kong (regi√≥n administrativa especial de China)', false);
+INSERT INTO public.pais VALUES (169, 'Hong Kong (regiÛn administrativa especial de China)', false);
 INSERT INTO public.pais VALUES (170, 'Guinea-Bissau', false);
 INSERT INTO public.pais VALUES (171, 'Seychelles', false);
 INSERT INTO public.pais VALUES (172, 'Vanuatu', false);
 INSERT INTO public.pais VALUES (173, 'Islas Marianas Septentrionales', false);
 INSERT INTO public.pais VALUES (174, 'Argelia', false);
-INSERT INTO public.pais VALUES (175, 'Provincia China de Taiw√°n', false);
+INSERT INTO public.pais VALUES (175, 'Provincia China de Taiw·n', false);
 INSERT INTO public.pais VALUES (176, 'Guinea Ecuatorial', false);
 INSERT INTO public.pais VALUES (177, 'Kuwait', false);
 INSERT INTO public.pais VALUES (178, 'Colombia', false);
 INSERT INTO public.pais VALUES (179, 'Papua Nueva Guinea', false);
-INSERT INTO public.pais VALUES (180, 'Camer√∫n', false);
+INSERT INTO public.pais VALUES (180, 'Camer˙n', false);
 INSERT INTO public.pais VALUES (181, 'Trinidad y Tobago', false);
 INSERT INTO public.pais VALUES (182, 'Islas Malvinas', false);
-INSERT INTO public.pais VALUES (183, 'Sud√°n', false);
+INSERT INTO public.pais VALUES (183, 'Sud·n', false);
 INSERT INTO public.pais VALUES (184, 'Liechtenstein', false);
 INSERT INTO public.pais VALUES (185, 'Guayana Francesa', false);
 INSERT INTO public.pais VALUES (186, 'Brunei Darussalam', false);
-INSERT INTO public.pais VALUES (187, 'Reuni√≥n', false);
+INSERT INTO public.pais VALUES (187, 'ReuniÛn', false);
 INSERT INTO public.pais VALUES (188, 'Sahara Occidental', false);
 INSERT INTO public.pais VALUES (189, 'Guinea', false);
 INSERT INTO public.pais VALUES (190, 'Zambia', false);
-INSERT INTO public.pais VALUES (191, 'M√≥naco', false);
+INSERT INTO public.pais VALUES (191, 'MÛnaco', false);
 INSERT INTO public.pais VALUES (192, 'Botswana', false);
-INSERT INTO public.pais VALUES (193, 'Rep√∫blica de Moldavia', false);
+INSERT INTO public.pais VALUES (193, 'Rep˙blica de Moldavia', false);
 INSERT INTO public.pais VALUES (194, 'Nicaragua', false);
-INSERT INTO public.pais VALUES (195, 'Rep√∫blica Checa', false);
+INSERT INTO public.pais VALUES (195, 'Rep˙blica Checa', false);
 INSERT INTO public.pais VALUES (196, 'Samoa', false);
 INSERT INTO public.pais VALUES (197, 'Macao', false);
-INSERT INTO public.pais VALUES (198, 'Tayikist√°n', false);
+INSERT INTO public.pais VALUES (198, 'Tayikist·n', false);
 INSERT INTO public.pais VALUES (199, 'Maldivas', false);
-INSERT INTO public.pais VALUES (200, 'Rep√∫blica Democr√°tica Popular Lao', false);
+INSERT INTO public.pais VALUES (200, 'Rep˙blica Democr·tica Popular Lao', false);
 INSERT INTO public.pais VALUES (201, 'Emiratos Arabes Unidos', false);
 INSERT INTO public.pais VALUES (202, 'Martinica', false);
-INSERT INTO public.pais VALUES (203, 'N√≠ger', false);
-INSERT INTO public.pais VALUES (204, 'Rep√∫blica Arabe Siria', false);
-INSERT INTO public.pais VALUES (205, 'Etiop√≠a', false);
+INSERT INTO public.pais VALUES (203, 'NÌger', false);
+INSERT INTO public.pais VALUES (204, 'Rep˙blica Arabe Siria', false);
+INSERT INTO public.pais VALUES (205, 'EtiopÌa', false);
 INSERT INTO public.pais VALUES (206, 'Islandia', false);
-INSERT INTO public.pais VALUES (207, 'Canad√°', false);
+INSERT INTO public.pais VALUES (207, 'Canad·', false);
 INSERT INTO public.pais VALUES (208, 'Mayotte', false);
 INSERT INTO public.pais VALUES (209, 'Polinesia Francesa', false);
 INSERT INTO public.pais VALUES (210, 'San Vicente y las Granadinas', false);
 INSERT INTO public.pais VALUES (211, 'Suecia', false);
-INSERT INTO public.pais VALUES (212, 'Islas Salom√≥n', false);
+INSERT INTO public.pais VALUES (212, 'Islas SalomÛn', false);
 INSERT INTO public.pais VALUES (213, 'Mauritania', false);
 INSERT INTO public.pais VALUES (214, 'Albania', false);
 INSERT INTO public.pais VALUES (215, 'Islas Cook', false);
 INSERT INTO public.pais VALUES (216, 'Italia', false);
-INSERT INTO public.pais VALUES (217, 'Rep√∫blica Popular Democr√°tica de Corea', false);
+INSERT INTO public.pais VALUES (217, 'Rep˙blica Popular Democr·tica de Corea', false);
 INSERT INTO public.pais VALUES (218, 'Jamahiriya Arabe de Libia', false);
 INSERT INTO public.pais VALUES (219, 'Uganda', false);
-INSERT INTO public.pais VALUES (220, 'Om√°n', false);
+INSERT INTO public.pais VALUES (220, 'Om·n', false);
 INSERT INTO public.pais VALUES (221, 'Antigua y Barbuda', false);
 INSERT INTO public.pais VALUES (222, 'Chile', false);
 INSERT INTO public.pais VALUES (223, 'Belice', false);
-INSERT INTO public.pais VALUES (224, 'Mal√≠', false);
+INSERT INTO public.pais VALUES (224, 'MalÌ', false);
 INSERT INTO public.pais VALUES (225, 'Australia', false);
 INSERT INTO public.pais VALUES (226, 'Guam', false);
 INSERT INTO public.pais VALUES (227, 'Camboya', false);
@@ -3641,70 +3496,67 @@ INSERT INTO public.pais VALUES (228, 'Viet Nam', false);
 INSERT INTO public.pais VALUES (229, 'Niue', false);
 INSERT INTO public.pais VALUES (230, 'Tonga', false);
 INSERT INTO public.pais VALUES (231, 'San Marino', false);
-INSERT INTO public.pais VALUES (232, 'Per√∫', false);
+INSERT INTO public.pais VALUES (232, 'Per˙', false);
 INSERT INTO public.pais VALUES (233, 'Eslovenia', false);
 INSERT INTO public.pais VALUES (234, 'Bulgaria', false);
 INSERT INTO public.pais VALUES (235, 'No Especificado', false);
 INSERT INTO public.pais VALUES (236, 'Curazao', false);
 INSERT INTO public.pais VALUES (237, 'Sint Marteen (parte Holandesa)', false);
 INSERT INTO public.pais VALUES (238, 'Donaire, Saint Eustatius y Saba', false);
-INSERT INTO public.pais VALUES (239, 'Saint-Bartolom√©', false);
-INSERT INTO public.pais VALUES (134, 'Afganist√°n', false);
+INSERT INTO public.pais VALUES (239, 'Saint-BartolomÈ', false);
 
 
 --
--- TOC entry 3878 (class 0 OID 16622)
--- Dependencies: 291
+-- TOC entry 3677 (class 0 OID 33730)
+-- Dependencies: 281
 -- Data for Name: planestudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.planestudio VALUES (1, 'Plan Estudio de Ingenier√≠a Inform√°tica', true, false, 3, 1, '2023-2024', 'Plan de Estudio D');
-INSERT INTO public.planestudio VALUES (2, '', true, false, 1, 2, '2023-2024', 'Plan de Estudio D');
 
 
 --
--- TOC entry 3879 (class 0 OID 16628)
--- Dependencies: 292
+-- TOC entry 3679 (class 0 OID 33736)
+-- Dependencies: 283
 -- Data for Name: procedencia_escolar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.procedencia_escolar VALUES (1, 'Preuniversitario', false);
-INSERT INTO public.procedencia_escolar VALUES (2, 'Ense√±anza T√©cnica y Profesional', false);
+INSERT INTO public.procedencia_escolar VALUES (2, 'EnseÒanza TÈcnica y Profesional', false);
 INSERT INTO public.procedencia_escolar VALUES (3, 'FOC', false);
 INSERT INTO public.procedencia_escolar VALUES (4, 'Estudios en el extranjero', false);
-INSERT INTO public.procedencia_escolar VALUES (5, 'Curso de Superaci√≥n Integral para J√≥venes', false);
-INSERT INTO public.procedencia_escolar VALUES (6, 'Nivelaci√≥n Orden 18', false);
+INSERT INTO public.procedencia_escolar VALUES (5, 'Curso de SuperaciÛn Integral para JÛvenes', false);
+INSERT INTO public.procedencia_escolar VALUES (6, 'NivelaciÛn Orden 18', false);
 INSERT INTO public.procedencia_escolar VALUES (7, 'Escuela Emergente', false);
 
 
 --
--- TOC entry 3880 (class 0 OID 16632)
--- Dependencies: 293
+-- TOC entry 3681 (class 0 OID 33740)
+-- Dependencies: 285
 -- Data for Name: provincia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.provincia VALUES (-1, -1, '', false);
+INSERT INTO public.provincia VALUES (1, 1, 'Artemisa', false);
 INSERT INTO public.provincia VALUES (2, 1, 'Mayabeque', false);
-INSERT INTO public.provincia VALUES (3, 1, 'Pinar del R√≠o', false);
+INSERT INTO public.provincia VALUES (3, 1, 'Pinar del RÌo', false);
 INSERT INTO public.provincia VALUES (4, 1, 'La Habana', false);
 INSERT INTO public.provincia VALUES (5, 1, 'Matanzas', false);
 INSERT INTO public.provincia VALUES (6, 1, 'Villa Clara', false);
 INSERT INTO public.provincia VALUES (7, 1, 'Cienfuegos', false);
-INSERT INTO public.provincia VALUES (8, 1, 'Santis Sp√≠ritus', false);
+INSERT INTO public.provincia VALUES (8, 1, 'Santis SpÌritus', false);
 INSERT INTO public.provincia VALUES (9, 1, 'Ciego de Avila', false);
-INSERT INTO public.provincia VALUES (10, 1, 'Camag√ºey', false);
+INSERT INTO public.provincia VALUES (10, 1, 'Camag¸ey', false);
 INSERT INTO public.provincia VALUES (11, 1, 'Las Tunas', false);
-INSERT INTO public.provincia VALUES (12, 1, 'Holgu√≠n', false);
+INSERT INTO public.provincia VALUES (12, 1, 'HolguÌn', false);
 INSERT INTO public.provincia VALUES (13, 1, 'Granma', false);
 INSERT INTO public.provincia VALUES (14, 1, 'Santiago de Cuba', false);
-INSERT INTO public.provincia VALUES (15, 1, 'Guant√°namo', false);
+INSERT INTO public.provincia VALUES (15, 1, 'Guant·namo', false);
 INSERT INTO public.provincia VALUES (16, 1, 'Isla de la Juventud', false);
-INSERT INTO public.provincia VALUES (1, 1, 'Artemisa', false);
 
 
 --
--- TOC entry 3881 (class 0 OID 16636)
--- Dependencies: 294
+-- TOC entry 3683 (class 0 OID 33744)
+-- Dependencies: 287
 -- Data for Name: sexo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3713,22 +3565,22 @@ INSERT INTO public.sexo VALUES (2, 'Masculino', false);
 
 
 --
--- TOC entry 3882 (class 0 OID 16640)
--- Dependencies: 295
+-- TOC entry 3685 (class 0 OID 33748)
+-- Dependencies: 289
 -- Data for Name: sindicato; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.sindicato VALUES (1, 'Sindicato Nacional de los Trabajadores Civiles de la Defensa', false);
-INSERT INTO public.sindicato VALUES (2, 'Sindicato Nacional de los Trabajadores del Comercio y la Gastronom√≠a', false);
+INSERT INTO public.sindicato VALUES (2, 'Sindicato Nacional de los Trabajadores del Comercio y la GastronomÌa', false);
 INSERT INTO public.sindicato VALUES (3, 'Sindicato Nacional de los Trabajadores de las Comunicaciones', false);
-INSERT INTO public.sindicato VALUES (4, 'Sindicato Nacional de los Trabajadores de la Construcci√≥n', false);
+INSERT INTO public.sindicato VALUES (4, 'Sindicato Nacional de los Trabajadores de la ConstrucciÛn', false);
 INSERT INTO public.sindicato VALUES (5, 'Sindicato Nacional de los Trabajadores de la Cultura', false);
-INSERT INTO public.sindicato VALUES (6, 'Sindicato Nacional de los Trabajadores de la Educaci√≥n y el Deporte', false);
+INSERT INTO public.sindicato VALUES (6, 'Sindicato Nacional de los Trabajadores de la EducaciÛn y el Deporte', false);
 INSERT INTO public.sindicato VALUES (7, 'Sindicato Nacional de los Trabajadores de la Industria Alimenticia', false);
 INSERT INTO public.sindicato VALUES (8, 'Sindicato Nacional de los Trabajadores de la Industria Ligera', false);
-INSERT INTO public.sindicato VALUES (9, 'Sindicato Nacional de los Trabajadores de la Industria Qu√≠mico - Minero - Energ√©tica', false);
+INSERT INTO public.sindicato VALUES (9, 'Sindicato Nacional de los Trabajadores de la Industria QuÌmico - Minero - EnergÈtica', false);
 INSERT INTO public.sindicato VALUES (10, 'Sindicato Nacional de los Trabajadores de la Marina Mercante, Puertos y Pesca', false);
-INSERT INTO public.sindicato VALUES (11, 'Sindicato Nacional de los Trabajadores Metal√∫rgicos y Electr√≥nicos', false);
+INSERT INTO public.sindicato VALUES (11, 'Sindicato Nacional de los Trabajadores Metal˙rgicos y ElectrÛnicos', false);
 INSERT INTO public.sindicato VALUES (12, 'Sindicato Nacional de los Trabajadores de la Salud', false);
 INSERT INTO public.sindicato VALUES (13, 'Sindicato Nacional de los Trabajadores Tabacaleros', false);
 INSERT INTO public.sindicato VALUES (14, 'Sindicato Nacional de los Trabajadores del Transporte', false);
@@ -3736,25 +3588,25 @@ INSERT INTO public.sindicato VALUES (15, 'Sindicato Nacional de los Trabajadores
 INSERT INTO public.sindicato VALUES (16, 'Sindicato Nacional de los Trabajadores de las Ciencias', false);
 INSERT INTO public.sindicato VALUES (17, 'Sindicato Nacional de los Trabajadores Azucareros', false);
 INSERT INTO public.sindicato VALUES (18, 'Sindicato Nacional de los Trabajadores Agropecuarios y Forestales', false);
-INSERT INTO public.sindicato VALUES (19, 'Sindicato Nacional de los Trabajadores de la Administraci√≥n P√∫blica', false);
+INSERT INTO public.sindicato VALUES (19, 'Sindicato Nacional de los Trabajadores de la AdministraciÛn P˙blica', false);
 INSERT INTO public.sindicato VALUES (20, 'Desconocido', false);
 
 
 --
--- TOC entry 3883 (class 0 OID 16644)
--- Dependencies: 296
+-- TOC entry 3687 (class 0 OID 33752)
+-- Dependencies: 291
 -- Data for Name: tipo_asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_asignatura VALUES (1, 'B√°sica', false);
+INSERT INTO public.tipo_asignatura VALUES (1, 'B·sica', false);
 INSERT INTO public.tipo_asignatura VALUES (2, 'Obligatoria', false);
 INSERT INTO public.tipo_asignatura VALUES (3, 'Optativa', false);
 INSERT INTO public.tipo_asignatura VALUES (4, 'Electiva', false);
 
 
 --
--- TOC entry 3884 (class 0 OID 16648)
--- Dependencies: 297
+-- TOC entry 3689 (class 0 OID 33756)
+-- Dependencies: 293
 -- Data for Name: tipo_baja; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3763,92 +3615,80 @@ INSERT INTO public.tipo_baja VALUES (2, 'Permanente', false);
 
 
 --
--- TOC entry 3885 (class 0 OID 16652)
--- Dependencies: 298
+-- TOC entry 3691 (class 0 OID 33760)
+-- Dependencies: 295
 -- Data for Name: tipo_evaluacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.tipo_evaluacion VALUES (1, 'Examen Final', false);
 INSERT INTO public.tipo_evaluacion VALUES (2, 'Trabajo de Curso', false);
-INSERT INTO public.tipo_evaluacion VALUES (3, 'Desempe√±o', false);
+INSERT INTO public.tipo_evaluacion VALUES (3, 'DesempeÒo', false);
 
 
 --
--- TOC entry 3886 (class 0 OID 16656)
--- Dependencies: 299
+-- TOC entry 3693 (class 0 OID 33764)
+-- Dependencies: 297
 -- Data for Name: tipo_militar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_militar VALUES (2, 'Militar escondido', false);
-INSERT INTO public.tipo_militar VALUES (1, 'Militar traidor', false);
 
 
 --
--- TOC entry 3887 (class 0 OID 16660)
--- Dependencies: 300
+-- TOC entry 3695 (class 0 OID 33768)
+-- Dependencies: 299
 -- Data for Name: tipoplanestudio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipoplanestudio VALUES ('Plan de Estudio D', false, false);
 
 
 --
--- TOC entry 3888 (class 0 OID 16663)
--- Dependencies: 301
+-- TOC entry 3696 (class 0 OID 33771)
+-- Dependencies: 300
 -- Data for Name: tutor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tutor VALUES (1, 'Leyanys Guerra M√©ndez', '', 4000, 4, 3, 10, false, 1, '94091027302');
-INSERT INTO public.tutor VALUES (2, 'Gabriel Alexis P√©rez Viciedo', '', 18000, 4, 4, 10, false, 2, '94091027302');
-INSERT INTO public.tutor VALUES (3, 'Yuliet', '', 18000, 4, 3, 10, false, 1, '98061804576');
-INSERT INTO public.tutor VALUES (4, 'Lazaro', '', 4000, 4, 3, 10, false, 2, '98061804576');
-INSERT INTO public.tutor VALUES (34, 'Zara', '', 0, 4, 2, 6, false, 1, '95052501457');
-INSERT INTO public.tutor VALUES (35, 'Felipe', '', 0, 4, 2, 6, false, 2, '95052501457');
-INSERT INTO public.tutor VALUES (36, 'asd', '', 0, 4, 2, 6, false, 1, '91141525454');
-INSERT INTO public.tutor VALUES (37, 'asd', '', 0, 4, 2, 6, false, 2, '91141525454');
 
 
 --
--- TOC entry 3889 (class 0 OID 16669)
+-- TOC entry 3698 (class 0 OID 33775)
 -- Dependencies: 302
 -- Data for Name: universidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.universidad VALUES ('', '', '', '', '', '', '', '', '', '', false, -1);
-INSERT INTO public.universidad VALUES ('223.0.06815', 'UNIVERSIDAD AGRARIA DE LA HABANA "FRUCTUOSO RODR√çGUEZ P√âREZ"', 'UNAH', 'Docente - investigaci√≥n', '47-86-33-95', 'Ministerio de Educaci√≥n Superior', '47-86-33-95', 'Antihus Alexander', 'Vladimir Torres', 'Carretera de Tapaste y 8 V√≠as', false, 88);
+INSERT INTO public.universidad VALUES ('223.0.06815', 'UNIVERSIDAD AGRARIA DE LA HABANA "FRUCTUOSO RODRÕGUEZ P…REZ"', 'UNAH', 'Docente - investigaciÛn', '', 'Ministerio de EducaciÛn Superior', '', '', '', 'Carretera de Tapaste y 8 VÌas ', false, 88);
 
 
 --
--- TOC entry 3890 (class 0 OID 16674)
+-- TOC entry 3699 (class 0 OID 33780)
 -- Dependencies: 303
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.users VALUES ('gabrielpg', '94091027302', 'Gabriel Alberto', 'P√©rez', 'Guerra', 'gabrielpga20@gmail.com', '$2y$10$6d1yqT9FBkBl/F/LulZgRu3ySqyE8VwCoPvq4k7O2YGsHjXVLZsI6', true, 'Usuario de Gabriel');
-INSERT INTO public.users VALUES ('ead', '12345678912', 'Educacion a Distancia', 'Eduacion a Distancia', 'Eduacion a Distancia', 'ead@ead.cu', '$2a$10$l1Zub0nnhxtNj4oispoetu4yuT3aA/GkCmG8Uu0THEGAPLZdfFzry', true, 'Usuario autogenerado');
+INSERT INTO public.users VALUES ('ead', '12345678912', 'Educacion a Distancia', 'Eduacion a Distancia', 'Eduacion a Distancia', 'ead@ead.cu', '$2y$10$ETXivXQTH7.morXKR56TB.7s4ym8932uLWoiO1VJUVjGBr5dyPMM.', true, 'Usuario autogenerado');
 
 
 --
--- TOC entry 3929 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3739 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: asignatura_asignatura_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.asignatura_asignatura_id_seq', 3, true);
+SELECT pg_catalog.setval('public.asignatura_asignatura_id_seq', 1, false);
 
 
 --
--- TOC entry 3930 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3740 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: carrera_idcarrera_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.carrera_idcarrera_seq', 2, true);
+SELECT pg_catalog.setval('public.carrera_idcarrera_seq', 1, false);
 
 
 --
--- TOC entry 3931 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3741 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: carreranacional_idcarreranacional_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3856,8 +3696,8 @@ SELECT pg_catalog.setval('public.carreranacional_idcarreranacional_seq', 180, tr
 
 
 --
--- TOC entry 3932 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3742 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: color_piel_color_piel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3865,8 +3705,8 @@ SELECT pg_catalog.setval('public.color_piel_color_piel_id_seq', 4, true);
 
 
 --
--- TOC entry 3933 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3743 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: especialidad_idespecialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3874,8 +3714,8 @@ SELECT pg_catalog.setval('public.especialidad_idespecialidad_seq', 12, true);
 
 
 --
--- TOC entry 3934 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3744 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: especialidad_militar_especialidad_militar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3883,8 +3723,8 @@ SELECT pg_catalog.setval('public.especialidad_militar_especialidad_militar_id_se
 
 
 --
--- TOC entry 3935 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3745 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: estado_civil_estado_civil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3892,8 +3732,8 @@ SELECT pg_catalog.setval('public.estado_civil_estado_civil_id_seq', 6, true);
 
 
 --
--- TOC entry 3936 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 3746 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: estado_estudiante_estado_estuciante_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3901,8 +3741,8 @@ SELECT pg_catalog.setval('public.estado_estudiante_estado_estuciante_id_seq', 6,
 
 
 --
--- TOC entry 3937 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3747 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: examen_examen_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3910,8 +3750,8 @@ SELECT pg_catalog.setval('public.examen_examen_id_seq', 3, true);
 
 
 --
--- TOC entry 3938 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3748 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: fuente_ingreso_fuente_ingreso_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3919,8 +3759,8 @@ SELECT pg_catalog.setval('public.fuente_ingreso_fuente_ingreso_id_seq', 16, true
 
 
 --
--- TOC entry 3939 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3749 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: grado_militar_grado_militar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3928,8 +3768,8 @@ SELECT pg_catalog.setval('public.grado_militar_grado_militar_id_seq', 5, true);
 
 
 --
--- TOC entry 3940 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 3750 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: huerfano_huerfano_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3937,17 +3777,17 @@ SELECT pg_catalog.setval('public.huerfano_huerfano_id_seq', 4, true);
 
 
 --
--- TOC entry 3941 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3751 (class 0 OID 0)
+-- Dependencies: 257
 -- Name: matricula_matricula_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.matricula_matricula_id_seq', 1, true);
+SELECT pg_catalog.setval('public.matricula_matricula_id_seq', 1, false);
 
 
 --
--- TOC entry 3942 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 3752 (class 0 OID 0)
+-- Dependencies: 260
 -- Name: minusvalia_minusvalia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3955,8 +3795,8 @@ SELECT pg_catalog.setval('public.minusvalia_minusvalia_id_seq', 12, true);
 
 
 --
--- TOC entry 3943 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3753 (class 0 OID 0)
+-- Dependencies: 262
 -- Name: motivo_baja_id_motivo_baja_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3964,8 +3804,8 @@ SELECT pg_catalog.setval('public.motivo_baja_id_motivo_baja_seq', 9, true);
 
 
 --
--- TOC entry 3944 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3754 (class 0 OID 0)
+-- Dependencies: 264
 -- Name: municipio_idmunicipio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3973,8 +3813,8 @@ SELECT pg_catalog.setval('public.municipio_idmunicipio_seq', 168, true);
 
 
 --
--- TOC entry 3945 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3755 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: nivel_escolar_nivel_escolar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3982,8 +3822,8 @@ SELECT pg_catalog.setval('public.nivel_escolar_nivel_escolar_id_seq', 5, true);
 
 
 --
--- TOC entry 3946 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3756 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: ocupacion_ocupacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3991,8 +3831,8 @@ SELECT pg_catalog.setval('public.ocupacion_ocupacion_id_seq', 13, true);
 
 
 --
--- TOC entry 3947 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3757 (class 0 OID 0)
+-- Dependencies: 271
 -- Name: ong_ong_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4000,8 +3840,8 @@ SELECT pg_catalog.setval('public.ong_ong_id_seq', 1, false);
 
 
 --
--- TOC entry 3948 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3758 (class 0 OID 0)
+-- Dependencies: 273
 -- Name: organismo_idorganismo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4009,8 +3849,8 @@ SELECT pg_catalog.setval('public.organismo_idorganismo_seq', 47, true);
 
 
 --
--- TOC entry 3949 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3759 (class 0 OID 0)
+-- Dependencies: 275
 -- Name: organizacion_politica_organizacion_politica_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4018,8 +3858,8 @@ SELECT pg_catalog.setval('public.organizacion_politica_organizacion_politica_id_
 
 
 --
--- TOC entry 3950 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 3760 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: organizacion_popular_organizacion_popular_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4027,8 +3867,8 @@ SELECT pg_catalog.setval('public.organizacion_popular_organizacion_popular_id_se
 
 
 --
--- TOC entry 3951 (class 0 OID 0)
--- Dependencies: 236
+-- TOC entry 3761 (class 0 OID 0)
+-- Dependencies: 280
 -- Name: pais_idpais_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4036,17 +3876,17 @@ SELECT pg_catalog.setval('public.pais_idpais_seq', 239, true);
 
 
 --
--- TOC entry 3952 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3762 (class 0 OID 0)
+-- Dependencies: 282
 -- Name: planestudio_idplanestudio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.planestudio_idplanestudio_seq', 2, true);
+SELECT pg_catalog.setval('public.planestudio_idplanestudio_seq', 1, false);
 
 
 --
--- TOC entry 3953 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 3763 (class 0 OID 0)
+-- Dependencies: 284
 -- Name: procedencia_escolar_procedencia_escolar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4054,8 +3894,8 @@ SELECT pg_catalog.setval('public.procedencia_escolar_procedencia_escolar_id_seq'
 
 
 --
--- TOC entry 3954 (class 0 OID 0)
--- Dependencies: 239
+-- TOC entry 3764 (class 0 OID 0)
+-- Dependencies: 286
 -- Name: provincia_idprovincia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4063,8 +3903,8 @@ SELECT pg_catalog.setval('public.provincia_idprovincia_seq', 16, true);
 
 
 --
--- TOC entry 3955 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3765 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: sexo_sexo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4072,8 +3912,8 @@ SELECT pg_catalog.setval('public.sexo_sexo_id_seq', 2, true);
 
 
 --
--- TOC entry 3956 (class 0 OID 0)
--- Dependencies: 241
+-- TOC entry 3766 (class 0 OID 0)
+-- Dependencies: 290
 -- Name: sindicato_idsindicato_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4081,8 +3921,8 @@ SELECT pg_catalog.setval('public.sindicato_idsindicato_seq', 20, true);
 
 
 --
--- TOC entry 3957 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 3767 (class 0 OID 0)
+-- Dependencies: 292
 -- Name: tipo_asignatura_tipo_asignatura_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4090,8 +3930,8 @@ SELECT pg_catalog.setval('public.tipo_asignatura_tipo_asignatura_id_seq', 4, tru
 
 
 --
--- TOC entry 3958 (class 0 OID 0)
--- Dependencies: 243
+-- TOC entry 3768 (class 0 OID 0)
+-- Dependencies: 294
 -- Name: tipo_baja_id_tipo_baja_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4099,8 +3939,8 @@ SELECT pg_catalog.setval('public.tipo_baja_id_tipo_baja_seq', 2, true);
 
 
 --
--- TOC entry 3959 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3769 (class 0 OID 0)
+-- Dependencies: 296
 -- Name: tipo_evaluacion_tipo_evaluacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4108,8 +3948,8 @@ SELECT pg_catalog.setval('public.tipo_evaluacion_tipo_evaluacion_id_seq', 3, tru
 
 
 --
--- TOC entry 3960 (class 0 OID 0)
--- Dependencies: 245
+-- TOC entry 3770 (class 0 OID 0)
+-- Dependencies: 298
 -- Name: tipo_militar_id_tipo_militar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4117,1248 +3957,25 @@ SELECT pg_catalog.setval('public.tipo_militar_id_tipo_militar_seq', 1, false);
 
 
 --
--- TOC entry 3961 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3771 (class 0 OID 0)
+-- Dependencies: 301
 -- Name: tutor_tutor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tutor_tutor_id_seq', 37, true);
+SELECT pg_catalog.setval('public.tutor_tutor_id_seq', 1, false);
 
 
 --
--- TOC entry 3466 (class 2606 OID 16682)
--- Name: asignatura_asignatura asignatura_asignatura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 3705 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
 
-ALTER TABLE ONLY public.asignatura_asignatura
-    ADD CONSTRAINT asignatura_asignatura_pkey PRIMARY KEY (asignatura_precedente, asignatura_dependiente);
+REVOKE USAGE ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
---
--- TOC entry 3464 (class 2606 OID 16680)
--- Name: asignatura asignatura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.asignatura
-    ADD CONSTRAINT asignatura_pkey PRIMARY KEY (asignatura_id);
-
-
---
--- TOC entry 3468 (class 2606 OID 16684)
--- Name: authorities authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.authorities
-    ADD CONSTRAINT authorities_pkey PRIMARY KEY (username, authority);
-
-
---
--- TOC entry 3470 (class 2606 OID 16686)
--- Name: baja baja_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.baja
-    ADD CONSTRAINT baja_pkey PRIMARY KEY (tipo_bajaid_tipo_baja, motivo_bajaid_motivo_baja, fecha, cursoidcurso, codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula);
-
-
---
--- TOC entry 3474 (class 2606 OID 16690)
--- Name: carrera_curso carrera_curso_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carrera_curso
-    ADD CONSTRAINT carrera_curso_pkey PRIMARY KEY (carreraidcarrera, cursoidcurso);
-
-
---
--- TOC entry 3472 (class 2606 OID 16688)
--- Name: carrera carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carrera
-    ADD CONSTRAINT carrera_pkey PRIMARY KEY (idcarrera);
-
-
---
--- TOC entry 3476 (class 2606 OID 16692)
--- Name: carreranacional carreranacional_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carreranacional
-    ADD CONSTRAINT carreranacional_pkey PRIMARY KEY (idcarreranacional);
-
-
---
--- TOC entry 3478 (class 2606 OID 16694)
--- Name: color_piel color_piel_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.color_piel
-    ADD CONSTRAINT color_piel_pkey PRIMARY KEY (color_piel_id);
-
-
---
--- TOC entry 3482 (class 2606 OID 16698)
--- Name: cum_authorities cum_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cum_authorities
-    ADD CONSTRAINT cum_authorities_pkey PRIMARY KEY (cumcodigocum, authoritiesusername, authoritiesauthority);
-
-
---
--- TOC entry 3480 (class 2606 OID 16696)
--- Name: cum cum_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cum
-    ADD CONSTRAINT cum_pkey PRIMARY KEY (codigocum);
-
-
---
--- TOC entry 3484 (class 2606 OID 16700)
--- Name: curso curso_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.curso
-    ADD CONSTRAINT curso_pkey PRIMARY KEY (idcurso);
-
-
---
--- TOC entry 3486 (class 2606 OID 16702)
--- Name: disciplina disciplina_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.disciplina
-    ADD CONSTRAINT disciplina_pkey PRIMARY KEY (disciplina_codigo);
-
-
---
--- TOC entry 3488 (class 2606 OID 16704)
--- Name: disciplina_planestudio disciplina_planestudio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.disciplina_planestudio
-    ADD CONSTRAINT disciplina_planestudio_pkey PRIMARY KEY (disciplinadisciplina_codigo, planestudioidplanestudio);
-
-
---
--- TOC entry 3492 (class 2606 OID 16708)
--- Name: especialidad_militar especialidad_militar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.especialidad_militar
-    ADD CONSTRAINT especialidad_militar_pkey PRIMARY KEY (especialidad_militar_id);
-
-
---
--- TOC entry 3490 (class 2606 OID 16706)
--- Name: especialidad especialidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.especialidad
-    ADD CONSTRAINT especialidad_pkey PRIMARY KEY (idespecialidad);
-
-
---
--- TOC entry 3494 (class 2606 OID 16710)
--- Name: estado_civil estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estado_civil
-    ADD CONSTRAINT estado_civil_pkey PRIMARY KEY (estado_civil_id);
-
-
---
--- TOC entry 3496 (class 2606 OID 16712)
--- Name: estado_estudiante estado_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estado_estudiante
-    ADD CONSTRAINT estado_estudiante_pkey PRIMARY KEY (estado_estuciante_id);
-
-
---
--- TOC entry 3498 (class 2606 OID 16714)
--- Name: estudiante estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT estudiante_pkey PRIMARY KEY (estudiante_id);
-
-
---
--- TOC entry 3502 (class 2606 OID 16718)
--- Name: examen_matricula_facultad_cum_carrera_estudiante_asignatura examen_matricula_facultad_cum_carrera_estudiante_asignatur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.examen_matricula_facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT examen_matricula_facultad_cum_carrera_estudiante_asignatur_pkey PRIMARY KEY (examenexamen_id, matricula_id, codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id);
-
-
---
--- TOC entry 3500 (class 2606 OID 16716)
--- Name: examen examen_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.examen
-    ADD CONSTRAINT examen_pkey PRIMARY KEY (examen_id);
-
-
---
--- TOC entry 3506 (class 2606 OID 16722)
--- Name: facultad_authorities facultad_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_authorities
-    ADD CONSTRAINT facultad_authorities_pkey PRIMARY KEY (facultadcodigoarea, authoritiesusername, authoritiesauthority);
-
-
---
--- TOC entry 3514 (class 2606 OID 16730)
--- Name: facultad_cum_carrera_estudiante_asignatura facultad_cum_carrera_estudiante_asignatura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT facultad_cum_carrera_estudiante_asignatura_pkey PRIMARY KEY (codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id);
-
-
---
--- TOC entry 3512 (class 2606 OID 16728)
--- Name: facultad_cum_carrera_estudiante facultad_cum_carrera_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante
-    ADD CONSTRAINT facultad_cum_carrera_estudiante_pkey PRIMARY KEY (facultad_cum_carrerafacultad_cumcumcodigocum, facultad_cum_carrerafacultad_cumfacultadcodigoarea, facultad_cum_carreracarreraidcarrera, estudianteestudiante_id, fecha_matricula);
-
-
---
--- TOC entry 3510 (class 2606 OID 16726)
--- Name: facultad_cum_carrera facultad_cum_carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera
-    ADD CONSTRAINT facultad_cum_carrera_pkey PRIMARY KEY (facultad_cumcumcodigocum, facultad_cumfacultadcodigoarea, carreraidcarrera);
-
-
---
--- TOC entry 3508 (class 2606 OID 16724)
--- Name: facultad_cum facultad_cum_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum
-    ADD CONSTRAINT facultad_cum_pkey PRIMARY KEY (cumcodigocum, facultadcodigoarea);
-
-
---
--- TOC entry 3504 (class 2606 OID 16720)
--- Name: facultad facultad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad
-    ADD CONSTRAINT facultad_pkey PRIMARY KEY (codigoarea);
-
-
---
--- TOC entry 3516 (class 2606 OID 16732)
--- Name: fuente_ingreso fuente_ingreso_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.fuente_ingreso
-    ADD CONSTRAINT fuente_ingreso_pkey PRIMARY KEY (fuente_ingreso_id);
-
-
---
--- TOC entry 3518 (class 2606 OID 16734)
--- Name: grado_militar grado_militar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.grado_militar
-    ADD CONSTRAINT grado_militar_pkey PRIMARY KEY (grado_militar_id);
-
-
---
--- TOC entry 3520 (class 2606 OID 16736)
--- Name: huerfano huerfano_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.huerfano
-    ADD CONSTRAINT huerfano_pkey PRIMARY KEY (huerfano_id);
-
-
---
--- TOC entry 3524 (class 2606 OID 16740)
--- Name: matricula_facultad_cum_carrera_estudiante_asignatura matricula_facultad_cum_carrera_estudiante_asignatura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.matricula_facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT matricula_facultad_cum_carrera_estudiante_asignatura_pkey PRIMARY KEY (matriculamatricula_id, codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id);
-
-
---
--- TOC entry 3522 (class 2606 OID 16738)
--- Name: matricula matricula_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT matricula_pkey PRIMARY KEY (matricula_id);
-
-
---
--- TOC entry 3528 (class 2606 OID 16744)
--- Name: minusvalia_estudiante minusvalia_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.minusvalia_estudiante
-    ADD CONSTRAINT minusvalia_estudiante_pkey PRIMARY KEY (minusvaliaminusvalia_id, estudianteestudiante_id);
-
-
---
--- TOC entry 3526 (class 2606 OID 16742)
--- Name: minusvalia minusvalia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.minusvalia
-    ADD CONSTRAINT minusvalia_pkey PRIMARY KEY (minusvalia_id);
-
-
---
--- TOC entry 3530 (class 2606 OID 17104)
--- Name: motivo_baja motivo_baja_nombre_motivo_baja_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.motivo_baja
-    ADD CONSTRAINT motivo_baja_nombre_motivo_baja_key UNIQUE (nombre_motivo_baja);
-
-
---
--- TOC entry 3532 (class 2606 OID 16746)
--- Name: motivo_baja motivo_baja_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.motivo_baja
-    ADD CONSTRAINT motivo_baja_pkey PRIMARY KEY (id_motivo_baja);
-
-
---
--- TOC entry 3534 (class 2606 OID 16748)
--- Name: municipio municipio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.municipio
-    ADD CONSTRAINT municipio_pkey PRIMARY KEY (idmunicipio);
-
-
---
--- TOC entry 3536 (class 2606 OID 16750)
--- Name: nivel_escolar nivel_escolar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.nivel_escolar
-    ADD CONSTRAINT nivel_escolar_pkey PRIMARY KEY (nivel_escolar_id);
-
-
---
--- TOC entry 3538 (class 2606 OID 16752)
--- Name: ocupacion ocupacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ocupacion
-    ADD CONSTRAINT ocupacion_pkey PRIMARY KEY (ocupacion_id);
-
-
---
--- TOC entry 3542 (class 2606 OID 16756)
--- Name: ong_estudiante ong_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ong_estudiante
-    ADD CONSTRAINT ong_estudiante_pkey PRIMARY KEY (ongong_id, estudianteestudiante_id);
-
-
---
--- TOC entry 3540 (class 2606 OID 16754)
--- Name: ong ong_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ong
-    ADD CONSTRAINT ong_pkey PRIMARY KEY (ong_id);
-
-
---
--- TOC entry 3544 (class 2606 OID 16758)
--- Name: organismo organismo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.organismo
-    ADD CONSTRAINT organismo_pkey PRIMARY KEY (idorganismo);
-
-
---
--- TOC entry 3546 (class 2606 OID 16760)
--- Name: organizacion_politica organizacion_politica_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.organizacion_politica
-    ADD CONSTRAINT organizacion_politica_pkey PRIMARY KEY (organizacion_politica_id);
-
-
---
--- TOC entry 3550 (class 2606 OID 16764)
--- Name: organizacion_popular_estudiante organizacion_popular_estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.organizacion_popular_estudiante
-    ADD CONSTRAINT organizacion_popular_estudiante_pkey PRIMARY KEY (organizacion_popularorganizacion_popular_id, estudianteestudiante_id);
-
-
---
--- TOC entry 3548 (class 2606 OID 16762)
--- Name: organizacion_popular organizacion_popular_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.organizacion_popular
-    ADD CONSTRAINT organizacion_popular_pkey PRIMARY KEY (organizacion_popular_id);
-
-
---
--- TOC entry 3552 (class 2606 OID 16766)
--- Name: pais pais_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.pais
-    ADD CONSTRAINT pais_pkey PRIMARY KEY (idpais);
-
-
---
--- TOC entry 3554 (class 2606 OID 16768)
--- Name: planestudio planestudio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.planestudio
-    ADD CONSTRAINT planestudio_pkey PRIMARY KEY (idplanestudio);
-
-
---
--- TOC entry 3556 (class 2606 OID 16770)
--- Name: procedencia_escolar procedencia_escolar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.procedencia_escolar
-    ADD CONSTRAINT procedencia_escolar_pkey PRIMARY KEY (procedencia_escolar_id);
-
-
---
--- TOC entry 3558 (class 2606 OID 16772)
--- Name: provincia provincia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.provincia
-    ADD CONSTRAINT provincia_pkey PRIMARY KEY (idprovincia);
-
-
---
--- TOC entry 3560 (class 2606 OID 16774)
--- Name: sexo sexo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.sexo
-    ADD CONSTRAINT sexo_pkey PRIMARY KEY (sexo_id);
-
-
---
--- TOC entry 3562 (class 2606 OID 16776)
--- Name: sindicato sindicato_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.sindicato
-    ADD CONSTRAINT sindicato_pkey PRIMARY KEY (idsindicato);
-
-
---
--- TOC entry 3564 (class 2606 OID 16778)
--- Name: tipo_asignatura tipo_asignatura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_asignatura
-    ADD CONSTRAINT tipo_asignatura_pkey PRIMARY KEY (tipo_asignatura_id);
-
-
---
--- TOC entry 3566 (class 2606 OID 17156)
--- Name: tipo_baja tipo_baja_nombre_tipo_baja_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_baja
-    ADD CONSTRAINT tipo_baja_nombre_tipo_baja_key UNIQUE (nombre_tipo_baja);
-
-
---
--- TOC entry 3568 (class 2606 OID 16780)
--- Name: tipo_baja tipo_baja_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_baja
-    ADD CONSTRAINT tipo_baja_pkey PRIMARY KEY (id_tipo_baja);
-
-
---
--- TOC entry 3570 (class 2606 OID 16782)
--- Name: tipo_evaluacion tipo_evaluacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_evaluacion
-    ADD CONSTRAINT tipo_evaluacion_pkey PRIMARY KEY (tipo_evaluacion_id);
-
-
---
--- TOC entry 3572 (class 2606 OID 16784)
--- Name: tipo_militar tipo_militar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_militar
-    ADD CONSTRAINT tipo_militar_pkey PRIMARY KEY (id_tipo_militar);
-
-
---
--- TOC entry 3574 (class 2606 OID 16786)
--- Name: tipoplanestudio tipoplanestudio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipoplanestudio
-    ADD CONSTRAINT tipoplanestudio_pkey PRIMARY KEY (nombretipoplanestudio);
-
-
---
--- TOC entry 3576 (class 2606 OID 16788)
--- Name: tutor tutor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tutor
-    ADD CONSTRAINT tutor_pkey PRIMARY KEY (tutor_id);
-
-
---
--- TOC entry 3578 (class 2606 OID 16790)
--- Name: universidad universidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.universidad
-    ADD CONSTRAINT universidad_pkey PRIMARY KEY (codigouniversidad);
-
-
---
--- TOC entry 3580 (class 2606 OID 16792)
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (username);
-
-
---
--- TOC entry 3584 (class 2606 OID 16808)
--- Name: asignatura_asignatura fkasignatura163686; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.asignatura_asignatura
-    ADD CONSTRAINT fkasignatura163686 FOREIGN KEY (asignatura_precedente) REFERENCES public.asignatura(asignatura_id);
-
-
---
--- TOC entry 3581 (class 2606 OID 16793)
--- Name: asignatura fkasignatura228282; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.asignatura
-    ADD CONSTRAINT fkasignatura228282 FOREIGN KEY (disciplina_codigo, disciplina_idplanestudio) REFERENCES public.disciplina_planestudio(disciplinadisciplina_codigo, planestudioidplanestudio);
-
-
---
--- TOC entry 3582 (class 2606 OID 16798)
--- Name: asignatura fkasignatura351447; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.asignatura
-    ADD CONSTRAINT fkasignatura351447 FOREIGN KEY (tipo_evaluaciontipo_evaluacion_id) REFERENCES public.tipo_evaluacion(tipo_evaluacion_id);
-
-
---
--- TOC entry 3583 (class 2606 OID 16803)
--- Name: asignatura fkasignatura625114; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.asignatura
-    ADD CONSTRAINT fkasignatura625114 FOREIGN KEY (tipo_asignaturatipo_asignatura_id) REFERENCES public.tipo_asignatura(tipo_asignatura_id);
-
-
---
--- TOC entry 3585 (class 2606 OID 16813)
--- Name: asignatura_asignatura fkasignatura804551; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.asignatura_asignatura
-    ADD CONSTRAINT fkasignatura804551 FOREIGN KEY (asignatura_dependiente) REFERENCES public.asignatura(asignatura_id);
-
-
---
--- TOC entry 3586 (class 2606 OID 16818)
--- Name: authorities fkauthoritie560259; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.authorities
-    ADD CONSTRAINT fkauthoritie560259 FOREIGN KEY (username) REFERENCES public.users(username);
-
-
---
--- TOC entry 3587 (class 2606 OID 16823)
--- Name: baja fkbaja382150; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.baja
-    ADD CONSTRAINT fkbaja382150 FOREIGN KEY (codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula) REFERENCES public.facultad_cum_carrera_estudiante(facultad_cum_carrerafacultad_cumcumcodigocum, facultad_cum_carrerafacultad_cumfacultadcodigoarea, facultad_cum_carreracarreraidcarrera, estudianteestudiante_id, fecha_matricula);
-
-
---
--- TOC entry 3588 (class 2606 OID 16828)
--- Name: baja fkbaja520818; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.baja
-    ADD CONSTRAINT fkbaja520818 FOREIGN KEY (tipo_bajaid_tipo_baja) REFERENCES public.tipo_baja(id_tipo_baja);
-
-
---
--- TOC entry 3589 (class 2606 OID 16833)
--- Name: baja fkbaja62319; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.baja
-    ADD CONSTRAINT fkbaja62319 FOREIGN KEY (cursoidcurso) REFERENCES public.curso(idcurso);
-
-
---
--- TOC entry 3590 (class 2606 OID 16838)
--- Name: baja fkbaja727558; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.baja
-    ADD CONSTRAINT fkbaja727558 FOREIGN KEY (motivo_bajaid_motivo_baja) REFERENCES public.motivo_baja(id_motivo_baja);
-
-
---
--- TOC entry 3591 (class 2606 OID 16843)
--- Name: carrera fkcarrera491981; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carrera
-    ADD CONSTRAINT fkcarrera491981 FOREIGN KEY (carreranacionalidcarreranacional) REFERENCES public.carreranacional(idcarreranacional);
-
-
---
--- TOC entry 3592 (class 2606 OID 16848)
--- Name: carrera fkcarrera714109; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carrera
-    ADD CONSTRAINT fkcarrera714109 FOREIGN KEY (facultadcodigoarea) REFERENCES public.facultad(codigoarea);
-
-
---
--- TOC entry 3593 (class 2606 OID 16853)
--- Name: carrera_curso fkcarrera_cu291604; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carrera_curso
-    ADD CONSTRAINT fkcarrera_cu291604 FOREIGN KEY (cursoidcurso) REFERENCES public.curso(idcurso);
-
-
---
--- TOC entry 3594 (class 2606 OID 16858)
--- Name: carrera_curso fkcarrera_cu990899; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carrera_curso
-    ADD CONSTRAINT fkcarrera_cu990899 FOREIGN KEY (carreraidcarrera) REFERENCES public.carrera(idcarrera);
-
-
---
--- TOC entry 3595 (class 2606 OID 16863)
--- Name: carreranacional fkcarreranac53856; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.carreranacional
-    ADD CONSTRAINT fkcarreranac53856 FOREIGN KEY (especialidadidespecialidad) REFERENCES public.especialidad(idespecialidad);
-
-
---
--- TOC entry 3596 (class 2606 OID 16868)
--- Name: cum fkcum327402; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cum
-    ADD CONSTRAINT fkcum327402 FOREIGN KEY (municipioidmunicipio) REFERENCES public.municipio(idmunicipio);
-
-
---
--- TOC entry 3597 (class 2606 OID 16873)
--- Name: cum fkcum405627; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cum
-    ADD CONSTRAINT fkcum405627 FOREIGN KEY (universidadcodigouniversidad) REFERENCES public.universidad(codigouniversidad);
-
-
---
--- TOC entry 3598 (class 2606 OID 16878)
--- Name: cum_authorities fkcum_author527569; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cum_authorities
-    ADD CONSTRAINT fkcum_author527569 FOREIGN KEY (cumcodigocum) REFERENCES public.cum(codigocum);
-
-
---
--- TOC entry 3599 (class 2606 OID 16883)
--- Name: cum_authorities fkcum_author578109; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cum_authorities
-    ADD CONSTRAINT fkcum_author578109 FOREIGN KEY (authoritiesusername, authoritiesauthority) REFERENCES public.authorities(username, authority);
-
-
---
--- TOC entry 3600 (class 2606 OID 16888)
--- Name: curso fkcurso997976; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.curso
-    ADD CONSTRAINT fkcurso997976 FOREIGN KEY (universidadcodigouniversidad) REFERENCES public.universidad(codigouniversidad);
-
-
---
--- TOC entry 3601 (class 2606 OID 16893)
--- Name: disciplina_planestudio fkdisciplina293100; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.disciplina_planestudio
-    ADD CONSTRAINT fkdisciplina293100 FOREIGN KEY (planestudioidplanestudio) REFERENCES public.planestudio(idplanestudio);
-
-
---
--- TOC entry 3602 (class 2606 OID 16898)
--- Name: disciplina_planestudio fkdisciplina708767; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.disciplina_planestudio
-    ADD CONSTRAINT fkdisciplina708767 FOREIGN KEY (disciplinadisciplina_codigo) REFERENCES public.disciplina(disciplina_codigo);
-
-
---
--- TOC entry 3603 (class 2606 OID 16903)
--- Name: estudiante fkestudiante113932; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante113932 FOREIGN KEY (estado_civilestado_civil_id) REFERENCES public.estado_civil(estado_civil_id);
-
-
---
--- TOC entry 3604 (class 2606 OID 16908)
--- Name: estudiante fkestudiante137880; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante137880 FOREIGN KEY (tipo_militarid_tipo_militar) REFERENCES public.tipo_militar(id_tipo_militar);
-
-
---
--- TOC entry 3605 (class 2606 OID 16913)
--- Name: estudiante fkestudiante28783; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante28783 FOREIGN KEY (grado_militargrado_militar_id) REFERENCES public.grado_militar(grado_militar_id);
-
-
---
--- TOC entry 3606 (class 2606 OID 16918)
--- Name: estudiante fkestudiante322554; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante322554 FOREIGN KEY (huerfanohuerfano_id) REFERENCES public.huerfano(huerfano_id);
-
-
---
--- TOC entry 3607 (class 2606 OID 16923)
--- Name: estudiante fkestudiante341969; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante341969 FOREIGN KEY (paisidpais) REFERENCES public.pais(idpais);
-
-
---
--- TOC entry 3608 (class 2606 OID 16928)
--- Name: estudiante fkestudiante474778; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante474778 FOREIGN KEY (nivel_escolarnivel_escolar_id) REFERENCES public.nivel_escolar(nivel_escolar_id);
-
-
---
--- TOC entry 3609 (class 2606 OID 16933)
--- Name: estudiante fkestudiante530374; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante530374 FOREIGN KEY (municipioidmunicipiocentrotrabajo) REFERENCES public.municipio(idmunicipio);
-
-
---
--- TOC entry 3610 (class 2606 OID 16938)
--- Name: estudiante fkestudiante562687; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante562687 FOREIGN KEY (organismoidorganismo) REFERENCES public.organismo(idorganismo);
-
-
---
--- TOC entry 3611 (class 2606 OID 16943)
--- Name: estudiante fkestudiante563040; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante563040 FOREIGN KEY (procedencia_escolarprocedencia_escolar_id) REFERENCES public.procedencia_escolar(procedencia_escolar_id);
-
-
---
--- TOC entry 3612 (class 2606 OID 16948)
--- Name: estudiante fkestudiante567562; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante567562 FOREIGN KEY (municipioidmunicipio) REFERENCES public.municipio(idmunicipio);
-
-
---
--- TOC entry 3613 (class 2606 OID 16953)
--- Name: estudiante fkestudiante637476; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante637476 FOREIGN KEY (sindicatoidsindicato) REFERENCES public.sindicato(idsindicato);
-
-
---
--- TOC entry 3614 (class 2606 OID 16958)
--- Name: estudiante fkestudiante810314; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante810314 FOREIGN KEY (ocupacionocupacion_id) REFERENCES public.ocupacion(ocupacion_id);
-
-
---
--- TOC entry 3615 (class 2606 OID 16963)
--- Name: estudiante fkestudiante818708; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante818708 FOREIGN KEY (provinciaidprovincia) REFERENCES public.provincia(idprovincia);
-
-
---
--- TOC entry 3616 (class 2606 OID 16968)
--- Name: estudiante fkestudiante849945; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante849945 FOREIGN KEY (organizacion_politicaorganizacion_politica_id) REFERENCES public.organizacion_politica(organizacion_politica_id);
-
-
---
--- TOC entry 3617 (class 2606 OID 16973)
--- Name: estudiante fkestudiante875447; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante875447 FOREIGN KEY (color_pielcolor_piel_id) REFERENCES public.color_piel(color_piel_id);
-
-
---
--- TOC entry 3618 (class 2606 OID 16978)
--- Name: estudiante fkestudiante936954; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante936954 FOREIGN KEY (sexosexo_id) REFERENCES public.sexo(sexo_id);
-
-
---
--- TOC entry 3619 (class 2606 OID 16983)
--- Name: estudiante fkestudiante945574; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estudiante
-    ADD CONSTRAINT fkestudiante945574 FOREIGN KEY (especialidad_militarespecialidad_militar_id) REFERENCES public.especialidad_militar(especialidad_militar_id);
-
-
---
--- TOC entry 3620 (class 2606 OID 16988)
--- Name: examen_matricula_facultad_cum_carrera_estudiante_asignatura fkexamen_mat22498; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.examen_matricula_facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT fkexamen_mat22498 FOREIGN KEY (matricula_id, codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id) REFERENCES public.matricula_facultad_cum_carrera_estudiante_asignatura(matriculamatricula_id, codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id);
-
-
---
--- TOC entry 3621 (class 2606 OID 16993)
--- Name: examen_matricula_facultad_cum_carrera_estudiante_asignatura fkexamen_mat563137; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.examen_matricula_facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT fkexamen_mat563137 FOREIGN KEY (examenexamen_id) REFERENCES public.examen(examen_id);
-
-
---
--- TOC entry 3622 (class 2606 OID 16998)
--- Name: facultad fkfacultad263422; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad
-    ADD CONSTRAINT fkfacultad263422 FOREIGN KEY (universidadcodigouniversidad) REFERENCES public.universidad(codigouniversidad);
-
-
---
--- TOC entry 3623 (class 2606 OID 17003)
--- Name: facultad fkfacultad469607; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad
-    ADD CONSTRAINT fkfacultad469607 FOREIGN KEY (municipioidmunicipio) REFERENCES public.municipio(idmunicipio);
-
-
---
--- TOC entry 3624 (class 2606 OID 17008)
--- Name: facultad_authorities fkfacultad_a382917; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_authorities
-    ADD CONSTRAINT fkfacultad_a382917 FOREIGN KEY (facultadcodigoarea) REFERENCES public.facultad(codigoarea);
-
-
---
--- TOC entry 3625 (class 2606 OID 17013)
--- Name: facultad_authorities fkfacultad_a570123; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_authorities
-    ADD CONSTRAINT fkfacultad_a570123 FOREIGN KEY (authoritiesusername, authoritiesauthority) REFERENCES public.authorities(username, authority);
-
-
---
--- TOC entry 3630 (class 2606 OID 17038)
--- Name: facultad_cum_carrera_estudiante fkfacultad_c266755; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante
-    ADD CONSTRAINT fkfacultad_c266755 FOREIGN KEY (estado_estudianteestado_estuciante_id) REFERENCES public.estado_estudiante(estado_estuciante_id);
-
-
---
--- TOC entry 3635 (class 2606 OID 17063)
--- Name: facultad_cum_carrera_estudiante_asignatura fkfacultad_c531558; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT fkfacultad_c531558 FOREIGN KEY (codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula) REFERENCES public.facultad_cum_carrera_estudiante(facultad_cum_carrerafacultad_cumcumcodigocum, facultad_cum_carrerafacultad_cumfacultadcodigoarea, facultad_cum_carreracarreraidcarrera, estudianteestudiante_id, fecha_matricula);
-
-
---
--- TOC entry 3628 (class 2606 OID 17028)
--- Name: facultad_cum_carrera fkfacultad_c565261; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera
-    ADD CONSTRAINT fkfacultad_c565261 FOREIGN KEY (facultad_cumcumcodigocum, facultad_cumfacultadcodigoarea) REFERENCES public.facultad_cum(cumcodigocum, facultadcodigoarea);
-
-
---
--- TOC entry 3631 (class 2606 OID 17043)
--- Name: facultad_cum_carrera_estudiante fkfacultad_c591571; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante
-    ADD CONSTRAINT fkfacultad_c591571 FOREIGN KEY (estudianteestudiante_id) REFERENCES public.estudiante(estudiante_id);
-
-
---
--- TOC entry 3636 (class 2606 OID 17068)
--- Name: facultad_cum_carrera_estudiante_asignatura fkfacultad_c609603; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT fkfacultad_c609603 FOREIGN KEY (asignatura_id) REFERENCES public.asignatura(asignatura_id);
-
-
---
--- TOC entry 3629 (class 2606 OID 17033)
--- Name: facultad_cum_carrera fkfacultad_c693888; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera
-    ADD CONSTRAINT fkfacultad_c693888 FOREIGN KEY (carreraidcarrera) REFERENCES public.carrera(idcarrera);
-
-
---
--- TOC entry 3632 (class 2606 OID 17048)
--- Name: facultad_cum_carrera_estudiante fkfacultad_c803699; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante
-    ADD CONSTRAINT fkfacultad_c803699 FOREIGN KEY (planestudioidplanestudio) REFERENCES public.planestudio(idplanestudio);
-
-
---
--- TOC entry 3633 (class 2606 OID 17053)
--- Name: facultad_cum_carrera_estudiante fkfacultad_c80803; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante
-    ADD CONSTRAINT fkfacultad_c80803 FOREIGN KEY (fuente_ingresofuente_ingreso_id) REFERENCES public.fuente_ingreso(fuente_ingreso_id);
-
-
---
--- TOC entry 3634 (class 2606 OID 17058)
--- Name: facultad_cum_carrera_estudiante fkfacultad_c967555; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum_carrera_estudiante
-    ADD CONSTRAINT fkfacultad_c967555 FOREIGN KEY (facultad_cum_carrerafacultad_cumcumcodigocum, facultad_cum_carrerafacultad_cumfacultadcodigoarea, facultad_cum_carreracarreraidcarrera) REFERENCES public.facultad_cum_carrera(facultad_cumcumcodigocum, facultad_cumfacultadcodigoarea, carreraidcarrera);
-
-
---
--- TOC entry 3626 (class 2606 OID 17018)
--- Name: facultad_cum fkfacultad_c971534; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum
-    ADD CONSTRAINT fkfacultad_c971534 FOREIGN KEY (facultadcodigoarea) REFERENCES public.facultad(codigoarea);
-
-
---
--- TOC entry 3627 (class 2606 OID 17023)
--- Name: facultad_cum fkfacultad_c996474; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facultad_cum
-    ADD CONSTRAINT fkfacultad_c996474 FOREIGN KEY (cumcodigocum) REFERENCES public.cum(codigocum);
-
-
---
--- TOC entry 3637 (class 2606 OID 17073)
--- Name: matricula fkmatricula40096; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT fkmatricula40096 FOREIGN KEY (facultad_cum_carrerafacultad_cumcumcodigocum, facultad_cum_carrerafacultad_cumfacultadcodigoarea, facultad_cum_carreracarreraidcarrera) REFERENCES public.facultad_cum_carrera(facultad_cumcumcodigocum, facultad_cumfacultadcodigoarea, carreraidcarrera);
-
-
---
--- TOC entry 3638 (class 2606 OID 17078)
--- Name: matricula fkmatricula84542; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT fkmatricula84542 FOREIGN KEY (cursoidcurso) REFERENCES public.curso(idcurso);
-
-
---
--- TOC entry 3639 (class 2606 OID 17083)
--- Name: matricula_facultad_cum_carrera_estudiante_asignatura fkmatricula_295636; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.matricula_facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT fkmatricula_295636 FOREIGN KEY (matriculamatricula_id) REFERENCES public.matricula(matricula_id);
-
-
---
--- TOC entry 3640 (class 2606 OID 17088)
--- Name: matricula_facultad_cum_carrera_estudiante_asignatura fkmatricula_756647; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.matricula_facultad_cum_carrera_estudiante_asignatura
-    ADD CONSTRAINT fkmatricula_756647 FOREIGN KEY (codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id) REFERENCES public.facultad_cum_carrera_estudiante_asignatura(codigocum, codigoarea, idcarrera, estudiante_id, fecha_matricula, asignatura_id);
-
-
---
--- TOC entry 3641 (class 2606 OID 17093)
--- Name: minusvalia_estudiante fkminusvalia275249; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.minusvalia_estudiante
-    ADD CONSTRAINT fkminusvalia275249 FOREIGN KEY (estudianteestudiante_id) REFERENCES public.estudiante(estudiante_id);
-
-
---
--- TOC entry 3642 (class 2606 OID 17098)
--- Name: minusvalia_estudiante fkminusvalia794464; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.minusvalia_estudiante
-    ADD CONSTRAINT fkminusvalia794464 FOREIGN KEY (minusvaliaminusvalia_id) REFERENCES public.minusvalia(minusvalia_id);
-
-
---
--- TOC entry 3643 (class 2606 OID 17105)
--- Name: motivo_baja fkmotivo_baj150265; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.motivo_baja
-    ADD CONSTRAINT fkmotivo_baj150265 FOREIGN KEY (tipo_bajaid_tipo_baja) REFERENCES public.tipo_baja(id_tipo_baja);
-
-
---
--- TOC entry 3644 (class 2606 OID 17110)
--- Name: municipio fkmunicipio735422; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.municipio
-    ADD CONSTRAINT fkmunicipio735422 FOREIGN KEY (provinciaidprovincia) REFERENCES public.provincia(idprovincia);
-
-
---
--- TOC entry 3645 (class 2606 OID 17115)
--- Name: ong_estudiante fkong_estudi755357; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ong_estudiante
-    ADD CONSTRAINT fkong_estudi755357 FOREIGN KEY (ongong_id) REFERENCES public.ong(ong_id);
-
-
---
--- TOC entry 3646 (class 2606 OID 17120)
--- Name: ong_estudiante fkong_estudi959604; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ong_estudiante
-    ADD CONSTRAINT fkong_estudi959604 FOREIGN KEY (estudianteestudiante_id) REFERENCES public.estudiante(estudiante_id);
-
-
---
--- TOC entry 3647 (class 2606 OID 17125)
--- Name: organizacion_popular_estudiante fkorganizaci377174; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.organizacion_popular_estudiante
-    ADD CONSTRAINT fkorganizaci377174 FOREIGN KEY (estudianteestudiante_id) REFERENCES public.estudiante(estudiante_id);
-
-
---
--- TOC entry 3648 (class 2606 OID 17130)
--- Name: organizacion_popular_estudiante fkorganizaci650724; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.organizacion_popular_estudiante
-    ADD CONSTRAINT fkorganizaci650724 FOREIGN KEY (organizacion_popularorganizacion_popular_id) REFERENCES public.organizacion_popular(organizacion_popular_id);
-
-
---
--- TOC entry 3649 (class 2606 OID 17135)
--- Name: planestudio fkplanestudi426978; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.planestudio
-    ADD CONSTRAINT fkplanestudi426978 FOREIGN KEY (tipoplanestudionombretipoplanestudio) REFERENCES public.tipoplanestudio(nombretipoplanestudio);
-
-
---
--- TOC entry 3650 (class 2606 OID 17140)
--- Name: planestudio fkplanestudi704492; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.planestudio
-    ADD CONSTRAINT fkplanestudi704492 FOREIGN KEY (cursoactivacion) REFERENCES public.curso(idcurso);
-
-
---
--- TOC entry 3651 (class 2606 OID 17145)
--- Name: planestudio fkplanestudi869056; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.planestudio
-    ADD CONSTRAINT fkplanestudi869056 FOREIGN KEY (carreraidcarrera) REFERENCES public.carrera(idcarrera);
-
-
---
--- TOC entry 3652 (class 2606 OID 17150)
--- Name: provincia fkprovincia925634; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.provincia
-    ADD CONSTRAINT fkprovincia925634 FOREIGN KEY (paisidpais) REFERENCES public.pais(idpais);
-
-
---
--- TOC entry 3653 (class 2606 OID 17157)
--- Name: tutor fktutor232180; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tutor
-    ADD CONSTRAINT fktutor232180 FOREIGN KEY (ocupacionocupacion_id) REFERENCES public.ocupacion(ocupacion_id);
-
-
---
--- TOC entry 3654 (class 2606 OID 17162)
--- Name: tutor fktutor443784; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tutor
-    ADD CONSTRAINT fktutor443784 FOREIGN KEY (estudianteestudiante_id) REFERENCES public.estudiante(estudiante_id);
-
-
---
--- TOC entry 3655 (class 2606 OID 17167)
--- Name: tutor fktutor515089; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tutor
-    ADD CONSTRAINT fktutor515089 FOREIGN KEY (sexosexo_id) REFERENCES public.sexo(sexo_id);
-
-
---
--- TOC entry 3656 (class 2606 OID 17172)
--- Name: tutor fktutor699779; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tutor
-    ADD CONSTRAINT fktutor699779 FOREIGN KEY (organizacion_politicaorganizacion_politica_id) REFERENCES public.organizacion_politica(organizacion_politica_id);
-
-
---
--- TOC entry 3657 (class 2606 OID 17177)
--- Name: tutor fktutor896643; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tutor
-    ADD CONSTRAINT fktutor896643 FOREIGN KEY (nivel_escolarnivel_escolar_id) REFERENCES public.nivel_escolar(nivel_escolar_id);
-
-
---
--- TOC entry 3658 (class 2606 OID 17182)
--- Name: universidad fkuniversida524595; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.universidad
-    ADD CONSTRAINT fkuniversida524595 FOREIGN KEY (municipioidmunicipio) REFERENCES public.municipio(idmunicipio);
-
-
--- Completed on 2023-08-15 12:07:29
+-- Completed on 2023-08-22 13:08:47
 
 --
 -- PostgreSQL database dump complete
