@@ -40,11 +40,11 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-especialidad" fileName="especialidads" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dt-especialidad" fileName="Especialidades" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-especialidad" fileName="Usiarios" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dt-especialidad" fileName="Especialidades" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
@@ -61,7 +61,7 @@
                     </div>
                 </f:facet>
 
-                <p:column exportHeaderValue="Nombre" headerText="Nombre" >
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
                     <h:outputText value="#{especialidad.nombreespecialidad}"/>
                 </p:column>
                 <p:column exportHeaderValue="Estado" headerText="Estado">
@@ -133,7 +133,7 @@
             <!--/Info Dialog-->
 
             <!--Add Dialog-->
-            <p:dialog header="A&ntilde;adir especialidad" showEffect="fade" modal="true"
+            <p:dialog header="A&ntilde;adir Especialidad" showEffect="fade" modal="true"
                       widgetVar="addEspecialidadDialog"
                       responsive="true">
                 <p:outputPanel id="add-especialidad-content" class="ui-fluid">
@@ -175,7 +175,7 @@
             <!--/Add Dialog-->
 
             <!--Edit Dialog-->
-            <p:dialog header="Editar especialidad" showEffect="fade" modal="true"
+            <p:dialog header="Editar Especialidad" showEffect="fade" modal="true"
                       widgetVar="editEspecialidadDialog"
                       responsive="true">
                 <p:outputPanel id="edit-especialidad-content" class="ui-fluid">

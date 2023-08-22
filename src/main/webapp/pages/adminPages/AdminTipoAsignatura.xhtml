@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Created by IntelliJ IDEA.
-  colorPiel: Nerzur
+  tipoasignatura: Nerzur
   Date: 26/03/2023
   Time: 05:51PM
 -->
@@ -17,70 +17,78 @@
 <ui:composition template="../Template.xhtml">
 
     <ui:define name="title">
-        Administrar Colores de Piel
+        Administrar Tipos de Asignatura
     </ui:define>
 
     <!--    <ui:define name="description">-->
-    <!--        Administrar colorPiels-->
+    <!--        Administrar tipoasignaturas-->
     <!--    </ui:define>-->
 
     <ui:define name="content">
-        #{adminColorPielBean.init()}
+        #{adminTipoAsignaturaBean.init()}
         <h:form id="form">
             <p:growl id="messages" showDetail="true"/>
 
             <p:toolbar>
                 <p:toolbarGroup>
                     <p:commandButton value="Adicionar" icon="pi pi-plus"
-                                     update=":dialogs:add-colorPiel-content" oncomplete="PF('addColorPielDialog').show()"
+                                     update=":dialogs:add-tipoasignatura-content"
+                                     oncomplete="PF('addTipoAsignaturaDialog').show()"
                                      styleClass="ui-button-success" style="margin-right: .5rem">
-                        <p:resetInput target=":dialogs:add-colorPiel-content"/>
+                        <p:resetInput target=":dialogs:add-tipoasignatura-content"/>
                     </p:commandButton>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-colorPiels" fileName="Colores de Piel" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dt-tipoAsignatura" fileName="Tipos de asignatura"
+                                        exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-colorPiels" fileName="Colores de Piel" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dt-tipoAsignatura" fileName="Tipos de asignatura"
+                                        exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-colorPiel" widgetVar="dtcolorPiel" var="colorPiel"
-                         value="#{adminColorPielBean.colorPielList}" size="small"
-                         reflow="true" styleClass="colorPiels-table"
-                         rowKey="#{colorPiel.colorPielNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+            <p:dataTable tableStyleClass="table-striped" id="dt-tipoAsignatura" widgetVar="dttipoasignatura"
+                         var="tipoasignatura"
+                         value="#{adminTipoAsignaturaBean.tipoAsignaturaList}" size="small"
+                         reflow="true" styleClass="tipoasignaturas-table"
+                         rowKey="#{tipoasignatura.tipoasignaturaNombre}" paginator="true" rows="10"
+                         paginatorPosition="bottom">
                 <f:facet name="header">
-                    <div class="colorPiels-table-header">
+                    <div class="tipoasignaturas-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-colorPiel').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-tipoAsignatura').filter()" placeholder="Buscar"/>
                     </span>
                     </div>
                 </f:facet>
-                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
-                    <h:outputText value="#{colorPiel.colorPielNombre}"/>
+
+                <p:column exportHeaderValue="Nombre" headerText="Nombre">
+                    <h:outputText value="#{tipoasignatura.tipoAsignaturaNombre}"/>
                 </p:column>
                 <p:column exportHeaderValue="Estado" headerText="Estado">
-                    <h:outputText styleClass="#{adminColorPielBean.translateBooleanToSeverity(colorPiel.colorPielCancelado)}"
-                                  value="#{adminColorPielBean.translateEstado(colorPiel.colorPielCancelado)}"/>
+                    <h:outputText
+                            styleClass="#{adminTipoAsignaturaBean.translateBooleanToSeverity(tipoasignatura.tipoAsignaturaCancelado)}"
+                            value="#{adminTipoAsignaturaBean.translateEstado(tipoasignatura.tipoAsignaturaCancelado)}"/>
                 </p:column>
                 <p:column exportable="false">
                     <p:commandButton icon="pi pi-info-circle"
-                                     oncomplete="PF('infoColorPielDialog').show()"
+                                     oncomplete="PF('infoTipoAsignaturaDialog').show()"
                                      styleClass="rounded-button ui-button-info" process="@this"
-                                     actionListener="#{adminColorPielBean.updateSelected_ColorPiel(colorPiel)}"
-                                     update=":dialogs:info-colorPiel-content"
+                                     actionListener="#{adminTipoAsignaturaBean.updateSelected_TipoAsignatura(tipoasignatura)}"
+                                     update=":dialogs:info-tipoasignatura-content"
                                      title="Informaci&oacute;n">
-                        <p:resetInput target=":dialogs:info-colorPiel-content"/>
+                        <p:resetInput target=":dialogs:info-tipoasignatura-content"/>
                     </p:commandButton>
-                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-colorPiel-content" style="margin-left: 10px"
-                                     oncomplete="PF('editColorPielDialog').show()"
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-tipoasignatura-content"
+                                     style="margin-left: 10px"
+                                     oncomplete="PF('editTipoAsignaturaDialog').show()"
                                      styleClass="edit-button rounded-button ui-button-warning" process="@this"
-                                     actionListener="#{adminColorPielBean.updateSelected_ColorPiel_toEdit(colorPiel)}">
-                        <p:resetInput target=":dialogs:edit-colorPiel-content"/>
+                                     actionListener="#{adminTipoAsignaturaBean.updateSelected_TipoAsignatura_toEdit(tipoasignatura)}">
+                        <p:resetInput target=":dialogs:edit-tipoasignatura-content"/>
                     </p:commandButton>
                 </p:column>
 
@@ -94,59 +102,71 @@
 
             <!--Info Dialog-->
             <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
-                      widgetVar="infoColorPielDialog"
+                      widgetVar="infoTipoAsignaturaDialog"
                       responsive="true">
-                <p:outputPanel id="info-colorPiel-content" class="ui-fluid">
+                <p:outputPanel id="info-tipoasignatura-content" class="ui-fluid">
                     <p:outputPanel>
+
+
                         <div class="row">
                             <div class="col col-lg-5">
                                 <strong><h:outputLabel value="Nombre: "/></strong>
                             </div>
                             <div class="col col-lg-7">
-                                <h:outputText value="#{adminColorPielBean.colorPielSelected.colorPielNombre}"/>
+                                <h:outputText
+                                        value="#{adminTipoAsignaturaBean.tipoAsignaturaSelected.tipoAsignaturaNombre}"/>
                             </div>
                         </div>
+
+                        <br/>
+
                         <div class="row">
                             <div class="col col-lg-5">
                                 <strong><h:outputLabel value="Estado: "/></strong>
                             </div>
                             <div class="col col-lg-7">
                                 <h:outputText
-                                        value="#{adminColorPielBean.translateEstado(adminColorPielBean.colorPielSelected.colorPielCancelado)}"
-                                        styleClass="#{adminColorPielBean.translateBooleanToSeverity(adminColorPielBean.colorPielSelected.colorPielCancelado)}"/>
+                                        value="#{adminTipoAsignaturaBean.translateEstado(adminTipoAsignaturaBean.tipoAsignaturaSelected.tipoAsignaturaCancelado)}"
+                                        styleClass="#{adminTipoAsignaturaBean.translateBooleanToSeverity(adminTipoAsignaturaBean.tipoAsignaturaSelected.tipoAsignaturaCancelado)}"/>
                             </div>
                         </div>
                     </p:outputPanel>
                 </p:outputPanel>
 
                 <f:facet name="footer">
-                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoColorPielDialog').hide()"
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoTipoAsignaturaDialog').hide()"
                                      class="ui-button-secondary" type="button"/>
                 </f:facet>
             </p:dialog>
             <!--/Info Dialog-->
 
             <!--Add Dialog-->
-            <p:dialog header="A&ntilde;adir Color de Piel" showEffect="fade" modal="true"
-                      widgetVar="addColorPielDialog"
+            <p:dialog header="A&ntilde;adir Tipo de Asignatura" showEffect="fade" modal="true"
+                      widgetVar="addTipoAsignaturaDialog"
                       responsive="true">
-                <p:outputPanel id="add-colorPiel-content" class="ui-fluid">
+                <p:outputPanel id="add-tipoasignatura-content" class="ui-fluid">
                     <p:outputPanel>
+
+
                         <div class="row">
                             <div class="col col-sm-12">
                                 <h:outputLabel for="nombre"
                                                value="Nombre *"/><br/>
-                                <p:inputText id="nombre" value="#{adminColorPielBean.nombre}"
-                                              required="true" showIcon="true">
+                                <p:inputText id="nombre" value="#{adminTipoAsignaturaBean.nombre}"
+                                             required="true" showIcon="true">
                                     <f:validateLength maximum="250"/>
                                     <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
                                 </p:inputText>
                             </div>
                         </div>
+
+                        <br/>
+
                         <div class="row">
                             <div class="col col-sm-2">
                                 <h:outputLabel for="estado" value="Estado"/><br/>
-                                <p:toggleSwitch id="estado" value="#{adminColorPielBean.cancelado}" onIcon="pi pi-check"
+                                <p:toggleSwitch id="estado" value="#{adminTipoAsignaturaBean.cancelado}"
+                                                onIcon="pi pi-check"
                                                 offIcon="pi pi-times"/>
                             </div>
                         </div>
@@ -155,35 +175,42 @@
 
                 <f:facet name="footer">
                     <p:commandButton value="Guardar" icon="pi pi-check"
-                                     id="btnAddModal" actionListener="#{adminColorPielBean.addColorPiel()}"
-                                     update="add-colorPiel-content form:messages" process="add-colorPiel-content @this"/>
-                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addColorPielDialog').hide()"
+                                     id="btnAddModal" actionListener="#{adminTipoAsignaturaBean.addTipoAsignatura()}"
+                                     update="add-tipoasignatura-content form:messages"
+                                     process="add-tipoasignatura-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addTipoAsignaturaDialog').hide()"
                                      class="ui-button-secondary" type="button"/>
                 </f:facet>
             </p:dialog>
             <!--/Add Dialog-->
 
             <!--Edit Dialog-->
-            <p:dialog header="Editar Color de Piel" showEffect="fade" modal="true"
-                      widgetVar="editColorPielDialog"
+            <p:dialog header="Editar Tipo de Asignatura" showEffect="fade" modal="true"
+                      widgetVar="editTipoAsignaturaDialog"
                       responsive="true">
-                <p:outputPanel id="edit-colorPiel-content" class="ui-fluid">
+                <p:outputPanel id="edit-tipoasignatura-content" class="ui-fluid">
                     <p:outputPanel>
+
+
                         <div class="row">
                             <div class="col col-sm-12">
                                 <h:outputLabel for="editNombre"
                                                value="Nombre *"/><br/>
-                                <p:inputText id="editNombre" value="#{adminColorPielBean.nombre}"
-                                              required="true" showIcon="true">
+                                <p:inputText id="editNombre" value="#{adminTipoAsignaturaBean.nombre}"
+                                             required="true" showIcon="true">
                                     <f:validateLength maximum="250"/>
                                     <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
                                 </p:inputText>
                             </div>
                         </div>
+
+                        <br/>
+
                         <div class="row">
                             <div class="col col-sm-2">
                                 <h:outputLabel for="editEstado" value="Estado"/><br/>
-                                <p:toggleSwitch id="editEstado" value="#{adminColorPielBean.cancelado}" onIcon="pi pi-check"
+                                <p:toggleSwitch id="editEstado" value="#{adminTipoAsignaturaBean.cancelado}"
+                                                onIcon="pi pi-check"
                                                 offIcon="pi pi-times"/>
                             </div>
                         </div>
@@ -192,9 +219,10 @@
 
                 <f:facet name="footer">
                     <p:commandButton value="Guardar" icon="pi pi-check"
-                                     id="btnEditModal" actionListener="#{adminColorPielBean.editColorPiel()}"
-                                     update="edit-colorPiel-content form:messages" process="edit-colorPiel-content @this"/>
-                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editColorPielDialog').hide()"
+                                     id="btnEditModal" actionListener="#{adminTipoAsignaturaBean.editTipoAsignatura()}"
+                                     update="edit-tipoasignatura-content form:messages"
+                                     process="edit-tipoasignatura-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editTipoAsignaturaDialog').hide()"
                                      class="ui-button-secondary" type="button"/>
                 </f:facet>
             </p:dialog>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  user: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Municipios
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar Municipios-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminMunicipioBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-municipio-content"
+                                     oncomplete="PF('addMunicipioDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-municipio-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-municipio" fileName="Municipios" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-municipio" fileName="Municipios"
+                                        exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-municipio" widgetVar="dtmunicipio" var="municipio"
+                         value="#{adminMunicipioBean.municipioList}" size="small"
+                         reflow="true" styleClass="Municipios-table"
+                         rowKey="#{municipio.municipioNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="Municipios-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-municipio').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
+                    <h:outputText value="#{municipio.nombremunicipio}"/>
+                </p:column>
+                <p:column exportHeaderValue="Provincia" headerText="Provincia">
+                    <h:outputText value="#{municipio.provinciaidprovincia.nombreprovincia}"/>
+                </p:column>
+                <p:column exportHeaderValue="Pa&iacute;s" headerText="Pa&iacute;s">
+                    <h:outputText value="#{municipio.provinciaidprovincia.paisidpais.nombrepais}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText
+                            styleClass="#{adminMunicipioBean.translateBooleanToSeverity(municipio.canceladomunicipio)}"
+                            value="#{adminMunicipioBean.translateEstado(municipio.canceladomunicipio)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoMunicipioDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminMunicipioBean.updateSelected_Municipio(municipio)}"
+                                     update=":dialogs:info-municipio-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-municipio-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-municipio-content"
+                                     style="margin-left: 10px"
+                                     oncomplete="PF('editMunicipioDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminMunicipioBean.updateSelected_Municipio_toEdit(municipio)}">
+                        <p:resetInput target=":dialogs:edit-municipio-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoMunicipioDialog"
+                      responsive="true">
+                <p:outputPanel id="info-municipio-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminMunicipioBean.municipioSelected.nombremunicipio}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Provincia: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMunicipioBean.municipioSelected.provinciaidprovincia.nombreprovincia}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Pa&iacute;s: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMunicipioBean.municipioSelected.provinciaidprovincia.paisidpais.nombrepais}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminMunicipioBean.translateEstado(adminMunicipioBean.municipioSelected.canceladomunicipio)}"
+                                        styleClass="#{adminMunicipioBean.translateBooleanToSeverity(adminMunicipioBean.municipioSelected.canceladomunicipio)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoMunicipioDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Municipio" showEffect="fade" modal="true"
+                      widgetVar="addMunicipioDialog"
+                      responsive="true">
+                <p:outputPanel id="add-municipio-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminMunicipioBean.nombre}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ-]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="pais"
+                                               value="Pa&iacute;s *"/><br/>
+                                <p:selectOneMenu id="pais" value="#{adminMunicipioBean.nombrepais}"
+                                                 requiredMessage="Pais: Es necesario seleccionar un Pa&iacute;s"
+                                                 required="true" label="Pa&iacute;s">
+                                    <f:selectItem itemLabel="(Seleccione un Pais)" itemValue=""/>
+                                    <f:selectItems value="#{adminMunicipioBean.paisList}" var="c" itemValue="#{c}"
+                                                   itemLabel="#{c}"/>
+                                    <p:ajax update="provincia"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="provinciaSelect"
+                                               value="Provincia *"/><br/>
+                                <p:outputPanel id="provincia">
+                                    #{adminMunicipioBean.updateProvincias()}
+                                    <p:selectOneMenu value="#{adminMunicipioBean.nombreprovincia}"
+                                                     id="provinciaSelect"
+                                                     requiredMessage="Provincia: Es necesario seleccionar una Provincia"
+                                                     required="#{adminMunicipioBean.cuba}"
+                                                     label="Provincia">
+                                        <f:selectItem itemLabel="(Seleccione una Provincia)" itemValue=""/>
+                                        <f:selectItems value="#{adminMunicipioBean.provinciaList}" var="p"
+                                                       itemValue="#{p}" itemLabel="#{p}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminMunicipioBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminMunicipioBean.addMunicipio()}"
+                                     update="add-municipio-content form:messages"
+                                     process="add-municipio-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addMunicipioDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Municipio" showEffect="fade" modal="true"
+                      widgetVar="editMunicipioDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-municipio-content" class="ui-fluid">
+                    <p:outputPanel>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre1"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre1" value="#{adminMunicipioBean.nombre}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ-]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="pais1"
+                                               value="Pa&iacute;s *"/><br/>
+                                <p:selectOneMenu id="pais1" value="#{adminMunicipioBean.nombrepais}"
+                                                 requiredMessage="Pais: Es necesario seleccionar un Pa&iacute;s"
+                                                 required="true" label="Pa&iacute;s">
+                                    <f:selectItem itemLabel="(Seleccione un Pais)" itemValue=""/>
+                                    <f:selectItems value="#{adminMunicipioBean.paisList}" var="c" itemValue="#{c}"
+                                                   itemLabel="#{c}"/>
+                                    <p:ajax update="provincia1"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="provinciaSelect1"
+                                               value="Provincia1 *"/><br/>
+                                <p:outputPanel id="provincia1">
+                                    #{adminMunicipioBean.updateProvincias()}
+                                    <p:selectOneMenu value="#{adminMunicipioBean.nombreprovincia}"
+                                                     id="provinciaSelect1"
+                                                     requiredMessage="Provincia: Es necesario seleccionar una Provincia"
+                                                     required="#{adminMunicipioBean.cuba}"
+                                                     label="Provincia">
+                                        <f:selectItem itemLabel="(Seleccione una Provincia)" itemValue=""/>
+                                        <f:selectItems value="#{adminMunicipioBean.provinciaList}" var="p"
+                                                       itemValue="#{p}" itemLabel="#{p}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado1" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado1" value="#{adminMunicipioBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminMunicipioBean.editMunicipio()}"
+                                     update="edit-municipio-content form:messages"
+                                     process="edit-municipio-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editMunicipioDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>

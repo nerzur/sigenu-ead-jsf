@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  user: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Facultades
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar facultads-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminFacultadBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-facultad-content" oncomplete="PF('addFacultadDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-facultad-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dt-facultad" fileName="Facultades" exportHeader="true"/>
+                    </p:commandButton>
+                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="xlsxstream" target="dt-facultad" fileName="Facultades"
+                                        exportHeader="true"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dt-facultad" widgetVar="dtfacultad" var="facultad"
+                         value="#{adminFacultadBean.facultadList}" size="small"
+                         reflow="true" styleClass="facultads-table"
+                         rowKey="#{facultad.facultadNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="facultads-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-facultad').filter()" placeholder="Buscar"/>
+                    </span>
+                    </div>
+                </f:facet>
+
+                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo">
+                    <h:outputText value="#{facultad.codigoarea}"/>
+                </p:column>
+                <p:column headerText="Nombre" exportHeaderValue="Nombre">
+                    <h:outputText value="#{facultad.nombrearea}"/>
+                </p:column>
+                <p:column headerText="Decano" exportHeaderValue="Decano">
+                    <h:outputText value="#{facultad.nombredecanoarea}"/>
+                </p:column>
+                <p:column headerText="Sec. Docente" exportHeaderValue="Sec. Docente">
+                    <h:outputText value="#{facultad.nombresecdocarea}"/>
+                </p:column>
+                <p:column headerText="Tel&eacute;fono" exportHeaderValue="Tel&eacute;fono">
+                    <h:outputText value="#{facultad.telefonoarea}"/>
+                </p:column>
+
+
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminFacultadBean.translateBooleanToSeverity(facultad.canceladoarea)}"
+                                  value="#{adminFacultadBean.translateEstado(facultad.canceladoarea)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoFacultadDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminFacultadBean.updateSelected_Facultad(facultad)}"
+                                     update=":dialogs:info-facultad-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-facultad-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-facultad-content"
+                                     style="margin-left: 10px"
+                                     oncomplete="PF('editFacultadDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminFacultadBean.updateSelected_Facultad_toEdit(facultad)}">
+                        <p:resetInput target=":dialogs:edit-facultad-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoFacultadDialog"
+                      responsive="true">
+                <p:outputPanel id="info-facultad-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="C&oacute;digo: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.codigoarea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.nombrearea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Tel&eacute;fono: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.telefonoarea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Decano: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.nombredecanoarea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Sec. docente: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.nombresecdocarea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Sec. docente: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.nombresecdocarea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Direcci&oacute;n: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminFacultadBean.facultadSelected.direccionarea}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Provincia: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminFacultadBean.facultadSelected.municipioidmunicipio.provinciaidprovincia.nombreprovincia}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Municipio: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminFacultadBean.facultadSelected.municipioidmunicipio.nombremunicipio}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminFacultadBean.translateEstado(adminFacultadBean.facultadSelected.canceladoarea)}"
+                                        styleClass="#{adminFacultadBean.translateBooleanToSeverity(adminFacultadBean.facultadSelected.canceladoarea)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoFacultadDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Facultad" showEffect="fade" modal="true"
+                      widgetVar="addFacultadDialog"
+                      responsive="true">
+                <p:outputPanel id="add-facultad-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre de la facultad *"/><br/>
+                                <p:inputText id="nombre" value="#{adminFacultadBean.nombre}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ(),-]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="direccion"
+                                               value="Direcci&oacute;n *"/><br/>
+                                <p:inputText id="direccion" value="#{adminFacultadBean.direccion}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ/#%,]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="codigo"
+                                               value="C&oacute;digo *"/><br/>
+                                <p:inputText id="codigo" value="#{adminFacultadBean.codigo}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="telefono"
+                                               value="Tel&eacute;fono *"/><br/>
+                                <p:inputMask id="telefono" value="#{adminFacultadBean.telefono}"
+                                             required="true" showIcon="true" mask="99-99-99-99">
+                                </p:inputMask>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="decano"
+                                               value="Nombre del Decano *"/><br/>
+                                <p:inputText id="decano" value="#{adminFacultadBean.nombredecano}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="secdocente"
+                                               value="Nombre del Sec. Docente *"/><br/>
+                                <p:inputText id="secdocente" value="#{adminFacultadBean.nombresecgen}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="provinciaSelect"
+                                               value="Provincia *"/><br/>
+                                <p:outputPanel id="provincia">
+                                    #{adminFacultadBean.updateProvincias()}
+                                    <p:selectOneMenu value="#{adminFacultadBean.provincia}"
+                                                     id="provinciaSelect"
+                                                     requiredMessage="Provincia: Es necesario seleccionar una Provincia"
+                                                     required="true" label="Provincia">
+                                        <f:selectItem itemLabel="(Seleccione una Provincia)" itemValue=""/>
+                                        <f:selectItems value="#{adminFacultadBean.provincias}" var="p" itemValue="#{p}"
+                                                       itemLabel="#{p}"/>
+                                        <p:ajax update="municipio"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="municipioSelect"
+                                               value="Municipio *"/><br/>
+                                <p:outputPanel id="municipio">
+                                    #{adminFacultadBean.updateMunicipios()}
+                                    <p:selectOneMenu
+                                            id="municipioSelect"
+                                            value="#{adminFacultadBean.municipio}"
+                                            requiredMessage="Municipio: Es necesario seleccionar un Municipio"
+                                            required="true" label="Municipio">
+                                        <f:selectItem itemLabel="(Seleccione un Municipio)" itemValue=""/>
+                                        <f:selectItems value="#{adminFacultadBean.municipios}" var="m" itemValue="#{m}"
+                                                       itemLabel="#{m}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminFacultadBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminFacultadBean.addFacultad()}"
+                                     update="add-facultad-content form:messages" process="add-facultad-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addFacultadDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Facultad" showEffect="fade" modal="true"
+                      widgetVar="editFacultadDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-facultad-content" class="ui-fluid">
+
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="nombre1"
+                                               value="Nombre de la facultad *"/><br/>
+                                <p:inputText id="nombre1" value="#{adminFacultadBean.nombre}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ(),-]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="direccion1"
+                                               value="Direcci&oacute;n *"/><br/>
+                                <p:inputText id="direccion1" value="#{adminFacultadBean.direccion}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z0-9 áéíóúüñÁÉÍÓÚÜÑ/#%,]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="codigo1"
+                                               value="C&oacute;digo *"/><br/>
+                                <p:inputText id="codigo1" value="#{adminFacultadBean.codigo}"
+                                             disabled="true"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="telefono1"
+                                               value="Tel&eacute;fono *"/><br/>
+                                <p:inputMask id="telefono1" value="#{adminFacultadBean.telefono}"
+                                             required="true" showIcon="true" mask="99-99-99-99">
+                                </p:inputMask>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="decano1"
+                                               value="Nombre del Decano *"/><br/>
+                                <p:inputText id="decano1" value="#{adminFacultadBean.nombredecano}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="secdocente1"
+                                               value="Nombre del Sec. Docente *"/><br/>
+                                <p:inputText id="secdocente1" value="#{adminFacultadBean.nombresecgen}"
+                                             required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="(Lic. |MsC. |DrC. )?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="provinciaSelect1"
+                                               value="Provincia *"/><br/>
+                                <p:outputPanel id="provincia1">
+                                    #{adminFacultadBean.updateProvincias()}
+                                    <p:selectOneMenu value="#{adminFacultadBean.provincia}"
+                                                     id="provinciaSelect1"
+                                                     requiredMessage="Provincia: Es necesario seleccionar una Provincia"
+                                                     required="true" label="Provincia">
+                                        <f:selectItem itemLabel="(Seleccione una Provincia)" itemValue=""/>
+                                        <f:selectItems value="#{adminFacultadBean.provincias}" var="p" itemValue="#{p}"
+                                                       itemLabel="#{p}"/>
+                                        <p:ajax update="municipio1"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+
+                            </div>
+                            <div class="col col-sm-6">
+                                <h:outputLabel for="municipioSelect1"
+                                               value="Municipio *"/><br/>
+                                <p:outputPanel id="municipio1">
+                                    #{adminFacultadBean.updateMunicipios()}
+                                    <p:selectOneMenu
+                                            id="municipioSelect1"
+                                            value="#{adminFacultadBean.municipio}"
+                                            requiredMessage="Municipio: Es necesario seleccionar un Municipio"
+                                            required="true" label="Municipio">
+                                        <f:selectItem itemLabel="(Seleccione un Municipio)" itemValue=""/>
+                                        <f:selectItems value="#{adminFacultadBean.municipios}" var="m" itemValue="#{m}"
+                                                       itemLabel="#{m}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado1" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado1" value="#{adminFacultadBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+
+
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminFacultadBean.editFacultad()}"
+                                     update="edit-facultad-content form:messages"
+                                     process="edit-facultad-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editFacultadDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>
