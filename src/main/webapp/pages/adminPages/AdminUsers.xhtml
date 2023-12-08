@@ -128,7 +128,8 @@
                                 <strong><p:outputLabel value="Nombre completo:"/></strong>
                             </div>
                             <div class="col col-lg-8">
-                                <p:outputLabel value="#{adminUserBean.selectedUser.nombre} #{adminUserBean.selectedUser.apellido1} #{adminUserBean.selectedUser.apellido2}"/>
+                                <p:outputLabel
+                                        value="#{adminUserBean.selectedUser.nombre} #{adminUserBean.selectedUser.apellido1} #{adminUserBean.selectedUser.apellido2}"/>
                             </div>
                         </div>
                         <div class="row">
@@ -164,7 +165,7 @@
                             <div class="col col-lg-8">
                                 <ui:repeat value="#{adminUserBean.roles}" var="rol">
                                     <p:outputLabel style="margin-top: 2px; margin-right: 2px"
-                                                   styleClass="badge badge-dark"
+                                                   styleClass="badge #{adminUserBean.translateBadge(rol)}"
                                                    value="#{adminUserBean.translateRole(rol)}"/>
                                 </ui:repeat>
                             </div>
@@ -240,7 +241,8 @@
                                 <p:toggleSwitch id="estado" value="#{adminUserBean.enabled}" onIcon="pi pi-check"
                                                 offIcon="pi pi-times"/>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="input_username" value="Nombre de usuario"/><br/>
@@ -263,7 +265,8 @@
                                             pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                                 </p:inputText>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="input_password" value="Contrase&ntilde;a"/><br/>
@@ -288,14 +291,16 @@
                                     <f:validateLength maximum="45"/>
                                 </p:password>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-12" style="padding-left: 15px; padding-right: 15px">
                                 <p:outputLabel for="descripcion" value="Descripci&oacute;n"/><br/>
                                 <p:inputTextarea id="descripcion" style="height: 30px;"
                                                  value="#{adminUserBean.description}"/>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="basic" value="Roles:"/>
@@ -386,7 +391,8 @@
                                 <p:toggleSwitch id="edit-estado" value="#{adminUserBean.enabled}" onIcon="pi pi-check"
                                                 offIcon="pi pi-times"/>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="edit-input_username" value="Nombre de usuario"/><br/>
@@ -409,7 +415,8 @@
                                             pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                                 </p:inputText>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="edit-input_password" value="Contrase&ntilde;a"/><br/>
@@ -435,14 +442,16 @@
                                     <f:validateLength maximum="45"/>
                                 </p:password>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-12" style="padding-left: 15px; padding-right: 15px">
                                 <p:outputLabel for="edit-descripcion" value="Descripci&oacute;n"/><br/>
                                 <p:inputTextarea id="edit-descripcion" style="height: 30px;"
                                                  value="#{adminUserBean.description}"/>
                             </div>
-                        </div> <br/>
+                        </div>
+                        <br/>
                         <div class="row">
                             <div class="col col-sm-6">
                                 <p:outputLabel for="edit-basic" value="Roles:"/>

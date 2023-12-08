@@ -4,8 +4,8 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="dist_educ_finalPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-<!--                <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
-<!--        <non-jta-data-source>java:comp/env/jdbc/ead</non-jta-data-source>-->
+        <!--                <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+        <!--        <non-jta-data-source>java:comp/env/jdbc/ead</non-jta-data-source>-->
         <class>cu.edu.unah.sigenuead.entity.Asignatura</class>
         <class>cu.edu.unah.sigenuead.entity.Asignatura_Nota</class>
         <class>cu.edu.unah.sigenuead.entity.AsignaturaAsignatura</class>
@@ -65,11 +65,12 @@
         <class>cu.edu.unah.sigenuead.entity.Users</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-                <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/SIGENU_EaD"/>
-<!--                <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db:5432/SIGENU_EaD"/>-->
-                <property name="jakarta.persistence.jdbc.user" value="postgres"/>
-                <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-                <property name="jakarta.persistence.jdbc.password" value="postgres"/>
+            <property name="hibernate.generate_statistics" value="true"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/SIGENU_EaD"/>
+            <!--                <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db:5432/SIGENU_EaD"/>-->
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.password" value="postgres"/>
         </properties>
     </persistence-unit>
 </persistence>

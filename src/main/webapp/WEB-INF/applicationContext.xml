@@ -31,13 +31,13 @@
                                 access="hasAnyRole('ROLE_CONTROLADOR','ROLE_SECRETARIO_GENERAL')"/>
         <security:intercept-url pattern="/pages/centroPages/AdminMatricula.xhtml"
                                 access="hasAnyRole('ROLE_CONTROLADOR','ROLE_SECRETARIO_GENERAL')"/>
-        <security:intercept-url pattern="/pages/centroPages/UbicarCarrerasCUM.xhtml.xhtml"
+        <security:intercept-url pattern="/pages/centroPages/UbicarCarrerasCUM.xhtml"
                                 access="hasAnyRole('ROLE_CONTROLADOR')"/>
 
         <!--Rulers for Matricula Pages-->
         <security:intercept-url pattern="/pages/matriculaPages/NuevaMatricula.xhtml"
                                 access="hasAnyRole('ROLE_MATRICULADOR','ROLE_SECRETARIA')"/>
-        <security:intercept-url pattern="/pages/matriculaPages/CierreMatricula.xhtml.xhtml"
+        <security:intercept-url pattern="/pages/matriculaPages/CierreMatricula.xhtml"
                                 access="hasAnyRole('ROLE_SECRETARIO_GENERAL','ROLE_SECRETARIA')"/>
         <security:intercept-url pattern="/pages/matriculaPages/MatriculaResponsable.xhtml"
                                 access="hasAnyRole('ROLE_SECRETARIA')"/>

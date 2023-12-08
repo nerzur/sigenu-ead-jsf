@@ -35,6 +35,7 @@ public class AdminUserBean implements Serializable {
     private String email;
     private List<String> Roles = new ArrayList<String>();
     private List<String> Roles1 = new ArrayList<String>();
+    private String[] badges = {"badge-primary", "badge-info", "badge-success", "badge-danger", "badge-warning"};
     private List<String> list_area = new ArrayList<String>();
     private List<String> list_permisos = new ArrayList<String>();
     private boolean enabled = true;
@@ -162,6 +163,17 @@ public class AdminUserBean implements Serializable {
             return "badge badge-success";
         }
         return "badge badge-danger";
+    }
+
+    public String translateBadge(String role) {
+        return switch (role) {
+            case "ROLE_ADMIN" -> badges[0];
+            case "ROLE_SECRETARIA" -> badges[1];
+            case "ROLE_SECRETARIO_GENERAL" -> badges[2];
+            case "ROLE_CONTROLADOR" -> badges[3];
+            case "ROLE_MATRICULADOR" -> badges[4];
+            default -> "badge-dark";
+        };
     }
 
 }

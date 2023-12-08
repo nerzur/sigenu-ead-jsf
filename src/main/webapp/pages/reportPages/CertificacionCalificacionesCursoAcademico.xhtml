@@ -34,23 +34,26 @@
                                 mask="99999999999"
                                 requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
                                 validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
-                                placeholder="Identificaci&oacute;n" value="#{reportsBean.estudiante_Ms19d}"
+                                placeholder="Identificaci&oacute;n" value="#{reportsBean.idEstudiante}"
                                 required="true"
                         />
                     </div>
                     <div class="col-sm-5">
                         <br/>
                         <p:commandButton title="PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
-                                         styleClass="ui-button ui-button-secondary" ajax="true"
-                                         actionListener="#{reportsBean.print_ms19d_PDF()}" update="form1">
+                                         styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                         actionListener="#{reportsBean.printCertCalifCursoAc('PDF')}">
+                            <p:fileDownload value="#{reportsBean.file}"/>
                         </p:commandButton>
-                        <p:commandButton title="DOC" style="margin-right: 10px" icon="pi pi-file-word"
-                                         styleClass="ui-button ui-button-secondary" ajax="true"
-                                         actionListener="#{reportsBean.print_ms19d_DOC()}" update="form1">
+                        <p:commandButton title="DOCX" style="margin-right: 10px" icon="pi pi-file-word"
+                                         styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                         actionListener="#{reportsBean.printCertCalifCursoAc('DOCX')}">
+                            <p:fileDownload value="#{reportsBean.file}"/>
                         </p:commandButton>
                         <p:commandButton title="RTF" style="margin-right: 10px" icon="pi pi-file"
-                                         styleClass="ui-button ui-button-secondary" ajax="true"
-                                         actionListener="#{reportsBean.print_ms19d_RTF()}" update="form1">
+                                         styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                         actionListener="#{reportsBean.printCertCalifCursoAc('RTF')}">
+                            <p:fileDownload value="#{reportsBean.file}"/>
                         </p:commandButton>
                     </div>
                 </div>

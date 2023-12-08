@@ -23,7 +23,7 @@
 
         <ui:define name="content">
             #{reportsBean.init()}
-            #{reportsBean.update_Area()}
+            #{reportsBean.updateArea()}
             <h:form id="form1">
                 <p:growl id="messages" allowDismiss="true"/>
                 <div class="row">
@@ -34,25 +34,26 @@
                                          id="areaInput"
                                          requiredMessage="&Aacute;rea: Es necesario seleccionar una Facultad"
                                          required="true" label="&Aacute;rea">
-                            <f:selectItem itemLabel="(Seleccione un &Aacute;rea)" itemValue=""/>
+                            <f:selectItem itemLabel="(Seleccione un &Aacute;rea)" itemValue=""
+                                          noSelectionOption="true"/>
                             <f:selectItems value="#{reportsBean.list_area}" var="a" itemValue="#{a}"
                                            itemLabel="#{a}"/>
-                            <p:ajax update="carrera plan_estudio asignatura"/>
+                            <p:ajax listener="#{reportsBean.updateCarrera()}" update="carrera plan_estudio asignatura"/>
                         </p:selectOneMenu>
                     </div>
                     <div class="col col-sm-6">
                         <p:outputPanel id="carrera">
-                            #{reportsBean.updtate_carrera()}
                             <p:outputLabel for="carreraInput"
                                            styleClass="block"> Carrera </p:outputLabel> <br/>
                             <p:selectOneMenu value="#{reportsBean.carrera}"
                                              id="carreraInput"
                                              requiredMessage="Carrera: Es necesario seleccionar una Carrera"
                                              required="true" label="Carrera">
-                                <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""
+                                              noSelectionOption="true"/>
                                 <f:selectItems value="#{reportsBean.list_carrera}" var="c" itemValue="#{c}"
                                                itemLabel="#{c}"/>
-                                <p:ajax update="plan_estudio asignatura"/>
+                                <p:ajax listener="#{reportsBean.updatePlanEstudio()}" update="plan_estudio asignatura"/>
                             </p:selectOneMenu>
                         </p:outputPanel>
                     </div>
@@ -61,16 +62,16 @@
                 <div class="row">
                     <div class="col col-sm-6">
                         <p:outputPanel id="plan_estudio">
-                            #{reportsBean.update_plan_estudio()}
                             <p:outputLabel for="planEstudioInput"
                                            styleClass="block"> Plan de Estudio </p:outputLabel> <br/>
                             <p:selectOneMenu id="planEstudioInput" value="#{reportsBean.plan_estudio}"
                                              requiredMessage="Plan de Estudio: Es necesario seleccionar un Plan de Estudio"
                                              required="true" label="Plan de Estudio">
-                                <f:selectItem itemLabel="(Seleccione un Plan de Estudio)" itemValue=""/>
+                                <f:selectItem itemLabel="(Seleccione un Plan de Estudio)" itemValue=""
+                                              noSelectionOption="true"/>
                                 <f:selectItems value="#{reportsBean.list_plan_estudio}" var="pe" itemValue="#{pe}"
                                                itemLabel="#{pe}"/>
-                                <p:ajax update="asignatura"/>
+                                <p:ajax listener="#{reportsBean.updateAsignatura()}" update="asignatura"/>
                             </p:selectOneMenu>
                         </p:outputPanel>
                     </div>
@@ -78,14 +79,15 @@
                         <p:outputPanel id="asignatura">
                             <p:outputLabel for="asignaturaInput"
                                            styleClass="block"> Asignatura </p:outputLabel> <br/>
-                            #{reportsBean.update_Asignaturas()}
-                            <p:selectOneMenu value="#{reportsBean.asignatura_Ms13d}"
+                            <p:selectOneMenu value="#{reportsBean.asignaturaNombre}"
                                              id="asignaturaInput"
                                              requiredMessage="Asignatura: Es necesario seleccionar una Asignatura"
                                              required="true" label="Asignatura">
-                                <f:selectItem itemLabel="(Seleccione una Asignatura)" itemValue=""/>
+                                <f:selectItem itemLabel="(Seleccione una Asignatura)" itemValue=""
+                                              noSelectionOption="true"/>
                                 <f:selectItems value="#{reportsBean.list_asignatura}" var="pe" itemValue="#{pe}"
                                                itemLabel="#{pe}"/>
+                                <p:ajax update="asignatura"/>
                             </p:selectOneMenu>
                         </p:outputPanel>
                     </div>
@@ -93,18 +95,20 @@
                 <br/>
 
                 <div style="float: right">
-
                     <p:commandButton title="PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
-                                     styleClass="ui-button ui-button-secondary" ajax="true"
-                                     actionListener="#{reportsBean.print_ms13d_PDF()}" update="form1">
+                                     styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                     actionListener="#{reportsBean.printActaExamen('PDF')}">
+                        <p:fileDownload value="#{reportsBean.file}"/>
                     </p:commandButton>
-                    <p:commandButton title="DOC" style="margin-right: 10px" icon="pi pi-file-word"
-                                     styleClass="ui-button ui-button-secondary" ajax="true"
-                                     actionListener="#{reportsBean.print_ms13d_DOC()}" update="form1">
+                    <p:commandButton title="DOCX" style="margin-right: 10px" icon="pi pi-file-word"
+                                     styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                     actionListener="#{reportsBean.printActaExamen('DOCX')}">
+                        <p:fileDownload value="#{reportsBean.file}"/>
                     </p:commandButton>
                     <p:commandButton title="RTF" style="margin-right: 10px" icon="pi pi-file"
-                                     styleClass="ui-button ui-button-secondary" ajax="true"
-                                     actionListener="#{reportsBean.print_ms13d_RTF()}" update="form1">
+                                     styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                     actionListener="#{reportsBean.printActaExamen('RTF')}">
+                        <p:fileDownload value="#{reportsBean.file}"/>
                     </p:commandButton>
                 </div>
                 <br/>

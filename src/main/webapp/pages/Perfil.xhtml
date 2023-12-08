@@ -84,7 +84,7 @@
                                 <div class="col col-lg-9">
                                     <ui:repeat value="#{templateBean.roles}" var="rol">
                                         <h:outputLabel style="margin-top: 2px; margin-right: 2px"
-                                                       styleClass="badge badge-dark"
+                                                       styleClass="badge #{adminUserBean.translateBadge(rol)}"
                                                        value="#{templateBean.translateRole(rol)}"/>
                                     </ui:repeat>
                                 </div>
