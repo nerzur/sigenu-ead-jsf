@@ -18,7 +18,7 @@
 
     <groupId>cu.edu.unah</groupId>
     <artifactId>sigenu-ead-jsf</artifactId>
-    <version>0.9.0-Beta</version>
+    <version>0.11.0-Beta</version>
     <packaging>war</packaging>
 
     <properties>

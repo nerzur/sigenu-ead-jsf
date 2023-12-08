@@ -136,13 +136,13 @@ public class FacultadServices {
 
     public Par editFacultad(String codigo, String nombre, String nombreSecGral, String nombreDecano, String telefono, String direccion, String municipio, String provincia, boolean cancel) {
         try {
-            Facultad f = new Facultad(codigo);
+            Facultad f = getInstanceOfFacultad().findFacultad(codigo);
             if (f == null) {
                 return new Par(2, texts.getFacultadNull());
             }
             f.setCanceladoarea(cancel);
             f.setDireccionarea(direccion);
-            if (!f.getNombrearea().equals(nombre) && getInstanceOfFacultad().findFacultadByNombre(nombre) != null) {
+            if (!f.getNombrearea().equals(nombre) && getInstanceOfFacultad().findFacultadByNombre(nombre) == null) {
                 return new Par(2, texts.getEditarExistente());
             }
             f.setNombrearea(nombre);

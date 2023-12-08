@@ -96,7 +96,7 @@ public class AdminFacultadBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         init();
         context.addMessage(null, new FacesMessage(submit.getFacesType(), submit.getResult(), ""));
-        PrimeFaces.current().executeScript("PF('addFacultadDialog').hide()");
+        PrimeFaces.current().executeScript("PF('editFacultadDialog').hide()");
         PrimeFaces.current().ajax().update("form:messages", "form:dt-facultad");
     }
 
