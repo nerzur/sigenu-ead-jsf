@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 17/04/2023
+  Time: 04:54PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Evaluar Asignaturas por Estudiante
+        </ui:define>
+
+        <ui:define name="content">
+            #{promoverEstudianteBean.init()}
+
+            <h:form id="form">
+                <div class="row">
+                    <p:growl allowDismiss="true"/>
+                    <div class="col col-sm-5">
+                        <p:outputLabel for="areaInput"
+                                       styleClass="block"> &Aacute;rea </p:outputLabel>
+                        <p:selectOneMenu value="#{promoverEstudianteBean.area}"
+                                         id="areaInput"
+                                         requiredMessage="&Aacute;rea: Es necesario seleccionar un &Aacute;rea"
+                                         required="true" label="&Aacute;rea">
+                            <f:selectItem itemLabel="(Seleccione un &Aacute;rea)" itemValue=""/>
+                            <f:selectItems value="#{promoverEstudianteBean.list_area}" var="ar" itemValue="#{ar}"
+                                           itemLabel="#{ar}"/>
+                            <p:ajax update="carrera"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="col col-sm-5">
+                        <p:outputPanel id='carrera'>
+                            #{promoverEstudianteBean.update_Carreras()}
+                            <p:outputLabel for="carreraInput"
+                                           styleClass="block"> Carrera </p:outputLabel>
+                            <p:selectOneMenu value="#{promoverEstudianteBean.carrera}"
+                                             id="carreraInput"
+                                             requiredMessage="Carrera: Es necesario seleccionar una Carrera"
+                                             required="true"
+                                             label="Carrera">
+                                <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                <f:selectItems value="#{promoverEstudianteBean.list_carrera}" var="car"
+                                               itemValue="#{car}"
+                                               itemLabel="#{car}"/>
+                            </p:selectOneMenu>
+                        </p:outputPanel>
+                    </div>
+                    <div class="col col-sm-2">
+                        <br/>
+                        <p:commandButton id="cerrar_mat" update="form form1" value="Buscar" title="Buscar"
+                                         icon="pi pi-search" styleClass="ui-button ui-button-info"
+                                         action="#{promoverEstudianteBean.search()}" ajax="true">
+                        </p:commandButton>
+                    </div>
+                </div>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <br/>
+
+            <h:form id="form1">
+                <p:outputPanel rendered="#{promoverEstudianteBean.founded}">
+                    <p:dataTable tableStyleClass="table-striped" id="dt-promoverEstudiante"
+                                 widgetVar="dtpromoverEstudiante" var="estudiante_promover"
+                                 value="#{promoverEstudianteBean.list_estudiante_promover}" size="small"
+                                 reflow="true" styleClass="promoverEstudiantes-table"
+                                 rowKey="#{estudiante_promover.fcce.estudiante.estudianteId}" paginator="true" rows="10"
+                                 paginatorPosition="bottom">
+                        <f:facet name="header">
+                            <div class="promoverEstudiantes-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-promoverEstudiante').filter()"
+                                     placeholder="Buscar"/>
+                    </span>
+                            </div>
+                        </f:facet>
+                        <p:column exportHeaderValue="Promover" headerText="Promover">
+                            <p:selectBooleanCheckbox value="#{estudiante_promover.promover}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="ID" headerText="ID" sortOrder="asc">
+                            <h:outputText
+                                    value="#{estudiante_promover.fcce.estudiante.estudianteNombre} #{estudiante_promover.fcce.estudiante.estudianteApellido1} #{estudiante_promover.fcce.estudiante.estudianteApellido2}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="Carrera" headerText="Carrera">
+                            <h:outputText
+                                    value="#{estudiante_promover.fcce.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <p:commandButton style="float: right" id="GuardarCambios" update="form form1"
+                                     value="Promover"
+                                     icon="pi pi-save" actionListener="#{promoverEstudianteBean.actualizar()}"
+                                     styleClass="ui-button ui-button-info"/>
+                </p:outputPanel>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

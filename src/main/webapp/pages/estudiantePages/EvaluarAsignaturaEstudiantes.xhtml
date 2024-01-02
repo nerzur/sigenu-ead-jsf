@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 17/04/2023
+  Time: 03:25PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Evaluar Asignaturas por Estudiante
+        </ui:define>
+
+        <ui:define name="content">
+
+            #{evaluarAsignaturaEstudianteBean.init()}
+            <h:form id="form1">
+                <p:growl allowDismiss="true"/>
+                <div class="row">
+                    <div class="col col-sm-3">
+                        <p:outputLabel for="convocatoria"
+                                       styleClass="block"> Convocatoria </p:outputLabel>
+                        <p:selectOneMenu id="convocatoria"
+                                         required="true"
+                                         value="#{evaluarAsignaturaEstudianteBean.convocatoria}">
+                            <f:selectItems value="#{evaluarAsignaturaEstudianteBean.list_convocatorias}"
+                                           var="conv" itemValue="#{conv}" itemLabel="#{conv}"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="col col-sm-6"/>
+                    <div class="col col-sm-3">
+                        <br/>
+                        <div class="ui-inputgroup">
+                            <p:inputMask
+                                    mask="99999999999"
+                                    requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                    validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                    placeholder="Identificaci&oacute;n" value="#{evaluarAsignaturaEstudianteBean.id}"
+                                    required="true"/>
+                            <p:commandButton id="btnSearch" title="Buscar" update="form1 search_results"
+                                             icon="pi pi-search"
+                                             action="#{evaluarAsignaturaEstudianteBean.search()}" ajax="true"
+                                             styleClass="ui-button ui-button-info"/>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+            
+            <br/>
+
+            <h:form id="search_results">
+                <p:outputPanel rendered="#{evaluarAsignaturaEstudianteBean.founded}">
+                    <p:dataTable tableStyleClass="table-striped" id="dt-evaluarAsignaturasEstudiante" widgetVar="dtevaluarAsignaturasEstudiante" var="nota_estudiante"
+                                 value="#{evaluarAsignaturaEstudianteBean.lista_asignatura_notas}" size="small"
+                                 reflow="true" styleClass="evaluarAsignaturasEstudiantes-table"
+                                 rowKey="#{nota_estudiante.m.matriculaFechaInicio}" paginator="true" rows="10" paginatorPosition="bottom">
+                        <f:facet name="header">
+                            <div class="evaluarAsignaturasEstudiantes-table-header">
+                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-evaluarAsignaturasEstudiante').filter()" placeholder="Buscar"/>
+                    </span>
+                            </div>
+                        </f:facet>
+                        <p:column exportHeaderValue="Matr&iacute;cula" headerText="Matr&iacute;cula" sortOrder="asc">
+                            <h:outputText value="#{evaluarAsignaturaEstudianteBean.TranslateDate(nota_estudiante.m.matriculaFechaInicio)}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="C&oacute;digo Asignatura" headerText="C&oacute;digo Asignatura">
+                           <h:outputText value="#{nota_estudiante.a.asignaturaCodigo}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="Asignatura" headerText="Asignatura">
+                            <h:outputText value="#{nota_estudiante.a.asignaturaNombre}"/>
+                        </p:column>
+                        <p:column exportHeaderValue="Nota" headerText="Nota">
+                                <p:selectOneMenu value="#{nota_estudiante.nota}"
+                                                 requiredMessage="ERROR: Es necesario seleccionar una Nota"
+                                                 required="true">
+                                    <f:selectItem itemLabel="(Sin Nota)" itemValue="-1"/>
+                                    <f:selectItem itemLabel="2" itemValue="2"/>
+                                    <f:selectItem itemLabel="3" itemValue="3"/>
+                                    <f:selectItem itemLabel="4" itemValue="4"/>
+                                    <f:selectItem itemLabel="5" itemValue="5"/>
+                                </p:selectOneMenu>
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <p:commandButton style="float: right" id="GuardarCambios" update="form1 search_results" value="Guardar"
+                                     icon="pi pi-save" actionListener="#{evaluarAsignaturaEstudianteBean.refresh()}"
+                                     styleClass="ui-button ui-button-info"/>
+                </p:outputPanel>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

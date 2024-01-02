@@ -27,7 +27,7 @@
             #{cierreMatriculaBean.init()}
             <p:growl allowDismiss="true" showDetail="true"/>
             <div class="row">
-                <div class="col col-sm-5">
+                <div class="col col-sm-4">
                     <p:outputLabel for="area"
                                    styleClass="block"> &Aacute;rea </p:outputLabel>
                     <p:selectOneMenu value="#{cierreMatriculaBean.area}"
@@ -55,10 +55,10 @@
                         </p:selectOneMenu>
                     </p:outputPanel>
                 </div>
-                <div class="col col-sm-2">
+                <div class="col col-sm-3">
                     <br/>
                     <p:commandButton id="cerrar_mat" update="form" value="Cerrar Matr&iacute;cula"
-                                     title="Cerrar Matr&iacute;cula" icon="pi pi-close"
+                                     title="Cerrar Matr&iacute;cula" icon="pi pi-sign-out"
                                      styleClass="ui-button ui-button-danger"
                                      action="#{cierreMatriculaBean.cierreMatricula()}">
                     </p:commandButton>
