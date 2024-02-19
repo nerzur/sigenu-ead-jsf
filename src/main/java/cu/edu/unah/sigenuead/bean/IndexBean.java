@@ -32,6 +32,13 @@ import java.util.*;
 @Data
 public class IndexBean implements Serializable {
 
+    static {
+        String javaHeadlessStatus = System.getProperty("java.awt.headless");
+        System.out.println("Java HEADLESS: "+javaHeadlessStatus);
+        if(javaHeadlessStatus.equals("false"))
+            System.setProperty("java.awt.headless", "true");
+    }
+
     private int estudiantesActivos = 0;
     private int estudiantesBaja = 0;
     private int estudiantesEgresados = 0;
