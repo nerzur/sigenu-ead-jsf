@@ -28,6 +28,10 @@
                 .ui-datalist-content {
                     border-radius: 10px;
                 }
+
+                .ui-datatable .ui-column-filter{
+                    display: none;
+                }
             </style>
 
             #{planEstudioBean.init()}
@@ -253,23 +257,23 @@
                                      reflow="true" styleClass="disciplinas-table"
                                      rowKey="#{disciplina.disciplina}" paginator="true" rows="10"
                                      paginatorPosition="bottom">
-                            <f:facet name="header">
-                                <div class="disciplinas-table-header">
-                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-disciplina').filter()" placeholder="Buscar"/>
-                    </span>
-                                </div>
-                            </f:facet>
-                            <p:column exportHeaderValue="Disciplina" headerText="Disciplina" sortOrder="asc">
+<!--                            <f:facet name="header">-->
+<!--                                <div class="disciplinas-table-header">-->
+<!--                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>-->
+<!--                        <p:inputText id="globalFilter1" onkeyup="PF('dt-disciplina').filter()" placeholder="Buscar"/>-->
+<!--                    </span>-->
+<!--                                </div>-->
+<!--                            </f:facet>-->
+                            <p:column exportHeaderValue="Disciplina" headerText="Disciplina" sortBy="#{disciplina.disciplina}" filterBy="#{disciplina.disciplina}" sortOrder="asc">
                                 <h:outputText value="#{disciplina.disciplina}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Objetivo" headerText="Objetivo">
+                            <p:column exportHeaderValue="Objetivo" headerText="Objetivo" sortBy="#{disciplina.objetivo}" filterBy="#{disciplina.objetivo}">
                                 <h:outputText value="#{disciplina.objetivo}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Programa" headerText="Programa">
+                            <p:column exportHeaderValue="Programa" headerText="Programa" sortBy="#{disciplina.programa}" filterBy="#{disciplina.programa}">
                                 <h:outputText value="#{disciplina.programa}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Estado" headerText="Estado">
+                            <p:column exportHeaderValue="Estado" headerText="Estado" sortBy="#{disciplina.cancelado}" filterBy="#{disciplina.cancelado}">
                                 <h:outputText
                                         styleClass="#{planEstudioBean.translateBooleanToSeverity(!disciplina.cancelado)}"
                                         value="#{planEstudioBean.translate_estado(!disciplina.cancelado)}"/>
@@ -334,23 +338,23 @@
                             <f:facet name="header">
                                 <div class="asignaturas-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter1" onkeyup="PF('dt-asignatura').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dt-asignatura').filter()" placeholder="Buscar"/>
                     </span>
                                 </div>
                             </f:facet>
-                            <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" sortOrder="asc">
+                            <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" sortOrder="asc" sortBy="#{asignatura.asignaturaCodigo}" filterBy="#{asignatura.asignaturaCodigo}">
                                 <h:outputText value="#{asignatura.asignaturaCodigo}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Nombre" headerText="Nombre">
+                            <p:column exportHeaderValue="Nombre" headerText="Nombre" sortBy="#{asignatura.asignaturaNombre}" filterBy="#{asignatura.asignaturaNombre}">
                                 <h:outputText value="#{asignatura.asignaturaNombre}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Disciplina" headerText="Disciplina">
+                            <p:column exportHeaderValue="Disciplina" headerText="Disciplina" sortBy="#{asignatura.disciplina}" filterBy="#{asignatura.disciplina}">
                                 <h:outputText value="#{asignatura.disciplina}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Tipo de Asignatura" headerText="Tipo de Asignatura">
+                            <p:column exportHeaderValue="Tipo de Asignatura" headerText="Tipo de Asignatura" sortBy="#{asignatura.tipoAsignaturatipoAsignaturaId}" filterBy="#{asignatura.tipoAsignaturatipoAsignaturaId}">
                                 <h:outputText value="#{asignatura.tipoAsignaturatipoAsignaturaId}"/>
                             </p:column>
-                            <p:column exportHeaderValue="Estado" headerText="Estado">
+                            <p:column exportHeaderValue="Estado" headerText="Estado" sortBy="#{asignatura.asignaturaCancelada}" filterBy="#{asignatura.asignaturaCancelada}">
                                 <h:outputText
                                         styleClass="#{planEstudioBean.translateBooleanToSeverity(!asignatura.asignaturaCancelada)}"
                                         value="#{planEstudioBean.translate_estado(!asignatura.asignaturaCancelada)}"/>
