@@ -19,7 +19,6 @@
 
 <h:head>
     <!-- Required meta tags -->
-    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>SIGENU-EaD :: <ui:insert name="title"> Inicio </ui:insert></title>
 
@@ -41,7 +40,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
 
-    <style>
+    <style type="text/css">
         .ui-inputfield {
             width: 100%;
         }
@@ -59,7 +58,7 @@
 <h:body id="body">
     #{templateBean.init()}
 
-    <script>
+    <script type="application/javascript">
         PrimeFaces.locales['es'] = {
             closeText: 'Cerrar',
             prevText: 'Anterior',
@@ -696,8 +695,8 @@
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">SIGENU - Eduaci&oacute;n a Distancia <a
                                 href="https://www.unah.edu.cu/"
                                 target="_blank">Universidad Agraria de La Habana "Fructuoso Rodr&iacute;guez P&eacute;rez"</a></span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">v0.12.0-Beta. Copyright ©
-                         <script>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">v0.12.5-Beta. Copyright ©
+                         <script type="application/javascript">
                             document.write(new Date().getFullYear());
                         </script>. Todos los Derechos Reservados.</span>
                     </div>

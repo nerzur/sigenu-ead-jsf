@@ -11,8 +11,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
-      xmlns:a="jakarta.faces.passthrough">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
 
 <h:body>
 
@@ -24,7 +23,7 @@
 
         <ui:define name="content">
 
-            <style>
+            <style type="text/css">
                 .ui-datalist-content {
                     border-radius: 10px;
                 }
@@ -460,7 +459,7 @@
                             #{planEstudioBean.updateConfirmacionStep()}
                             <ui:repeat emptyMessage="No se adicionaron Disciplinas"
                                        value="#{planEstudioBean.confirmacion_list_asignatura}" var="disc">
-                                <p:panel header="Disciplina #{disc.disciplina.disciplina}">
+                                <p:fieldset legend="Disciplina #{disc.disciplina.disciplina}" collapsed="true" toggleable="true">
                                     <div style="font-size: 14px">
                                         <div class="row">
                                             <div class="col col-sm-12">
@@ -578,7 +577,7 @@
                                             <br/>
                                         </div>
                                     </div>
-                                </p:panel>
+                                </p:fieldset>
                                 <br/>
                             </ui:repeat>
                         </p:outputPanel>
@@ -1093,7 +1092,7 @@
                             <div class="row">
                                 <div class="col col-sm-12">
                                     <p:outputPanel id="asig_prevEdit">
-                                        #{planEstudioBean.updateAsignaturasList()}
+                                        #{planEstudioBean.updateAsignaturasListWhenEdit()}
                                         <p:outputLabel for="asigPrecedenteEdit"
                                                        value=""> Asignaturas Precedentes </p:outputLabel><br/>
                                         <p:selectManyMenu id="asigPrecedenteEdit" label="Asignaturas Precedentes:"
