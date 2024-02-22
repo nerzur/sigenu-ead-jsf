@@ -83,7 +83,7 @@ public class NuevaMatriculaBean implements Serializable {
     private List<String> ongList;
     private String nombreTutor1;
     private String apellidosTutor1;
-    private Float salarioTutor1;
+    private Float salarioTutor1 = 0.0F;
     private boolean fallecidoTutor1;
     private String nivelEscolarTutor1;
     private String ocupacionTutor1;
@@ -91,7 +91,7 @@ public class NuevaMatriculaBean implements Serializable {
     private String sexoTutor1;
     private String nombreTutor2;
     private String apellidosTutor2;
-    private Float salarioTutor2;
+    private Float salarioTutor2 = 0.0F;
     private boolean fallecidoTutor2;
     private String nivelEscolarTutor2;
     private String ocupacionTutor2;
