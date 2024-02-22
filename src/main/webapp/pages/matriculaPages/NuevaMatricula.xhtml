@@ -281,7 +281,7 @@
                                              value="#{nuevaMatriculaBean.email}">
                                     <f:validateLength maximum="250"/>
                                     <f:validateRegex
-                                            pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+                                            pattern="^[\pL\s]*$|^[\w\.-]+@[a-zA-Z0-9]+\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]*$"/>
                                 </p:inputText>
                             </div>
                         </div>
@@ -448,7 +448,7 @@
                                                                     <i class="pi pi-dollar"/>
                                                                      <p:inputText label="Salario" id="input_salario1"
                                                                                   validatorMessage="ERROR: Salario no v&aacute;lido"
-                                                                                  autocomplete="false" required="true"
+                                                                                  autocomplete="false"
                                                                                   placeholder="Salario"
                                                                                   value="#{nuevaMatriculaBean.salarioTutor1}">
                                                                     <f:validateDoubleRange minimum="0.00"
@@ -559,7 +559,7 @@
                                                                 <i class="pi pi-dollar"/>
                                                                 <p:inputText label="Salario" id="input_salario2"
                                                                              validatorMessage="ERROR: Salario no v&aacute;lido"
-                                                                             autocomplete="false" required="true"
+                                                                             autocomplete="false"
                                                                              class="form-control" placeholder="Salario"
                                                                              maxlength="8"
                                                                              value="#{nuevaMatriculaBean.salarioTutor2}">

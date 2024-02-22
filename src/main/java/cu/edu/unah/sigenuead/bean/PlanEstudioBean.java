@@ -350,6 +350,17 @@ public class PlanEstudioBean implements Serializable {
         }
     }
 
+    public void updateAsignaturasListWhenEdit() {
+        list_asignaturas.clear();
+        if (facultad != null && !facultad.equals("") && carrera != null && !carrera.equals("") && tipo_plan_estudio != null && !tipo_plan_estudio.equals("") && disciplina_asignatura != null && !disciplina_asignatura.equals("")) {
+            for (PlanEstudio_Disciplina_Asignatura p : asignatura_list) {
+                if (p.getDisciplina().equals(disciplina_asignatura) && (codigo_asignatura != null && !codigo_asignatura.equals(p.getAsignaturaCodigo()))) {
+                    list_asignaturas.add(p.getAsignaturaNombre());
+                }
+            }
+        }
+    }
+
     public void updateAsignaturasListEdit() {
         list_asignaturas = new ArrayList<String>();
 //        precedentes_asignatura.clear();
