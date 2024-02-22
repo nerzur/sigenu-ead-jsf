@@ -18,7 +18,7 @@
 
     <groupId>cu.edu.unah</groupId>
     <artifactId>sigenu-ead-jsf</artifactId>
-    <version>0.12.5-Beta</version>
+    <version>0.12.7-Beta</version>
     <packaging>war</packaging>
 
     <properties>
@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.1</version>
+            <version>42.7.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
         <dependency>
