@@ -24,6 +24,12 @@
 
         <ui:define name="content">
 
+            <style type="text/css">
+                .ui-datatable .ui-column-filter{
+                    display: none;
+                }
+            </style>
+
             #{evaluarAsignaturaEstudianteBean.init()}
             <h:form id="form1">
                 <p:growl allowDismiss="true"/>
@@ -65,7 +71,7 @@
 
             <h:form id="search_results">
                 <p:outputPanel rendered="#{evaluarAsignaturaEstudianteBean.founded}">
-                    <p:dataTable tableStyleClass="table-striped" id="dt-evaluarAsignaturasEstudiante" widgetVar="dtevaluarAsignaturasEstudiante" var="nota_estudiante"
+                    <p:dataTable tableStyleClass="table-striped" id="dt-evaluarAsignaturasEstudiante" widgetVar="dt-evaluarAsignaturasEstudiante" var="nota_estudiante"
                                  value="#{evaluarAsignaturaEstudianteBean.lista_asignatura_notas}" size="small"
                                  reflow="true" styleClass="evaluarAsignaturasEstudiantes-table"
                                  rowKey="#{nota_estudiante.m.matriculaFechaInicio}" paginator="true" rows="10" paginatorPosition="bottom">
@@ -76,13 +82,13 @@
                     </span>
                             </div>
                         </f:facet>
-                        <p:column exportHeaderValue="Matr&iacute;cula" headerText="Matr&iacute;cula" sortOrder="asc">
+                        <p:column sortBy="#{nota_estudiante.m.matriculaFechaInicio}" exportHeaderValue="Matr&iacute;cula" headerText="Matr&iacute;cula" sortOrder="asc">
                             <h:outputText value="#{evaluarAsignaturaEstudianteBean.TranslateDate(nota_estudiante.m.matriculaFechaInicio)}"/>
                         </p:column>
-                        <p:column exportHeaderValue="C&oacute;digo Asignatura" headerText="C&oacute;digo Asignatura">
+                        <p:column sortBy="#{nota_estudiante.a.asignaturaCodigo}" filterBy="#{nota_estudiante.a.asignaturaCodigo}" exportHeaderValue="C&oacute;digo Asignatura" headerText="C&oacute;digo Asignatura">
                            <h:outputText value="#{nota_estudiante.a.asignaturaCodigo}"/>
                         </p:column>
-                        <p:column exportHeaderValue="Asignatura" headerText="Asignatura">
+                        <p:column sortBy="#{nota_estudiante.a.asignaturaNombre}" filterBy="#{nota_estudiante.a.asignaturaNombre}" exportHeaderValue="Asignatura" headerText="Asignatura">
                             <h:outputText value="#{nota_estudiante.a.asignaturaNombre}"/>
                         </p:column>
                         <p:column exportHeaderValue="Nota" headerText="Nota">
