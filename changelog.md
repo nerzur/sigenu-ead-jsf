@@ -7,3 +7,8 @@
 - Added sql functions to init.sql file.
 - Added product version in the Template.
 - Fixed edit problems in AdminFacultad.
+
+### 0.12.8
+- Updated Spring version 6.1.4 to 6.1.5.
+- Updated Spring Security version 6.2.2 to 6.2.3.
+- Fixing vulnerabilities.
