@@ -28,6 +28,7 @@ public class AdminFuenteIngresoBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<FuenteIngreso> lista_fuenteingresoes = new ArrayList<FuenteIngreso>();
+    private List<FuenteIngreso> lista_fuenteingresoesFiltrada = new ArrayList<FuenteIngreso>();
     private FuenteIngreso fuenteingreso_selected;
     private FuenteIngresoServices serv = new FuenteIngresoServices();
 
@@ -110,5 +111,11 @@ public class AdminFuenteIngresoBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<FuenteIngreso> getLista_fuenteingresoesFiltrada() {
+        return lista_fuenteingresoesFiltrada;
+    }
 
+    public void setLista_fuenteingresoesFiltrada(List<FuenteIngreso> lista_fuenteingresoesFiltrada) {
+        this.lista_fuenteingresoesFiltrada = lista_fuenteingresoesFiltrada;
+    }
 }

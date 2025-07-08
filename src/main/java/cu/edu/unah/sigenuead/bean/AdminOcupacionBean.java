@@ -23,6 +23,7 @@ public class AdminOcupacionBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Ocupacion> ocupacionList = new ArrayList<Ocupacion>();
+    private List<Ocupacion> ocupacionListFiltrada = new ArrayList<Ocupacion>();
     private Ocupacion ocupacionSelected;
     private OcupacionServices serv = new OcupacionServices();
 
@@ -99,5 +100,12 @@ public class AdminOcupacionBean implements Serializable {
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
     }
-    
+
+    public List<Ocupacion> getOcupacionListFiltrada() {
+        return ocupacionListFiltrada;
+    }
+
+    public void setOcupacionListFiltrada(List<Ocupacion> ocupacionListFiltrada) {
+        this.ocupacionListFiltrada = ocupacionListFiltrada;
+    }
 }

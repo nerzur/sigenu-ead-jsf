@@ -40,17 +40,18 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-users" fileName="Usuarios" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dtusers" fileName="Usuarios" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-users" fileName="Usiarios" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dtusers" fileName="Usiarios" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-users" widgetVar="dtusers" var="user"
+            <p:dataTable tableStyleClass="table-striped" id="dtusers" widgetVar="dtusers" var="user"
                          value="#{adminUserBean.userList}" size="small"
+
                          reflow="true" styleClass="users-table"
                          rowKey="#{user.username}" paginator="true" rows="10" paginatorPosition="bottom">
                 <f:facet name="header">
@@ -63,10 +64,10 @@
                 <p:column exportHeaderValue="ID" headerText="ID">
                     <h:outputText value="#{user.identificacion}"/>
                 </p:column>
-                <p:column exportHeaderValue="Usuario" headerText="Usuario">
+                <p:column exportHeaderValue="Usuario" headerText="Usuario" filterBy="#{user.username}">
                     <h:outputText value="#{user.username}"/>
                 </p:column>
-                <p:column exportHeaderValue="Nombre" headerText="Nombre">
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" filterBy="#{user.nombre} #{user.apellido1} #{user.apellido2}">
                     <h:outputText value="#{user.nombre} #{user.apellido1} #{user.apellido2}"/>
                 </p:column>
                 <p:column exportHeaderValue="E-mail" headerText="E-Mail">
@@ -314,6 +315,8 @@
                                                   itemValue="ROLE_SECRETARIO_GENERAL"/>
                                     <f:selectItem itemLabel=" Controlador de Plan de Estudio"
                                                   itemValue="ROLE_CONTROLADOR"/>
+                                    <f:selectItem itemLabel=" Estudiante"
+                                                  itemValue="ROLE_ESTUDIANTE"/>
                                     <f:selectItem itemLabel=" Matriculador" itemValue="ROLE_MATRICULADOR"/>
                                 </p:selectManyMenu>
                             </div>
@@ -465,6 +468,8 @@
                                                   itemValue="ROLE_SECRETARIO_GENERAL"/>
                                     <f:selectItem itemLabel=" Controlador de Plan de Estudio"
                                                   itemValue="ROLE_CONTROLADOR"/>
+                                    <f:selectItem itemLabel=" Estudiante"
+                                                  itemValue="ROLE_ESTUDIANTE"/>
                                     <f:selectItem itemLabel=" Matriculador" itemValue="ROLE_MATRICULADOR"/>
                                 </p:selectManyMenu>
                             </div>

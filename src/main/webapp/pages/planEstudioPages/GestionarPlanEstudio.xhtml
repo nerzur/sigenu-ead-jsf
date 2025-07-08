@@ -328,16 +328,17 @@
                             </p:toolbarGroup>
                         </p:toolbar>
 
-                        <p:dataTable tableStyleClass="table-striped" id="dt-asignatura" widgetVar="dt-asignatura"
+                        <p:dataTable tableStyleClass="table-striped" id="dtasignatura" widgetVar="dt-asignatura"
                                      var="asignatura"
                                      value="#{planEstudioBean.asignatura_list}" size="small"
+                                     filteredValue="#{planEstudioBean.asignatura_listFiltrada}"
                                      reflow="true" styleClass="asignaturas-table"
                                      rowKey="#{asignatura.asignaturaNombre}" paginator="true" rows="10"
                                      paginatorPosition="bottom">
                             <f:facet name="header">
                                 <div class="asignaturas-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-asignatura').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtasignatura').filter()" placeholder="Buscar"/>
                     </span>
                                 </div>
                             </f:facet>

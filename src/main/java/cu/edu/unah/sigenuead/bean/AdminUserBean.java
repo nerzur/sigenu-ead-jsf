@@ -140,6 +140,7 @@ public class AdminUserBean implements Serializable {
             case "ROLE_SECRETARIA" -> "Secretaria";
             case "ROLE_SECRETARIO_GENERAL" -> "Secretario General";
             case "ROLE_CONTROLADOR" -> "Controlador de Plan de Estudio";
+            case "ROLE_ESTUDIANTE" -> "Estudiante";
             default -> "Matriculador";
         };
     }
@@ -171,6 +172,7 @@ public class AdminUserBean implements Serializable {
             case "ROLE_SECRETARIA" -> badges[1];
             case "ROLE_SECRETARIO_GENERAL" -> badges[2];
             case "ROLE_CONTROLADOR" -> badges[3];
+            case "ROLE_ESTUDIANTE" -> badges[3];
             case "ROLE_MATRICULADOR" -> badges[4];
             default -> "badge-dark";
         };

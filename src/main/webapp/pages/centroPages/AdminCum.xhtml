@@ -40,41 +40,41 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-cum" fileName="cumes" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dtcum" fileName="cumes" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-cum" fileName="cumes"
+                        <p:dataExporter type="xlsxstream" target="dtcum" fileName="cumes"
                                         exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-cum" widgetVar="dtcum" var="cum"
+            <p:dataTable tableStyleClass="table-striped" id="dtcum" widgetVar="dtcum" var="cum"
                          value="#{adminCumBean.cumList}" size="small"
                          reflow="true" styleClass="cums-table"
                          rowKey="#{cum.cumNombre}" paginator="true" rows="10" paginatorPosition="bottom">
                 <f:facet name="header">
                     <div class="cums-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-cum').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtcum').filter()" placeholder="Buscar"/>
                     </span>
                     </div>
                 </f:facet>
 
-                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo">
+                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" filterBy="#{cum.codigocum}">
                     <h:outputText value="#{cum.codigocum}"/>
                 </p:column>
-                <p:column headerText="Iniciales" exportHeaderValue="Iniciales">
+                <p:column headerText="Iniciales" exportHeaderValue="Iniciales" filterBy="#{cum.inicialescum}">
                     <h:outputText value="#{cum.inicialescum}"/>
                 </p:column>
-                <p:column headerText="Tel&eacute;fono" exportHeaderValue="Tel&eacute;fono">
+                <p:column headerText="Tel&eacute;fono" exportHeaderValue="Tel&eacute;fono" filterBy="#{cum.telefonocum}">
                     <h:outputText value="#{cum.telefonocum}"/>
                 </p:column>
-                <p:column headerText="Director" exportHeaderValue="Director">
+                <p:column headerText="Director" exportHeaderValue="Director" filterBy="#{cum.nombredirectorcum}">
                     <h:outputText value="#{cum.nombredirectorcum}"/>
                 </p:column>
-                <p:column headerText="Sec. General" exportHeaderValue="Sec. General">
+                <p:column headerText="Sec. General" exportHeaderValue="Sec. General" filterBy="#{cum.nombresecgralcum}">
                     <h:outputText value="#{cum.nombresecgralcum}"/>
                 </p:column>
 

@@ -23,22 +23,24 @@ public class AdminSexoBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Sexo> sexoList = new ArrayList<Sexo>();
+    private List<Sexo> sexoListFiltrada = new ArrayList<Sexo>();
     private Sexo sexoSelected;
     private SexoServices serv = new SexoServices();
 
     public void init() {
         sexoList.clear();
         sexoList = serv.findAllSexo();
+        cleanVariables();
     }
 
     public void cleanVariables() {
-        this.setNombre("");
-        this.setCancelado(true);
+        nombre = "";
+        cancelado = true;
     }
 
     public void updateSelected_Sexo(Sexo sexo) {
         this.setSexoSelected(sexo);
-        cleanVariables();
+        //cleanVariables();
     }
 
     public void updateSelected_Sexo_toDelete(Sexo sexo) {
@@ -100,4 +102,11 @@ public class AdminSexoBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<Sexo> getSexoListFiltrada() {
+        return sexoListFiltrada;
+    }
+
+    public void setSexoListFiltrada(List<Sexo> sexoListFiltrada) {
+        this.sexoListFiltrada = sexoListFiltrada;
+    }
 }

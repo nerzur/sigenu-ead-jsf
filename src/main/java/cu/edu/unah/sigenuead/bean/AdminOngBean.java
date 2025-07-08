@@ -23,6 +23,7 @@ public class AdminOngBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Ong> ongList = new ArrayList<Ong>();
+    private List<Ong> ongListFiltrada = new ArrayList<Ong>();
     private Ong ongSelected;
     private OngServices serv = new OngServices();
 
@@ -98,5 +99,13 @@ public class AdminOngBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<Ong> getOngListFiltrada() {
+        return ongListFiltrada;
+    }
+
+    public void setOngListFiltrada(List<Ong> ongListFiltrada) {
+        this.ongListFiltrada = ongListFiltrada;
     }
 }

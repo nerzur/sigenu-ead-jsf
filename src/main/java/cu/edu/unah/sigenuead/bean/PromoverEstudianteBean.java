@@ -28,6 +28,7 @@ public class PromoverEstudianteBean implements Serializable {
     private List<String> list_carrera = new ArrayList<String>();
 
     private List<Estudiante_promover> list_estudiante_promover = new ArrayList<Estudiante_promover>();
+    private List<Estudiante_promover> list_estudiante_promoverFiltrada = new ArrayList<Estudiante_promover>();
 
     private final FacultadServices serv_facultad = new FacultadServices();
     private final CarreraServices serv_carrera = new CarreraServices();

@@ -23,6 +23,7 @@ public class AdminOrganizacionPoliticaBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<OrganizacionPolitica> organizacionPoliticaList = new ArrayList<OrganizacionPolitica>();
+    private List<OrganizacionPolitica> organizacionPoliticaListFiltrada = new ArrayList<OrganizacionPolitica>();
     private OrganizacionPolitica organizacionPoliticaSelected;
     private OrganizacionPoliticaServices serv = new OrganizacionPoliticaServices();
 
@@ -98,5 +99,13 @@ public class AdminOrganizacionPoliticaBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<OrganizacionPolitica> getOrganizacionPoliticaListFiltrada() {
+        return organizacionPoliticaListFiltrada;
+    }
+
+    public void setOrganizacionPoliticaListFiltrada(List<OrganizacionPolitica> organizacionPoliticaListFiltrada) {
+        this.organizacionPoliticaListFiltrada = organizacionPoliticaListFiltrada;
     }
 }

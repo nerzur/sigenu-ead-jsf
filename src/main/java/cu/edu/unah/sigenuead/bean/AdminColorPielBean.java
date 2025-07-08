@@ -23,6 +23,7 @@ public class AdminColorPielBean implements Serializable {
     private String nombre1;
     private boolean cancelado =true;
     private List<ColorPiel> colorPielList = new ArrayList<ColorPiel>();
+    private List<ColorPiel> colorPielListFiltrada = new ArrayList<ColorPiel>();
     private ColorPiel colorPielSelected;
     private ColorPielServices serv = new ColorPielServices();
 
@@ -33,13 +34,13 @@ public class AdminColorPielBean implements Serializable {
     }
 
     public void cleanVariables() {
-        this.setNombre("");
-        this.setCancelado(true);
+        nombre = "";
+        cancelado= true;
     }
 
     public void updateSelected_ColorPiel(ColorPiel color_piel) {
         this.setColorPielSelected(color_piel);
-        cleanVariables();
+        //cleanVariables();
     }
 
     public void updateSelected_ColorPiel_toDelete(ColorPiel colorPiel) {
@@ -99,5 +100,13 @@ public class AdminColorPielBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<ColorPiel> getColorPielListFiltrada() {
+        return colorPielListFiltrada;
+    }
+
+    public void setColorPielListFiltrada(List<ColorPiel> colorPielListFiltrada) {
+        this.colorPielListFiltrada = colorPielListFiltrada;
     }
 }

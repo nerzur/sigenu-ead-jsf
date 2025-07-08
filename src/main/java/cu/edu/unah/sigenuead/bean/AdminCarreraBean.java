@@ -32,6 +32,7 @@ public class AdminCarreraBean implements Serializable {
 
     private boolean cancelado = true;
     private List<Carrera> lista_carrera = new ArrayList<Carrera>();
+    private List<Carrera> lista_carreraFiltrada = new ArrayList<Carrera>();
     private List<String> lista_carrera_nacional = new ArrayList<String>();
     private List<String> lista_facultad = new ArrayList<String>();
     private List<String> lista_especialidad = new ArrayList<String>();

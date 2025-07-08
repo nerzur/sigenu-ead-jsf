@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+<body>
+
+<ui:composition template="./Template.xhtml">
+
+    <ui:define name="title">
+        Perfil
+    </ui:define>
+
+    <ui:define name="description">
+        Datos de Perfil
+    </ui:define>
+
+    <ui:define name="profile-data">
+
+        <style type="text/css">
+            #content-data {
+                display: none;
+            }
+        </style>
+
+        <div class="col-lg-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Informaci&oacute;n del Perfil</h4>
+                    <p class="card-description">
+                    </p>
+                    <div class="media">
+                        <i class="ti-user icon-lg d-flex align-self-start me-3" style="color: #009440"></i>
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Nombre:"/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <h:outputText
+                                            value="#{templateBean.user.nombre} #{templateBean.user.apellido1} #{templateBean.user.apellido2}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="CI: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <h:outputText value="#{templateBean.user.identificacion}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Correo: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <h:outputLink value="mailto:#{templateBean.user.email}"> <h:outputText
+                                            value="#{templateBean.user.email}"/></h:outputLink>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Descripci&oacute;n: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <p style="font-size: 1rem; font-family: 'Manrope', sans-serif; font-weight: initial;
+                                    line-height: normal;" align="justify">#{templateBean.user.descripcion}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Estado: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <h:outputText value="#{templateBean.translateEstado(templateBean.user.enabled)}"
+                                                  styleClass="#{templateBean.translateBooleanToSeveriy(templateBean.user.enabled)}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Roles: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <ui:repeat value="#{templateBean.roles}" var="rol">
+                                        <h:outputLabel style="margin-top: 2px; margin-right: 2px"
+                                                       styleClass="badge #{adminUserBean.translateBadge(rol)}"
+                                                       value="#{templateBean.translateRole(rol)}"/>
+                                    </ui:repeat>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-lg-3">
+                                    <strong><h:outputLabel value="Permisos: "/></strong>
+                                </div>
+                                <div class="col col-lg-9">
+                                    <ui:repeat value="#{templateBean.permisos}" var="permiso">
+                                        <h:outputLabel style="margin-top: 2px; margin-right: 2px"
+                                                       styleClass="badge badge-opacity-success"
+                                                       value="#{permiso}"/>
+                                    </ui:repeat>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Cambio de contrase&ntilde;a</h4>
+                    <p class="card-description alert alert-warning" align="justify" role="alert">
+                        Para cambiar la contrase&ntilde;a del usuario actual es necesario introducir la contrase&ntilde;a antigua y repetir la nueva dos veces.
+                    </p>
+                    <h:form id="passw_renew">
+                        <p:growl allow-dismiss="true"/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputLabel for="lastestp" value="Contrase&ntilde;a antigua"/> <br/>
+                                <p:password value="#{templateBean.password}" required="true" id="lastestp"
+                                            feedback="true"
+                                            promptLabel="Contrase&ntilde;a antigua" weakLabel="Débil"
+                                            placeholder="Contrase&ntilde;a antigua"
+                                            goodLabel="Buena" strongLabel="Fuerte"
+                                            styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputLabel for="nastestp" value="Contrase&ntilde;a nueva"/> <br/>
+                                <p:password value="#{templateBean.password1}" required="true" id="nastestp"
+                                            feedback="true"
+                                            promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
+                                            placeholder="Contrase&ntilde;a nueva"
+                                            goodLabel="Buena" strongLabel="Fuerte"
+                                            styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:outputLabel for="n1astestp" value="Contrase&ntilde;a nueva"/>
+                                <p:password value="#{templateBean.password2}" required="true" id="n1astestp"
+                                            feedback="true"
+                                            promptLabel="Contrase&ntilde;a nueva" weakLabel="Débil"
+                                            placeholder="Contrase&ntilde;a nueva"
+                                            goodLabel="Buena" strongLabel="Fuerte"
+                                            styleClass="form-control"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+
+                            <p:commandButton style="float: right" id="btnChange" styleClass="ui-button ui-button-success"
+                                             icon="pi pi-save"
+                                             action="#{templateBean.passwordRenew()}" update="passw_renew"
+                                             value="Cambiar"/>
+
+
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
+
+</body>
+</html>

@@ -29,6 +29,7 @@ public class AdminCarreraNacionalBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Carreranacional> lista_carreranacionales = new ArrayList<Carreranacional>();
+    private List<Carreranacional> lista_carreranacionalesFiltrada = new ArrayList<Carreranacional>();
     private List<String> lista_especialidades = new ArrayList<String>();
     private Carreranacional carreranacional_selected;
     final private CarreraNacionalServices serv = new CarreraNacionalServices();
@@ -117,5 +118,13 @@ public class AdminCarreraNacionalBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<Carreranacional> getLista_carreranacionalesFiltrada() {
+        return lista_carreranacionalesFiltrada;
+    }
+
+    public void setLista_carreranacionalesFiltrada(List<Carreranacional> lista_carreranacionalesFiltrada) {
+        this.lista_carreranacionalesFiltrada = lista_carreranacionalesFiltrada;
     }
 }

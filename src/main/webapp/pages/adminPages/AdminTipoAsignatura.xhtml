@@ -41,18 +41,18 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-tipoAsignatura" fileName="Tipos de asignatura"
+                        <p:dataExporter type="pdf" target="dttipoAsignatura" fileName="Tipos de asignatura"
                                         exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-tipoAsignatura" fileName="Tipos de asignatura"
+                        <p:dataExporter type="xlsxstream" target="dttipoAsignatura" fileName="Tipos de asignatura"
                                         exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-tipoAsignatura" widgetVar="dttipoasignatura"
+            <p:dataTable tableStyleClass="table-striped" id="dttipoAsignatura" widgetVar="dttipoasignatura"
                          var="tipoasignatura"
                          value="#{adminTipoAsignaturaBean.tipoAsignaturaList}" size="small"
                          reflow="true" styleClass="tipoasignaturas-table"
@@ -61,12 +61,12 @@
                 <f:facet name="header">
                     <div class="tipoasignaturas-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-tipoAsignatura').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dttipoAsignatura').filter()" placeholder="Buscar"/>
                     </span>
                     </div>
                 </f:facet>
 
-                <p:column exportHeaderValue="Nombre" headerText="Nombre">
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" filterBy="#{tipoasignatura.tipoAsignaturaNombre}">
                     <h:outputText value="#{tipoasignatura.tipoAsignaturaNombre}"/>
                 </p:column>
                 <p:column exportHeaderValue="Estado" headerText="Estado">

@@ -40,28 +40,28 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-especialidadMilitar" fileName="Especialidades Militares" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dtespecialidadMilitar" fileName="Especialidades Militares" exportHeader="true"/>
                     </p:commandButton>
                     <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-especialidadMilitar" fileName="Especialidades Militares" exportHeader="true"/>
+                        <p:dataExporter type="xlsxstream" target="dtespecialidadMilitar" fileName="Especialidades Militares" exportHeader="true"/>
                     </p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-especialidadMilitar" widgetVar="dtespecialidadMilitar" var="especialidadMilitar"
+            <p:dataTable tableStyleClass="table-striped" id="dtespecialidadMilitar" widgetVar="dtespecialidadMilitar" var="especialidadMilitar"
                          value="#{adminEspecialidadMilitarBean.lista_especialidadmilitares}" size="small"
                          reflow="true" styleClass="especialidadMilitars-table"
                          rowKey="#{especialidadMilitar.especialidadMilitarNombre}" paginator="true" rows="10" paginatorPosition="bottom">
                 <f:facet name="header">
                     <div class="especialidadMilitars-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-especialidadMilitar').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtespecialidadMilitar').filter()" placeholder="Buscar"/>
                     </span>
                     </div>
                 </f:facet>
 
-                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" filterBy="#{especialidadMilitar.especialidadMilitarNombre}" sortOrder="asc">
                     <h:outputText value="#{especialidadMilitar.especialidadMilitarNombre}"/>
                 </p:column>
                 <p:column exportHeaderValue="Estado" headerText="Estado">

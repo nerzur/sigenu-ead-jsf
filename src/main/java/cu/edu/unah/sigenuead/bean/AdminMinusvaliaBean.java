@@ -23,6 +23,7 @@ public class AdminMinusvaliaBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Minusvalia> minusvaliaList = new ArrayList<Minusvalia>();
+    private List<Minusvalia> minusvaliaListFiltrada = new ArrayList<Minusvalia>();
     private Minusvalia minusvaliaSelected;
     private MinusvaliaServices serv = new MinusvaliaServices();
 

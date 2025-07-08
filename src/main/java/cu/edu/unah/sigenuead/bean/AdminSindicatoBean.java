@@ -23,6 +23,7 @@ public class AdminSindicatoBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Sindicato> sindicatoList = new ArrayList<Sindicato>();
+    private List<Sindicato> sindicatoListFiltrada = new ArrayList<Sindicato>();
     private Sindicato sindicatoSelected;
     private SindicatoServices serv = new SindicatoServices();
 
@@ -99,5 +100,12 @@ public class AdminSindicatoBean implements Serializable {
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
     }
-    
+
+    public List<Sindicato> getSindicatoListFiltrada() {
+        return sindicatoListFiltrada;
+    }
+
+    public void setSindicatoListFiltrada(List<Sindicato> sindicatoListFiltrada) {
+        this.sindicatoListFiltrada = sindicatoListFiltrada;
+    }
 }

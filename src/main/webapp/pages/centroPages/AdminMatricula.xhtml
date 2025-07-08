@@ -39,44 +39,45 @@
                     <p:toolbarGroup align="right">
                         <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                          styleClass="ui-button ui-button-secondary" ajax="false">
-                            <p:dataExporter type="pdf" target="dt-matriculas" fileName="matriculas"
+                            <p:dataExporter type="pdf" target="dtmatricula" fileName="matriculas"
                                             exportHeader="true"/>
                         </p:commandButton>
                         <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
                                          styleClass="ui-button ui-button-secondary" ajax="false">
-                            <p:dataExporter type="xlsxstream" target="dt-matriculas" fileName="Usiarios"
+                            <p:dataExporter type="xlsxstream" target="dtmatricula" fileName="Usiarios"
                                             exportHeader="true"/>
                         </p:commandButton>
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:dataTable tableStyleClass="table-striped" id="dt-matricula" widgetVar="dtmatricula" var="matricula"
+                <p:dataTable tableStyleClass="table-striped" id="dtmatricula" widgetVar="dtmatricula" var="matricula"
                              value="#{adminMatriculaBean.lista_matricula}" size="small"
+
                              reflow="true" styleClass="matriculas-table"
                              rowKey="#{matricula.matriculaFechaInicio}" paginator="true" rows="10"
                              paginatorPosition="bottom">
                     <f:facet name="header">
                         <div class="matriculas-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-matricula').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtmatricula').filter()" placeholder="Buscar"/>
                     </span>
                         </div>
                     </f:facet>
-                    <p:column exportHeaderValue="Inicio de Matr&iacute;cula" headerText="Inicio de Matr&iacute;cula"
+                    <p:column exportHeaderValue="Inicio de Matr&iacute;cula" headerText="Inicio de Matr&iacute;cula" filterBy="#{adminMatriculaBean.TranslateDate(matricula.matriculaFechaInicio)}"
                               sortOrder="desc">
                         <h:outputText value="#{adminMatriculaBean.TranslateDate(matricula.matriculaFechaInicio)}"/>
                     </p:column>
-                    <p:column exportHeaderValue="Fin de Matr&iacute;cula" headerText="Fin de Matr&iacute;cula">
+                    <p:column exportHeaderValue="Fin de Matr&iacute;cula" headerText="Fin de Matr&iacute;cula" filterBy="#{adminMatriculaBean.TranslateDate(matricula.matriculaFechaFin)}">
                         <h:outputText value="#{adminMatriculaBean.TranslateDate(matricula.matriculaFechaFin)}"/>
                     </p:column>
-                    <p:column exportHeaderValue="Curso" headerText="Curso">
+                    <p:column exportHeaderValue="Curso" headerText="Curso" filterBy="#{matricula.cursoidcurso.idcurso}">
                         <h:outputText value="#{matricula.cursoidcurso.idcurso}"/>
                     </p:column>
-                    <p:column exportHeaderValue="Carrera" headerText="Carrera">
+                    <p:column exportHeaderValue="Carrera" headerText="Carrera" filterBy="#{matricula.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}">
                         <h:outputText
                                 value="#{matricula.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
                     </p:column>
-                    <p:column exportHeaderValue="&Aacute;rea" headerText="&Aacute;rea">
+                    <p:column exportHeaderValue="&Aacute;rea" headerText="&Aacute;rea" >
                         <h:outputText value="#{adminMatriculaBean.translatearea(matricula)}"/>
                     </p:column>
                     <p:column exportHeaderValue="Estado" headerText="Estado">

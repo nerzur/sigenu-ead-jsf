@@ -75,28 +75,29 @@
 
             <h:form id="form1">
                 <p:outputPanel rendered="#{promoverEstudianteBean.founded}">
-                    <p:dataTable tableStyleClass="table-striped" id="dt-promoverEstudiante"
+                    <p:dataTable tableStyleClass="table-striped" id="dtpromoverEstudiante"
                                  widgetVar="dtpromoverEstudiante" var="estudiante_promover"
                                  value="#{promoverEstudianteBean.list_estudiante_promover}" size="small"
+                                 filteredValue="#{promoverEstudianteBean.list_estudiante_promoverFiltrada}"
                                  reflow="true" styleClass="promoverEstudiantes-table"
                                  rowKey="#{estudiante_promover.fcce.estudiante.estudianteId}" paginator="true" rows="10"
                                  paginatorPosition="bottom">
                         <f:facet name="header">
                             <div class="promoverEstudiantes-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-promoverEstudiante').filter()"
+                        <p:inputText id="globalFilter" onkeyup="PF('dtpromoverEstudiante').filter()"
                                      placeholder="Buscar"/>
                     </span>
                             </div>
                         </f:facet>
-                        <p:column exportHeaderValue="Promover" headerText="Promover">
+                        <p:column exportHeaderValue="Promover" headerText="Promover" >
                             <p:selectBooleanCheckbox value="#{estudiante_promover.promover}"/>
                         </p:column>
-                        <p:column exportHeaderValue="ID" headerText="ID" sortOrder="asc">
+                        <p:column exportHeaderValue="ID" headerText="ID" sortOrder="asc" filterBy="#{estudiante_promover.fcce.estudiante.estudianteNombre} #{estudiante_promover.fcce.estudiante.estudianteApellido1} #{estudiante_promover.fcce.estudiante.estudianteApellido2}">
                             <h:outputText
                                     value="#{estudiante_promover.fcce.estudiante.estudianteNombre} #{estudiante_promover.fcce.estudiante.estudianteApellido1} #{estudiante_promover.fcce.estudiante.estudianteApellido2}"/>
                         </p:column>
-                        <p:column exportHeaderValue="Carrera" headerText="Carrera">
+                        <p:column exportHeaderValue="Carrera" headerText="Carrera" filterBy="#{estudiante_promover.fcce.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}">
                             <h:outputText
                                     value="#{estudiante_promover.fcce.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
                         </p:column>

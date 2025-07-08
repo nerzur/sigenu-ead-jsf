@@ -197,7 +197,7 @@ public class IndexBean implements Serializable {
         legend.setPosition("top");
         LegendLabel legendLabels = new LegendLabel();
         legendLabels.setFontStyle("italic");
-        legendLabels.setFontColor("#2980B9");
+        legendLabels.setFontColor("#009440");
         legendLabels.setFontSize(24);
         legend.setLabels(legendLabels);
         options.setLegend(legend);

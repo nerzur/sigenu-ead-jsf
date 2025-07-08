@@ -23,6 +23,7 @@ public class AdminProcedenciaEscolarBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<ProcedenciaEscolar> procedenciaEscolarList = new ArrayList<ProcedenciaEscolar>();
+    private List<ProcedenciaEscolar> procedenciaEscolarListFiltrada = new ArrayList<ProcedenciaEscolar>();
     private ProcedenciaEscolar procedenciaEscolarSelected;
     private ProcedenciaEscolarServices serv = new ProcedenciaEscolarServices();
 
@@ -98,5 +99,13 @@ public class AdminProcedenciaEscolarBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<ProcedenciaEscolar> getProcedenciaEscolarListFiltrada() {
+        return procedenciaEscolarListFiltrada;
+    }
+
+    public void setProcedenciaEscolarListFiltrada(List<ProcedenciaEscolar> procedenciaEscolarListFiltrada) {
+        this.procedenciaEscolarListFiltrada = procedenciaEscolarListFiltrada;
     }
 }

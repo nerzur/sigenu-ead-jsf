@@ -27,7 +27,7 @@ public class EvaluarAsignaturaEstudianteBean implements Serializable {
     private String id;
     private List<String> list_convocatorias = new ArrayList<String>();
     private List<Asignatura_Nota> lista_asignatura_notas = new ArrayList<Asignatura_Nota>();
-
+    private List<Asignatura_Nota> lista_asignatura_notasFiltrada = new ArrayList<Asignatura_Nota>();
     private final ExamenServices serv_examen = new ExamenServices();
     private final EstudianteServices serv_estudiante = new EstudianteServices();
     private boolean founded;

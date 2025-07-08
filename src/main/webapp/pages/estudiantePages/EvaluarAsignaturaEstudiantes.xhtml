@@ -71,14 +71,15 @@
 
             <h:form id="search_results">
                 <p:outputPanel rendered="#{evaluarAsignaturaEstudianteBean.founded}">
-                    <p:dataTable tableStyleClass="table-striped" id="dt-evaluarAsignaturasEstudiante" widgetVar="dt-evaluarAsignaturasEstudiante" var="nota_estudiante"
+                    <p:dataTable tableStyleClass="table-striped" id="dtevaluarAsignaturasEstudiante" widgetVar="dt-evaluarAsignaturasEstudiante" var="nota_estudiante"
                                  value="#{evaluarAsignaturaEstudianteBean.lista_asignatura_notas}" size="small"
+                                 filteredValue="#{evaluarAsignaturaEstudianteBean.lista_asignatura_notasFiltrada}"
                                  reflow="true" styleClass="evaluarAsignaturasEstudiantes-table"
                                  rowKey="#{nota_estudiante.m.matriculaFechaInicio}" paginator="true" rows="10" paginatorPosition="bottom">
                         <f:facet name="header">
                             <div class="evaluarAsignaturasEstudiantes-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-evaluarAsignaturasEstudiante').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtevaluarAsignaturasEstudiante').filter()" placeholder="Buscar"/>
                     </span>
                             </div>
                         </f:facet>
