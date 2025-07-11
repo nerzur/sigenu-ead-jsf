@@ -44,11 +44,7 @@
                         <p:dataExporter type="pdf" target="dttipoEvaluacion" fileName="Tipos de Evaluacion"
                                         exportHeader="true"/>
                     </p:commandButton>
-                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
-                                     styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dttipoEvaluacion" fileName="Tipos de Evaluacion"
-                                        exportHeader="true"/>
-                    </p:commandButton>
+
                 </p:toolbarGroup>
             </p:toolbar>
 
@@ -60,9 +56,7 @@
                          paginatorPosition="bottom">
                 <f:facet name="header">
                     <div class="tipoEvaluacions-table-header">
-                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dttipoEvaluacion').filter()" placeholder="Buscar"/>
-                    </span>
+
                     </div>
                 </f:facet>
 

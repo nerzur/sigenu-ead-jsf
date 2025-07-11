@@ -42,10 +42,7 @@
                                      styleClass="ui-button ui-button-secondary" ajax="false">
                         <p:dataExporter type="pdf" target="dtusers" fileName="Usuarios" exportHeader="true"/>
                     </p:commandButton>
-                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
-                                     styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dtusers" fileName="Usiarios" exportHeader="true"/>
-                    </p:commandButton>
+
                 </p:toolbarGroup>
             </p:toolbar>
 
@@ -61,7 +58,7 @@
                     </span>
                     </div>
                 </f:facet>
-                <p:column exportHeaderValue="ID" headerText="ID">
+                <p:column exportHeaderValue="ID" headerText="ID" filterBy="#{user.identificacion}">
                     <h:outputText value="#{user.identificacion}"/>
                 </p:column>
                 <p:column exportHeaderValue="Usuario" headerText="Usuario" filterBy="#{user.username}">

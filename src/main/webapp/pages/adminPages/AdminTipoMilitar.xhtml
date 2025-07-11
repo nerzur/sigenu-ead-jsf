@@ -42,10 +42,7 @@
                                      styleClass="ui-button ui-button-secondary" ajax="false">
                         <p:dataExporter type="pdf" target="dttipoMilitar" fileName="Tipos de Militar" exportHeader="true"/>
                     </p:commandButton>
-                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
-                                     styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dttipoMilitar" fileName="Tipos de Militar" exportHeader="true"/>
-                    </p:commandButton>
+
                 </p:toolbarGroup>
             </p:toolbar>
 
@@ -55,9 +52,7 @@
                          rowKey="#{tipoMilitar.nombretipoMilitarBean}" paginator="true" rows="10" paginatorPosition="bottom">
                 <f:facet name="header">
                     <div class="tipoMilitarBeanes-table-header">
-                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dttipoMilitar').filter()" placeholder="Buscar"/>
-                    </span>
+
                     </div>
                 </f:facet>
                 <p:column exportHeaderValue="Nombre" headerText="Nombre" filterBy="#{tipoMilitar.nombreTipo}" sortOrder="asc">
