@@ -30,6 +30,7 @@ public class AdminMunicipioBean implements Serializable {
     private boolean cancelado = true;
     private boolean isCuba;
     private List<Municipio> municipioList = new ArrayList<Municipio>();
+    private List<Municipio> municipioListFiltrada = new ArrayList<Municipio>();
     private Municipio municipioSelected;
     final private MunicipioServices serv = new MunicipioServices();
     final private ProvinciaServices serv_provincia = new ProvinciaServices();
@@ -129,4 +130,11 @@ public class AdminMunicipioBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<Municipio> getMunicipioListFiltrada() {
+        return municipioListFiltrada;
+    }
+
+    public void setMunicipioListFiltrada(List<Municipio> municipioListFiltrada) {
+        this.municipioListFiltrada = municipioListFiltrada;
+    }
 }

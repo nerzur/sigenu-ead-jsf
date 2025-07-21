@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 20/04/2023
+  Time: 11:23AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="Template.xhtml">
+
+        <ui:define name="title">
+            Resultados de la B&uacute;squeda
+        </ui:define>
+
+        <ui:define name="content">
+
+            #{buscarEstudianteBean.initBusquedaPage()}
+            <h:form id="form">
+                <p:growl id="messages"/>
+                <p:outputPanel rendered="#{buscarEstudianteBean.founded1}">
+                    <br/>
+
+                    <p:toolbar>
+                        <p:toolbarGroup align="right">
+                            <p:commandButton title="Imprimir" style="margin-right: 10px" icon="pi pi-print"
+                                             styleClass="ui-button ui-button-secondary" ajax="false">
+                                <p:printer target="confirmStudentData"/>
+                            </p:commandButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                    <br/>
+
+                    <p:outputPanel id="confirmStudentData" style="font-size: 12px">
+                        <hr/>
+                        <strong>Personales</strong>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Identificaci&oacute;n: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteId}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Natalicio: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.translateDate(buscarEstudianteBean.estudianteSearched.estudiante.estudianteFechaNacimiento)}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Cantidad de Hijos: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteCantHijos}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nombre: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Primer Apellido: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteApellido1}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Segundo Apellido: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteApellido2}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Sexo: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.sexosexoId.sexoNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Color de Piel: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.colorPielcolorPielId.colorPielNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Tel&eacute;fono: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteTelefono}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Pol&iacute;tica: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.organizacionPoliticaorganizacionPoliticaId.organizacionPoliticaNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Hu&eacute;rfano: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.huerfanohuerfanoId.huerfanoNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Natural de: </strong>
+                                <h:outputText value="#{buscarEstudianteBean.estudianteSearched.estudiante.naturalde}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Direcci&oacute;n: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteDireccion}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Estado Civil: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estadoCivilestadoCivilId.estadoCivilNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Correo: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteEmail}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Pa&iacute;s: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.paisidpais.nombrepais}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Provincia: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.provinciaidprovincia.nombreprovincia}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Municipio: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.municipioidmunicipio.nombremunicipio}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <strong>Minusval&iacute;a: </strong>
+                                <br/>
+                                <ui:repeat value="#{buscarEstudianteBean.estudianteSearched.estudiante.minusvaliaList}"
+                                          var="minusvalia">
+                                    <strong>-</strong> <h:outputText value="#{minusvalia.minusvaliaNombre}"/> <br/>
+                                </ui:repeat>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Popular: </strong>
+                                <br/>
+                                <ui:repeat
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.organizacionPopularList}"
+                                        var="orgPopular">
+                                    <strong>-</strong> <h:outputText value="#{orgPopular.organizacionPopularNombre}"/>
+                                    <br/>
+                                </ui:repeat>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <strong>ONG: </strong>
+                                <br/>
+                                <ui:repeat value="#{buscarEstudianteBean.estudianteSearched.estudiante.ongList}"
+                                          var="ong">
+                                    <strong>-</strong> <h:outputText value="#{ong.ongNombre}"/> <br/>
+                                </ui:repeat>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <strong>Padres o Tutores</strong>
+                        <hr/>
+                        <strong>Madre o Tutora</strong>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nombre: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(0).nombreTutor}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nivel Escolar: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(0).nivelEscolarnivelEscolarId.nivelEscolarNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Ocupaci&oacute;n: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(0).ocupacionocupacionId.ocupacionNombre}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Salario: </strong>
+                                <h:outputText
+                                        value="$ #{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(0).salarioTutor}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Pol&iacute;tica: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(0).organizacionPoliticaorganizacionPoliticaId.organizacionPoliticaNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Madre Fallecida: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.translateBoolean(buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(0).fallecido)}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <strong>Padre o Tutor</strong>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nombre: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(1).nombreTutor}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nivel Escolar: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(1).nivelEscolarnivelEscolarId.nivelEscolarNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Ocupaci&oacute;n: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(1).ocupacionocupacionId.ocupacionNombre}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Salario: </strong>
+                                <h:outputText
+                                        value="$ #{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(1).salarioTutor}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Org. Pol&iacute;tica: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(1).organizacionPoliticaorganizacionPoliticaId.organizacionPoliticaNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Padre Fallecido: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.translateBoolean(buscarEstudianteBean.estudianteSearched.estudiante.tutorList.get(1).fallecido)}"/>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <strong>Ingreso</strong>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fecha Matr&iacute;cula: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.translateDate(buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.facultadCumCarreraEstudiantePK.fechaMatricula)}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fecha Ingreso ES: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.translateDate(buscarEstudianteBean.estudianteSearched.estudiante.estudianteFechaIngresoEs)}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fecha Ingreso CES: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.translateDate(buscarEstudianteBean.estudianteSearched.estudiante.estudianteFechaIngresoCes)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Procedencia Escolar: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.procedenciaEscolarprocedenciaEscolarId.procedenciaEscolarNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Fuente de Ingreso: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.fuenteIngresofuenteIngresoId.fuenteIngresoNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Nivel Escolar: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.estudiante.nivelEscolarnivelEscolarId.nivelEscolarNombre}"/>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <strong>Docentes</strong>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Facultad: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.facultadCumCarrera.facultadCum.facultad.nombrearea}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>CUM: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.facultadCumCarrera.facultadCum.cum.nombrecum}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Carrera: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.facultadCumCarrera.carrera.carreranacionalidcarreranacional.nombrecarreranacional}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Estado de Estudiante: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.estadoEstudianteestadoEstucianteId.estadoEstudianteNombre}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                                <strong>Plan Estudio: </strong>
+                                <h:outputText
+                                        value="#{buscarEstudianteBean.estudianteSearched.facultadCumCarreraEstudiante.planestudioidplanestudio.tipoplanestudionombretipoplanestudio.nombretipoplanestudio}"/>
+                            </div>
+                            <div class="col col-sm-4 col-md-4 col-lg-4">
+                            </div>
+                        </div>
+
+                        <p:outputPanel style="font-size: 12px"
+                                       rendered="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteDatosLaborales}">
+                            <hr/>
+                            <strong>Laborales</strong>
+                            <hr/>
+
+                            <div class="row">
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Centro de Trabajo: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.nombrecentrotrabajo}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Direcci&oacute;n: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.direccioncentrotrabajo}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Tel&eacute;fono: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.telefonocentrotrabajo}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Ocupaci&oacute;n: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.ocupacionocupacionId.ocupacionNombre}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Provincia: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.municipioidmunicipiocentrotrabajo.provinciaidprovincia.nombreprovincia}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Municipio: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.municipioidmunicipiocentrotrabajo.nombremunicipio}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Sindicato: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.sindicatoidsindicato.nombresindicato}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Salario: </strong>
+                                    <h:outputText
+                                            value="$ #{buscarEstudianteBean.estudianteSearched.estudiante.estudianteSalario}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Jefe Inmediato: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteJefeInmediato}"/>
+                                </div>
+                            </div>
+
+                        </p:outputPanel>
+
+                        <p:outputPanel style="font-size: 12px"
+                                       rendered="#{buscarEstudianteBean.estudianteSearched.estudiante.estudianteDatosMilitares}">
+                            <hr/>
+                            <strong>Militares</strong>
+                            <hr/>
+
+                            <div class="row">
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Fecha de Licenciamiento: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.translateDate(buscarEstudianteBean.estudianteSearched.estudiante.estudianteFechaLicenciamientoMilitar)}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Especialidad Militar: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.especialidadMilitarespecialidadMilitarId.especialidadMilitarNombre}"/>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Tipo de Militar: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.tipoMilitaridTipoMilitar.nombreTipo}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-4 col-md-4 col-lg-4">
+                                    <strong>Grado Militar: </strong>
+                                    <h:outputText
+                                            value="#{buscarEstudianteBean.estudianteSearched.estudiante.gradoMilitargradoMilitarId.gradoMilitarNombre}"/>
+                                </div>
+                            </div>
+                        </p:outputPanel>
+
+                    </p:outputPanel>
+                    <br/>
+                </p:outputPanel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

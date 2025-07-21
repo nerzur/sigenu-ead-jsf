@@ -35,6 +35,7 @@ public class AdminCursoBean implements Serializable {
 
     private Curso selectedCurso;
     private List<Curso> lista_curso = new ArrayList<Curso>();
+    private List<Curso> lista_cursoFiltrada = new ArrayList<Curso>();
     final private CursoServices serv = new CursoServices();
 
     public void init() {
@@ -143,5 +144,13 @@ public class AdminCursoBean implements Serializable {
             return new SimpleDateFormat("dd'/'MM'/'yyyy", new Locale("es", "ES")).format(date);
         }
         return "No definido";
+    }
+
+    public List<Curso> getLista_cursoFiltrada() {
+        return lista_cursoFiltrada;
+    }
+
+    public void setLista_cursoFiltrada(List<Curso> lista_cursoFiltrada) {
+        this.lista_cursoFiltrada = lista_cursoFiltrada;
     }
 }

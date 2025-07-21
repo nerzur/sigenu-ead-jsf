@@ -33,6 +33,7 @@ public class AdminFacultadBean implements Serializable {
     private String codigo1;
     private boolean cancelado = true;
     private List<Facultad> facultadList = new ArrayList<Facultad>();
+    private List<Facultad> facultadListFiltrada = new ArrayList<Facultad>();
     private List<String> provincias = new ArrayList<String>();
     private List<String> municipios = new ArrayList<String>();
     private Facultad facultadSelected;

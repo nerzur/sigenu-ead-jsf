@@ -23,6 +23,7 @@ public class AdminPaisBean implements Serializable {
     private static String nombre1;
     private boolean cancelado = true;
     private List<Pais> paisList = new ArrayList<Pais>();
+    private List<Pais> paisListFiltrada = new ArrayList<Pais>();
     private Pais paisSelected;
     private PaisServices serv = new PaisServices();
 
@@ -98,5 +99,13 @@ public class AdminPaisBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<Pais> getPaisListFiltrada() {
+        return paisListFiltrada;
+    }
+
+    public void setPaisListFiltrada(List<Pais> paisListFiltrada) {
+        this.paisListFiltrada = paisListFiltrada;
     }
 }

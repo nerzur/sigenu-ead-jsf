@@ -23,6 +23,7 @@ public class AdminOrganismoBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Organismo> organismoList = new ArrayList<Organismo>();
+    private List<Organismo> organismoListFiltrada = new ArrayList<Organismo>();
     private Organismo organismoSelected;
     private OrganismoServices serv = new OrganismoServices();
 
@@ -98,5 +99,13 @@ public class AdminOrganismoBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<Organismo> getOrganismoListFiltrada() {
+        return organismoListFiltrada;
+    }
+
+    public void setOrganismoListFiltrada(List<Organismo> organismoListFiltrada) {
+        this.organismoListFiltrada = organismoListFiltrada;
     }
 }

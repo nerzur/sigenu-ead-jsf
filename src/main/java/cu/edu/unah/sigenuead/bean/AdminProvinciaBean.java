@@ -28,6 +28,7 @@ public class AdminProvinciaBean implements Serializable {
     private boolean cancelado = true;
     
     private List<Provincia> provinciaList = new ArrayList<Provincia>();
+    private List<Provincia> provinciaListFiltrada = new ArrayList<Provincia>();
     private List<Pais> paisList = new ArrayList<Pais>();
 
     private Provincia provinciaSelected;
@@ -116,4 +117,11 @@ public class AdminProvinciaBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<Provincia> getProvinciaListFiltrada() {
+        return provinciaListFiltrada;
+    }
+
+    public void setProvinciaListFiltrada(List<Provincia> provinciaListFiltrada) {
+        this.provinciaListFiltrada = provinciaListFiltrada;
+    }
 }

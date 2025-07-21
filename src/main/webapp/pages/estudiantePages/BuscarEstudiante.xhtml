@@ -139,16 +139,17 @@
                 <p:growl id="messages1"/>
                 <p:outputPanel rendered="#{buscarEstudianteBean.founded}">
                     <h4>Resultados de la B&uacute;squeda</h4>
-                    <p:dataTable tableStyleClass="table-striped" id="dt-buscarEstudiante"
+                    <p:dataTable tableStyleClass="table-striped" id="dtbuscarEstudiante"
                                  widgetVar="dtbuscarEstudiante" var="buscarEstudiante"
                                  value="#{buscarEstudianteBean.listEstudiantesSearched}" size="small"
+
                                  reflow="true" styleClass="buscarEstudiantes-table"
                                  rowKey="#{buscarEstudiante.estudiante.estudianteId}" paginator="true" rows="10"
                                  paginatorPosition="bottom">
                         <f:facet name="header">
                             <div class="buscarEstudiantes-table-header">
                                 <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                                <p:inputText id="globalFilter" onkeyup="PF('dt-buscarEstudiante').filter()"
+                                <p:inputText id="globalFilter" onkeyup="PF('dtbuscarEstudiante').filter()"
                                              placeholder="Buscar"/>
                                 </span>
                             </div>

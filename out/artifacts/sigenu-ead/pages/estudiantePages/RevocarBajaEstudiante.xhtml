@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 21/04/2023
+  Time: 12:27PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Revocar baja a Estudiante
+        </ui:define>
+
+        <ui:define name="content">
+            #{revocarBajaEstudianteBean.init()}
+            <h:form id="form1">
+                <p:growl allowDismiss="true"/>
+                <div class="row">
+                    <div class="col col-sm-9"/>
+                    <div class="col col-sm-3">
+                        <br/>
+                        <div class="ui-inputgroup">
+                            <p:inputMask
+                                    mask="99999999999"
+                                    requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                    validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                    placeholder="Identificaci&oacute;n" value="#{revocarBajaEstudianteBean.id}"
+                                    required="true"/>
+                            <p:commandButton id="btnSearch" title="Buscar" update="form1 search_results"
+                                             icon="pi pi-search"
+                                             action="#{revocarBajaEstudianteBean.search()}" ajax="true"
+                                             styleClass="ui-button ui-button-info"/>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <br/>
+
+            <h:form id="search_results">
+                <p:growl id="growl1"/>
+                <p:outputPanel rendered="#{revocarBajaEstudianteBean.founded}">
+                    <div class="row">
+                        <p:panel header="Datos de la Baja">
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="CI:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.id}"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="Nombre:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.nombre}"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="&Aacute;rea:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.area}"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="Carrera:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.carrera }"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="Fecha de baja:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.translateDate(revocarBajaEstudianteBean.fecha)}"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="Tipo de Baja:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.tipo}"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-sm-5">
+                                            <strong><h:outputText value="Motivo de Baja:"/></strong>
+                                        </div>
+                                        <div class="col col-sm-7">
+                                            <h:outputText value="#{revocarBajaEstudianteBean.motivo}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                        <br/>
+                    </div>
+
+                    <br/>
+
+                    <p:commandButton id="update" style="float: right" update="form1 search_results" value="Revocar Baja"
+                                     title="Revocar Baja" icon="pi pi-sign-in" styleClass="ui-button ui-button-success"
+                                     action="#{revocarBajaEstudianteBean.submit()}" ajax="true">
+                    </p:commandButton>
+
+                    <br/>
+                    <br/>
+
+                </p:outputPanel>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

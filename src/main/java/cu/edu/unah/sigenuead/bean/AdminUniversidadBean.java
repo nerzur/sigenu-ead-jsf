@@ -37,6 +37,7 @@ public class AdminUniversidadBean implements Serializable {
     private boolean cancelado = true;
     private String codigo1;
     private List<Universidad> lista_universidades = new ArrayList<Universidad>();
+    private List<Universidad> lista_universidadesFiltrada = new ArrayList<Universidad>();
     private List<String> provincias = new ArrayList<String>();
     private List<String> municipios = new ArrayList<String>();
     private Universidad universidadSelected;

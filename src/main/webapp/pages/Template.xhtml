@@ -320,7 +320,7 @@
                     </li>
                     <!--Administrar-->
                     <li class="nav-item"
-                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general, templateBean.role_controlador)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                            aria-controls="ui-basic">
                             <i class="menu-icon pi pi-cog"></i>
@@ -348,7 +348,7 @@
                                 </li>
                             </ul>
                             <ul class="nav flex-column sub-menu"
-                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_controlador)}">
                                 <li class="nav-item"><a class="nav-link"
                                                         href="#{request.contextPath}/pages/adminPages/AdminDisciplina.xhtml">Disciplina</a>
                                 </li>
@@ -508,11 +508,11 @@
 
                     <!--Herramientas-->
                     <li class="nav-item nav-category"
-                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general, templateBean.role_admin, templateBean.role_controlador)}">Herramientas
+                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general, templateBean.role_admin, templateBean.role_controlador, templateBean.role_estudiante)}">Herramientas
                     </li>
                     <!--Matricula-->
                     <li class="nav-item"
-                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general)}">
+                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general,templateBean.role_estudiante)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
                            aria-controls="form-elements">
                             <i class="menu-icon mdi mdi-card-text-outline"></i>
@@ -537,7 +537,7 @@
                                        href="#{request.contextPath}/pages/matriculaPages/CierreMatricula.xhtml">Cerrar Matr&iacute;cula</a>
                                 </li>
                                 <li class="nav-item"
-                                    style="#{templateBean.translateRole_visible(templateBean.role_secretaria)}"><a
+                                    style="#{templateBean.translateRole_visible(templateBean.role_secretaria, templateBean.role_estudiante)}"><a
                                         class="nav-link"
                                         href="#{request.contextPath}/pages/matriculaPages/MatriculaResponsable.xhtml">Realizar Matr&iacute;cula Responsable</a>
                                 </li>
@@ -589,7 +589,7 @@
                         </div>
                     </li>
                     <!--Estudiante-->
-                    <li class="nav-item" style="#{templateBean.translateRole_visible(templateBean.role_secretaria)}">
+                    <li class="nav-item" style="#{templateBean.translateRole_visible( templateBean.role_secretaria)}">
                         <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
                            aria-controls="tables">
                             <i class="menu-icon pi pi-users"></i>

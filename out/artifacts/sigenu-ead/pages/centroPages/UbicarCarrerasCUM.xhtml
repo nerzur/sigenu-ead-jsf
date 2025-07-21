@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 24/04/2023
+  Time: 03:53PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<h:body>
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Ubicar Carreras en CUM
+        </ui:define>
+
+
+        <ui:define name="content">
+            #{ubicarCarreraCumBean.init()}
+            <h:form id="find_data">
+                <p:growl id="messages" allowDismiss="true"/>
+                <div class="row">
+                    <div class="col col-sm-5">
+                        <p:outputLabel for="facultad"> Facultad </p:outputLabel>
+                        <p:selectOneMenu value="#{ubicarCarreraCumBean.facultad}"
+                                         id="facultad"
+                                         requiredMessage="ERROR: Es necesario seleccionar una Facultad" required="true"
+                                         label="Facultad">
+                            <f:selectItem itemLabel="(Seleccione una Facultad)" itemValue=""/>
+                            <f:selectItems value="#{ubicarCarreraCumBean.list_facultad}" var="fac" itemValue="#{fac}"
+                                           itemLabel="#{fac}"/>
+                            <p:ajax update="carrera"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="col col-sm-5">
+                        <p:outputPanel id="carrera">
+                            #{ubicarCarreraCumBean.updateCarrera()}
+                            <p:outputLabel for="carreraInput"> Carrera </p:outputLabel>
+                            <p:selectOneMenu value="#{ubicarCarreraCumBean.carrera}"
+                                             id="carreraInput"
+                                             requiredMessage="ERROR: Es necesario seleccionar una Carrera"
+                                             required="true" label="Carrera">
+                                <f:selectItem itemLabel="(Seleccione una Carrera)" itemValue=""/>
+                                <f:selectItems value="#{ubicarCarreraCumBean.list_carrera}" var="car" itemValue="#{car}"
+                                               itemLabel="#{car}"/>
+                            </p:selectOneMenu>
+                        </p:outputPanel>
+                    </div>
+                    <div class="col col-sm-2">
+                        <br/>
+                        <p:commandButton id="btnsearch"
+                                         update="find_data search_results"
+                                         actionListener="#{ubicarCarreraCumBean.search()}" value="Buscar"
+                                         icon="pi pi-search" styleClass="ui-button ui-button-info"/>
+                    </div>
+                </div>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <br/>
+
+            <h:form id="search_results">
+                <p:outputPanel id="search_results_into" rendered="#{ubicarCarreraCumBean.do_search}">
+                    <p:panel id="panel" header="Seleccione los CUM donde desea ubicar la carrera">
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <p:selectManyCheckbox value="#{ubicarCarreraCumBean.selectedCarCum}"
+                                                      layout="pageDirection" columns="1">
+                                    <f:selectItems value="#{ubicarCarreraCumBean.list_cum}" var="cum"
+                                                   itemLabel="&ensp;#{cum}" itemValue="#{cum}"/>
+                                </p:selectManyCheckbox>
+                            </div>
+                        </div>
+
+                    </p:panel>
+
+                    <br/>
+
+                    <p:commandButton value="Guardar" title="Guardar" icon="pi pi-save" style="float: right"
+                                     styleClass="ui-button ui-button-success"
+                                     actionListener="#{ubicarCarreraCumBean.updateList()}"
+                                     update="find_data search_results"/>
+                    <br/>
+                    <br/>
+                </p:outputPanel>
+
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

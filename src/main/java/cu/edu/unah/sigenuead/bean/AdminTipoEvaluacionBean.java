@@ -23,6 +23,7 @@ public class AdminTipoEvaluacionBean implements Serializable {
     private static String nombre1;
     private boolean cancelado = true;
     private List<TipoEvaluacion> tipoEvaluacionList = new ArrayList<TipoEvaluacion>();
+    private List<TipoEvaluacion> tipoEvaluacionListFiltrada = new ArrayList<TipoEvaluacion>();
     private TipoEvaluacion tipoEvaluacionSelected;
     private TipoEvaluacionServices serv = new TipoEvaluacionServices();
 
@@ -97,5 +98,13 @@ public class AdminTipoEvaluacionBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<TipoEvaluacion> getTipoEvaluacionListFiltrada() {
+        return tipoEvaluacionListFiltrada;
+    }
+
+    public void setTipoEvaluacionListFiltrada(List<TipoEvaluacion> tipoEvaluacionListFiltrada) {
+        this.tipoEvaluacionListFiltrada = tipoEvaluacionListFiltrada;
     }
 }

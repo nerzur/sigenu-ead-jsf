@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 21/04/2023
+  Time: 10:37AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Dar Baja a Estudiante
+        </ui:define>
+
+        <ui:define name="content">
+
+            #{darBajaEstudianteBean.init()}
+
+            <h:form id="form1">
+                <p:growl allowDismiss="true"/>
+                <div class="row">
+                    <div class="col col-sm-9"/>
+                    <div class="col col-sm-3">
+                        <br/>
+                        <div class="ui-inputgroup">
+                            <p:inputMask
+                                    mask="99999999999"
+                                    requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                    validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                    placeholder="Identificaci&oacute;n" value="#{darBajaEstudianteBean.id}"
+                                    required="true"/>
+                            <p:commandButton id="btnSearch" title="Buscar" update="form1 search_results"
+                                             icon="pi pi-search"
+                                             action="#{darBajaEstudianteBean.search()}" ajax="true"
+                                             styleClass="ui-button ui-button-info"/>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+            <br/>
+
+            <h:form id="search_results">
+                <p:growl id="growl1"/>
+                <p:outputPanel rendered="#{darBajaEstudianteBean.founded}">
+                    <div class="row">
+                        <div class="col col-sm-4">
+                            <p:panel header="Datos del estudiante" collapsed="false">
+                                <div class="row">
+                                    <div class="col col-sm-4">
+                                        <strong>CI: </strong>
+                                    </div>
+                                    <div class="col col-sm-8">
+                                        <h:outputText value="#{darBajaEstudianteBean.id}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4">
+                                        <strong>Nombre: </strong>
+                                    </div>
+                                    <div class="col col-sm-8">
+                                        <h:outputText value="#{darBajaEstudianteBean.nombre}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4">
+                                        <strong>&Aacute;rea: </strong>
+                                    </div>
+                                    <div class="col col-sm-8">
+                                        <h:outputText value="#{darBajaEstudianteBean.nombre}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4">
+                                        <strong>Carrera: </strong>
+                                    </div>
+                                    <div class="col col-sm-8">
+                                        <h:outputText value="#{darBajaEstudianteBean.carrera}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-sm-4">
+                                        <strong>Estado: </strong>
+                                    </div>
+                                    <div class="col col-sm-8">
+                                        <h:outputText value="#{darBajaEstudianteBean.estado}"/>
+                                    </div>
+                                </div>
+                            </p:panel>
+                        </div>
+                        <div class="col col-sm-8">
+                            <p:panel header="Opciones de baja">
+                                <div class="row">
+                                    <div class="col col-sm-12">
+                                        <p:outputLabel for="fechaBaja"
+                                                       styleClass="block"> Fecha </p:outputLabel> <br/>
+                                        <p:datePicker locale="es" id="fechaBaja" value="#{darBajaEstudianteBean.fecha}"
+                                                      required="true"
+                                                      requiredMessage="Tipo: Es necesario seleccionar una fecha"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col col-sm-6">
+                                        <p:outputLabel for="tipoBaja"
+                                                       styleClass="block"> Tipo de Baja </p:outputLabel> <br/>
+                                        <p:selectOneMenu value="#{darBajaEstudianteBean.tipo}"
+                                                         id="tipoBaja"
+                                                         requiredMessage="Tipo: Es necesario seleccionar un Tipo de Baja"
+                                                         required="true" label="Tipo de Baja">
+                                            <f:selectItem itemLabel="(Seleccione un Tipo de Baja)" itemValue=""/>
+                                            <f:selectItems value="#{darBajaEstudianteBean.list_tipo_baja}" var="tp"
+                                                           itemValue="#{tp}" itemLabel="#{tp}"/>
+                                            <p:ajax update="motivoBaja"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col col-sm-6">
+                                        <p:outputPanel id="motivoBaja">
+                                            #{darBajaEstudianteBean.update_motivo_baja()}
+                                            <p:outputLabel for="motivoBajaInput"
+                                                           styleClass="block"> Motivo de Baja </p:outputLabel> <br/>
+                                            <p:selectOneMenu value="#{darBajaEstudianteBean.motivo}"
+                                                             id="motivoBajaInput"
+                                                             requiredMessage="Motivo: Es necesario seleccionar un Motivo de Baja"
+                                                             required="true" label="Motivo de Baja">
+                                                <f:selectItem itemLabel="(Seleccione un Motivo de Baja)" itemValue=""/>
+                                                <f:selectItems value="#{darBajaEstudianteBean.list_motivo_baja}" var="m"
+                                                               itemValue="#{m}" itemLabel="#{m}"/>
+                                            </p:selectOneMenu>
+                                        </p:outputPanel>
+                                    </div>
+                                </div>
+                                <br/>
+                                <p:commandButton id="update" style="float: right" update="search_results"
+                                                 value="Dar Baja"
+                                                 title="Dar baja" icon="pi pi-sign-out"
+                                                 styleClass="ui-button ui-button-danger"
+                                                 action="#{darBajaEstudianteBean.baja()}" ajax="true"/>
+                                <br/>
+                                <br/>
+                            </p:panel>
+                            <br/>
+                        </div>
+                    </div>
+                </p:outputPanel>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

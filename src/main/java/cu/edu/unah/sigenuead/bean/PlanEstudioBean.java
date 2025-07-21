@@ -79,6 +79,7 @@ public class PlanEstudioBean implements Serializable {
 
     List<String> list_asignaturas = new ArrayList<String>();
     List<PlanEstudio_Disciplina_Asignatura> asignatura_list = new ArrayList<PlanEstudio_Disciplina_Asignatura>();
+    List<PlanEstudio_Disciplina_Asignatura> asignatura_listFiltrada = new ArrayList<PlanEstudio_Disciplina_Asignatura>();
     List<PlanEstudio_Disciplina_Asignatura> asignatura_list1 = new ArrayList<PlanEstudio_Disciplina_Asignatura>();
     private List<String> lista_tipo_asignatura = new ArrayList<String>();
     private List<String> lista_tipo_evaluacion = new ArrayList<String>();

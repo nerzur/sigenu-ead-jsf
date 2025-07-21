@@ -32,6 +32,7 @@ public class AdminTipoPlanEstudioBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Tipoplanestudio> lista_tipoplanestudioes = new ArrayList<Tipoplanestudio>();
+    private List<Tipoplanestudio> lista_tipoplanestudioesFiltrada = new ArrayList<Tipoplanestudio>();
     private Tipoplanestudio tipoplanestudio_selected;
     private final TipoplanestudioServices serv = new TipoplanestudioServices();
 
@@ -111,5 +112,11 @@ public class AdminTipoPlanEstudioBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<Tipoplanestudio> getLista_tipoplanestudioesFiltrada() {
+        return lista_tipoplanestudioesFiltrada;
+    }
 
+    public void setLista_tipoplanestudioesFiltrada(List<Tipoplanestudio> lista_tipoplanestudioesFiltrada) {
+        this.lista_tipoplanestudioesFiltrada = lista_tipoplanestudioesFiltrada;
+    }
 }

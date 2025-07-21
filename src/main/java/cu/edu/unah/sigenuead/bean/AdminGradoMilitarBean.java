@@ -28,6 +28,7 @@ public class AdminGradoMilitarBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<GradoMilitar> lista_gradomilitares = new ArrayList<GradoMilitar>();
+    private List<GradoMilitar> lista_gradomilitaresFiltrada = new ArrayList<GradoMilitar>();
     private GradoMilitar gradomilitar_selected;
     private GradoMilitarServices serv = new GradoMilitarServices();
 
@@ -107,6 +108,7 @@ public class AdminGradoMilitarBean implements Serializable {
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
     }
+
 
 
 }

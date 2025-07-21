@@ -23,6 +23,7 @@ public class AdminTipoMilitarBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<TipoMilitar> tipoMilitarList = new ArrayList<TipoMilitar>();
+    private List<TipoMilitar> tipoMilitarListFiltrada = new ArrayList<TipoMilitar>();
     private TipoMilitar tipoMilitarSelected;
     private TipoMilitarServices serv = new TipoMilitarServices();
 
