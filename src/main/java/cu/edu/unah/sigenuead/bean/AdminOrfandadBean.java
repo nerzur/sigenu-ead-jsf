@@ -23,6 +23,7 @@ public class AdminOrfandadBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<Huerfano> huerfanoList = new ArrayList<Huerfano>();
+    private List<Huerfano> huerfanoListFiltrada = new ArrayList<Huerfano>();
     private Huerfano huerfanoSelected;
     private HuerfanoServices serv = new HuerfanoServices();
 
@@ -99,5 +100,6 @@ public class AdminOrfandadBean implements Serializable {
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
     }
+
 
 }

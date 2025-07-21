@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 21/04/2023
+  Time: 04:43PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<h:body>
+
+    <ui:composition template="../Template.xhtml">
+
+        <ui:define name="title">
+            Certificación de Calificaciones del Curso Acad&eacute;mico
+        </ui:define>
+
+        <ui:define name="content">
+            #{reportsBean.init()}
+            <h:form id="form1">
+                <p:growl id="messages" allowDismiss="true"/>
+                <div class="row">
+                    <div class="col col-sm-3">
+                        <p:outputLabel for="idSearch"
+                                       styleClass="block"> Identificaci&oacute;n </p:outputLabel>
+                        <p:inputMask
+                                id="idSearch"
+                                mask="99999999999"
+                                requiredMessage="ERROR: Es necesario un valor para establecer la b&uacute;squeda"
+                                validatorMessage="ERROR: Idemtificaci&oacute;n no v&aacute;lida"
+                                placeholder="Identificaci&oacute;n" value="#{reportsBean.idEstudiante}"
+                                required="true"
+                        />
+                    </div>
+                    <div class="col-sm-5">
+                        <br/>
+                        <p:commandButton title="PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                         styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                         actionListener="#{reportsBean.printCertCalifCursoAc('PDF')}">
+                            <p:fileDownload value="#{reportsBean.file}"/>
+                        </p:commandButton>
+                        <p:commandButton title="DOCX" style="margin-right: 10px" icon="pi pi-file-word"
+                                         styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                         actionListener="#{reportsBean.printCertCalifCursoAc('DOCX')}">
+                            <p:fileDownload value="#{reportsBean.file}"/>
+                        </p:commandButton>
+                        <p:commandButton title="RTF" style="margin-right: 10px" icon="pi pi-file"
+                                         styleClass="ui-button ui-button-secondary" ajax="true" update="form1"
+                                         actionListener="#{reportsBean.printCertCalifCursoAc('RTF')}">
+                            <p:fileDownload value="#{reportsBean.file}"/>
+                        </p:commandButton>
+                    </div>
+                </div>
+
+                <br/>
+
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

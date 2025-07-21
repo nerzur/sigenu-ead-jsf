@@ -23,6 +23,7 @@ public class AdminNivelEscolarBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<NivelEscolar> nivelEscolarList = new ArrayList<NivelEscolar>();
+    private List<NivelEscolar> nivelEscolarListFiltrada = new ArrayList<NivelEscolar>();
     private NivelEscolar nivelEscolarSelected;
     private NivelEscolarServices serv = new NivelEscolarServices();
 
@@ -98,5 +99,13 @@ public class AdminNivelEscolarBean implements Serializable {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = !cancelado;
+    }
+
+    public List<NivelEscolar> getNivelEscolarListFiltrada() {
+        return nivelEscolarListFiltrada;
+    }
+
+    public void setNivelEscolarListFiltrada(List<NivelEscolar> nivelEscolarListFiltrada) {
+        this.nivelEscolarListFiltrada = nivelEscolarListFiltrada;
     }
 }

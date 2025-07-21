@@ -16,9 +16,9 @@
         <security:intercept-url pattern="/pages/errorPages/**" access="permitAll()"/>
 
         <!--Rulers for Admin Pages-->
-        <security:intercept-url pattern="/pages/adminPages/**" access="hasRole('ROLE_ADMIN')"/>
-        <security:intercept-url pattern="/pages/adminPages/AdminCurso.xhtml"
-                                access="hasAnyRole('ROLE_ADMIN','ROLE_SECRETARIO_GENERAL')"/>
+        <security:intercept-url pattern="/pages/adminPages/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CONTROLADOR', 'ROLE_SECRETARIO_GENERAL')"/>
+
+
 
         <!--Rulers for Centro Pages-->
         <security:intercept-url pattern="/pages/centroPages/AdminUniversidad.xhtml"
@@ -40,7 +40,7 @@
         <security:intercept-url pattern="/pages/matriculaPages/CierreMatricula.xhtml"
                                 access="hasAnyRole('ROLE_SECRETARIO_GENERAL','ROLE_SECRETARIA')"/>
         <security:intercept-url pattern="/pages/matriculaPages/MatriculaResponsable.xhtml"
-                                access="hasAnyRole('ROLE_SECRETARIA')"/>
+                                access="hasAnyRole('ROLE_SECRETARIA', 'ROLE_ESTUDIANTE')"/>
 
         <!--Rulers for Plan de Estudio Pages-->
         <security:intercept-url pattern="/pages/planEstudioPages/**" access="hasRole('ROLE_CONTROLADOR')"/>
@@ -49,7 +49,7 @@
         <security:intercept-url pattern="/pages/estudiantePages/**" access="hasRole('ROLE_SECRETARIA')"/>
 
         <!--Rulers for Report Pages-->
-        <security:intercept-url pattern="/pages/reportPages/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/pages/reportPages/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MATRICULADOR','ROLE_SECRETARIA', 'ROLE_CONTROLADOR', 'ROLE_SECRETARIO_GENERAL')"/>
 
         <!--Configuration of login and logout pages-->
         <security:form-login login-page='/login.xhtml' default-target-url='/pages/index.xhtml'
@@ -79,8 +79,8 @@
     <!--Configuration of DB source to login-->
     <bean id="securityDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/SIGENU_EaD"/>
-        <!--        <property name="url" value="jdbc:postgresql://db:5432/SIGENU_EaD"/>-->
+        <property name="url" value="jdbc:postgresql://localhost:5432/SIGENU-EaD"/>
+        <!--        <property name="url" value="jdbc:postgresql://db:5432/SIGENU-EaD"/>-->
         <property name="username" value="postgres"/>
         <property name="password" value="postgres"/>
     </bean>

@@ -40,41 +40,37 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-facultad" fileName="Facultades" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dtfacultad" fileName="Facultades" exportHeader="true"/>
                     </p:commandButton>
-                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
-                                     styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-facultad" fileName="Facultades"
-                                        exportHeader="true"/>
-                    </p:commandButton>
+
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-facultad" widgetVar="dtfacultad" var="facultad"
+            <p:dataTable tableStyleClass="table-striped" id="dtfacultad" widgetVar="dtfacultad" var="facultad"
                          value="#{adminFacultadBean.facultadList}" size="small"
                          reflow="true" styleClass="facultads-table"
                          rowKey="#{facultad.facultadNombre}" paginator="true" rows="10" paginatorPosition="bottom">
                 <f:facet name="header">
                     <div class="facultads-table-header">
                         <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-facultad').filter()" placeholder="Buscar"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtfacultad').filter()" placeholder="Buscar"/>
                     </span>
                     </div>
                 </f:facet>
 
-                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo">
+                <p:column exportHeaderValue="C&oacute;digo" headerText="C&oacute;digo" filterBy="#{facultad.codigoarea}">
                     <h:outputText value="#{facultad.codigoarea}"/>
                 </p:column>
-                <p:column headerText="Nombre" exportHeaderValue="Nombre">
+                <p:column headerText="Nombre" exportHeaderValue="Nombre" filterBy="#{facultad.nombrearea}">
                     <h:outputText value="#{facultad.nombrearea}"/>
                 </p:column>
-                <p:column headerText="Decano" exportHeaderValue="Decano">
+                <p:column headerText="Decano" exportHeaderValue="Decano" filterBy="#{facultad.nombredecanoarea}">
                     <h:outputText value="#{facultad.nombredecanoarea}"/>
                 </p:column>
-                <p:column headerText="Sec. Docente" exportHeaderValue="Sec. Docente">
+                <p:column headerText="Sec. Docente" exportHeaderValue="Sec. Docente" filterBy="#{facultad.nombresecdocarea}">
                     <h:outputText value="#{facultad.nombresecdocarea}"/>
                 </p:column>
-                <p:column headerText="Tel&eacute;fono" exportHeaderValue="Tel&eacute;fono">
+                <p:column headerText="Tel&eacute;fono" exportHeaderValue="Tel&eacute;fono" filterBy="#{facultad.telefonoarea}">
                     <h:outputText value="#{facultad.telefonoarea}"/>
                 </p:column>
 

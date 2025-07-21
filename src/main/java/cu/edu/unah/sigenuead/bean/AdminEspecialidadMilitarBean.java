@@ -28,6 +28,7 @@ public class AdminEspecialidadMilitarBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<EspecialidadMilitar> lista_especialidadmilitares = new ArrayList<EspecialidadMilitar>();
+    private List<EspecialidadMilitar> lista_especialidadmilitaresFiltrada = new ArrayList<EspecialidadMilitar>();
     private EspecialidadMilitar especialidadmilitar_selected;
     private EspecialidadMilitarServices serv = new EspecialidadMilitarServices();
 
@@ -108,5 +109,11 @@ public class AdminEspecialidadMilitarBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<EspecialidadMilitar> getLista_especialidadmilitaresFiltrada() {
+        return lista_especialidadmilitaresFiltrada;
+    }
 
+    public void setLista_especialidadmilitaresFiltrada(List<EspecialidadMilitar> lista_especialidadmilitaresFiltrada) {
+        this.lista_especialidadmilitaresFiltrada = lista_especialidadmilitaresFiltrada;
+    }
 }

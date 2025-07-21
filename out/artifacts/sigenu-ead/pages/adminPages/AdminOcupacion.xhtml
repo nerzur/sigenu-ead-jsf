@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  user: Nerzur
+  Date: 26/03/2023
+  Time: 05:51PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="jakarta.faces.core">
+
+<body>
+<ui:composition template="../Template.xhtml">
+
+    <ui:define name="title">
+        Administrar Ocupaciones
+    </ui:define>
+
+    <!--    <ui:define name="description">-->
+    <!--        Administrar ocupacions-->
+    <!--    </ui:define>-->
+
+    <ui:define name="content">
+        #{adminOcupacionBean.init()}
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" icon="pi pi-plus"
+                                     update=":dialogs:add-ocupacion-content" oncomplete="PF('addOcupacionDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:add-ocupacion-content"/>
+                    </p:commandButton>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
+                                     styleClass="ui-button ui-button-secondary" ajax="false">
+                        <p:dataExporter type="pdf" target="dtocupacion" fileName="Ocupaciones" exportHeader="true"/>
+                    </p:commandButton>
+
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable tableStyleClass="table-striped" id="dtocupacion" widgetVar="dtocupacion" var="ocupacion"
+                         value="#{adminOcupacionBean.ocupacionList}" size="small"
+                         reflow="true" styleClass="ocupacions-table"
+                         rowKey="#{ocupacion.ocupacionNombre}" paginator="true" rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <div class="ocupacions-table-header">
+
+                    </div>
+                </f:facet>
+
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" filterBy="#{ocupacion.ocupacionNombre}" sortOrder="asc">
+                    <h:outputText value="#{ocupacion.ocupacionNombre}"/>
+                </p:column>
+                <p:column exportHeaderValue="Estado" headerText="Estado">
+                    <h:outputText styleClass="#{adminOcupacionBean.translateBooleanToSeverity(ocupacion.ocupacionCancelado)}"
+                                  value="#{adminOcupacionBean.translateEstado(ocupacion.ocupacionCancelado)}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-info-circle"
+                                     oncomplete="PF('infoOcupacionDialog').show()"
+                                     styleClass="rounded-button ui-button-info" process="@this"
+                                     actionListener="#{adminOcupacionBean.updateSelected_Ocupacion(ocupacion)}"
+                                     update=":dialogs:info-ocupacion-content"
+                                     title="Informaci&oacute;n">
+                        <p:resetInput target=":dialogs:info-ocupacion-content"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-ocupacion-content" style="margin-left: 10px"
+                                     oncomplete="PF('editOcupacionDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-warning" process="@this"
+                                     actionListener="#{adminOcupacionBean.updateSelected_Ocupacion_toEdit(ocupacion)}">
+                        <p:resetInput target=":dialogs:edit-ocupacion-content"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+
+        <h:form id="dialogs">
+
+            <!--Info Dialog-->
+            <p:dialog header="Informaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="infoOcupacionDialog"
+                      responsive="true">
+                <p:outputPanel id="info-ocupacion-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Nombre: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText value="#{adminOcupacionBean.ocupacionSelected.ocupacionNombre}"/>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-lg-5">
+                                <strong><h:outputLabel value="Estado: "/></strong>
+                            </div>
+                            <div class="col col-lg-7">
+                                <h:outputText
+                                        value="#{adminOcupacionBean.translateEstado(adminOcupacionBean.ocupacionSelected.ocupacionCancelado)}"
+                                        styleClass="#{adminOcupacionBean.translateBooleanToSeverity(adminOcupacionBean.ocupacionSelected.ocupacionCancelado)}"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('infoOcupacionDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Info Dialog-->
+
+            <!--Add Dialog-->
+            <p:dialog header="A&ntilde;adir Ocupaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="addOcupacionDialog"
+                      responsive="true">
+                <p:outputPanel id="add-ocupacion-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="nombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="nombre" value="#{adminOcupacionBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="estado" value="Estado"/><br/>
+                                <p:toggleSwitch id="estado" value="#{adminOcupacionBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnAddModal" actionListener="#{adminOcupacionBean.addOcupacion()}"
+                                     update="add-ocupacion-content form:messages" process="add-ocupacion-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('addOcupacionDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <!--/Add Dialog-->
+
+            <!--Edit Dialog-->
+            <p:dialog header="Editar Ocupaci&oacute;n" showEffect="fade" modal="true"
+                      widgetVar="editOcupacionDialog"
+                      responsive="true">
+                <p:outputPanel id="edit-ocupacion-content" class="ui-fluid">
+                    <p:outputPanel>
+
+
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h:outputLabel for="editNombre"
+                                               value="Nombre *"/><br/>
+                                <p:inputText id="editNombre" value="#{adminOcupacionBean.nombre}"
+                                              required="true" showIcon="true">
+                                    <f:validateLength maximum="250"/>
+                                    <f:validateRegex pattern="[a-zA-Z áéíóúüñÁÉÍÓÚÜÑ()]+$"/>
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col col-sm-2">
+                                <h:outputLabel for="editEstado" value="Estado"/><br/>
+                                <p:toggleSwitch id="editEstado" value="#{adminOcupacionBean.cancelado}" onIcon="pi pi-check"
+                                                offIcon="pi pi-times"/>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     id="btnEditModal" actionListener="#{adminOcupacionBean.editOcupacion()}"
+                                     update="edit-ocupacion-content form:messages" process="edit-ocupacion-content @this"/>
+                    <p:commandButton value="Cerrar" icon="pi pi-times" onclick="PF('editOcupacionDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+
+</html>

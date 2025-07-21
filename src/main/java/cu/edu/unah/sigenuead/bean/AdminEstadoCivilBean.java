@@ -28,6 +28,7 @@ public class AdminEstadoCivilBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<EstadoCivil> lista_estadociviles = new ArrayList<EstadoCivil>();
+    private List<EstadoCivil> lista_estadocivilesFiltrada = new ArrayList<EstadoCivil>();
     private EstadoCivil estadocivil_selected;
     private EstadoCivilServices serv = new EstadoCivilServices();
 
@@ -108,5 +109,11 @@ public class AdminEstadoCivilBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<EstadoCivil> getLista_estadocivilesFiltrada() {
+        return lista_estadocivilesFiltrada;
+    }
 
+    public void setLista_estadocivilesFiltrada(List<EstadoCivil> lista_estadocivilesFiltrada) {
+        this.lista_estadocivilesFiltrada = lista_estadocivilesFiltrada;
+    }
 }

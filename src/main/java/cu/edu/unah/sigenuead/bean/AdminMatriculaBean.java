@@ -36,6 +36,7 @@ public class AdminMatriculaBean implements Serializable {
     private boolean estado = false;
     private Matricula matricula_selected;
     private List<Matricula> lista_matricula = new ArrayList<Matricula>();
+    private List<Matricula> lista_matriculaFiltrada = new ArrayList<Matricula>();
     private List<String> lista_facultad = new ArrayList<String>();
     private List<String> lista_carrera = new ArrayList<String>();
 

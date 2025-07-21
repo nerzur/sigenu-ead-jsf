@@ -23,6 +23,7 @@ public class AdminEstadoEstudianteBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private List<EstadoEstudiante> estadoEstudianteList = new ArrayList<EstadoEstudiante>();
+    private List<EstadoEstudiante> estadoEstudianteListFiltrada = new ArrayList<EstadoEstudiante>();
     private EstadoEstudiante estadoEstudianteSelected;
     private EstadoEstudianteServices serv = new EstadoEstudianteServices();
 
@@ -100,4 +101,11 @@ public class AdminEstadoEstudianteBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<EstadoEstudiante> getEstadoEstudianteListFiltrada() {
+        return estadoEstudianteListFiltrada;
+    }
+
+    public void setEstadoEstudianteListFiltrada(List<EstadoEstudiante> estadoEstudianteListFiltrada) {
+        this.estadoEstudianteListFiltrada = estadoEstudianteListFiltrada;
+    }
 }

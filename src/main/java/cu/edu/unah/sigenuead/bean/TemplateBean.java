@@ -24,7 +24,7 @@ public class TemplateBean implements Serializable {
     private List<String> roles = new ArrayList<String>();
     private List<String> permisos = new ArrayList<String>();
     private Users user;
-    private boolean role_admin, role_secretaria, role_controlador, role_secretario_general, role_matriculador;
+    private boolean role_admin, role_secretaria, role_controlador, role_secretario_general, role_matriculador, role_estudiante;
     private String password, password1, password2;
     private final UserServices serv = new UserServices();
 
@@ -73,6 +73,10 @@ public class TemplateBean implements Serializable {
                 }
                 case "ROLE_CONTROLADOR" -> {
                     role_controlador = true;
+                    break;
+                }
+                case "ROLE_ESTUDIANTE"-> {
+                    role_estudiante = true;
                     break;
                 }
                 default -> {
@@ -134,6 +138,7 @@ public class TemplateBean implements Serializable {
             case "ROLE_SECRETARIA" -> "Secretaria";
             case "ROLE_SECRETARIO_GENERAL" -> "Secretario General";
             case "ROLE_CONTROLADOR" -> "Controlador de Plan de Estudio";
+            case "ROLE_ESTUDIANTE" -> "Estudiante";
             default -> "Matriculador";
         };
     }

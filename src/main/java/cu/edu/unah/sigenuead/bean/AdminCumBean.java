@@ -37,6 +37,7 @@ public class AdminCumBean implements Serializable {
     private static String codigo1;
     private boolean cancelado = true;
     private List<Cum> cumList = new ArrayList<Cum>();
+    private List<Cum> cumListFiltrada = new ArrayList<Cum>();
     private List<String> provincias = new ArrayList<String>();
     private List<String> municipios = new ArrayList<String>();
     private Cum cumSelected;

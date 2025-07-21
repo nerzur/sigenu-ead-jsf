@@ -40,28 +40,23 @@
                 <p:toolbarGroup align="right">
                     <p:commandButton title="Exportar PDF" style="margin-right: 10px" icon="pi pi-file-pdf"
                                      styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="pdf" target="dt-organizacionPolitica" fileName="Organizaciones Politicas" exportHeader="true"/>
+                        <p:dataExporter type="pdf" target="dtorganizacionPolitica" fileName="Organizaciones Politicas" exportHeader="true"/>
                     </p:commandButton>
-                    <p:commandButton title="Exportar XLSX" icon="pi pi-file-excel"
-                                     styleClass="ui-button ui-button-secondary" ajax="false">
-                        <p:dataExporter type="xlsxstream" target="dt-organizacionPolitica" fileName="Organizaciones Politicas" exportHeader="true"/>
-                    </p:commandButton>
+
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:dataTable tableStyleClass="table-striped" id="dt-organizacionPolitica" widgetVar="dtorganizacionPolitica" var="organizacionPolitica"
+            <p:dataTable tableStyleClass="table-striped" id="dtorganizacionPolitica" widgetVar="dtorganizacionPolitica" var="organizacionPolitica"
                          value="#{adminOrganizacionPoliticaBean.organizacionPoliticaList}" size="small"
                          reflow="true" styleClass="organizacionPoliticas-table"
                          rowKey="#{organizacionPolitica.organizacionPoliticaNombre}" paginator="true" rows="10" paginatorPosition="bottom">
                 <f:facet name="header">
                     <div class="organizacionPoliticas-table-header">
-                        <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dt-organizacionPolitica').filter()" placeholder="Buscar"/>
-                    </span>
+
                     </div>
                 </f:facet>
 
-                <p:column exportHeaderValue="Nombre" headerText="Nombre" sortOrder="asc">
+                <p:column exportHeaderValue="Nombre" headerText="Nombre" filterBy="#{organizacionPolitica.organizacionPoliticaNombre}" sortOrder="asc">
                     <h:outputText value="#{organizacionPolitica.organizacionPoliticaNombre}"/>
                 </p:column>
                 <p:column exportHeaderValue="Estado" headerText="Estado">

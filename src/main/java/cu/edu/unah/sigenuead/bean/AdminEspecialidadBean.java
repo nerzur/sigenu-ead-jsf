@@ -28,6 +28,7 @@ public class AdminEspecialidadBean implements Serializable {
     private String nombre1;
     private boolean cancelado = true;
     private  List<Especialidad> lista_especialidades = new ArrayList<Especialidad>();
+    private  List<Especialidad> lista_especialidadesFiltrada = new ArrayList<Especialidad>();
     private Especialidad especialidad_selected;
     private EspecialidadServices serv = new EspecialidadServices();
 
@@ -108,5 +109,11 @@ public class AdminEspecialidadBean implements Serializable {
         this.cancelado = !cancelado;
     }
 
+    public List<Especialidad> getLista_especialidadesFiltrada() {
+        return lista_especialidadesFiltrada;
+    }
 
+    public void setLista_especialidadesFiltrada(List<Especialidad> lista_especialidadesFiltrada) {
+        this.lista_especialidadesFiltrada = lista_especialidadesFiltrada;
+    }
 }

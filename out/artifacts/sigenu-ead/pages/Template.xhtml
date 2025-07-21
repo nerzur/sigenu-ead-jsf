@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Nerzur
+  Date: 30/03/2023
+  Time: 10:13AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core"
+>
+
+<h:head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>SIGENU-EaD :: <ui:insert name="title"> Inicio </ui:insert></title>
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/feather.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/themify-icons.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/typicons.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/simple-line-icons.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/vendor.bundle.base.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+
+    <h:outputScript library="js" name="bootstrap5.bundle.min.js"/>
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
+    <!-- endinject -->
+    <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
+
+    <style type="text/css">
+        .ui-inputfield {
+            width: 100%;
+        }
+
+        .ui-selectonemenu {
+            width: 100%;
+        }
+
+        .p-datepicker {
+            width: 100%;
+        }
+    </style>
+</h:head>
+
+<h:body id="body">
+    #{templateBean.init()}
+
+    <script type="application/javascript">
+        PrimeFaces.locales['es'] = {
+            closeText: 'Cerrar',
+            prevText: 'Anterior',
+            nextText: 'Siguiente',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+            dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Sólo hora',
+            timeText: 'Tiempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            millisecondText: 'Milisegundo',
+            currentText: 'Fecha actual',
+            ampm: false,
+            month: 'Mes',
+            week: 'Semana',
+            day: 'Día',
+            allDayText: 'Todo el día',
+            today: 'Hoy',
+            clear: 'Claro'
+        };
+    </script>
+
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav style="z-index: 100;"
+             class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div class="me-3">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                            data-bs-toggle="minimize">
+                        <span class="icon-menu"></span>
+                    </button>
+                </div>
+                <div>
+                    <a class="navbar-brand brand-logo" href="#{request.contextPath}/pages/index.xhtml">
+                        <img src="#{request.contextPath}/resources/img/logo.png" alt="logo"/>
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="#{request.contextPath}/pages/index.xhtml">
+                        <img src="#{request.contextPath}/resources/img/favicon.png" alt="logo"/>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-top">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <h:form id="search_global">
+                            <p:growl id="search_global_growl" allowDismiss="true"/>
+                            <div class="ui-inputgroup">
+                                <p:inputText
+                                        value="#{buscarEstudianteBean.searchButton}"
+                                        placeholder="Identificaci&oacute;n"
+                                        style="height: 32px; width: 120px; background: transparent; border: none;
+                                        border-bottom: 1px solid #009440"
+                                        validatorMessage="ERROR: Debe introducir un CI v&aacute;lido">
+                                    <f:validateRegex pattern="\d{11}"/>
+                                    <f:validateLength maximum="11"/>
+                                    <f:validateLength minimum="11"/>
+                                </p:inputText>
+                                <p:commandButton id="btnSearch_global" update="search_global"
+                                                 actionListener="#{buscarEstudianteBean.searchFromSearchButton()}"
+                                                 icon="pi pi-search"
+                                                 style="height: 32px; color: #009440; z-index: 3; margin-left: -10px"
+                                                 styleClass="ui-button-success ui-button-flat"/>
+                            </div>
+                            <input type="hidden"
+                                   name="${_csrf.parameterName}"
+                                   value="${_csrf.token}"/>
+                        </h:form>
+                    </li>
+
+                    <li class="nav-item dropdown user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="#" data-toggle="dropdown" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <img class="img-xs rounded-circle" src="#{request.contextPath}/resources/img/user.png"
+                                 width="auto" height="100%"
+                                 alt="Profile image"/>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" style="max-width: 250px"
+                             aria-labelledby="UserDropdown">
+                            <div class="dropdown-header text-center">
+                                <img class="img-xs rounded-circle" src="#{request.contextPath}/resources/img/user.png"
+                                     alt="Profile image"/>
+                                <p class="mb-1 mt-3 font-weight-semibold"> #{templateBean.user.username} </p>
+                                <p class="fw-light text-muted mb-0">#{templateBean.user.email}</p>
+                            </div>
+                            <a href="#{request.contextPath}/pages/Perfil.xhtml" class="dropdown-item ui-button-flat"><i
+                                    class="dropdown-item-icon mdi mdi-account-card-details me-2"
+                                    style="color: #009440"></i> Perfil
+                                <!--                                <span class="badge badge-pill badge-danger">1</span>-->
+                            </a>
+                            <!--                            <a class="dropdown-item"><i-->
+                            <!--                                    class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>-->
+                            <!--                            <a class="dropdown-item"><i-->
+                            <!--                                    class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>-->
+                            <!--                            <a class="dropdown-item"><i-->
+                            <!--                                    class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>-->
+                            <form action="#{request.contextPath}/logout" method="post">
+
+                                <div class="ui-inputgroup dropdown-item">
+                                    <i class="dropdown-item-icon pi pi-sign-out"
+                                       style="color: #009440; z-index: 10"/>
+                                    <input type="submit" style="margin-left: -17px; border: none; margin-right: -17px;"
+                                           class="dropdown-item ui-button-flat" value="Cerrar Sesi&oacute;n">
+                                    </input>
+                                </div>
+                                <input type="hidden"
+                                       name="${_csrf.parameterName}"
+                                       value="${_csrf.token}"/>
+                            </form>
+                            <!--                            <a class="dropdown-item"><i-->
+                            <!--                                    class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>-->
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-bs-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_settings-panel.html -->
+            <div class="theme-setting-wrapper">
+                <div id="settings-trigger"><i class="ti-settings"></i></div>
+                <div id="theme-settings" class="settings-panel">
+                    <i class="settings-close ti-close"></i>
+                    <p class="settings-heading">SKINS BARRA LATERAL</p>
+                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                        <div class="img-ss rounded-circle bg-light border me-3"></div>
+                        Light
+                    </div>
+                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                        <div class="img-ss rounded-circle bg-dark border me-3"></div>
+                        Dark
+                    </div>
+                    <p class="settings-heading mt-2">SKINS CABECERA</p>
+                    <div class="color-tiles mx-0 px-4">
+                        <div class="tiles success"></div>
+                        <div class="tiles warning"></div>
+                        <div class="tiles danger"></div>
+                        <div class="tiles info"></div>
+                        <div class="tiles dark"></div>
+                        <div class="tiles default"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-sidebar" class="settings-panel">
+                <i class="settings-close ti-close"></i>
+                <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+                           aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                           aria-controls="chats-section">CHATS</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="setting-content">
+                    <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+                         aria-labelledby="todo-section">
+                        <div class="add-items d-flex px-3 mb-0">
+                            <form class="form w-100">
+                                <div class="form-group d-flex">
+                                    <input type="text" class="form-control todo-list-input" placeholder="Add To-do"/>
+                                    <button type="submit" class="add btn btn-primary todo-list-add-btn"
+                                            id="add-task">Add
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="list-wrapper px-3">
+                            <ul class="d-flex flex-column-reverse todo-list">
+                                <li>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="checkbox" type="checkbox"/>
+                                            Team review meeting at 3.00 PM
+                                        </label>
+                                    </div>
+                                    <i class="remove ti-close"></i>
+                                </li>
+                                <li>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="checkbox" type="checkbox"/>
+                                            Prepare for presentation
+                                        </label>
+                                    </div>
+                                    <i class="remove ti-close"></i>
+                                </li>
+                                <li>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="checkbox" type="checkbox"/>
+                                            Resolve all the low priority tickets due today
+                                        </label>
+                                    </div>
+                                    <i class="remove ti-close"></i>
+                                </li>
+                                <li class="completed">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="checkbox" type="checkbox"/>
+                                            Schedule meeting for next week
+                                        </label>
+                                    </div>
+                                    <i class="remove ti-close"></i>
+                                </li>
+                                <li class="completed">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="checkbox" type="checkbox"/>
+                                            Project review
+                                        </label>
+                                    </div>
+                                    <i class="remove ti-close"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <h4 class="px-3 text-muted mt-5 fw-light mb-0">Events</h4>
+                        <div class="events pt-4 px-3">
+                            <div class="wrapper d-flex mb-2">
+                                <i class="ti-control-record text-primary me-2"></i>
+                                <span>Feb 11 2018</span>
+                            </div>
+                            <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+                            <p class="text-gray mb-0">The total number of sessions</p>
+                        </div>
+                        <div class="events pt-4 px-3">
+                            <div class="wrapper d-flex mb-2">
+                                <i class="ti-control-record text-primary me-2"></i>
+                                <span>Feb 7 2018</span>
+                            </div>
+                            <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+                            <p class="text-gray mb-0 ">Call Sarah Graves</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- partial -->
+            <!-- partial:../../partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-category"
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">Administraci&oacute;n
+                    </li>
+                    <!--Administrar-->
+                    <li class="nav-item"
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general, templateBean.role_controlador)}">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                           aria-controls="ui-basic">
+                            <i class="menu-icon pi pi-cog"></i>
+                            <span class="menu-title">Administrar</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/adminPages/AdminCarreraNacional.xhtml">Carrera Nacional</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminColorPiel.xhtml">Color Piel</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminCurso.xhtml">Curso</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_controlador)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminDisciplina.xhtml">Disciplina</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminEspecialidad.xhtml">Especialidad</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminEspecialidadMilitar.xhtml">Especialidad Militar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminEstadoCivil.xhtml">Estado Civil</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminEstadoEstudiante.xhtml">Estado Estudiante</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminFuenteIngreso.xhtml">Fuente de Ingreso</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminGradoMilitar.xhtml">Grado Militar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminOrfandad.xhtml">Orfandad</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminMinusvalia.xhtml">Minusval&iacute;a</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminMunicipio.xhtml">Municipio</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminNivelEscolar.xhtml">Nivel Escolar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminOcupacion.xhtml">Ocupación</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminOng.xhtml">ONG</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminOrganismo.xhtml">Organismo</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminOrganizacionPolitica.xhtml">Organizaci&oacute;n Pol&iacute;tica</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminOrganizacionPopular.xhtml">Organizaci&oacute;n Popular</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminPais.xhtml">Pa&iacute;s</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminProcedenciaEscolar.xhtml">Procedencia Escolar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminProvincia.xhtml">Provincia</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminSexo.xhtml">Sexo</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminSindicato.xhtml">Sindicato</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminTipoAsignatura.xhtml">Tipo de Asignatura</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminTipoEvaluacion.xhtml">Tipo de Evaluaci&oacute;n</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminTipoMilitar.xhtml">Tipo de Militar</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminTipoPlanEstudio.xhtml">Tipo de Plan de Estudio</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu"
+                                style="#{templateBean.translateRole_visible(templateBean.role_admin)}">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/adminPages/AdminUsers.xhtml">Usuarios</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!--Herramientas-->
+                    <li class="nav-item nav-category"
+                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general, templateBean.role_admin, templateBean.role_controlador, templateBean.role_estudiante)}">Herramientas
+                    </li>
+                    <!--Matricula-->
+                    <li class="nav-item"
+                        style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria, templateBean.role_secretario_general,templateBean.role_estudiante)}">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+                           aria-controls="form-elements">
+                            <i class="menu-icon mdi mdi-card-text-outline"></i>
+                            <span class="menu-title">Matr&iacute;cula</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="form-elements">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Matr&iacute;cula</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_matriculador, templateBean.role_secretaria)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/matriculaPages/NuevaMatricula.xhtml">Actualizar datos de Estudiante</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_secretaria, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/matriculaPages/CierreMatricula.xhtml">Cerrar Matr&iacute;cula</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_secretaria, templateBean.role_estudiante)}"><a
+                                        class="nav-link"
+                                        href="#{request.contextPath}/pages/matriculaPages/MatriculaResponsable.xhtml">Realizar Matr&iacute;cula Responsable</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--Centro-->
+                    <li class="nav-item"
+                        style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general, templateBean.role_controlador)}">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
+                           aria-controls="charts">
+                            <i class="menu-icon pi pi-building"></i>
+                            <span class="menu-title">Centro</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="charts">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/AdminUniversidad.xhtml">Universidad</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/AdminFacultad.xhtml">Facultad</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_admin, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/AdminCum.xhtml">CUM</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_controlador, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/GestionarCarrera.xhtml">Carrera</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_controlador)}"><a
+                                        class="nav-link"
+                                        href="#{request.contextPath}/pages/centroPages/UbicarCarrerasCUM.xhtml">Ubicar Carreras en CUM</a>
+                                </li>
+                                <li class="nav-item"
+                                    style="#{templateBean.translateRole_visible(templateBean.role_controlador, templateBean.role_secretario_general)}">
+                                    <a class="nav-link"
+                                       href="#{request.contextPath}/pages/centroPages/AdminMatricula.xhtml">Abrir Matr&iacute;cula Responsable</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--Estudiante-->
+                    <li class="nav-item" style="#{templateBean.translateRole_visible( templateBean.role_secretaria)}">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
+                           aria-controls="tables">
+                            <i class="menu-icon pi pi-users"></i>
+                            <span class="menu-title">Estudiante</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="tables">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/estudiantePages/BuscarEstudiante.xhtml">Buscar Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/estudiantePages/EvaluarAsignaturaEstudiantes.xhtml">Evaluar Asignaturas por Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/estudiantePages/DarBajaEstudiante.xhtml">Dar Baja a Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/estudiantePages/PromoverEstudiante.xhtml">Promover Estudiantes</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/estudiantePages/RevocarBajaEstudiante.xhtml">Revocar Baja</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/estudiantePages/RevocarPromocion.xhtml">Revocar Promoción</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--Plan de Estudio-->
+                    <li class="nav-item" style="#{templateBean.translateRole_visible(templateBean.role_controlador)}">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
+                           aria-controls="icons">
+                            <i class="menu-icon pi pi-book"></i>
+                            <span class="menu-title">Plan de Estudio</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="icons">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/planEstudioPages/GestionarPlanEstudio.xhtml">Gestionar Plan de Estudio</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-category">Reportes</li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
+                           aria-controls="auth">
+                            <i class="menu-icon pi pi-chart-bar"></i>
+                            <span class="menu-title">Reportes</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/reportPages/RegistroCalificacionesAsig.xhtml">Reg. de Calif. por Asignatura</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/reportPages/RegistroCalificacionesEstudiante.xhtml">Reg.de Calif. por Estudiante</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/reportPages/ActaExamenFinal.xhtml">Acta de Examen Final</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/pages/reportPages/CertificacionCalificacionesCursoAcademico.xhtml">Certif. de Calif. del curso Acad&eacute;mico</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/resources/reports/ms2d.docx">Modelo Matr&iacute;cula Responsable</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="#{request.contextPath}/resources/reports/ms18.docx">Modelo de Examen de Premio</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <ui:insert name="profile-data"> </ui:insert>
+                        <div id="content-data" class="col-lg-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title"><ui:insert name="title"> </ui:insert></h4>
+                                    <!--                                    <p class="card-description">-->
+                                    <!--                                        <ui:insert name="description"> </ui:insert>-->
+                                    <!--                                    </p>-->
+                                    <div class="table-responsive">
+                                        <ui:insert name="content"> </ui:insert>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">SIGENU - Eduaci&oacute;n a Distancia <a
+                                href="https://www.unah.edu.cu/"
+                                target="_blank">Universidad Agraria de La Habana "Fructuoso Rodr&iacute;guez P&eacute;rez"</a></span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">v0.12.7-Beta. Copyright ©
+                         <script type="application/javascript">
+                            document.write(new Date().getFullYear());
+                        </script>. Todos los Derechos Reservados.</span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+
+
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <h:outputScript library="js" name="bootstrap-datepicker.min.js"/>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <h:outputScript library="js" name="off-canvas.js"/>
+    <h:outputScript library="js" name="hoverable-collapse.js"/>
+    <h:outputScript library="js" name="template.js"/>
+    <h:outputScript library="js" name="settings.js"/>
+    <h:outputScript library="js" name="todolist.js"/>
+    <!--             endinject -->
+    <!--             Custom js for this page-->
+    <!--             End custom js for this page-->
+
+</h:body>
+
+</html>
